@@ -1,5 +1,5 @@
  {
-   "host" : "",
+   "host" : "192.168.75.167",
    "routes" : {
       "login" : "/users/login/",
       "profile" : "/users/profile/",
