@@ -1,0 +1,18 @@
+{
+  "name": "upstox-nodejs",
+  "version": "0.0.1",
+  "description": "Library for node js to trade with Upstox APIs.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Upstox",
+    "Share",
+    "market",
+    "trading",
+    "UpstoxAPI"
+  ],
+  "author": "Renuka Misal",
+  "license": "ISC"
+}

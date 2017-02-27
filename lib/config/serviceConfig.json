@@ -1,0 +1,10 @@
+ {
+   "host" : "",
+   "routes" : {
+      "login" : "/users/login/",
+      "profile" : "/users/profile/",
+      "holdings" : "/users/profile/holdings",
+      "limits" : "/users/profile/limits",
+      "positions" : "/users/profile/positions"
+   }
+ }
