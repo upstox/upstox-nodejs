@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>UpstoxAPI.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Upstox.html">Upstox</a></li></ul><h3>Global</h3><ul><li><a href="global.html#getHoldings">getHoldings</a></li><li><a href="global.html#getLimits">getLimits</a></li><li><a href="global.html#getProfile">getProfile</a></li><li><a href="global.html#getSessionToken">getSessionToken</a></li><li><a href="global.html#positions">positions</a></li><li><a href="global.html#setToken">setToken</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">UpstoxAPI.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @fileoverview
+ * @author renuka.misal@rksv.in (RenukaMisal92)
+ */
+
+// External Dependencies
+var _ = require('lodash');
+var promise =  require('bluebird');
+
+// Internal Dependencies
+var RestHelper = require('./../utils/helper.js');
+
+/**
+ * @classdesc API client class. You need to initialise a single instance of this class per `api_key`.
+ * This module provides an easy to use wrapper over the HTTP APIs.
+ * The HTTP calls have been converted to methods and their JSON responses.
+ *
+ * var Upstox = require("Upstox");
+ * var up = new Upstox("your_apikey", "your_apiSecretKey");
+ * up.getSessionToken("clientId", "password")
+ *    .then(function(response) {
+ * 		init();
+ * 	})
+ *    .catch(function(err) {
+ * 		console.log(err.response);
+ * 	})
+ *
+ * @example &lt;caption>Initialize Upstox object&lt;/caption>
+ * var Upstox = require("Upstox");
+ * var up = new Upstox("your_apikey", "your_apiSecretKey");
+ *
+ * @param apiKey
+ * @param apiSecretKey
+ * @param sessionToken
+ * @constructor
+ */
+function Upstox(apiKey, apiSecretKey, sessionToken) {
+
+    /**
+     * @private @const
+     * @type {{apiKey: *, apiSecretKey: *, sessionToken: *}}
+     */
+    this.auth = {
+        apiKey: apiKey,
+        apiSecretKey: apiSecretKey,
+        sessionToken : sessionToken
+    };
+}
+
+/**
+ * @method setToken
+ * @description method to associate the sessionToken with the class object.
+ * @param sessionToken
+ */
+Upstox.prototype.setToken = function(sessionToken){
+    var __this = this;
+    __this.auth.sessionToken = sessionToken;
+};
+
+/**
+ * @method getSessionToken
+ * @description Method to get the session token required to authenticate user
+ * @param {string} username valid client id for UPSTOX
+ * @param {string} password valid password associated with the users client id
+ * @return promise
+ */
+Upstox.prototype.getSessionToken = function(username, password) {
+
+    var __this = this,
+        success = {},
+        sessionToken;
+
+    return new promise(function (resolve, reject) {
+        var params = {
+            username: username,
+            password: password
+        };
+
+        var res = RestHelper.restify("login", "POST", params, __this.auth);
+
+        res.then(function (response) {
+            success = response.body;
+            success["sessionToken"] = response.headers["set-cookie"][0];
+            __this.setToken(response.headers["set-cookie"][0]);
+            resolve(success);
+        }).catch(function (err) {
+            //console.log("Error", err);
+            reject(err);
+        });
+
+        return res;
+    });
+};
+
+
+/**
+ * @method getProfile
+ * @description Method to get the profile details
+ * @return {res}
+ */
+Upstox.prototype.getProfile = function () {
+
+    var __this = this;
+    return RestHelper.GET("profile", null, __this.auth );
+    // promise.then(function (response) {
+    //     //console.log(JSON.stringify(response, null, 2));
+    // });
+    //
+    // return promise;
+};
+
+
+/**
+ * @method getHoldings
+ * @description Get the user's holdings.
+ * @return {res}
+ */
+Upstox.prototype.getHoldings = function () {
+
+    var __this = this;
+    return RestHelper.GET("holdings", null, __this.auth);
+    // promise.then(function (response) {
+    //     //console.log("Hii ----------");
+    // });
+    //return promise;
+
+};
+
+
+/**
+ * @method getLimits
+ * @description Get the user's account limits for equity and commodity.
+ * @return {res}
+ */
+Upstox.prototype.getLimits = function () {
+
+    var __this = this;
+    return RestHelper.GET("limits", null, this.auth);
+
+};
+
+/**
+ * @method positions
+ * @description Get the user's day positions.
+ * @return {res}
+ */
+Upstox.prototype.getPositions = function () {
+
+    var __this = this;
+    return RestHelper.GET("positions", null, this.auth);
+};
+
+module.exports.Upstox = Upstox;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Wed Mar 01 2017 16:45:24 GMT+0530 (IST) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

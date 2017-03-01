@@ -4,7 +4,8 @@
   "description": "Library for node js to trade with Upstox APIs.",
   "main": "index.js",
   "scripts": {
-    "test": "npm test"
+    "test": "mocha --recursive lib/test/",
+    "doc": "jsdoc lib/upstoxAPIs.js"
   },
   "keywords": [
     "Upstox",
@@ -14,5 +15,25 @@
     "UpstoxAPI"
   ],
   "author": "Renuka Misal",
-  "license": "ISC"
+  "license": "ISC",
+  "directories": {
+    "doc": "docs"
+  },
+  "dependencies": {
+    "chai": "^3.5.0",
+    "lodash": "^4.17.4",
+    "minami": "^1.1.1",
+    "request": "^2.79.0",
+    "request-promise": "^4.1.1"
+  },
+  "devDependencies": {
+    "mocha": "^3.2.0",
+    "jsdoc": "^3.4.3",
+    "minami": "^1.1.1",
+    "jsdoc-toolkit": "0.0.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@git.rksv.net:renuka.misal/upstoxnodelibrary.git"
+  }
 }
