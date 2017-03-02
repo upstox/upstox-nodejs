@@ -1,10 +1,20 @@
  {
-   "host" : "192.168.75.167",
+   "host" : "http://192.168.75.167",
    "routes" : {
       "login" : "/users/login/",
+      "logout" : "/users/logout",
       "profile" : "/users/profile/",
       "holdings" : "/users/profile/holdings",
       "limits" : "/users/profile/limits",
-      "positions" : "/users/profile/positions"
+      "positions" : "/users/profile/positions",
+
+      "placeOrder" :"/orders",
+      "getOrders" : "/orders",
+      "modifyOrder" :"/orders/{order_id}",
+      "cancelOrder" : "/order/{order_id}",
+
+      "instruments":"/instruments",
+      "liveFeeds" : "",
+      "OHLC" : ""
    }
  }

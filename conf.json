@@ -1,15 +1,16 @@
 {
   "tags": {
-    "allowUnknownTags": true,
+    "allowUnknownTags": false,
     "dictionaries": ["jsdoc"]
   },
   "source": {
-    "include": ["lib/src"],
+    "include": ["lib/src/UpstoxAPI.js", "README.md"],
     "includePattern": ".js$",
     "excludePattern": ""
   },
   "plugins": [
-    "plugins/markdown"
+    "plugins/markdown",
+    "plugins/summarize"
   ],
   "templates": {
     "cleverLinks": false,
