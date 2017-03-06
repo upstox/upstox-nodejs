@@ -23,7 +23,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Upstox.html">Upstox</a><ul class='methods'><li data-type='method'><a href="Upstox.html#.getHoldings">getHoldings</a></li><li data-type='method'><a href="Upstox.html#.getLimits">getLimits</a></li><li data-type='method'><a href="Upstox.html#.getOrders">getOrders</a></li><li data-type='method'><a href="Upstox.html#.getProfile">getProfile</a></li><li data-type='method'><a href="Upstox.html#.getSessionToken">getSessionToken</a></li><li data-type='method'><a href="Upstox.html#.placeOrder">placeOrder</a></li><li data-type='method'><a href="Upstox.html#.positions">positions</a></li><li data-type='method'><a href="Upstox.html#setToken">setToken</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#cancelOrder">cancelOrder</a></li><li><a href="global.html#modifyOrder">modifyOrder</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Upstox.html">Upstox</a><ul class='methods'><li data-type='method'><a href="Upstox.html#.cancelOrder">cancelOrder</a></li><li data-type='method'><a href="Upstox.html#.getHoldings">getHoldings</a></li><li data-type='method'><a href="Upstox.html#.getInstruments">getInstruments</a></li><li data-type='method'><a href="Upstox.html#.getLimits">getLimits</a></li><li data-type='method'><a href="Upstox.html#.getOrders">getOrders</a></li><li data-type='method'><a href="Upstox.html#.getProfile">getProfile</a></li><li data-type='method'><a href="Upstox.html#.getSessionToken">getSessionToken</a></li><li data-type='method'><a href="Upstox.html#.modifyOrder">modifyOrder</a></li><li data-type='method'><a href="Upstox.html#.placeOrder">placeOrder</a></li><li data-type='method'><a href="Upstox.html#.positions">positions</a></li><li data-type='method'><a href="Upstox.html#setToken">setToken</a></li></ul></li></ul>
 </nav>
 
 <div id="main">
@@ -341,6 +341,206 @@ var up = new Upstox("your_apikey", "your_apiSecretKey");</code></pre>
 
     
 
+    <h4 class="name" id=".cancelOrder"><span class="type-signature">(static) </span>cancelOrder<span class="signature">(params)</span><span class="type-signature"> &rarr; {res}</span></h4>
+
+    
+    <p class="summary"><p>Cancel the order</p>.</p>
+    
+
+
+
+<div class="description">
+    <p>Cancel the order</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>order_id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line210">line 210</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">res</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
     <h4 class="name" id=".getHoldings"><span class="type-signature">(static) </span>getHoldings<span class="signature">()</span><span class="type-signature"> &rarr; {res}</span></h4>
 
     
@@ -394,7 +594,226 @@ var up = new Upstox("your_apikey", "your_apiSecretKey");</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line125">line 125</a>
+        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line123">line 123</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">res</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".getInstruments"><span class="type-signature">(static) </span>getInstruments<span class="signature">(params<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {res}</span></h4>
+
+    
+    <p class="summary"><p>Get Instruments list</p>.</p>
+    
+
+
+
+<div class="description">
+    <p>Get Instruments list</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>exchange</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>optional name of the exchange to get specific BOD details</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line225">line 225</a>
     </li></ul></dd>
     
 
@@ -496,7 +915,7 @@ var up = new Upstox("your_apikey", "your_apiSecretKey");</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line138">line 138</a>
+        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line136">line 136</a>
     </li></ul></dd>
     
 
@@ -598,7 +1017,7 @@ var up = new Upstox("your_apikey", "your_apiSecretKey");</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line183">line 183</a>
+        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line181">line 181</a>
     </li></ul></dd>
     
 
@@ -700,7 +1119,7 @@ var up = new Upstox("your_apikey", "your_apiSecretKey");</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line106">line 106</a>
+        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line104">line 104</a>
     </li></ul></dd>
     
 
@@ -749,7 +1168,7 @@ var up = new Upstox("your_apikey", "your_apiSecretKey");</code></pre>
 
     
 
-    <h4 class="name" id=".getSessionToken"><span class="type-signature">(static) </span>getSessionToken<span class="signature">(username, password)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id=".getSessionToken"><span class="type-signature">(static) </span>getSessionToken<span class="signature">(params)</span><span class="type-signature"></span></h4>
 
     
     <p class="summary"><p>Method to get the session token required to authenticate user</p>.</p>
@@ -771,6 +1190,48 @@ var up = new Upstox("your_apikey", "your_apiSecretKey");</code></pre>
 
     <h5>Parameters:</h5>
     
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                <h6>Properties</h6>
+                
 
 <table class="params">
     <thead>
@@ -834,6 +1295,13 @@ var up = new Upstox("your_apikey", "your_apiSecretKey");</code></pre>
             
 
             <td class="description last"><p>valid password associated with the users client id</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
         </tr>
 
     
@@ -905,6 +1373,229 @@ var up = new Upstox("your_apikey", "your_apiSecretKey");</code></pre>
 </div>
 
 
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".modifyOrder"><span class="type-signature">(static) </span>modifyOrder<span class="signature">(params)</span><span class="type-signature"> &rarr; {res}</span></h4>
+
+    
+    <p class="summary"><p>Modify the order by updating the order quantity</p>.</p>
+    
+
+
+
+<div class="description">
+    <p>Modify the order by updating the order quantity</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>order_id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>quantity</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line194">line 194</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">res</span>
+
+
+    </dd>
+</dl>
 
     
 
@@ -1135,7 +1826,7 @@ var up = new Upstox("your_apikey", "your_apiSecretKey");</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line164">line 164</a>
+        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line162">line 162</a>
     </li></ul></dd>
     
 
@@ -1237,7 +1928,7 @@ var up = new Upstox("your_apikey", "your_apiSecretKey");</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line151">line 151</a>
+        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line149">line 149</a>
     </li></ul></dd>
     
 
@@ -1432,7 +2123,7 @@ var up = new Upstox("your_apikey", "your_apiSecretKey");</code></pre>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Thu Mar 02 2017 16:54:28 GMT+0530 (IST) using the Minami theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Mon Mar 06 2017 11:04:45 GMT+0530 (IST) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>

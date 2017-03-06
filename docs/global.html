@@ -23,7 +23,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Upstox.html">Upstox</a><ul class='methods'><li data-type='method'><a href="Upstox.html#.getHoldings">getHoldings</a></li><li data-type='method'><a href="Upstox.html#.getLimits">getLimits</a></li><li data-type='method'><a href="Upstox.html#.getOrders">getOrders</a></li><li data-type='method'><a href="Upstox.html#.getProfile">getProfile</a></li><li data-type='method'><a href="Upstox.html#.getSessionToken">getSessionToken</a></li><li data-type='method'><a href="Upstox.html#.placeOrder">placeOrder</a></li><li data-type='method'><a href="Upstox.html#.positions">positions</a></li><li data-type='method'><a href="Upstox.html#setToken">setToken</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#cancelOrder">cancelOrder</a></li><li><a href="global.html#modifyOrder">modifyOrder</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Upstox.html">Upstox</a><ul class='methods'><li data-type='method'><a href="Upstox.html#.getHoldings">getHoldings</a></li><li data-type='method'><a href="Upstox.html#.getLimits">getLimits</a></li><li data-type='method'><a href="Upstox.html#.getOrders">getOrders</a></li><li data-type='method'><a href="Upstox.html#.getProfile">getProfile</a></li><li data-type='method'><a href="Upstox.html#.getSessionToken">getSessionToken</a></li><li data-type='method'><a href="Upstox.html#.placeOrder">placeOrder</a></li><li data-type='method'><a href="Upstox.html#.positions">positions</a></li><li data-type='method'><a href="Upstox.html#setToken">setToken</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#cancelOrder">cancelOrder</a></li><li><a href="global.html#getInstruments">getInstruments</a></li><li><a href="global.html#modifyOrder">modifyOrder</a></li></ul>
 </nav>
 
 <div id="main">
@@ -256,7 +256,226 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line211">line 211</a>
+        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line209">line 209</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">res</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="getInstruments"><span class="type-signature"></span>getInstruments<span class="signature">(params<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {res}</span></h4>
+
+    
+    <p class="summary"><p>Get Instruments list</p>.</p>
+    
+
+
+
+<div class="description">
+    <p>Get Instruments list</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>exchange</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>optional name of the exchange to get specific BOD details</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line223">line 223</a>
     </li></ul></dd>
     
 
@@ -464,7 +683,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line196">line 196</a>
+        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line194">line 194</a>
     </li></ul></dd>
     
 
@@ -526,7 +745,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Thu Mar 02 2017 16:54:28 GMT+0530 (IST) using the Minami theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Mon Mar 06 2017 10:08:07 GMT+0530 (IST) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>

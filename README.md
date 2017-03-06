@@ -15,9 +15,13 @@ This module is installed via npm:
 
 Getting started with API
 ------------------------
-	 var Upstox = require("Upstox");
+	 var Upstox = require("upstox");
      var up = new Upstox("your_apikey", "your_apiSecretKey");
-     up.getSessionToken("clientId", "password")
+     var params = {
+        "clientId" : 123345,   
+        "password" : 5xcvbnm
+     }
+     up.getSessionToken(params)
         .then(function(response) {
      		start();
      	})
@@ -29,7 +33,7 @@ Getting started with API
 		// Fetch holdings.
 		// You can have other api calls here.
 
-		kc.getHoldings()
+		up.getHoldings()
 			.then(function(response) {
 				// You got user's holding details.
 			}).catch(function(err) {
