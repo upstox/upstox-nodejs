@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha --recursive lib/test/",
-    "doc": "jsdoc lib/upstoxAPIs.js"
+    "doc": "jsdoc -c conf.json"
   },
   "keywords": [
     "Upstox",

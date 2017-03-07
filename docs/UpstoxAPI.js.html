@@ -23,7 +23,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Upstox.html">Upstox</a><ul class='methods'><li data-type='method'><a href="Upstox.html#.cancelOrder">cancelOrder</a></li><li data-type='method'><a href="Upstox.html#.getHoldings">getHoldings</a></li><li data-type='method'><a href="Upstox.html#.getInstruments">getInstruments</a></li><li data-type='method'><a href="Upstox.html#.getLimits">getLimits</a></li><li data-type='method'><a href="Upstox.html#.getOrders">getOrders</a></li><li data-type='method'><a href="Upstox.html#.getProfile">getProfile</a></li><li data-type='method'><a href="Upstox.html#.getSessionToken">getSessionToken</a></li><li data-type='method'><a href="Upstox.html#.modifyOrder">modifyOrder</a></li><li data-type='method'><a href="Upstox.html#.placeOrder">placeOrder</a></li><li data-type='method'><a href="Upstox.html#.positions">positions</a></li><li data-type='method'><a href="Upstox.html#setToken">setToken</a></li></ul></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Upstox.html">Upstox</a><ul class='methods'><li data-type='method'><a href="Upstox.html#.cancelOrder">cancelOrder</a></li><li data-type='method'><a href="Upstox.html#.getHoldings">getHoldings</a></li><li data-type='method'><a href="Upstox.html#.getInstruments">getInstruments</a></li><li data-type='method'><a href="Upstox.html#.getLimits">getLimits</a></li><li data-type='method'><a href="Upstox.html#.getOrders">getOrders</a></li><li data-type='method'><a href="Upstox.html#.getProfile">getProfile</a></li><li data-type='method'><a href="Upstox.html#.getSessionToken">getSessionToken</a></li><li data-type='method'><a href="Upstox.html#.LiveFeed">LiveFeed</a></li><li data-type='method'><a href="Upstox.html#.modifyOrder">modifyOrder</a></li><li data-type='method'><a href="Upstox.html#.placeOrder">placeOrder</a></li><li data-type='method'><a href="Upstox.html#.positions">positions</a></li><li data-type='method'><a href="Upstox.html#setSessionHook">setSessionHook</a></li><li data-type='method'><a href="Upstox.html#setToken">setToken</a></li></ul></li></ul>
 </nav>
 
 <div id="main">
@@ -61,12 +61,21 @@ var RestHelper = require('./../utils/helper.js');
  * var up = new Upstox("your_apikey", "your_apiSecretKey");
  * up.getSessionToken("clientId", "password")
  *    .then(function(response) {
- * 		init();
+ * 		start();
  * 	})
  *    .catch(function(err) {
  * 		console.log(err.response);
  * 	})
  *
+ * start(){
+ * 	   up.getProfile()
+ * 	      .then(function(response){
+ * 	           //get the result here
+ *         })
+ *         .catch(function(error){
+               //catch the error here
+ *          });
+ * }
  * ~~~~
  *
 
@@ -122,22 +131,16 @@ Upstox.prototype.getSessionToken = function(params) {
         sessionToken;
 
     return new promise(function (resolve, reject) {
-
-        console.log("check for params" + JSON.stringify(params, null, 2));
-
-        var res = RestHelper.restify("login", HTTP_METHOD, params, __this.auth);
-
-        res.then(function (response) {
-            success = response.body;
-            success["sessionToken"] = response.headers["set-cookie"][0];
-            __this.setToken(response.headers["set-cookie"][0]);
-            resolve(success);
-        }).catch(function (err) {
-            //console.log("Error", err);
-            reject(err);
-        });
-
-        return res;
+        RestHelper.restify("login", HTTP_METHOD, params, __this.auth)
+            .then(function (response) {
+                success = response.body;
+                success["sessionToken"] = response.headers["set-cookie"][0];
+                __this.setToken(response.headers["set-cookie"][0]);
+                resolve(success);
+            })
+            .catch(function (err) {
+                reject(err);
+            });
     });
 };
 
@@ -153,11 +156,6 @@ Upstox.prototype.getProfile = function () {
     var HTTP_METHOD = "GET";
 
     return RestHelper.restify("profile", HTTP_METHOD, null, __this.auth );
-    // promise.then(function (response) {
-    //     //console.log(JSON.stringify(response, null, 2));
-    // });
-    //
-    // return promise;
 };
 
 /**
@@ -200,8 +198,9 @@ Upstox.prototype.getPositions = function () {
 };
 
 /**
+ * Placing an order
+ *
  * @method placeOrder
- * @description Placing an order
  * @memberOf Upstox
  * @param {object} params
  * @param {string} params.transaction_type
@@ -214,13 +213,12 @@ Upstox.prototype.placeOrder = function(params){
 
     var __this = this;
     var HTTP_METHOD = "POST";
-    //console.log("Check for authe token in placxe order" + JSON.stringify(__this.auth, null, 2));
     return RestHelper.restify("placeOrder", HTTP_METHOD, params, __this.auth);
 };
 
 /**
+ * Get the orders placed
  * @method getOrders
- * @description Get the orders placed
  * @memberOf Upstox
  * @return {res}
  */
@@ -233,9 +231,9 @@ Upstox.prototype.getOrders = function(){
 
 /**
  * @method modifyOrder
- * @memberOf Upstox
  * @description Modify the order by updating the order quantity
- * @param {object} params
+ * @memberOf Upstox
+ * @param {Object} params
  * @param {number} params.order_id
  * @param {number} params.quantity
  * @return {res}
@@ -249,10 +247,10 @@ Upstox.prototype.modifyOrder = function(params){
 
 /**
  * @method cancelOrder
- * @memberOf Upstox
  * @description Cancel the order
+ * @memberOf Upstox
  * @param {object} params
- * @param {string} params.order_id
+ * @param {number} params.order_id
  * @return {res}
  */
 Upstox.prototype.cancelOrder = function(params){
@@ -264,8 +262,8 @@ Upstox.prototype.cancelOrder = function(params){
 
 /**
  * @method getInstruments
- * @memberOf Upstox
  * @description Get Instruments list
+ * @memberOf Upstox
  * @param [params]
  * @param {string} [params.exchange] optional name of the exchange to get specific BOD details
  * @return {res}
@@ -279,6 +277,51 @@ Upstox.prototype.getInstruments = function(params){
 
 };
 
+/**
+ * @method LiveFeed
+ * @description Get Instruments list
+ * @memberOf Upstox
+ * @param params
+ * @param {string} params.exchange name of the exchange to get live feeds of.
+ * @param {string} params.instrument name of the instrument to get live feeds of.
+ * @param {string} [params.miniType] name of the exchange to get live feeds of.
+ * @return {res}
+ */
+Upstox.prototype.getLiveFeeds = function(params){
+
+    var __this = this;
+    var HTTP_METHOD = "GET";
+
+    if(!params.miniType){
+        params["miniType"] = "";
+    }
+
+    return RestHelper.restify("liveFeeds", HTTP_METHOD, params, __this.auth)
+
+};
+
+
+/**
+ * @method setSessionHook
+ * @description set a callback hook for session (`TokenError` -- timeout, expiry etc.) errors.
+ * An `access_token` (login session) can become invalid for a number of
+ * reasons, but it doesn't make sense for the client to
+ * try and catch it during every API call.
+ *
+ * A callback method that handles session errors
+ * can be set here and when the client encounters
+ * a token error at any point, it'll be called.
+ *
+ * This callback, for instance, can log the user out of the UI,
+ * clear session cookies, or initiate a fresh login.
+ *
+ * @memberOf Upstox
+ * @instance
+ * @param {function} cb Callback
+ */
+Upstox.prototype.setSessionHook = function(cb) {
+    self.sessionHook = cb;
+};
 module.exports.Upstox = Upstox;</code></pre>
         </article>
     </section>
@@ -291,7 +334,7 @@ module.exports.Upstox = Upstox;</code></pre>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Mon Mar 06 2017 11:04:45 GMT+0530 (IST) using the Minami theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Tue Mar 07 2017 15:11:01 GMT+0530 (IST) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>

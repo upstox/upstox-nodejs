@@ -9,8 +9,7 @@
     "excludePattern": ""
   },
   "plugins": [
-    "plugins/markdown",
-    "plugins/summarize"
+    "plugins/markdown"
   ],
   "templates": {
     "cleverLinks": false,
