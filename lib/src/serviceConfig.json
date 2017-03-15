@@ -14,7 +14,7 @@
       "cancelOrder" : "/order/{order_id}",
 
       "instruments":"/instruments",
-      "liveFeeds" : "/instruments/feed/{exchange}/{instrument}/{miniType}",
-      "OHLC" : ""
+      "liveFeeds" : "/instruments/feed/{exchange}/{symbol}/{miniType}",
+      "OHLC" : "instruments/ohlc/{exchange}/{symbol}"
    }
  }

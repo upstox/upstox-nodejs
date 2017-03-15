@@ -23,7 +23,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Upstox.html">Upstox</a><ul class='methods'><li data-type='method'><a href="Upstox.html#.getHoldings">getHoldings</a></li><li data-type='method'><a href="Upstox.html#.getLimits">getLimits</a></li><li data-type='method'><a href="Upstox.html#.getOrders">getOrders</a></li><li data-type='method'><a href="Upstox.html#.getProfile">getProfile</a></li><li data-type='method'><a href="Upstox.html#.getSessionToken">getSessionToken</a></li><li data-type='method'><a href="Upstox.html#.placeOrder">placeOrder</a></li><li data-type='method'><a href="Upstox.html#.positions">positions</a></li><li data-type='method'><a href="Upstox.html#setToken">setToken</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#cancelOrder">cancelOrder</a></li><li><a href="global.html#getInstruments">getInstruments</a></li><li><a href="global.html#modifyOrder">modifyOrder</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Upstox.html">Upstox</a><ul class='methods'><li data-type='method'><a href="Upstox.html#.cancelOrder">cancelOrder</a></li><li data-type='method'><a href="Upstox.html#.getHoldings">getHoldings</a></li><li data-type='method'><a href="Upstox.html#.getInstruments">getInstruments</a></li><li data-type='method'><a href="Upstox.html#.getLimits">getLimits</a></li><li data-type='method'><a href="Upstox.html#.getLiveFeeds">getLiveFeeds</a></li><li data-type='method'><a href="Upstox.html#.getOrders">getOrders</a></li><li data-type='method'><a href="Upstox.html#.getPositions">getPositions</a></li><li data-type='method'><a href="Upstox.html#.getProfile">getProfile</a></li><li data-type='method'><a href="Upstox.html#.getSessionToken">getSessionToken</a></li><li data-type='method'><a href="Upstox.html#.modifyOrder">modifyOrder</a></li><li data-type='method'><a href="Upstox.html#.placeOrder">placeOrder</a></li><li data-type='method'><a href="Upstox.html#setToken">setToken</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html">getOHLC</a></li></ul>
 </nav>
 
 <div id="main">
@@ -115,16 +115,14 @@
 
     
 
-    <h4 class="name" id="cancelOrder"><span class="type-signature"></span>cancelOrder<span class="signature">(params)</span><span class="type-signature"> &rarr; {res}</span></h4>
+    <h4 class="name" id="getOHLC"><span class="type-signature"></span>getOHLC<span class="signature">(params)</span><span class="type-signature"> &rarr; {res}</span></h4>
 
-    
-    <p class="summary"><p>Cancel the order</p>.</p>
     
 
 
 
 <div class="description">
-    <p>Cancel the order</p>
+    <p>Get the OHLC candle values for a given instrument</p>
 </div>
 
 
@@ -167,208 +165,6 @@
             
             </td>
 
-            
-
-            
-
-            <td class="description last">
-                <h6>Properties</h6>
-                
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>order_id</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line209">line 209</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">res</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="getInstruments"><span class="type-signature"></span>getInstruments<span class="signature">(params<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {res}</span></h4>
-
-    
-    <p class="summary"><p>Get Instruments list</p>.</p>
-    
-
-
-
-<div class="description">
-    <p>Get Instruments list</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>params</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
             
 
             
@@ -416,6 +212,76 @@
             
                 <td class="attributes">
                 
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>name of the exchange to get live feeds of.</p>
+<pre class="prettyprint source"><code>     eg:
+     The exchange segment params.exchange can be -
+     bse_eq (BSE Equity)
+     bcd_fo (BSE Futures & Options)
+     nse_eq (NSE Equity)
+     nse_fo (NSE Futures & Options)
+     ncd_fo (NSE Currency Futures & Options)</code></pre></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>symbol</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The symbol of the instrument. This must match exactly as given in the master contract csv</p>
+<pre class="prettyprint source"><code>     eg: reliance</code></pre></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>interval</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
                     &lt;optional><br>
                 
 
@@ -427,215 +293,118 @@
 
             
 
-            <td class="description last"><p>optional name of the exchange to get specific BOD details</p></td>
+            <td class="description last"><p>Default: 1day</p>
+<pre class="prettyprint source"><code>     1MINUTE
+     5MINUTE
+     10MINUTE
+     30MINUTE
+     60MINUTE
+     1DAY
+     1WEEK
+     1MONTH</code></pre></td>
         </tr>
 
-    
-    </tbody>
-</table>
-
-            </td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line223">line 223</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">res</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="modifyOrder"><span class="type-signature"></span>modifyOrder<span class="signature">(params)</span><span class="type-signature"> &rarr; {res}</span></h4>
-
-    
-    <p class="summary"><p>Modify the order by updating the order quantity</p>.</p>
-    
-
-
-
-<div class="description">
-    <p>Modify the order by updating the order quantity</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
         <tr>
             
-                <td class="name"><code>params</code></td>
+                <td class="name"><code>start_date</code></td>
             
 
             <td class="type">
             
+                
+<span class="param-type">string</span>
+
+
+            
             </td>
 
             
-
-            
-
-            <td class="description last">
-                <h6>Properties</h6>
+                <td class="attributes">
+                
+                    &lt;optional><br>
                 
 
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
+                
 
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>order_id</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
+                
+                </td>
             
 
             
 
-            <td class="description last"></td>
+            <td class="description last"><p>Default: 15 days before today</p>
+<pre class="prettyprint source"><code>     Date format: DD-MM-YYYY</code></pre></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>quantity</code></td>
+                <td class="name"><code>end_date</code></td>
             
 
             <td class="type">
             
+                
+<span class="param-type">string</span>
+
+
+            
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"></td>
+            <td class="description last"><p>Default: 15 days before today</p>
+<pre class="prettyprint source"><code>     Date format: DD-MM-YYYY</code></pre></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>format</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Default: json</p>
+<pre class="prettyprint source lang-~"><code>     csv
+     json</code></pre></td>
         </tr>
 
     
@@ -683,7 +452,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line194">line 194</a>
+        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line445">line 445</a>
     </li></ul></dd>
     
 
@@ -724,6 +493,27 @@
 </dl>
 
     
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>{
+  "code": 200,
+  "status": "OK",
+  "timestamp": "",
+  "message": "ohlc",
+  "data": [
+    {
+      "timestamp": 1485973800000,
+      "open": 1050,
+      "high": 1050.8,
+      "low": 1038.25,
+      "close": 1043.5,
+      "volume": 2079908,
+      "cp": 1045.55
+    }
+  ]
+}</code></pre>
 
 
 
@@ -745,7 +535,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Mon Mar 06 2017 10:08:07 GMT+0530 (IST) using the Minami theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Wed Mar 15 2017 16:09:42 GMT+0530 (IST) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>

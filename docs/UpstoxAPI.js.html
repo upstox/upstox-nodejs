@@ -23,7 +23,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Upstox.html">Upstox</a><ul class='methods'><li data-type='method'><a href="Upstox.html#.cancelOrder">cancelOrder</a></li><li data-type='method'><a href="Upstox.html#.getHoldings">getHoldings</a></li><li data-type='method'><a href="Upstox.html#.getInstruments">getInstruments</a></li><li data-type='method'><a href="Upstox.html#.getLimits">getLimits</a></li><li data-type='method'><a href="Upstox.html#.getOrders">getOrders</a></li><li data-type='method'><a href="Upstox.html#.getPositions">getPositions</a></li><li data-type='method'><a href="Upstox.html#.getProfile">getProfile</a></li><li data-type='method'><a href="Upstox.html#.getSessionToken">getSessionToken</a></li><li data-type='method'><a href="Upstox.html#.LiveFeed">LiveFeed</a></li><li data-type='method'><a href="Upstox.html#.modifyOrder">modifyOrder</a></li><li data-type='method'><a href="Upstox.html#.placeOrder">placeOrder</a></li><li data-type='method'><a href="Upstox.html#setSessionHook">setSessionHook</a></li><li data-type='method'><a href="Upstox.html#setToken">setToken</a></li></ul></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Upstox.html">Upstox</a><ul class='methods'><li data-type='method'><a href="Upstox.html#.cancelOrder">cancelOrder</a></li><li data-type='method'><a href="Upstox.html#.getHoldings">getHoldings</a></li><li data-type='method'><a href="Upstox.html#.getInstruments">getInstruments</a></li><li data-type='method'><a href="Upstox.html#.getLimits">getLimits</a></li><li data-type='method'><a href="Upstox.html#.getLiveFeeds">getLiveFeeds</a></li><li data-type='method'><a href="Upstox.html#.getOHLC">getOHLC</a></li><li data-type='method'><a href="Upstox.html#.getOrders">getOrders</a></li><li data-type='method'><a href="Upstox.html#.getPositions">getPositions</a></li><li data-type='method'><a href="Upstox.html#.getProfile">getProfile</a></li><li data-type='method'><a href="Upstox.html#.getSessionToken">getSessionToken</a></li><li data-type='method'><a href="Upstox.html#.modifyOrder">modifyOrder</a></li><li data-type='method'><a href="Upstox.html#.placeOrder">placeOrder</a></li><li data-type='method'><a href="Upstox.html#setToken">setToken</a></li></ul></li></ul>
 </nav>
 
 <div id="main">
@@ -48,8 +48,8 @@ var _ = require('lodash');
 var promise =  require('bluebird');
 
 // Internal Dependencies
-var RestHelper = require('./../utils/helper.js');
-
+var utils = require('./../utils/helper.js');
+var logger = new utils.Logger();
 /**
  * @classdesc API client class. You need to initialise a single instance of this class per `api_key`.
  * This module provides an easy to use wrapper over the HTTP APIs.
@@ -64,7 +64,7 @@ var RestHelper = require('./../utils/helper.js');
  * 		start();
  * 	})
  *    .catch(function(err) {
- * 		console.log(err.response);
+ * 		logger.debug(err.response);
  * 	})
  *
  * start(){
@@ -131,7 +131,7 @@ Upstox.prototype.getSessionToken = function(params) {
         sessionToken;
 
     return new promise(function (resolve, reject) {
-        RestHelper.restify("login", HTTP_METHOD, params, __this.auth)
+        utils.restify("login", HTTP_METHOD, params, __this.auth)
             .then(function (response) {
                 success = response.body;
                 success["sessionToken"] = response.headers["set-cookie"][0];
@@ -156,12 +156,12 @@ Upstox.prototype.getSessionToken = function(params) {
     "timestamp": "2017-03-07T12:39:00+05:30",
     "message": "success",
     "data":{
-        "client_id": "120013",
-        "name": "Orpheus@rksv",
+        "client_id": "1203",
+        "name": "xyz",
         "account_type": "--",
-        "pan": "ABCDE1213F",
-        "email": "orpheus.almeida@rksv.in",
-        "phone": "9844255627 9844255627",
+        "pan": "ABCDERYTUIU",
+        "email": "xyz@gmail.com",
+        "phone": "",
         "nse_pcode": "",
         "bse_pcode": "",
         "bse_custodian_code": "",
@@ -178,7 +178,7 @@ Upstox.prototype.getProfile = function () {
     var __this = this;
     var HTTP_METHOD = "GET";
 
-    return RestHelper.restify("profile", HTTP_METHOD, null, __this.auth );
+    return utils.restify("profile", HTTP_METHOD, null, __this.auth );
 };
 
 /**
@@ -199,7 +199,7 @@ Upstox.prototype.getHoldings = function () {
 
     var __this = this;
     var HTTP_METHOD = "GET";
-    return RestHelper.restify("holdings", HTTP_METHOD, null, __this.auth);
+    return utils.restify("holdings", HTTP_METHOD, null, __this.auth);
 };
 
 /**
@@ -223,7 +223,7 @@ Upstox.prototype.getLimits = function () {
 
     var __this = this;
     var HTTP_METHOD = "GET";
-    return RestHelper.restify("limits", HTTP_METHOD, null, __this.auth);
+    return utils.restify("limits", HTTP_METHOD, null, __this.auth);
 };
 
 /**
@@ -258,13 +258,12 @@ Upstox.prototype.getPositions = function () {
 
     var __this = this;
     var HTTP_METHOD = "GET";
-    return RestHelper.restify("positions", HTTP_METHOD, null, __this.auth);
+    return utils.restify("positions", HTTP_METHOD, null, __this.auth);
 };
 
 /**
- * Placing an order
- *
  * @method placeOrder
+ * @description  Placing an order
  * @memberOf Upstox
  * @param {object} params
  * @param {string} params.transaction_type
@@ -315,7 +314,7 @@ Upstox.prototype.placeOrder = function(params){
 
     var __this = this;
     var HTTP_METHOD = "POST";
-    return RestHelper.restify("placeOrder", HTTP_METHOD, params, __this.auth);
+    return utils.restify("placeOrder", HTTP_METHOD, params, __this.auth);
 };
 
 /**
@@ -340,7 +339,7 @@ Upstox.prototype.getOrders = function(){
 
     var __this = this;
     var HTTP_METHOD = "GET";
-    return RestHelper.restify("getOrders", HTTP_METHOD, null, __this.auth)
+    return utils.restify("getOrders", HTTP_METHOD, null, __this.auth)
 };
 
 /**
@@ -348,7 +347,7 @@ Upstox.prototype.getOrders = function(){
  * @description Modify the order by updating the order quantity
  * @memberOf Upstox
  * @param {Object} params
- * @param {number} params.order_id
+ * @param {number} params.order_id Order_id generated for each order placed by clients
  * @param {number} params.quantity
  * @return {res}
  */
@@ -356,7 +355,7 @@ Upstox.prototype.modifyOrder = function(params){
 
     var __this = this;
     var HTTP_METHOD = "PUT";
-    return RestHelper.restify("modifyOrder", HTTP_METHOD, params, __this.auth)
+    return utils.restify("modifyOrder", HTTP_METHOD, params, __this.auth)
 };
 
 /**
@@ -371,15 +370,26 @@ Upstox.prototype.cancelOrder = function(params){
 
     var __this = this;
     var HTTP_METHOD = "DELETE";
-    return RestHelper.restify("cancelOrder", HTTP_METHOD, params, __this.auth)
+    return utils.restify("cancelOrder", HTTP_METHOD, params, __this.auth)
 };
 
 /**
  * @method getInstruments
- * @description Get Instruments list
+ * @description Download the master contract as csv.
+ * The master contract contains all necessary information about all available contracts.
+ * Gets all contracts or filter contracts by exchange segment.
  * @memberOf Upstox
  * @param {object} params
  * @param {string} [params.exchange] name of the exchange to get specific BOD details
+ * ~~~~
+    eg :
+    The exchange segment params.exchange can be -
+    bse_eq (BSE Equity)
+    bcd_fo (BSE Futures &amp; Options)
+    nse_eq (NSE Equity)
+    nse_fo (NSE Futures &amp; Options)
+    ncd_fo (NSE Currency Futures &amp; Options)
+    ~~~~
  * @return {res}
  * @example
  *      {
@@ -401,18 +411,31 @@ Upstox.prototype.getInstruments = function(params){
     var __this = this;
     var HTTP_METHOD = "GET";
 
-    return RestHelper.restify("instruments", HTTP_METHOD, params, __this.auth)
+    return utils.restify("instruments", HTTP_METHOD, params, __this.auth)
 
 };
 
 /**
- * @method LiveFeed
+ * @method getLiveFeeds
  * @description Get Instruments list
  * @memberOf Upstox
  * @param {object} params
  * @param {string} params.exchange name of the exchange to get live feeds of.
- * @param {string} params.instrument name of the instrument to get live feeds of.
+ * ~~~~
+  eg:
+     The exchange segment params.exchange can be -
+     bse_eq (BSE Equity)
+     bcd_fo (BSE Futures &amp; Options)
+     nse_eq (NSE Equity)
+     nse_fo (NSE Futures &amp; Options)
+     ncd_fo (NSE Currency Futures &amp; Options)
+ ~~~~
+ * @param {string} params.symbol The symbol of the instrument. This must match exactly as given in the master contract csv.
+ * ~~~
+ eg: reliance
+ ~~~
  * @param {string} [params.miniType] name of the exchange to get live feeds of.
+ * @param {string} [params.format] Response format json/csv
  * @return {res}
  * @example
  *
@@ -455,32 +478,80 @@ Upstox.prototype.getLiveFeeds = function(params){
     if(!params.miniType){
         params["miniType"] = "";
     }
-
-    return RestHelper.restify("liveFeeds", HTTP_METHOD, params, __this.auth)
-
+    return utils.restify("liveFeeds", HTTP_METHOD, params, __this.auth);
 };
 
-
 /**
- * @method setSessionHook
- * @description set a callback hook for session (`TokenError` -- timeout, expiry etc.) errors.
- * An `access_token` (login session) can become invalid for a number of
- * reasons, but it doesn't make sense for the client to
- * try and catch it during every API call.
- *
- * A callback method that handles session errors
- * can be set here and when the client encounters
- * a token error at any point, it'll be called.
- *
- * This callback, for instance, can log the user out of the UI,
- * clear session cookies, or initiate a fresh login.
- *
+ * @method getOHLC
+ * @description Get the OHLC candle values for a given instrument
  * @memberOf Upstox
- * @instance
- * @param {function} cb Callback
+ * @param params
+ * @param {string} params.exchange name of the exchange to get live feeds of.
+ * ~~~~
+     eg:
+         The exchange segment params.exchange can be -
+         bse_eq (BSE Equity)
+         bcd_fo (BSE Futures &amp; Options)
+         nse_eq (NSE Equity)
+         nse_fo (NSE Futures &amp; Options)
+         ncd_fo (NSE Currency Futures &amp; Options)
+ ~~~~
+ * @param {string} params.symbol The symbol of the instrument. This must match exactly as given in the master contract csv
+ * ~~~
+     eg: reliance
+     ~~~
+ * @param {string} [params.interval] Default: 1day
+ * ~~~~~
+     1MINUTE
+     5MINUTE
+     10MINUTE
+     30MINUTE
+     60MINUTE
+     1DAY
+     1WEEK
+     1MONTH
+ * ~~~~~
+ * @param {string} [params.start_date] Default: 15 days before today
+ * ~~~~~
+     Date format: DD-MM-YYYY
+ ~~~~~
+ * @param {string} [params.end_date]  Default: 15 days before today
+ * ~~~~~
+     Date format: DD-MM-YYYY
+     ~~~~~
+ * @param {string} [params.format] Default: json
+ * ~~~~~
+     csv
+     json
+    ~~~~
+ * @return {res}
+ * @example {
+  "code": 200,
+  "status": "OK",
+  "timestamp": "",
+  "message": "ohlc",
+  "data": [
+    {
+      "timestamp": 1485973800000,
+      "open": 1050,
+      "high": 1050.8,
+      "low": 1038.25,
+      "close": 1043.5,
+      "volume": 2079908,
+      "cp": 1045.55
+    }
+  ]
+}
  */
-Upstox.prototype.setSessionHook = function(cb) {
-    self.sessionHook = cb;
+Upstox.prototype.ohlc = function(params){
+    var __this = this;
+    var HTTP_METHOD = "GET";
+
+    if(!params.miniType){
+        params["miniType"] = "";
+    }
+
+    return utils.restify("liveFeeds", HTTP_METHOD, params, __this.auth)
 };
 module.exports.Upstox = Upstox;</code></pre>
         </article>
@@ -494,7 +565,7 @@ module.exports.Upstox = Upstox;</code></pre>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Tue Mar 07 2017 15:52:55 GMT+0530 (IST) using the Minami theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Wed Mar 15 2017 16:15:29 GMT+0530 (IST) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>
