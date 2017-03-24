@@ -23,7 +23,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Upstox.html">Upstox</a><ul class='methods'><li data-type='method'><a href="Upstox.html#.cancelOrder">cancelOrder</a></li><li data-type='method'><a href="Upstox.html#.getHoldings">getHoldings</a></li><li data-type='method'><a href="Upstox.html#.getInstruments">getInstruments</a></li><li data-type='method'><a href="Upstox.html#.getLimits">getLimits</a></li><li data-type='method'><a href="Upstox.html#.getLiveFeeds">getLiveFeeds</a></li><li data-type='method'><a href="Upstox.html#.getOHLC">getOHLC</a></li><li data-type='method'><a href="Upstox.html#.getOrders">getOrders</a></li><li data-type='method'><a href="Upstox.html#.getPositions">getPositions</a></li><li data-type='method'><a href="Upstox.html#.getProfile">getProfile</a></li><li data-type='method'><a href="Upstox.html#.getSessionToken">getSessionToken</a></li><li data-type='method'><a href="Upstox.html#.modifyOrder">modifyOrder</a></li><li data-type='method'><a href="Upstox.html#.placeOrder">placeOrder</a></li><li data-type='method'><a href="Upstox.html#setToken">setToken</a></li></ul></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Upstox.html">Upstox</a><ul class='methods'><li data-type='method'><a href="Upstox.html#.cancelOrder">cancelOrder</a></li><li data-type='method'><a href="Upstox.html#.closeSocket">closeSocket</a></li><li data-type='method'><a href="Upstox.html#.connectSocket">connectSocket</a></li><li data-type='method'><a href="Upstox.html#.getHoldings">getHoldings</a></li><li data-type='method'><a href="Upstox.html#.getInstruments">getInstruments</a></li><li data-type='method'><a href="Upstox.html#.getLimits">getLimits</a></li><li data-type='method'><a href="Upstox.html#.getLiveFeeds">getLiveFeeds</a></li><li data-type='method'><a href="Upstox.html#.getOHLC">getOHLC</a></li><li data-type='method'><a href="Upstox.html#.getOrders">getOrders</a></li><li data-type='method'><a href="Upstox.html#.getPositions">getPositions</a></li><li data-type='method'><a href="Upstox.html#.getProfile">getProfile</a></li><li data-type='method'><a href="Upstox.html#.getSessionToken">getSessionToken</a></li><li data-type='method'><a href="Upstox.html#.modifyOrder">modifyOrder</a></li><li data-type='method'><a href="Upstox.html#.on">on</a></li><li data-type='method'><a href="Upstox.html#.placeOrder">placeOrder</a></li><li data-type='method'><a href="Upstox.html#setToken">setToken</a></li><li data-type='method'><a href="Upstox.html#setUserId">setUserId</a></li></ul></li></ul>
 </nav>
 
 <div id="main">
@@ -46,7 +46,8 @@
         
             <div class="class-description"><p>API client class. You need to initialise a single instance of this class per <code>api_key</code>.
 This module provides an easy to use wrapper over the HTTP APIs.
-The HTTP calls have been converted to methods and their JSON responses.</p>
+The HTTP calls have been converted to methods and their JSON responses.
+Moreover we provide websocket connection APIS to get live updates from Upstox APIs.</p>
 <pre class="prettyprint source"><code>
 var Upstox = require(&quot;upstox&quot;);
 var up = new Upstox(&quot;your_apikey&quot;, &quot;your_apiSecretKey&quot;);
@@ -64,8 +65,26 @@ start(){
                //get the result here
         })
         .catch(function(error){
-               //catch the error here
+            //catch the error here
          });
+       up.connectSocket()
+            .then(function(){
+                // Socket Connection successfull 
+                // Now you can setup listeners
+
+                up.on(&quot;messageReceived&quot;, function(message) {
+                    //message for order updates, trade updates, position conversion, live market feed
+                });
+                up.on(&quot;disconnected&quot;, function(message) {
+                    //listener after socket connection is disconnected
+                });
+                up.on(&quot;error&quot;, function(error) {
+                    //error listener 
+                });
+                //You can call up.closeSocket() to disconnect
+            }).catch(function(err){
+                // Something went wrong.
+            });
 }</code></pre></div>
         
     
@@ -250,7 +269,7 @@ start(){
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line13">line 13</a>
+        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line14">line 14</a>
     </li></ul></dd>
     
 
@@ -352,7 +371,7 @@ var up = new Upstox("your_apikey", "your_apiSecretKey");</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line58">line 58</a>
+        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line76">line 76</a>
     </li></ul></dd>
     
 
@@ -528,7 +547,7 @@ var up = new Upstox("your_apikey", "your_apiSecretKey");</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line321">line 321</a>
+        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line359">line 359</a>
     </li></ul></dd>
     
 
@@ -569,6 +588,170 @@ var up = new Upstox("your_apikey", "your_apiSecretKey");</code></pre>
 </dl>
 
     
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".closeSocket"><span class="type-signature">(static) </span>closeSocket<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Close the socket connection.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line601">line 601</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".connectSocket"><span class="type-signature">(static) </span>connectSocket<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Connect to web socket connection.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line555">line 555</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -628,7 +811,7 @@ var up = new Upstox("your_apikey", "your_apiSecretKey");</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line144">line 144</a>
+        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line182">line 182</a>
     </li></ul></dd>
     
 
@@ -858,7 +1041,7 @@ Gets all contracts or filter contracts by exchange segment.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line336">line 336</a>
+        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line374">line 374</a>
     </li></ul></dd>
     
 
@@ -975,7 +1158,7 @@ Gets all contracts or filter contracts by exchange segment.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line165">line 165</a>
+        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line203">line 203</a>
     </li></ul></dd>
     
 
@@ -1302,7 +1485,7 @@ Gets all contracts or filter contracts by exchange segment.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line378">line 378</a>
+        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line416">line 416</a>
     </li></ul></dd>
     
 
@@ -1722,7 +1905,7 @@ Gets all contracts or filter contracts by exchange segment.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line444">line 444</a>
+        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line482">line 482</a>
     </li></ul></dd>
     
 
@@ -1843,7 +2026,7 @@ Gets all contracts or filter contracts by exchange segment.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line280">line 280</a>
+        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line318">line 318</a>
     </li></ul></dd>
     
 
@@ -1958,7 +2141,7 @@ Gets all contracts or filter contracts by exchange segment.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line189">line 189</a>
+        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line227">line 227</a>
     </li></ul></dd>
     
 
@@ -2083,7 +2266,7 @@ Gets all contracts or filter contracts by exchange segment.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line107">line 107</a>
+        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line145">line 145</a>
     </li></ul></dd>
     
 
@@ -2330,7 +2513,7 @@ Gets all contracts or filter contracts by exchange segment.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line77">line 77</a>
+        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line113">line 113</a>
     </li></ul></dd>
     
 
@@ -2543,7 +2726,7 @@ Gets all contracts or filter contracts by exchange segment.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line305">line 305</a>
+        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line343">line 343</a>
     </li></ul></dd>
     
 
@@ -2584,6 +2767,164 @@ Gets all contracts or filter contracts by exchange segment.</p>
 </dl>
 
     
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".on"><span class="type-signature">(static) </span>on<span class="signature">(eventName, listener)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>set socket event listeners</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>eventName</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>name of the event.</p>
+<pre class="prettyprint source"><code>     The eventName can be -
+         messageReceived
+         disconnected
+         error</code></pre></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>listener</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>function to listen to events</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line611">line 611</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -2810,7 +3151,7 @@ Gets all contracts or filter contracts by exchange segment.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line224">line 224</a>
+        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line262">line 262</a>
     </li></ul></dd>
     
 
@@ -3000,7 +3341,138 @@ Gets all contracts or filter contracts by exchange segment.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line65">line 65</a>
+        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line89">line 89</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="setUserId"><span class="type-signature"></span>setUserId<span class="signature">(userId)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>method to associate the userId with the instance.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>userId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Upstox client_id(username).</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line101">line 101</a>
     </li></ul></dd>
     
 
@@ -3044,7 +3516,7 @@ Gets all contracts or filter contracts by exchange segment.</p>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Wed Mar 15 2017 16:15:29 GMT+0530 (IST) using the Minami theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Fri Mar 24 2017 17:45:30 GMT+0530 (IST) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>

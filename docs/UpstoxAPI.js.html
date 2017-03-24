@@ -23,7 +23,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Upstox.html">Upstox</a><ul class='methods'><li data-type='method'><a href="Upstox.html#.cancelOrder">cancelOrder</a></li><li data-type='method'><a href="Upstox.html#.getHoldings">getHoldings</a></li><li data-type='method'><a href="Upstox.html#.getInstruments">getInstruments</a></li><li data-type='method'><a href="Upstox.html#.getLimits">getLimits</a></li><li data-type='method'><a href="Upstox.html#.getLiveFeeds">getLiveFeeds</a></li><li data-type='method'><a href="Upstox.html#.getOHLC">getOHLC</a></li><li data-type='method'><a href="Upstox.html#.getOrders">getOrders</a></li><li data-type='method'><a href="Upstox.html#.getPositions">getPositions</a></li><li data-type='method'><a href="Upstox.html#.getProfile">getProfile</a></li><li data-type='method'><a href="Upstox.html#.getSessionToken">getSessionToken</a></li><li data-type='method'><a href="Upstox.html#.modifyOrder">modifyOrder</a></li><li data-type='method'><a href="Upstox.html#.placeOrder">placeOrder</a></li><li data-type='method'><a href="Upstox.html#setToken">setToken</a></li></ul></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Upstox.html">Upstox</a><ul class='methods'><li data-type='method'><a href="Upstox.html#.cancelOrder">cancelOrder</a></li><li data-type='method'><a href="Upstox.html#.closeSocket">closeSocket</a></li><li data-type='method'><a href="Upstox.html#.connectSocket">connectSocket</a></li><li data-type='method'><a href="Upstox.html#.getHoldings">getHoldings</a></li><li data-type='method'><a href="Upstox.html#.getInstruments">getInstruments</a></li><li data-type='method'><a href="Upstox.html#.getLimits">getLimits</a></li><li data-type='method'><a href="Upstox.html#.getLiveFeeds">getLiveFeeds</a></li><li data-type='method'><a href="Upstox.html#.getOHLC">getOHLC</a></li><li data-type='method'><a href="Upstox.html#.getOrders">getOrders</a></li><li data-type='method'><a href="Upstox.html#.getPositions">getPositions</a></li><li data-type='method'><a href="Upstox.html#.getProfile">getProfile</a></li><li data-type='method'><a href="Upstox.html#.getSessionToken">getSessionToken</a></li><li data-type='method'><a href="Upstox.html#.modifyOrder">modifyOrder</a></li><li data-type='method'><a href="Upstox.html#.on">on</a></li><li data-type='method'><a href="Upstox.html#.placeOrder">placeOrder</a></li><li data-type='method'><a href="Upstox.html#setToken">setToken</a></li><li data-type='method'><a href="Upstox.html#setUserId">setUserId</a></li></ul></li></ul>
 </nav>
 
 <div id="main">
@@ -46,6 +46,7 @@
 // External Dependencies
 var _ = require('lodash');
 var promise =  require('bluebird');
+var WebSocketClient = require('websocket').client;
 
 // Internal Dependencies
 var utils = require('./../utils/helper.js');
@@ -54,7 +55,7 @@ var logger = new utils.Logger();
  * @classdesc API client class. You need to initialise a single instance of this class per `api_key`.
  * This module provides an easy to use wrapper over the HTTP APIs.
  * The HTTP calls have been converted to methods and their JSON responses.
- *
+ * Moreover we provide websocket connection APIS to get live updates from Upstox APIs.
  * ~~~~
  *
  * var Upstox = require("upstox");
@@ -73,12 +74,29 @@ var logger = new utils.Logger();
  * 	           //get the result here
  *         })
  *         .catch(function(error){
-               //catch the error here
+ *             //catch the error here
  *          });
+ *        up.connectSocket()
+ *			.then(function(){
+ *				// Socket Connection successfull 
+ *				// Now you can setup listeners
+ *
+ *				up.on("messageReceived", function(message) {
+ *					//message for order updates, trade updates, position conversion, live market feed
+ *				});
+ *				up.on("disconnected", function(message) {
+ *					//listener after socket connection is disconnected
+ *				});
+ *				up.on("error", function(error) {
+ *					//error listener 
+ *				});
+ *				//You can call up.closeSocket() to disconnect
+ *			}).catch(function(err){
+ *				// Something went wrong.
+ *			});
  * }
  * ~~~~
  *
-
  * @constructor
  * @name Upstox
  * @param {string} apiKey Assigned to you used to authenticate the developers app
@@ -98,8 +116,14 @@ function Upstox(apiKey, apiSecretKey, sessionToken) {
     this.auth = {
         apiKey: apiKey,
         apiSecretKey: apiSecretKey,
-        sessionToken : sessionToken
+        sessionToken : sessionToken,
+        userId: null
     };
+    this.isAuthenticated = false;
+    this.socketMessageListener;
+    this.socketCloseListener;
+    this.socketErrorListener; 
+    this.socketConnection;
 }
 
 /**
@@ -112,6 +136,18 @@ function Upstox(apiKey, apiSecretKey, sessionToken) {
 Upstox.prototype.setToken = function(sessionToken){
     var __this = this;
     __this.auth.sessionToken = sessionToken;
+};
+
+/**
+ * @method setUserId
+ * @description method to associate the userId with the instance.
+ * @memberOf Upstox
+ * @instance
+ * @param {string} userId Upstox client_id(username).
+ */
+Upstox.prototype.setUserId = function(userId){
+    var __this = this;
+    __this.auth.userId = userId;
 };
 
 /**
@@ -136,6 +172,8 @@ Upstox.prototype.getSessionToken = function(params) {
                 success = response.body;
                 success["sessionToken"] = response.headers["set-cookie"][0];
                 __this.setToken(response.headers["set-cookie"][0]);
+                __this.setUserId(params.username);
+                __this.isAuthenticated = true;
                 resolve(success);
             })
             .catch(function (err) {
@@ -553,6 +591,94 @@ Upstox.prototype.ohlc = function(params){
 
     return utils.restify("liveFeeds", HTTP_METHOD, params, __this.auth)
 };
+
+/**
+ * @method connectSocket
+ * @description Connect to web socket connection. 
+ * @memberOf Upstox
+ */
+Upstox.prototype.connectSocket = function() {
+    var __this = this,
+        socket = new WebSocketClient();
+    __this.socket = socket;
+    return new promise(function (resolve, reject) {
+        if(__this.isAuthenticated) {
+            socket.on('connectFailed', function(error) {
+                reject(error);
+            });
+
+            socket.on('connect', function(connection) {
+                __this.socketConnection = connection;
+                connection.on('error', function(error) {
+                    if(__this.socketMessageListener) {
+                        __this.socketMessageListener.call(null, error);
+                    } else {
+                        console.log("Connection Error: " + error.toString());
+                    }
+                });
+                connection.on('close', function() {
+                    if(__this.socketCloseListener) {
+                        __this.socketCloseListener.call(null, "Connection Closed");
+                    } else {
+                        console.log("Connection Closed");
+                    }
+                });
+                connection.on('message', function(message) {
+                    if(__this.socketMessageListener) {
+                        __this.socketMessageListener.call(null, message);
+                    }
+                });
+                resolve();
+            });
+
+            socket.connect(utils.getSocketEndpoint(__this.auth));
+        } else {
+            reject(new Error("User not authenticated"))            
+        }
+    });
+}
+
+/**
+ * @method closeSocket
+ * @description Close the socket connection. 
+ * @memberOf Upstox
+ */
+Upstox.prototype.closeSocket = function() {
+    if(this.socketConnection) {
+        this.socketConnection.close();
+    }
+}
+/**
+ * @method on
+ * @description set socket event listeners
+ * @memberOf Upstox
+ * @param {string} eventName name of the event.
+ * ~~~~
+     The eventName can be -
+         messageReceived
+         disconnected
+         error
+ ~~~~
+ * @param {function} listener function to listen to events
+ */
+Upstox.prototype.on = function(eventName, listener) {
+    var __this = this;
+    
+    if(utils.validateSocketEventParams(eventName, listener)) {
+        switch(eventName) {
+            case "messageReceived":
+                __this.socketMessageListener = listener;
+                break;
+            case "disconnected":
+                __this.socketCloseListener = listener;
+                break;
+            case "error":
+                __this.socketErrorListener = listener;
+                break;
+        }
+    } 
+}
+
 module.exports.Upstox = Upstox;</code></pre>
         </article>
     </section>
@@ -565,7 +691,7 @@ module.exports.Upstox = Upstox;</code></pre>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Wed Mar 15 2017 16:15:29 GMT+0530 (IST) using the Minami theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Fri Mar 24 2017 17:45:30 GMT+0530 (IST) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>
