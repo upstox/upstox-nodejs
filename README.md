@@ -51,10 +51,18 @@ Getting started with API
 			.then(function(){
 				// Socket Connection successfull 
 				// Now you can setup listeners
-
-				up.on("messageReceived", function(message) {
-					//message for order updates, trade updates, position conversion, live market feed
-				});
+ 				up.on("orderUpdate", function(message) {
+ 					//message for order updates            
+ 				});
+ 	            up.on("positionUpdate", function(message) {
+ 					//message for position conversion
+ 				});
+                up.on("tradeUpdate", function(message) {
+ 					//message for trade updates
+ 				});
+ 	            up.on("liveFeed", function(message) {
+ 					//message for live feed
+ 				});				
 				up.on("disconnected", function(message) {
 					//listener after socket connection is disconnected
 				});
