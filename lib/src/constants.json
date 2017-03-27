@@ -1,0 +1,18 @@
+{
+    "MESSAGE_TYPES" : {
+        "FILL_REPORT": "fill_report",
+        "ORDER_UPDATE": "order_update",
+        "POSITION_UPDATE": "convert_position_update",
+        "LIVE_FEED": "live_feed",
+        "GET_POSITION": "get_position"
+    },
+    "EVENTS": {
+        "DISCONNECTED": "disconnected",
+        "ERROR": "error",
+        "ORDER_UPDATE": "orderUpdate",
+        "POSITION_UPDATE": "positionUpdate",
+        "TRADE_UPDATE": "tradeUpdate",
+        "LIVE_FEED": "liveFeed"
+    },
+    "ALLOWED_EVENTS": ["disconnected", "error", "orderUpdate", "positionUpdate", "tradeUpdate", "liveFeed"]
+}

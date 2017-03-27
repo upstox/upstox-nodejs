@@ -16,5 +16,6 @@
       "instruments":"/instruments",
       "liveFeeds" : "/instruments/feed/{exchange}/{symbol}/{miniType}",
       "OHLC" : "/instruments/ohlc/{exchange}/{symbol}"
-   }
+   },
+   "socketEndpoint": "ws://192.168.75.167"
  }
