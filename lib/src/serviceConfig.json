@@ -11,10 +11,10 @@
       "placeOrder" :"/orders",
       "getOrders" : "/orders",
       "modifyOrder" :"/orders/{order_id}",
-      "cancelOrder" : "/order/{order_id}",
+      "cancelOrder" : "/orders/{order_id}",
 
       "instruments":"/instruments",
       "liveFeeds" : "/instruments/feed/{exchange}/{symbol}/{miniType}",
-      "OHLC" : "instruments/ohlc/{exchange}/{symbol}"
+      "OHLC" : "/instruments/ohlc/{exchange}/{symbol}"
    }
  }
