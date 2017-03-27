@@ -12,6 +12,8 @@
       "getOrders" : "/orders",
       "modifyOrder" :"/orders/{order_id}",
       "cancelOrder" : "/orders/{order_id}",
+      "ordersInfo": "/orders/?order_ids={orderIds}",
+      "tradesInfo": "/orders/{order_id}/trades/",
 
       "instruments":"/instruments",
       "liveFeeds" : "/instruments/feed/{exchange}/{symbol}/{miniType}",
