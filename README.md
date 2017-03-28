@@ -24,7 +24,7 @@ Getting started with API
      var up = new Upstox("your_apikey", "your_apiSecretKey");
      
      var params = {
-        "clientId" : 123345,   
+        "username" : 123345,   
         "password" : 5xcvbnm
      }
      
