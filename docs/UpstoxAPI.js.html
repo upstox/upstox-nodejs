@@ -23,7 +23,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Upstox.html">Upstox</a><ul class='methods'><li data-type='method'><a href="Upstox.html#.cancelOrder">cancelOrder</a></li><li data-type='method'><a href="Upstox.html#.closeSocket">closeSocket</a></li><li data-type='method'><a href="Upstox.html#.connectSocket">connectSocket</a></li><li data-type='method'><a href="Upstox.html#.getHoldings">getHoldings</a></li><li data-type='method'><a href="Upstox.html#.getInstruments">getInstruments</a></li><li data-type='method'><a href="Upstox.html#.getLimits">getLimits</a></li><li data-type='method'><a href="Upstox.html#.getLiveFeeds">getLiveFeeds</a></li><li data-type='method'><a href="Upstox.html#.getOHLC">getOHLC</a></li><li data-type='method'><a href="Upstox.html#.getOrders">getOrders</a></li><li data-type='method'><a href="Upstox.html#.getPositions">getPositions</a></li><li data-type='method'><a href="Upstox.html#.getProfile">getProfile</a></li><li data-type='method'><a href="Upstox.html#.getSessionToken">getSessionToken</a></li><li data-type='method'><a href="Upstox.html#.modifyOrder">modifyOrder</a></li><li data-type='method'><a href="Upstox.html#.on">on</a></li><li data-type='method'><a href="Upstox.html#.placeOrder">placeOrder</a></li></ul></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Upstox.html">Upstox</a><ul class='methods'><li data-type='method'><a href="Upstox.html#.cancelOrder">cancelOrder</a></li><li data-type='method'><a href="Upstox.html#.closeSocket">closeSocket</a></li><li data-type='method'><a href="Upstox.html#.connectSocket">connectSocket</a></li><li data-type='method'><a href="Upstox.html#.getHoldings">getHoldings</a></li><li data-type='method'><a href="Upstox.html#.getInstruments">getInstruments</a></li><li data-type='method'><a href="Upstox.html#.getLimits">getLimits</a></li><li data-type='method'><a href="Upstox.html#.getLiveFeeds">getLiveFeeds</a></li><li data-type='method'><a href="Upstox.html#.getOHLC">getOHLC</a></li><li data-type='method'><a href="Upstox.html#.getOrders">getOrders</a></li><li data-type='method'><a href="Upstox.html#.getOrdersInfo">getOrdersInfo</a></li><li data-type='method'><a href="Upstox.html#.getPositions">getPositions</a></li><li data-type='method'><a href="Upstox.html#.getProfile">getProfile</a></li><li data-type='method'><a href="Upstox.html#.getSessionToken">getSessionToken</a></li><li data-type='method'><a href="Upstox.html#.getTradesInfo">getTradesInfo</a></li><li data-type='method'><a href="Upstox.html#.modifyOrder">modifyOrder</a></li><li data-type='method'><a href="Upstox.html#.on">on</a></li><li data-type='method'><a href="Upstox.html#.placeOrder">placeOrder</a></li></ul></li></ul>
 </nav>
 
 <div id="main">
@@ -62,7 +62,7 @@ var constants = require("./constants.json");
  * var Upstox = require("upstox");
  * var up = new Upstox("your_apikey", "your_apiSecretKey");
  * up.getSessionToken({
- *  "username": "your_clientId", 
+ *  "username": "your_clientId",
  *  "password": "password"
  * })
  * .then(function(response) {
@@ -82,11 +82,11 @@ var constants = require("./constants.json");
  *          });
  *        up.connectSocket()
  *			.then(function(){
- *				// Socket Connection successfull 
+ *				// Socket Connection successfull
  *				// Now you can setup listeners
  *
  *				up.on("orderUpdate", function(message) {
- *					//message for order updates            
+ *					//message for order updates
  *				});
  *              up.on("positionUpdate", function(message) {
  *					//message for position conversion
@@ -101,7 +101,7 @@ var constants = require("./constants.json");
  *					//listener after socket connection is disconnected
  *				});
  *				up.on("error", function(error) {
- *					//error listener 
+ *					//error listener
  *				});
  *				//You can call up.closeSocket() to disconnect
  *			}).catch(function(err){
@@ -138,7 +138,7 @@ function Upstox(apiKey, apiSecretKey, sessionToken) {
     this.socketTradeUpdateListener;
     this.socketLiveFeedListener;
     this.socketCloseListener;
-    this.socketErrorListener; 
+    this.socketErrorListener;
     this.socketConnection;
 }
 
@@ -413,6 +413,333 @@ Upstox.prototype.getOrders = function(){
 };
 
 /**
+ * Get the details of specific orders
+ * @method getOrdersInfo
+ * @param {object} params
+ * @param {string} params.orderIds the order ids (comma separated) for which details are to be fetched
+ * @memberOf Upstox
+ * @return {res}
+ * @example
+{
+    "code": 200,
+    "status": "OK",
+    "timestamp": "2017-03-28T09:41:27+05:30",
+    "message": "success",
+    "data": [
+      {
+        "exchange": "NSE_EQ",
+        "token": 2885,
+        "symbol": "RELIANCE",
+        "product": "I",
+        "order_type": "M",
+        "duration": "DAY",
+        "price": 0,
+        "trigger_price": 0,
+        "quantity": 1,
+        "disclosed_quantity": 1,
+        "transaction_type": "B",
+        "average_price": 0,
+        "traded_quantity": 0,
+        "message": "RMS:Rule: Check circuit limit including square off order exceeds  for entity account-120013 across exchange across segment across product ",
+        "exchange_order_id": "",
+        "parent_order_id": "NA",
+        "order_id": "170328000000001",
+        "exchange_time": "--",
+        "time_in_micro": "1490673553830702",
+        "status": "rejected",
+        "is_amo": false,
+        "valid_date": "--",
+        "order_request_id": "1",
+        "total_traded_quantity": 0,
+        "traded_shares": 0,
+        "traded_price": 0,
+        "stop_loss": 0,
+        "square_off": 0,
+        "trailing_ticks": 0
+      },
+      {
+        "exchange": "NSE_EQ",
+        "token": 4067,
+        "symbol": "MARICO",
+        "product": "I",
+        "order_type": "L",
+        "duration": "GTC",
+        "price": 250.5,
+        "trigger_price": 0,
+        "quantity": 10,
+        "disclosed_quantity": 0,
+        "transaction_type": "B",
+        "average_price": 0,
+        "traded_quantity": 0,
+        "message": "16273 : Does not exist",
+        "exchange_order_id": "1100000000057116",
+        "parent_order_id": "NA",
+        "order_id": "161026000000007",
+        "exchange_time": "08-Mar-2017 16:12:47",
+        "time_in_micro": "1488969541034779",
+        "status": "open",
+        "is_amo": false,
+        "valid_date": "--",
+        "order_request_id": "4",
+        "total_traded_quantity": 0,
+        "traded_shares": 0,
+        "traded_price": 0,
+        "stop_loss": 0,
+        "square_off": 0,
+        "trailing_ticks": 0
+      },
+      {
+        "exchange": "NSE_EQ",
+        "token": 2885,
+        "symbol": "RELIANCE",
+        "product": "I",
+        "order_type": "M",
+        "duration": "DAY",
+        "price": 0,
+        "trigger_price": 0,
+        "quantity": 1,
+        "disclosed_quantity": 1,
+        "transaction_type": "B",
+        "average_price": 0,
+        "traded_quantity": 0,
+        "message": "RMS:Rule: Check circuit limit including square off order exceeds  for entity account-120013 across exchange across segment across product ",
+        "exchange_order_id": "",
+        "parent_order_id": "NA",
+        "order_id": "170328000000002",
+        "exchange_time": "--",
+        "time_in_micro": "1490673554100130",
+        "status": "rejected",
+        "is_amo": false,
+        "valid_date": "--",
+        "order_request_id": "1",
+        "total_traded_quantity": 0,
+        "traded_shares": 0,
+        "traded_price": 0,
+        "stop_loss": 0,
+        "square_off": 0,
+        "trailing_ticks": 0
+      },
+      {
+        "exchange": "NSE_EQ",
+        "token": 2885,
+        "symbol": "RELIANCE",
+        "product": "I",
+        "order_type": "M",
+        "duration": "DAY",
+        "price": 0,
+        "trigger_price": 0,
+        "quantity": 1,
+        "disclosed_quantity": 1,
+        "transaction_type": "B",
+        "average_price": 0,
+        "traded_quantity": 0,
+        "message": "RMS:Rule: Check circuit limit including square off order exceeds  for entity account-120013 across exchange across segment across product ",
+        "exchange_order_id": "",
+        "parent_order_id": "NA",
+        "order_id": "170328000000005",
+        "exchange_time": "--",
+        "time_in_micro": "1490673835088505",
+        "status": "rejected",
+        "is_amo": false,
+        "valid_date": "--",
+        "order_request_id": "1",
+        "total_traded_quantity": 0,
+        "traded_shares": 0,
+        "traded_price": 0,
+        "stop_loss": 0,
+        "square_off": 0,
+        "trailing_ticks": 0
+      },
+      {
+        "exchange": "NSE_EQ",
+        "token": 2885,
+        "symbol": "RELIANCE",
+        "product": "I",
+        "order_type": "M",
+        "duration": "DAY",
+        "price": 0,
+        "trigger_price": 0,
+        "quantity": 1,
+        "disclosed_quantity": 1,
+        "transaction_type": "B",
+        "average_price": 0,
+        "traded_quantity": 0,
+        "message": "RMS:Rule: Check circuit limit including square off order exceeds  for entity account-120013 across exchange across segment across product ",
+        "exchange_order_id": "",
+        "parent_order_id": "NA",
+        "order_id": "170328000000006",
+        "exchange_time": "--",
+        "time_in_micro": "1490673945938897",
+        "status": "rejected",
+        "is_amo": false,
+        "valid_date": "--",
+        "order_request_id": "1",
+        "total_traded_quantity": 0,
+        "traded_shares": 0,
+        "traded_price": 0,
+        "stop_loss": 0,
+        "square_off": 0,
+        "trailing_ticks": 0
+      },
+      {
+        "exchange": "NSE_EQ",
+        "token": 2885,
+        "symbol": "RELIANCE",
+        "product": "I",
+        "order_type": "M",
+        "duration": "DAY",
+        "price": 0,
+        "trigger_price": 0,
+        "quantity": 1,
+        "disclosed_quantity": 1,
+        "transaction_type": "B",
+        "average_price": 0,
+        "traded_quantity": 0,
+        "message": "RMS:Rule: Check circuit limit including square off order exceeds  for entity account-120013 across exchange across segment across product ",
+        "exchange_order_id": "",
+        "parent_order_id": "NA",
+        "order_id": "170328000000003",
+        "exchange_time": "--",
+        "time_in_micro": "1490673557390963",
+        "status": "rejected",
+        "is_amo": false,
+        "valid_date": "--",
+        "order_request_id": "1",
+        "total_traded_quantity": 0,
+        "traded_shares": 0,
+        "traded_price": 0,
+        "stop_loss": 0,
+        "square_off": 0,
+        "trailing_ticks": 0
+      },
+      {
+        "exchange": "NSE_EQ",
+        "token": 2885,
+        "symbol": "RELIANCE",
+        "product": "I",
+        "order_type": "M",
+        "duration": "DAY",
+        "price": 0,
+        "trigger_price": 0,
+        "quantity": 1,
+        "disclosed_quantity": 1,
+        "transaction_type": "B",
+        "average_price": 0,
+        "traded_quantity": 0,
+        "message": "RMS:Rule: Check circuit limit including square off order exceeds  for entity account-120013 across exchange across segment across product ",
+        "exchange_order_id": "",
+        "parent_order_id": "NA",
+        "order_id": "170328000000004",
+        "exchange_time": "--",
+        "time_in_micro": "1490673800987257",
+        "status": "rejected",
+        "is_amo": false,
+        "valid_date": "--",
+        "order_request_id": "1",
+        "total_traded_quantity": 0,
+        "traded_shares": 0,
+        "traded_price": 0,
+        "stop_loss": 0,
+        "square_off": 0,
+        "trailing_ticks": 0
+      },
+      {
+        "exchange": "NSE_EQ",
+        "token": 2885,
+        "symbol": "RELIANCE",
+        "product": "I",
+        "order_type": "M",
+        "duration": "DAY",
+        "price": 0,
+        "trigger_price": 0,
+        "quantity": 1,
+        "disclosed_quantity": 1,
+        "transaction_type": "B",
+        "average_price": 0,
+        "traded_quantity": 0,
+        "message": "RMS:Rule: Check circuit limit including square off order exceeds  for entity account-120013 across exchange across segment across product ",
+        "exchange_order_id": "",
+        "parent_order_id": "NA",
+        "order_id": "170328000000007",
+        "exchange_time": "--",
+        "time_in_micro": "1490673948242030",
+        "status": "rejected",
+        "is_amo": false,
+        "valid_date": "--",
+        "order_request_id": "1",
+        "total_traded_quantity": 0,
+        "traded_shares": 0,
+        "traded_price": 0,
+        "stop_loss": 0,
+        "square_off": 0,
+        "trailing_ticks": 0
+      },
+      {
+        "exchange": "NSE_EQ",
+        "token": 2885,
+        "symbol": "RELIANCE",
+        "product": "I",
+        "order_type": "M",
+        "duration": "DAY",
+        "price": 0,
+        "trigger_price": 0,
+        "quantity": 1,
+        "disclosed_quantity": 1,
+        "transaction_type": "B",
+        "average_price": 0,
+        "traded_quantity": 0,
+        "message": "RMS:Rule: Check circuit limit including square off order exceeds  for entity account-120013 across exchange across segment across product ",
+        "exchange_order_id": "",
+        "parent_order_id": "NA",
+        "order_id": "170328000000008",
+        "exchange_time": "--",
+        "time_in_micro": "1490674042214430",
+        "status": "rejected",
+        "is_amo": false,
+        "valid_date": "--",
+        "order_request_id": "1",
+        "total_traded_quantity": 0,
+        "traded_shares": 0,
+        "traded_price": 0,
+        "stop_loss": 0,
+        "square_off": 0,
+        "trailing_ticks": 0
+      }
+    ]
+  }
+ */
+Upstox.prototype.getOrdersInfo = function(params){
+
+    var __this = this;
+    var HTTP_METHOD = "GET";
+    return utils.restify("ordersInfo", HTTP_METHOD, params, __this.auth)
+};
+
+
+/**
+ * Get the trades details for a particular order
+ * @method getTradesInfo
+ * @param {object} params
+ * @param {string} params.order_id  the order id for which trade details are to be fetched
+ * @memberOf Upstox
+ * @return {res}
+ * @example
+{
+    "code": 200,
+    "status": "OK",
+    "timestamp": "2017-03-28T09:49:55+05:30",
+    "message": "success",
+    "data": []
+}
+ */
+Upstox.prototype.getTradesInfo = function(params){
+
+    var __this = this;
+    var HTTP_METHOD = "GET";
+    return utils.restify("tradesInfo", HTTP_METHOD, params, __this.auth)
+};
+
+/**
  * @method modifyOrder
  * @description Modify the order by updating the order quantity
  * @memberOf Upstox
@@ -473,7 +800,7 @@ Upstox.prototype.modifyOrder = function(params){
  * @param {object} params
  * @param {number} params.order_id order_id generated after you place an order.
  * @return {res}
- * @example 
+ * @example
 {
     "code": 200,
     "status": "OK",
@@ -699,7 +1026,7 @@ Upstox.prototype.getOHLC = function(params){
 
 /**
  * @method connectSocket
- * @description Connect to web socket server. 
+ * @description Connect to web socket server.
  * @memberOf Upstox
  * @return promise
  * @throws {Error} User not autheticated
@@ -710,7 +1037,7 @@ upstox.getSessionToken(login_credentials)
     .then((response)=>{
         upstox.connectSocket()
         .then(() => {
-            //code to set socket listeners 
+            //code to set socket listeners
         }, (err) => {
             //handle connection errors
         });
@@ -760,7 +1087,7 @@ Upstox.prototype.connectSocket = function() {
                             case constants.MESSAGE_TYPES.LIVE_FEED:
                                 socketListener = __this.socketLiveFeedListener;
                                 break;
-                            default: 
+                            default:
                                 console.log("add listeners for event type " + parsedMessage.message);
                         }
                         if(socketListener) {
@@ -775,14 +1102,14 @@ Upstox.prototype.connectSocket = function() {
 
             socket.connect(utils.getSocketEndpoint(__this.auth));
         } else {
-            reject(new Error("User not authenticated"))            
+            reject(new Error("User not authenticated"))
         }
     });
 }
 
 /**
  * @method closeSocket
- * @description Close the socket connection. 
+ * @description Close the socket connection.
  * @memberOf Upstox
  */
 Upstox.prototype.closeSocket = function() {
@@ -815,7 +1142,7 @@ upstox.getSessionToken(login_credentials)
         .then(() => {
             //code to set socket listeners
             up.on("orderUpdate", function(message) {
-                //message for order updates            
+                //message for order updates
             });
             up.on("positionUpdate", function(message) {
                 //message for position conversion
@@ -830,16 +1157,16 @@ upstox.getSessionToken(login_credentials)
                 //listener after socket connection is disconnected
             });
             up.on("error", function(error) {
-                //error listener 
-            });             
+                //error listener
+            });
         }, (err) => {
             //handle connection errors
         });
-    }); 
+    });
  */
 Upstox.prototype.on = function(eventName, listener) {
     var __this = this;
-    
+
     if(utils.validateSocketEventParams(eventName, listener)) {
         switch(eventName) {
             case constants.EVENTS.ORDER_UPDATE:
@@ -861,7 +1188,7 @@ Upstox.prototype.on = function(eventName, listener) {
                 __this.socketErrorListener = listener;
                 break;
         }
-    } 
+    }
 }
 
 module.exports.Upstox = Upstox;</code></pre>
@@ -876,7 +1203,7 @@ module.exports.Upstox = Upstox;</code></pre>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Mon Mar 27 2017 14:13:29 GMT+0530 (IST) using the Minami theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Tue Mar 28 2017 09:54:11 GMT+0530 (IST) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>

@@ -23,7 +23,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Upstox.html">Upstox</a><ul class='methods'><li data-type='method'><a href="Upstox.html#.cancelOrder">cancelOrder</a></li><li data-type='method'><a href="Upstox.html#.closeSocket">closeSocket</a></li><li data-type='method'><a href="Upstox.html#.connectSocket">connectSocket</a></li><li data-type='method'><a href="Upstox.html#.getHoldings">getHoldings</a></li><li data-type='method'><a href="Upstox.html#.getInstruments">getInstruments</a></li><li data-type='method'><a href="Upstox.html#.getLimits">getLimits</a></li><li data-type='method'><a href="Upstox.html#.getLiveFeeds">getLiveFeeds</a></li><li data-type='method'><a href="Upstox.html#.getOHLC">getOHLC</a></li><li data-type='method'><a href="Upstox.html#.getOrders">getOrders</a></li><li data-type='method'><a href="Upstox.html#.getPositions">getPositions</a></li><li data-type='method'><a href="Upstox.html#.getProfile">getProfile</a></li><li data-type='method'><a href="Upstox.html#.getSessionToken">getSessionToken</a></li><li data-type='method'><a href="Upstox.html#.modifyOrder">modifyOrder</a></li><li data-type='method'><a href="Upstox.html#.on">on</a></li><li data-type='method'><a href="Upstox.html#.placeOrder">placeOrder</a></li></ul></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Upstox.html">Upstox</a><ul class='methods'><li data-type='method'><a href="Upstox.html#.cancelOrder">cancelOrder</a></li><li data-type='method'><a href="Upstox.html#.closeSocket">closeSocket</a></li><li data-type='method'><a href="Upstox.html#.connectSocket">connectSocket</a></li><li data-type='method'><a href="Upstox.html#.getHoldings">getHoldings</a></li><li data-type='method'><a href="Upstox.html#.getInstruments">getInstruments</a></li><li data-type='method'><a href="Upstox.html#.getLimits">getLimits</a></li><li data-type='method'><a href="Upstox.html#.getLiveFeeds">getLiveFeeds</a></li><li data-type='method'><a href="Upstox.html#.getOHLC">getOHLC</a></li><li data-type='method'><a href="Upstox.html#.getOrders">getOrders</a></li><li data-type='method'><a href="Upstox.html#.getOrdersInfo">getOrdersInfo</a></li><li data-type='method'><a href="Upstox.html#.getPositions">getPositions</a></li><li data-type='method'><a href="Upstox.html#.getProfile">getProfile</a></li><li data-type='method'><a href="Upstox.html#.getSessionToken">getSessionToken</a></li><li data-type='method'><a href="Upstox.html#.getTradesInfo">getTradesInfo</a></li><li data-type='method'><a href="Upstox.html#.modifyOrder">modifyOrder</a></li><li data-type='method'><a href="Upstox.html#.on">on</a></li><li data-type='method'><a href="Upstox.html#.placeOrder">placeOrder</a></li></ul></li></ul>
 </nav>
 
 <div id="main">
@@ -52,7 +52,7 @@ Moreover we provide websocket connection APIS to get live updates from Upstox AP
 var Upstox = require(&quot;upstox&quot;);
 var up = new Upstox(&quot;your_apikey&quot;, &quot;your_apiSecretKey&quot;);
 up.getSessionToken({
- &quot;username&quot;: &quot;your_clientId&quot;, 
+ &quot;username&quot;: &quot;your_clientId&quot;,
  &quot;password&quot;: &quot;password&quot;
 })
 .then(function(response) {
@@ -72,11 +72,11 @@ start(){
          });
        up.connectSocket()
             .then(function(){
-                // Socket Connection successfull 
+                // Socket Connection successfull
                 // Now you can setup listeners
 
                 up.on(&quot;orderUpdate&quot;, function(message) {
-                    //message for order updates            
+                    //message for order updates
                 });
              up.on(&quot;positionUpdate&quot;, function(message) {
                     //message for position conversion
@@ -91,7 +91,7 @@ start(){
                     //listener after socket connection is disconnected
                 });
                 up.on(&quot;error&quot;, function(error) {
-                    //error listener 
+                    //error listener
                 });
                 //You can call up.closeSocket() to disconnect
             }).catch(function(err){
@@ -559,7 +559,7 @@ var up = new Upstox("your_apikey", "your_apiSecretKey");</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line429">line 429</a>
+        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line756">line 756</a>
     </li></ul></dd>
     
 
@@ -700,7 +700,7 @@ var up = new Upstox("your_apikey", "your_apiSecretKey");</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line743">line 743</a>
+        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line1070">line 1070</a>
     </li></ul></dd>
     
 
@@ -782,7 +782,7 @@ var up = new Upstox("your_apikey", "your_apiSecretKey");</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line660">line 660</a>
+        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line987">line 987</a>
     </li></ul></dd>
     
 
@@ -880,7 +880,7 @@ upstox.getSessionToken(login_credentials)
     .then((response)=>{
         upstox.connectSocket()
         .then(() => {
-            //code to set socket listeners 
+            //code to set socket listeners
         }, (err) => {
             //handle connection errors
         });
@@ -1174,7 +1174,7 @@ Gets all contracts or filter contracts by exchange segment.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line483">line 483</a>
+        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line810">line 810</a>
     </li></ul></dd>
     
 
@@ -1618,7 +1618,7 @@ Gets all contracts or filter contracts by exchange segment.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line525">line 525</a>
+        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line852">line 852</a>
     </li></ul></dd>
     
 
@@ -2038,7 +2038,7 @@ Gets all contracts or filter contracts by exchange segment.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line591">line 591</a>
+        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line918">line 918</a>
     </li></ul></dd>
     
 
@@ -2214,6 +2214,495 @@ Gets all contracts or filter contracts by exchange segment.</p>
         {"ctr": 101, "client_id": "210008", "exchange": "NSE_EQ", "token": "2885",…}
     ]
     }
+  }</code></pre>
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".getOrdersInfo"><span class="type-signature">(static) </span>getOrdersInfo<span class="signature">(params)</span><span class="type-signature"> &rarr; {res}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Get the details of specific orders</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>orderIds</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the order ids (comma separated) for which details are to be fetched</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line375">line 375</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">res</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>{
+    "code": 200,
+    "status": "OK",
+    "timestamp": "2017-03-28T09:41:27+05:30",
+    "message": "success",
+    "data": [
+      {
+        "exchange": "NSE_EQ",
+        "token": 2885,
+        "symbol": "RELIANCE",
+        "product": "I",
+        "order_type": "M",
+        "duration": "DAY",
+        "price": 0,
+        "trigger_price": 0,
+        "quantity": 1,
+        "disclosed_quantity": 1,
+        "transaction_type": "B",
+        "average_price": 0,
+        "traded_quantity": 0,
+        "message": "RMS:Rule: Check circuit limit including square off order exceeds  for entity account-120013 across exchange across segment across product ",
+        "exchange_order_id": "",
+        "parent_order_id": "NA",
+        "order_id": "170328000000001",
+        "exchange_time": "--",
+        "time_in_micro": "1490673553830702",
+        "status": "rejected",
+        "is_amo": false,
+        "valid_date": "--",
+        "order_request_id": "1",
+        "total_traded_quantity": 0,
+        "traded_shares": 0,
+        "traded_price": 0,
+        "stop_loss": 0,
+        "square_off": 0,
+        "trailing_ticks": 0
+      },
+      {
+        "exchange": "NSE_EQ",
+        "token": 4067,
+        "symbol": "MARICO",
+        "product": "I",
+        "order_type": "L",
+        "duration": "GTC",
+        "price": 250.5,
+        "trigger_price": 0,
+        "quantity": 10,
+        "disclosed_quantity": 0,
+        "transaction_type": "B",
+        "average_price": 0,
+        "traded_quantity": 0,
+        "message": "16273 : Does not exist",
+        "exchange_order_id": "1100000000057116",
+        "parent_order_id": "NA",
+        "order_id": "161026000000007",
+        "exchange_time": "08-Mar-2017 16:12:47",
+        "time_in_micro": "1488969541034779",
+        "status": "open",
+        "is_amo": false,
+        "valid_date": "--",
+        "order_request_id": "4",
+        "total_traded_quantity": 0,
+        "traded_shares": 0,
+        "traded_price": 0,
+        "stop_loss": 0,
+        "square_off": 0,
+        "trailing_ticks": 0
+      },
+      {
+        "exchange": "NSE_EQ",
+        "token": 2885,
+        "symbol": "RELIANCE",
+        "product": "I",
+        "order_type": "M",
+        "duration": "DAY",
+        "price": 0,
+        "trigger_price": 0,
+        "quantity": 1,
+        "disclosed_quantity": 1,
+        "transaction_type": "B",
+        "average_price": 0,
+        "traded_quantity": 0,
+        "message": "RMS:Rule: Check circuit limit including square off order exceeds  for entity account-120013 across exchange across segment across product ",
+        "exchange_order_id": "",
+        "parent_order_id": "NA",
+        "order_id": "170328000000002",
+        "exchange_time": "--",
+        "time_in_micro": "1490673554100130",
+        "status": "rejected",
+        "is_amo": false,
+        "valid_date": "--",
+        "order_request_id": "1",
+        "total_traded_quantity": 0,
+        "traded_shares": 0,
+        "traded_price": 0,
+        "stop_loss": 0,
+        "square_off": 0,
+        "trailing_ticks": 0
+      },
+      {
+        "exchange": "NSE_EQ",
+        "token": 2885,
+        "symbol": "RELIANCE",
+        "product": "I",
+        "order_type": "M",
+        "duration": "DAY",
+        "price": 0,
+        "trigger_price": 0,
+        "quantity": 1,
+        "disclosed_quantity": 1,
+        "transaction_type": "B",
+        "average_price": 0,
+        "traded_quantity": 0,
+        "message": "RMS:Rule: Check circuit limit including square off order exceeds  for entity account-120013 across exchange across segment across product ",
+        "exchange_order_id": "",
+        "parent_order_id": "NA",
+        "order_id": "170328000000005",
+        "exchange_time": "--",
+        "time_in_micro": "1490673835088505",
+        "status": "rejected",
+        "is_amo": false,
+        "valid_date": "--",
+        "order_request_id": "1",
+        "total_traded_quantity": 0,
+        "traded_shares": 0,
+        "traded_price": 0,
+        "stop_loss": 0,
+        "square_off": 0,
+        "trailing_ticks": 0
+      },
+      {
+        "exchange": "NSE_EQ",
+        "token": 2885,
+        "symbol": "RELIANCE",
+        "product": "I",
+        "order_type": "M",
+        "duration": "DAY",
+        "price": 0,
+        "trigger_price": 0,
+        "quantity": 1,
+        "disclosed_quantity": 1,
+        "transaction_type": "B",
+        "average_price": 0,
+        "traded_quantity": 0,
+        "message": "RMS:Rule: Check circuit limit including square off order exceeds  for entity account-120013 across exchange across segment across product ",
+        "exchange_order_id": "",
+        "parent_order_id": "NA",
+        "order_id": "170328000000006",
+        "exchange_time": "--",
+        "time_in_micro": "1490673945938897",
+        "status": "rejected",
+        "is_amo": false,
+        "valid_date": "--",
+        "order_request_id": "1",
+        "total_traded_quantity": 0,
+        "traded_shares": 0,
+        "traded_price": 0,
+        "stop_loss": 0,
+        "square_off": 0,
+        "trailing_ticks": 0
+      },
+      {
+        "exchange": "NSE_EQ",
+        "token": 2885,
+        "symbol": "RELIANCE",
+        "product": "I",
+        "order_type": "M",
+        "duration": "DAY",
+        "price": 0,
+        "trigger_price": 0,
+        "quantity": 1,
+        "disclosed_quantity": 1,
+        "transaction_type": "B",
+        "average_price": 0,
+        "traded_quantity": 0,
+        "message": "RMS:Rule: Check circuit limit including square off order exceeds  for entity account-120013 across exchange across segment across product ",
+        "exchange_order_id": "",
+        "parent_order_id": "NA",
+        "order_id": "170328000000003",
+        "exchange_time": "--",
+        "time_in_micro": "1490673557390963",
+        "status": "rejected",
+        "is_amo": false,
+        "valid_date": "--",
+        "order_request_id": "1",
+        "total_traded_quantity": 0,
+        "traded_shares": 0,
+        "traded_price": 0,
+        "stop_loss": 0,
+        "square_off": 0,
+        "trailing_ticks": 0
+      },
+      {
+        "exchange": "NSE_EQ",
+        "token": 2885,
+        "symbol": "RELIANCE",
+        "product": "I",
+        "order_type": "M",
+        "duration": "DAY",
+        "price": 0,
+        "trigger_price": 0,
+        "quantity": 1,
+        "disclosed_quantity": 1,
+        "transaction_type": "B",
+        "average_price": 0,
+        "traded_quantity": 0,
+        "message": "RMS:Rule: Check circuit limit including square off order exceeds  for entity account-120013 across exchange across segment across product ",
+        "exchange_order_id": "",
+        "parent_order_id": "NA",
+        "order_id": "170328000000004",
+        "exchange_time": "--",
+        "time_in_micro": "1490673800987257",
+        "status": "rejected",
+        "is_amo": false,
+        "valid_date": "--",
+        "order_request_id": "1",
+        "total_traded_quantity": 0,
+        "traded_shares": 0,
+        "traded_price": 0,
+        "stop_loss": 0,
+        "square_off": 0,
+        "trailing_ticks": 0
+      },
+      {
+        "exchange": "NSE_EQ",
+        "token": 2885,
+        "symbol": "RELIANCE",
+        "product": "I",
+        "order_type": "M",
+        "duration": "DAY",
+        "price": 0,
+        "trigger_price": 0,
+        "quantity": 1,
+        "disclosed_quantity": 1,
+        "transaction_type": "B",
+        "average_price": 0,
+        "traded_quantity": 0,
+        "message": "RMS:Rule: Check circuit limit including square off order exceeds  for entity account-120013 across exchange across segment across product ",
+        "exchange_order_id": "",
+        "parent_order_id": "NA",
+        "order_id": "170328000000007",
+        "exchange_time": "--",
+        "time_in_micro": "1490673948242030",
+        "status": "rejected",
+        "is_amo": false,
+        "valid_date": "--",
+        "order_request_id": "1",
+        "total_traded_quantity": 0,
+        "traded_shares": 0,
+        "traded_price": 0,
+        "stop_loss": 0,
+        "square_off": 0,
+        "trailing_ticks": 0
+      },
+      {
+        "exchange": "NSE_EQ",
+        "token": 2885,
+        "symbol": "RELIANCE",
+        "product": "I",
+        "order_type": "M",
+        "duration": "DAY",
+        "price": 0,
+        "trigger_price": 0,
+        "quantity": 1,
+        "disclosed_quantity": 1,
+        "transaction_type": "B",
+        "average_price": 0,
+        "traded_quantity": 0,
+        "message": "RMS:Rule: Check circuit limit including square off order exceeds  for entity account-120013 across exchange across segment across product ",
+        "exchange_order_id": "",
+        "parent_order_id": "NA",
+        "order_id": "170328000000008",
+        "exchange_time": "--",
+        "time_in_micro": "1490674042214430",
+        "status": "rejected",
+        "is_amo": false,
+        "valid_date": "--",
+        "order_request_id": "1",
+        "total_traded_quantity": 0,
+        "traded_shares": 0,
+        "traded_price": 0,
+        "stop_loss": 0,
+        "square_off": 0,
+        "trailing_ticks": 0
+      }
+    ]
   }</code></pre>
 
 
@@ -2704,6 +3193,215 @@ Gets all contracts or filter contracts by exchange segment.</p>
 
     
 
+    <h4 class="name" id=".getTradesInfo"><span class="type-signature">(static) </span>getTradesInfo<span class="signature">(params)</span><span class="type-signature"> &rarr; {res}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Get the trades details for a particular order</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>order_id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the order id for which trade details are to be fetched</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line679">line 679</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">res</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>{
+    "code": 200,
+    "status": "OK",
+    "timestamp": "2017-03-28T09:49:55+05:30",
+    "message": "success",
+    "data": []
+}</code></pre>
+
+
+
+        
+            
+
+    
+
     <h4 class="name" id=".modifyOrder"><span class="type-signature">(static) </span>modifyOrder<span class="signature">(params)</span><span class="type-signature"> &rarr; {res}</span></h4>
 
     
@@ -2876,7 +3574,7 @@ Gets all contracts or filter contracts by exchange segment.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line375">line 375</a>
+        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line702">line 702</a>
     </li></ul></dd>
     
 
@@ -3096,7 +3794,7 @@ error</code></pre></td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line753">line 753</a>
+        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line1080">line 1080</a>
     </li></ul></dd>
     
 
@@ -3186,7 +3884,7 @@ upstox.getSessionToken(login_credentials)
         .then(() => {
             //code to set socket listeners
             up.on("orderUpdate", function(message) {
-                //message for order updates            
+                //message for order updates
             });
             up.on("positionUpdate", function(message) {
                 //message for position conversion
@@ -3201,12 +3899,12 @@ upstox.getSessionToken(login_credentials)
                 //listener after socket connection is disconnected
             });
             up.on("error", function(error) {
-                //error listener 
-            });             
+                //error listener
+            });
         }, (err) => {
             //handle connection errors
         });
-    }); </code></pre>
+    });</code></pre>
 
 
 
@@ -3536,7 +4234,7 @@ upstox.getSessionToken(login_credentials)
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Mon Mar 27 2017 14:13:29 GMT+0530 (IST) using the Minami theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Tue Mar 28 2017 09:54:11 GMT+0530 (IST) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>
