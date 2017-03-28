@@ -14,7 +14,7 @@ Moreover we provide websocket connection APIS to get live updates from Upstox AP
 
 This module is installed via npm:
 
-	npm install --save upstox
+	npm install --save Upstox
 	
 
 Getting started with API
