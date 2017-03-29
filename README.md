@@ -20,7 +20,7 @@ This module is installed via npm:
 Getting started with API
 ------------------------
 
-	 var Upstox = require("upstox");
+	 var Upstox = require("Upstox");
      var up = new Upstox("your_apikey", "your_apiSecretKey");
      
      var params = {
