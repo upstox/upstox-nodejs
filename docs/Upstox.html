@@ -559,7 +559,7 @@ var up = new Upstox("your_apikey", "your_apiSecretKey");</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line829">line 829</a>
+        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line843">line 843</a>
     </li></ul></dd>
     
 
@@ -700,7 +700,7 @@ var up = new Upstox("your_apikey", "your_apiSecretKey");</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line1148">line 1148</a>
+        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line1162">line 1162</a>
     </li></ul></dd>
     
 
@@ -782,7 +782,7 @@ var up = new Upstox("your_apikey", "your_apiSecretKey");</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line1065">line 1065</a>
+        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line1079">line 1079</a>
     </li></ul></dd>
     
 
@@ -1174,7 +1174,7 @@ Gets all contracts or filter contracts by exchange segment.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line883">line 883</a>
+        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line897">line 897</a>
     </li></ul></dd>
     
 
@@ -1621,7 +1621,7 @@ Gets all contracts or filter contracts by exchange segment.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line925">line 925</a>
+        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line939">line 939</a>
     </li></ul></dd>
     
 
@@ -2041,7 +2041,7 @@ Gets all contracts or filter contracts by exchange segment.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line996">line 996</a>
+        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line1010">line 1010</a>
     </li></ul></dd>
     
 
@@ -2162,7 +2162,7 @@ Gets all contracts or filter contracts by exchange segment.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line350">line 350</a>
+        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line359">line 359</a>
     </li></ul></dd>
     
 
@@ -2434,7 +2434,7 @@ Gets all contracts or filter contracts by exchange segment.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line434">line 434</a>
+        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line443">line 443</a>
     </li></ul></dd>
     
 
@@ -3156,7 +3156,7 @@ Gets all contracts or filter contracts by exchange segment.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line490">line 490</a>
+        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line499">line 499</a>
     </li></ul></dd>
     
 
@@ -3550,6 +3550,8 @@ Gets all contracts or filter contracts by exchange segment.</p>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -3575,10 +3577,117 @@ Gets all contracts or filter contracts by exchange segment.</p>
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"><p>Order_id generated for each order placed by clients</p></td>
+            <td class="description last"><p>The order which is to be modified</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>parent_order_id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The parent order id in case of CO and OCO orders</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>price</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The limit price for the order, defaults to 0</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>trigger_price</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The trigger price for the order, defaults to 0</p></td>
         </tr>
 
     
@@ -3598,10 +3707,86 @@ Gets all contracts or filter contracts by exchange segment.</p>
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"></td>
+            <td class="description last"><p>The quantity of order</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>disclosed_quantity</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The quantity to disclose</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>valid_date</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The valid date of the order in case of MCX_FO</p></td>
         </tr>
 
     
@@ -3649,7 +3834,7 @@ Gets all contracts or filter contracts by exchange segment.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line775">line 775</a>
+        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line784">line 784</a>
     </li></ul></dd>
     
 
@@ -3869,7 +4054,7 @@ error</code></pre></td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line1158">line 1158</a>
+        <a href="UpstoxAPI.js.html">UpstoxAPI.js</a>, <a href="UpstoxAPI.js.html#line1172">line 1172</a>
     </li></ul></dd>
     
 
@@ -4061,6 +4246,8 @@ upstox.getSessionToken(login_credentials)
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -4086,10 +4273,18 @@ upstox.getSessionToken(login_credentials)
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"></td>
+            <td class="description last"><p>Buy or Sell. b : BUY, s : SELL</p></td>
         </tr>
 
     
@@ -4109,10 +4304,18 @@ upstox.getSessionToken(login_credentials)
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"></td>
+            <td class="description last"><p>The exchange segment</p></td>
         </tr>
 
     
@@ -4132,10 +4335,18 @@ upstox.getSessionToken(login_credentials)
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"></td>
+            <td class="description last"><p>The symbol of the instrument</p></td>
         </tr>
 
     
@@ -4148,6 +4359,37 @@ upstox.getSessionToken(login_credentials)
             <td class="type">
             
                 
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The quantity of order to buy/sell</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>order_type</code></td>
+            
+
+            <td class="type">
+            
+                
 <span class="param-type">string</span>
 
 
@@ -4155,10 +4397,282 @@ upstox.getSessionToken(login_credentials)
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"></td>
+            <td class="description last"><p>The type of order to place. l : Limit Order, m : Market Order</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>price</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The limit price for the order, defaults to 0</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>trigger_price</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The trigger price for the order, defaults to 0</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>duration</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The duration of the order (day / ioc)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>product</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The product (I: Intraday Order, D: Delivery Order, CO: Cover Order,OCO: Bracket Order)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>disclosed_quantity</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The quantity to disclose</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>is_amo</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>true: Indicates order is After Market Order, false: Indicates order is normal order</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>stoploss</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The stoploss for OCO order. It is mandatory for OCO.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>squareoff</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The squareoff or profit taking for OCO order. It is mandatory for OCO.</p></td>
         </tr>
 
     
@@ -4309,7 +4823,7 @@ upstox.getSessionToken(login_credentials)
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Wed Mar 29 2017 14:10:11 GMT+0530 (IST) using the Minami theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Wed Mar 29 2017 16:05:43 GMT+0530 (IST) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>
