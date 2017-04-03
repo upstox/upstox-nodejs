@@ -20,6 +20,7 @@
     "doc": "docs"
   },
   "dependencies": {
+    "atob": "^2.0.3",
     "chai": "^3.5.0",
     "lodash": "^4.17.4",
     "minami": "^1.1.1",

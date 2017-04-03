@@ -1,22 +1,26 @@
  {
    "host" : "http://192.168.75.167",
    "routes" : {
-      "login" : "/users/login/",
-      "logout" : "/users/logout",
-      "profile" : "/users/profile/",
-      "holdings" : "/users/profile/holdings",
-      "limits" : "/users/profile/limits",
-      "positions" : "/users/profile/positions",
+      "login" : "/login",
+      "logout" : "/logout",
+      "profile" : "/profile",
+      "holdings" : "/live/profile/holdings",
+      "balance" : "/live/profile/balance/{type}",
+      "positions" : "/live/profile/positions",
 
-      "placeOrder" :"/orders",
-      "getOrders" : "/orders",
-      "modifyOrder" :"/orders/{order_id}",
-      "cancelOrder" : "/orders/{order_id}",
-      "tradesInfo": "/orders/{order_id}/trades/",
+      "placeOrder" :"/live/orders",
+      "getOrders" : "/live/orders",
+      "getOrdersInfo" : "/live/orders/{order_ids}",
+      "modifyOrder" :"/live/orders/{order_id}/{parent_order_id}",
+      "cancelOrder" : "/live/orders/{order_id}/{parent_order_id}",
+      "tradesInfo": "/live/orders/{order_id}/trades",
 
-      "instruments":"/instruments",
-      "liveFeeds" : "/instruments/feed/{exchange}/{symbol}/{miniType}",
-      "OHLC" : "/instruments/ohlc/{exchange}/{symbol}"
+      "masterContract":"/master-contract/{exchange}",
+      "liveFeed" : "/live/feed/now/{exchange}/{symbol}/{type}",
+      "liveFeedSubscribe": "/live/feed/sub/{type}/{exchange}",
+      "liveFeedUnsubscribe": "/live/feed/unsub/{type}/{exchange}",
+      "OHLC" : "/historical/ohlc/{exchange}/{symbol}",
+      "contract" : "/contract/{exchange}/{symbol}"
    },
    "socketEndpoint": "ws://192.168.75.167"
  }
