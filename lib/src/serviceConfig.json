@@ -1,9 +1,9 @@
  {
-   "host" : "http://192.168.75.167",
+   "host" : "https://api.upstox.com",
    "routes" : {
-      "login" : "/login",
-      "logout" : "/logout",
-      "profile" : "/profile",
+      "login" : "/user/login",
+      "logout" : "/user/logout",
+      "profile" : "/user/profile",
       "holdings" : "/live/profile/holdings",
       "balance" : "/live/profile/balance/{type}",
       "positions" : "/live/profile/positions",
@@ -15,12 +15,12 @@
       "cancelOrder" : "/live/orders/{order_id}/{parent_order_id}",
       "tradesInfo": "/live/orders/{order_id}/trades",
 
-      "masterContract":"/master-contract/{exchange}",
+      "masterContract":"/user/master-contract/{exchange}",
       "liveFeed" : "/live/feed/now/{exchange}/{symbol}/{type}",
       "liveFeedSubscribe": "/live/feed/sub/{type}/{exchange}",
       "liveFeedUnsubscribe": "/live/feed/unsub/{type}/{exchange}",
       "OHLC" : "/historical/ohlc/{exchange}/{symbol}",
       "contract" : "/contract/{exchange}/{symbol}"
    },
-   "socketEndpoint": "ws://192.168.75.167"
+   "socketEndpoint": "ws://upstoxapi-939207135.ap-south-1.elb.amazonaws.com"
  }
