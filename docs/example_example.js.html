@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>Upstox API Global</title>
+	<title>Upstox API Source: example/example.js</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -31,16 +31,16 @@
 		<ul class="nav navbar-nav">
 			
 			<li class="dropdown">
-				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+				<a href="modules.list.html" class="dropdown-toggle" data-toggle="dropdown">Modules<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="global.html#Upstox">Upstox</a></li>
+					<li><a href="module-Example.html">Example</a></li>
 				</ul>
 			</li>
 			
 			<li class="dropdown">
-				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
+				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="global.html">Global</a></li>
+					<li><a href="Upstox.html">Upstox</a></li>
 				</ul>
 			</li>
 			
@@ -67,173 +67,108 @@
 <div class="row">
 
 	
-	<div class="col-md-8">
+	<div class="col-md-12">
 	
 		<div id="main">
 			
 
-	<h1 class="page-title">Global</h1>
+		<h1 class="page-title">Source: example/example.js</h1>
+    
 <section>
+    <article>
+        <pre
+            class="sunlight-highlight-javascript linenums">/**
+ * Created by renuka on 11/4/17.
+ */
 
-<header>
-    
-        <h2>
-        
-        </h2>
-        
-    
-</header>
+/**
+ * Currently the node module is not yet published.
+ *
+ * To start using upstox services -
+ *  1. Require the index.js.
+ *  2. Authenticate with your uccid and password with Upstox using getSessionToken method.
+ *  3. On completion of authentication, subsequent services can be called as shown in below example.
+ *
+ *
+ *  Every service returns a promise which will either be resolved or rejected.
+ *
+ *  Websocket services are available for following events -[live data, position updates, tradeUpdates, liveFeeds]
+ *
+ *  To get an active socket connection use connectSocket Method.
+ * @module Example
+ */
 
+var Upstox = require("index");
+var up = new Upstox("your_apikey", "your_apiSecretKey");
 
-<article>
-    <div class="container-overview">
-    
-        
+var params = {
+    "username" : "123345",
+    "password" : "5xcvbnm"
+};
 
-        
-<dl class="details">
-    
+up.getSessionToken(params)
+    .then(function(response) {
+        start();
+    })
+    .catch(function(err) {
+        console.log(err.response);
+    });
 
-	
+function start() {
+    // Fetch holdings.
+    // You can have other api calls here.
 
-	
+    up.getHoldings()
+        .then(function(response) {
+            // You got user's holding details.
+        }).catch(function(err) {
+        // Something went wrong.
+    });
 
-	
+    var orderObject = {
+        transaction_type:"b",
+        exchange:"NSE_EQ",
+        symbol: "RELIANCE",
+        quantity: 1,
+        order_type:"m"
+    };
+    up.placeOrder(orderObject)
+        .then(function(response) {
+            // Order details received
+        }).catch(function(err) {
+        // Something went wrong.
+    });
 
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Members</h3>
-
-        <dl>
-            
-<hr>
-<dt class="name" id="Upstox">
-    <h4 id="Upstox"><span class="type-signature"></span>Upstox<span class="type-signature"></span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>Currently the node module is not yet published.
-To start using upstox services -</p>
-<ol>
-<li>Require the index.js.</li>
-<li>Authenticate with your uccid and password with Upstox using getSessionToken method.</li>
-<li>On completion of authentication, subsequent services can be called as shown in below example.</li>
-</ol>
-    </div>
-    
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="example_example.js.html">example/example.js</a>,
-				 <a href="example_example.js.html#sunlight-1-line-18">line 18</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        </dl>
-    
-
-    
-
-    
-
-    
-</article>
-
+    up.connectSocket()
+        .then(function(){
+            // Socket Connection successfull
+            // Now you can setup listeners
+            up.on("orderUpdate", function(message) {
+                //message for order updates
+            });
+            up.on("positionUpdate", function(message) {
+                //message for position conversion
+            });
+            up.on("tradeUpdate", function(message) {
+                //message for trade updates
+            });
+            up.on("liveFeed", function(message) {
+                //message for live feed
+            });
+            up.on("disconnected", function(message) {
+                //listener after socket connection is disconnected
+            });
+            up.on("error", function(error) {
+                //error listener
+            });
+            //You can call up.closeSocket() to disconnect
+        }).catch(function(err){
+        // Something went wrong.
+    });
+}</pre>
+    </article>
 </section>
+
 
 
 
@@ -243,10 +178,6 @@ To start using upstox services -</p>
 
 	<div class="clearfix"></div>
 
-	
-		<div class="col-md-3">
-			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
-		</div>
 	
 
 </div>

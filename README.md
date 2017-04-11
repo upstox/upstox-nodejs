@@ -1,3 +1,5 @@
+
+
 # Upstox API Nodejs client
 
 
@@ -6,15 +8,11 @@ The official Javascript node client for communicating with the Upstox APIs
 Upstox Node Js Library provides an easy to use wrapper over the HTTP APIs. The HTTP calls have been converted to methods and their JSON responses.
 Moreover we provide websocket connection APIS to get live updates from Upstox APIs.
 
-## Documentation
-
-- [Javascript client documentation](http://localhost:63342/upstoxnodelibrary/docs/index.html)
-
 ## Installation
 
 This module is installed via npm:
 
-	npm install --save Upstox
+	 npm install --save Upstox
 	
 
 Getting started with API
@@ -24,8 +22,8 @@ Getting started with API
      var up = new Upstox("your_apikey", "your_apiSecretKey");
      
      var params = {
-        "username" : 123345,   
-        "password" : 5xcvbnm
+        "username" : "123345",   
+        "password" : "5xcvbns"
      }
      
      up.getSessionToken(params)
