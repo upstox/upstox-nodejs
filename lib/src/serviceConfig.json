@@ -1,5 +1,5 @@
  {
-   "host" : "https://api.upstox.com",
+   "host" : "http://192.168.75.167",
    "routes" : {
       "login" : "/user/login",
       "logout" : "/user/logout",
