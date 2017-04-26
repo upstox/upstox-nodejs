@@ -146,7 +146,7 @@ start(){
         
 <hr>
 <dt>
-    <h4 class="name" id="Upstox"><span class="type-signature"></span>new Upstox(client_id [, accessToken])</h4>
+    <h4 class="name" id="Upstox"><span class="type-signature"></span>new Upstox(client_id)</h4>
     
     
 </dt>
@@ -172,8 +172,6 @@ start(){
 
         <th>Type</th>
 
-        
-        <th>Argument</th>
         
 
         
@@ -201,52 +199,10 @@ start(){
             </td>
 
             
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
 
             
 
             <td class="description last"><p>Assigned to you used to authenticate the developers app</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>accessToken</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>SessionId generated after successfully logging to upstox API.</p></td>
         </tr>
 
     
@@ -323,7 +279,7 @@ start(){
         <p class="code-caption">Initialize Upstox object</p>
     
     <pre class="sunlight-highlight-javascript">var Upstox = require(&quot;Upstox&quot;);
-var up = new Upstox(&quot;your_apikey&quot;, &quot;your_apiSecretKey&quot;);</pre>
+var up = new Upstox(&quot;your_apikey&quot;);</pre>
 
 
     
@@ -342,87 +298,6 @@ var up = new Upstox(&quot;your_apikey&quot;, &quot;your_apiSecretKey&quot;);</pr
 
     
 
-    
-        <h3 class="subsection-title">Members</h3>
-
-        <dl>
-            
-<hr>
-<dt class="name" id=".this.auth">
-    <h4 id=".this.auth"><span class="type-signature">&lt;static> </span>this.auth<span class="type-signature"> :Object</span></h4>
-
-    
-</dt>
-<dd>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">Object</span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="src_UpstoxAPI.js.html">src/UpstoxAPI.js</a>,
-				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-89">line 89</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        </dl>
     
 
     
@@ -537,7 +412,7 @@ var up = new Upstox(&quot;your_apikey&quot;, &quot;your_apiSecretKey&quot;);</pr
 		<ul class="dummy">
 			<li>
 				<a href="src_UpstoxAPI.js.html">src/UpstoxAPI.js</a>,
-				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-104">line 104</a>
+				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-108">line 108</a>
 			</li>
 		</ul>
 	</dd>
@@ -570,7 +445,7 @@ var up = new Upstox(&quot;your_apikey&quot;, &quot;your_apiSecretKey&quot;);</pr
             
 <hr>
 <dt>
-    <h4 class="name" id="getLoginUri"><span class="type-signature"></span>getLoginUri(client_id, redirect_uri, response_type)</h4>
+    <h4 class="name" id="getLoginUri"><span class="type-signature"></span>getLoginUri(redirect_uri, response_type)</h4>
     
     
 </dt>
@@ -605,24 +480,6 @@ var up = new Upstox(&quot;your_apikey&quot;, &quot;your_apiSecretKey&quot;);</pr
     </thead>
 
     <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>client_id</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Assigned to you used to authenticate the developers app</p></td>
-        </tr>
-
     
 
         <tr>
@@ -701,7 +558,7 @@ var up = new Upstox(&quot;your_apikey&quot;, &quot;your_apiSecretKey&quot;);</pr
 		<ul class="dummy">
 			<li>
 				<a href="src_UpstoxAPI.js.html">src/UpstoxAPI.js</a>,
-				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-129">line 129</a>
+				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-133">line 133</a>
 			</li>
 		</ul>
 	</dd>
@@ -758,7 +615,7 @@ var up = new Upstox(&quot;your_apikey&quot;, &quot;your_apiSecretKey&quot;);</pr
             
 <hr>
 <dt>
-    <h4 class="name" id="getSessionToken"><span class="type-signature"></span>getSessionToken(params)</h4>
+    <h4 class="name" id="getAccessToken"><span class="type-signature"></span>getAccessToken(params)</h4>
     
     
 </dt>
@@ -840,30 +697,6 @@ var up = new Upstox(&quot;your_apikey&quot;, &quot;your_apiSecretKey&quot;);</pr
     </thead>
 
     <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>client_id</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>valid client id for UPSTOX</p></td>
-        </tr>
-
     
 
         <tr>
@@ -1009,7 +842,7 @@ var up = new Upstox(&quot;your_apikey&quot;, &quot;your_apiSecretKey&quot;);</pr
 		<ul class="dummy">
 			<li>
 				<a href="src_UpstoxAPI.js.html">src/UpstoxAPI.js</a>,
-				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-144">line 144</a>
+				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-148">line 148</a>
 			</li>
 		</ul>
 	</dd>
@@ -1108,7 +941,7 @@ var up = new Upstox(&quot;your_apikey&quot;, &quot;your_apiSecretKey&quot;);</pr
 		<ul class="dummy">
 			<li>
 				<a href="src_UpstoxAPI.js.html">src/UpstoxAPI.js</a>,
-				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-184">line 184</a>
+				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-188">line 188</a>
 			</li>
 		</ul>
 	</dd>
@@ -1243,7 +1076,7 @@ var up = new Upstox(&quot;your_apikey&quot;, &quot;your_apiSecretKey&quot;);</pr
 		<ul class="dummy">
 			<li>
 				<a href="src_UpstoxAPI.js.html">src/UpstoxAPI.js</a>,
-				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-222">line 222</a>
+				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-226">line 226</a>
 			</li>
 		</ul>
 	</dd>
@@ -1463,7 +1296,7 @@ var up = new Upstox(&quot;your_apikey&quot;, &quot;your_apiSecretKey&quot;);</pr
 		<ul class="dummy">
 			<li>
 				<a href="src_UpstoxAPI.js.html">src/UpstoxAPI.js</a>,
-				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-244">line 244</a>
+				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-248">line 248</a>
 			</li>
 		</ul>
 	</dd>
@@ -1586,7 +1419,7 @@ var up = new Upstox(&quot;your_apikey&quot;, &quot;your_apiSecretKey&quot;);</pr
 		<ul class="dummy">
 			<li>
 				<a href="src_UpstoxAPI.js.html">src/UpstoxAPI.js</a>,
-				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-271">line 271</a>
+				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-275">line 275</a>
 			</li>
 		</ul>
 	</dd>
@@ -2230,7 +2063,7 @@ var up = new Upstox(&quot;your_apikey&quot;, &quot;your_apiSecretKey&quot;);</pr
 		<ul class="dummy">
 			<li>
 				<a href="src_UpstoxAPI.js.html">src/UpstoxAPI.js</a>,
-				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-307">line 307</a>
+				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-311">line 311</a>
 			</li>
 		</ul>
 	</dd>
@@ -2380,7 +2213,7 @@ var up = new Upstox(&quot;your_apikey&quot;, &quot;your_apiSecretKey&quot;);</pr
 		<ul class="dummy">
 			<li>
 				<a href="src_UpstoxAPI.js.html">src/UpstoxAPI.js</a>,
-				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-373">line 373</a>
+				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-377">line 377</a>
 			</li>
 		</ul>
 	</dd>
@@ -2508,7 +2341,7 @@ var up = new Upstox(&quot;your_apikey&quot;, &quot;your_apiSecretKey&quot;);</pr
             
 <hr>
 <dt>
-    <h4 class="name" id="getTradesInfo"><span class="type-signature"></span>getTradesInfo(params)</h4>
+    <h4 class="name" id="getTrades"><span class="type-signature"></span>getTrades(params)</h4>
     
     
 </dt>
@@ -2663,7 +2496,7 @@ var up = new Upstox(&quot;your_apikey&quot;, &quot;your_apiSecretKey&quot;);</pr
 		<ul class="dummy">
 			<li>
 				<a href="src_UpstoxAPI.js.html">src/UpstoxAPI.js</a>,
-				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-458">line 458</a>
+				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-462">line 462</a>
 			</li>
 		</ul>
 	</dd>
@@ -3358,7 +3191,7 @@ var up = new Upstox(&quot;your_apikey&quot;, &quot;your_apiSecretKey&quot;);</pr
 		<ul class="dummy">
 			<li>
 				<a href="src_UpstoxAPI.js.html">src/UpstoxAPI.js</a>,
-				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-744">line 744</a>
+				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-748">line 748</a>
 			</li>
 		</ul>
 	</dd>
@@ -3608,7 +3441,7 @@ var up = new Upstox(&quot;your_apikey&quot;, &quot;your_apiSecretKey&quot;);</pr
 		<ul class="dummy">
 			<li>
 				<a href="src_UpstoxAPI.js.html">src/UpstoxAPI.js</a>,
-				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-808">line 808</a>
+				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-812">line 812</a>
 			</li>
 		</ul>
 	</dd>
@@ -3879,7 +3712,7 @@ Gets all contracts or filter contracts by exchange segment.</p>
 		<ul class="dummy">
 			<li>
 				<a href="src_UpstoxAPI.js.html">src/UpstoxAPI.js</a>,
-				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-867">line 867</a>
+				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-871">line 871</a>
 			</li>
 		</ul>
 	</dd>
@@ -4223,7 +4056,7 @@ Gets all contracts or filter contracts by exchange segment.</p>
 		<ul class="dummy">
 			<li>
 				<a href="src_UpstoxAPI.js.html">src/UpstoxAPI.js</a>,
-				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-913">line 913</a>
+				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-917">line 917</a>
 			</li>
 		</ul>
 	</dd>
@@ -4658,7 +4491,7 @@ Gets all contracts or filter contracts by exchange segment.</p>
 		<ul class="dummy">
 			<li>
 				<a href="src_UpstoxAPI.js.html">src/UpstoxAPI.js</a>,
-				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-981">line 981</a>
+				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-985">line 985</a>
 			</li>
 		</ul>
 	</dd>
@@ -4938,7 +4771,7 @@ Gets all contracts or filter contracts by exchange segment.</p>
 		<ul class="dummy">
 			<li>
 				<a href="src_UpstoxAPI.js.html">src/UpstoxAPI.js</a>,
-				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-1051">line 1051</a>
+				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-1055">line 1055</a>
 			</li>
 		</ul>
 	</dd>
@@ -5196,7 +5029,7 @@ Gets all contracts or filter contracts by exchange segment.</p>
 		<ul class="dummy">
 			<li>
 				<a href="src_UpstoxAPI.js.html">src/UpstoxAPI.js</a>,
-				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-1081">line 1081</a>
+				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-1085">line 1085</a>
 			</li>
 		</ul>
 	</dd>
@@ -5304,7 +5137,7 @@ Gets all contracts or filter contracts by exchange segment.</p>
 		<ul class="dummy">
 			<li>
 				<a href="src_UpstoxAPI.js.html">src/UpstoxAPI.js</a>,
-				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-1111">line 1111</a>
+				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-1115">line 1115</a>
 			</li>
 		</ul>
 	</dd>
@@ -5472,7 +5305,7 @@ upstox.getSessionToken(login_credentials)
 		<ul class="dummy">
 			<li>
 				<a href="src_UpstoxAPI.js.html">src/UpstoxAPI.js</a>,
-				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-1204">line 1204</a>
+				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-1208">line 1208</a>
 			</li>
 		</ul>
 	</dd>
@@ -5641,7 +5474,7 @@ error</code></pre></td>
 		<ul class="dummy">
 			<li>
 				<a href="src_UpstoxAPI.js.html">src/UpstoxAPI.js</a>,
-				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-1216">line 1216</a>
+				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-1220">line 1220</a>
 			</li>
 		</ul>
 	</dd>
@@ -5807,7 +5640,7 @@ upstox.getSessionToken(login_credentials)
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a>
 	
-		on Tue Apr 25th 2017
+		on Wed Apr 26th 2017
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
