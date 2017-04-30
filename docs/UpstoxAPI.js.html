@@ -181,7 +181,7 @@ function Upstox(apiKey, apiSecretKey, sessionToken) {
  * @description method to associate the sessionToken with the class object.
  * @memberOf Upstox
  * @instance
- * @param {string} sessionToken Token generated after the users logged in successfully with its Upstox client_id(username) and password.
+ * @param {string} sessionToken Token generated after the users logged in successfully with its Upstox apiKey(username) and password.
  */
 Upstox.prototype.setToken = function(sessionToken){
     var __this = this;
@@ -194,7 +194,7 @@ Upstox.prototype.setToken = function(sessionToken){
  * @description method to associate the userId with the instance.
  * @memberOf Upstox
  * @instance
- * @param {string} userId Upstox client_id(username).
+ * @param {string} userId Upstox apiKey(username).
  */
 Upstox.prototype.setUserId = function(userId){
     var __this = this;
@@ -242,7 +242,7 @@ Upstox.prototype.getSessionToken = function(params) {
     "timestamp": "2017-03-07T12:39:00+05:30",
     "message": "success",
     "data":{
-        "client_id": "1203",
+        "apiKey": "1203",
         "name": "xyz",
         "account_type": "--",
         "pan": "ABCDERYTUIU",

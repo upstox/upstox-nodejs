@@ -152,25 +152,25 @@ var constants = require("./constants.json");
  *
  * @constructor
  * @name Upstox
- * @param {string} client_id Assigned to you used to authenticate the developers app
+ * @param {string} apiKey Assigned to you used to authenticate the developers app
  * @example &lt;caption>Initialize Upstox object&lt;/caption>
  * var Upstox = require("Upstox");
  * var up = new Upstox("your_apikey");
  *
  */
-function Upstox(client_id) {
+function Upstox(apiKey) {
 
     /**
-     * @type {{client_id: *}}
+     * @type {{apiKey: *}}
      * @private
      * @memberOf Upstox
      */
-    if(!client_id){
-        throw new Error("Missing client_id");
+    if(!apiKey){
+        throw new Error("Missing apiKey");
     }
 
     this.auth = {
-        client_id: client_id,
+        apiKey: apiKey,
         accessToken : null,
         userId: null
     };
@@ -189,7 +189,7 @@ function Upstox(client_id) {
  * @description method to associate the accessToken with the class object.
  * @memberOf Upstox
  * @instance
- * @param {string} accessToken Token generated after the users logged in successfully with its Upstox client_id(username) and password.
+ * @param {string} accessToken Token generated after the users logged in successfully with its Upstox apiKey(username) and password.
  */
 Upstox.prototype.setToken = function(accessToken){
     var __this = this;
@@ -202,7 +202,7 @@ Upstox.prototype.setToken = function(accessToken){
  * @description method to associate the userId with the instance.
  * @memberOf Upstox
  * @instance
- * @param {string} userId Upstox client_id(username).
+ * @param {string} userId Upstox apiKey(username).
  */
 Upstox.prototype.setUserId = function(userId){
     var __this = this;
@@ -221,7 +221,7 @@ Upstox.prototype.getLoginUri = function(redirect_uri, response_type){
 
     var urLDetails = utils.generateUrl('authorize', null);
     var __this = this;
-    return urLDetails.host + urLDetails.path + "?client_id=" + __this.auth.client_id + "&amp;redirect_uri=" + redirect_uri + "&amp;response_type=" + response_type;
+    return urLDetails.host + urLDetails.path + "?apiKey=" + __this.auth.apiKey + "&amp;redirect_uri=" + redirect_uri + "&amp;response_type=" + response_type;
 };
 
 /**
@@ -230,7 +230,7 @@ Upstox.prototype.getLoginUri = function(redirect_uri, response_type){
  * @memberOf Upstox
  * @instance
  * @param {object} params
- * @param {string} params.client_secret
+ * @param {string} params.apiSecret
  * @param {string} params.code
  * @param {string} params.grantType
  * @param {string} params.redirect_uri
@@ -242,11 +242,11 @@ Upstox.prototype.getAccessToken = function(params) {
     var __this = this,
         accessToken;
 
-    logger.debug("client_id" + __this.auth.client_id);
-    logger.debug("client_secret" + params.client_secret);
-    var basicAuth = "Basic " + new Buffer(__this.auth.client_id + ':' + params.client_secret).toString('base64');
+    logger.debug("apiKey" + __this.auth.apiKey);
+    logger.debug("apiSecret" + params.apiSecret);
+    var basicAuth = "Basic " + new Buffer(__this.auth.apiKey + ':' + params.apiSecret).toString('base64');
     logger.debug("Check baseAuth" + basicAuth);
-    delete(params.client_secret);
+    delete(params.apiSecret);
 
     return new promise(function (resolve, reject) {
         utils.restify("accessToken", HTTP_METHOD, params, null, {basicAuth: basicAuth})
@@ -277,7 +277,7 @@ Upstox.prototype.getAccessToken = function(params) {
     "timestamp": "2017-03-07T12:39:00+05:30",
     "message": "success",
     "data":{
-        "client_id": "1203",
+        "apiKey": "1203",
         "name": "xyz",
         "account_type": "--",
         "pan": "ABCDERYTUIU",
