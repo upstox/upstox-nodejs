@@ -152,25 +152,25 @@ var constants = require("./constants.json");
  *
  * @constructor
  * @name Upstox
- * @param {string} client_id Assigned to you used to authenticate the developers app
+ * @param {string} apiKey Assigned to you used to authenticate the developers app
  * @example &lt;caption>Initialize Upstox object&lt;/caption>
  * var Upstox = require("Upstox");
  * var up = new Upstox("your_apikey");
  *
  */
-function Upstox(client_id) {
+function Upstox(apiKey) {
 
     /**
-     * @type {{client_id: *}}
+     * @type {{apiKey: *}}
      * @private
      * @memberOf Upstox
      */
-    if(!client_id){
-        throw new Error("Missing client_id");
+    if(!apiKey){
+        throw new Error("Missing apiKey");
     }
 
     this.auth = {
-        client_id: client_id,
+        apiKey: apiKey,
         accessToken : null,
         userId: null
     };
@@ -189,7 +189,7 @@ function Upstox(client_id) {
  * @description method to associate the accessToken with the class object.
  * @memberOf Upstox
  * @instance
- * @param {string} accessToken Token generated after the users logged in successfully with its Upstox client_id(username) and password.
+ * @param {string} accessToken Token generated after the users logged in successfully with its Upstox apiKey(username) and password.
  */
 Upstox.prototype.setToken = function(accessToken){
     var __this = this;
@@ -202,11 +202,11 @@ Upstox.prototype.setToken = function(accessToken){
  * @description method to associate the userId with the instance.
  * @memberOf Upstox
  * @instance
- * @param {string} userId Upstox client_id(username).
+ * @param {string} userId Upstox apiKey(username).
  */
 Upstox.prototype.setUserId = function(userId){
     var __this = this;
-    __this.auth.accessToken.userId = userId;
+    __this.auth.userId = userId;
 };
 
 /**
@@ -221,7 +221,7 @@ Upstox.prototype.getLoginUri = function(redirect_uri, response_type){
 
     var urLDetails = utils.generateUrl('authorize', null);
     var __this = this;
-    return urLDetails.host + urLDetails.path + "?client_id=" + __this.auth.client_id + "&amp;redirect_uri=" + redirect_uri + "&amp;response_type=" + response_type;
+    return urLDetails.host + urLDetails.path + "?apiKey=" + __this.auth.apiKey + "&amp;redirect_uri=" + redirect_uri + "&amp;response_type=" + response_type;
 };
 
 /**
@@ -230,7 +230,7 @@ Upstox.prototype.getLoginUri = function(redirect_uri, response_type){
  * @memberOf Upstox
  * @instance
  * @param {object} params
- * @param {string} params.client_secret
+ * @param {string} params.apiSecret
  * @param {string} params.code
  * @param {string} params.grantType
  * @param {string} params.redirect_uri
@@ -242,14 +242,14 @@ Upstox.prototype.getAccessToken = function(params) {
     var __this = this,
         accessToken;
 
-    logger.debug("client_id" + __this.auth.client_id);
-    logger.debug("client_secret" + params.client_secret);
-    var basicAuth = "Basic " + new Buffer(__this.auth.client_id + ':' + params.client_secret).toString('base64');
+    logger.debug("apiKey" + __this.auth.apiKey);
+    logger.debug("apiSecret" + params.apiSecret);
+    var basicAuth = "Basic " + new Buffer(__this.auth.apiKey + ':' + params.apiSecret).toString('base64');
     logger.debug("Check baseAuth" + basicAuth);
-    delete(params.client_secret);
+    delete(params.apiSecret);
 
     return new promise(function (resolve, reject) {
-        utils.restify("accessToken", HTTP_METHOD, params, null, {basicAuth: basicAuth})
+        utils.restify("accessToken", HTTP_METHOD, params, __this.auth, {basicAuth: basicAuth})
             .then(function (response) {
                 logger.debug("*****************"+ JSON.stringify(response));
                 __this.setToken(response.access_token);
@@ -277,7 +277,7 @@ Upstox.prototype.getAccessToken = function(params) {
     "timestamp": "2017-03-07T12:39:00+05:30",
     "message": "success",
     "data":{
-        "client_id": "1203",
+        "apiKey": "1203",
         "name": "xyz",
         "account_type": "--",
         "pan": "ABCDERYTUIU",
@@ -299,7 +299,7 @@ Upstox.prototype.getProfile = function () {
     var __this = this;
     var HTTP_METHOD = "GET";
 
-    return utils.restify("profile", HTTP_METHOD, null, __this.auth.accessToken );
+    return utils.restify("profile", HTTP_METHOD, null, __this.auth );
 };
 
 /**
@@ -321,7 +321,7 @@ Upstox.prototype.getHoldings = function () {
 
     var __this = this;
     var HTTP_METHOD = "GET";
-    return utils.restify("holdings", HTTP_METHOD, null, __this.auth.accessToken);
+    return utils.restify("holdings", HTTP_METHOD, null, __this.auth);
 };
 
 /**
@@ -348,7 +348,7 @@ Upstox.prototype.getBalance = function () {
 
     var __this = this;
     var HTTP_METHOD = "GET";
-    return utils.restify("balance", HTTP_METHOD, null, __this.auth.accessToken);
+    return utils.restify("balance", HTTP_METHOD, null, __this.auth);
 };
 
 /**
@@ -384,7 +384,7 @@ Upstox.prototype.getPositions = function () {
 
     var __this = this;
     var HTTP_METHOD = "GET";
-    return utils.restify("positions", HTTP_METHOD, null, __this.auth.accessToken);
+    return utils.restify("positions", HTTP_METHOD, null, __this.auth);
 };
 
 /**
@@ -450,7 +450,7 @@ Upstox.prototype.placeOrder = function(params){
 
     var __this = this;
     var HTTP_METHOD = "POST";
-    return utils.restify("placeOrder", HTTP_METHOD, params, __this.auth.accessToken);
+    return utils.restify("placeOrder", HTTP_METHOD, params, __this.auth);
 };
 
 /**
@@ -535,7 +535,7 @@ Upstox.prototype.getOrders = function(){
 
     var __this = this;
     var HTTP_METHOD = "GET";
-    return utils.restify("getOrders", HTTP_METHOD, null, __this.auth.accessToken)
+    return utils.restify("getOrders", HTTP_METHOD, null, __this.auth)
 };
 
 /**
@@ -821,7 +821,7 @@ Upstox.prototype.getTrades = function(params){
 
     var __this = this;
     var HTTP_METHOD = "GET";
-    return utils.restify("tradesInfo", HTTP_METHOD, params, __this.auth.accessToken)
+    return utils.restify("tradesInfo", HTTP_METHOD, params, __this.auth)
 };
 
 /**
@@ -885,7 +885,7 @@ Upstox.prototype.modifyOrder = function(params){
     if(!params.parent_order_id){
         params["parent_order_id"] = "";
     }
-    return utils.restify("modifyOrder", HTTP_METHOD, params, __this.auth.accessToken)
+    return utils.restify("modifyOrder", HTTP_METHOD, params, __this.auth)
 };
 
 /**
@@ -944,7 +944,7 @@ Upstox.prototype.cancelOrder = function(params){
     if(!params.parent_order_id){
         params["parent_order_id"] = "";
     }
-    return utils.restify("cancelOrder", HTTP_METHOD, params, __this.auth.accessToken)
+    return utils.restify("cancelOrder", HTTP_METHOD, params, __this.auth)
 };
 
 /**
@@ -989,7 +989,7 @@ Upstox.prototype.getMasterContract = function(params){
     if(!params.exchange){
         params["exchange"] = "";
     }
-    return utils.restify("masterContract", HTTP_METHOD, params, __this.auth.accessToken)
+    return utils.restify("masterContract", HTTP_METHOD, params, __this.auth)
 
 };
 
@@ -1058,7 +1058,7 @@ Upstox.prototype.getLiveFeed = function(params){
     var __this = this;
     var HTTP_METHOD = "GET";
 
-    return utils.restify("liveFeed", HTTP_METHOD, params, __this.auth.accessToken);
+    return utils.restify("liveFeed", HTTP_METHOD, params, __this.auth);
 };
 
 /**
@@ -1128,7 +1128,7 @@ Upstox.prototype.getOHLC = function(params){
     var __this = this;
     var HTTP_METHOD = "GET";
 
-    return utils.restify("OHLC", HTTP_METHOD, params, __this.auth.accessToken);
+    return utils.restify("OHLC", HTTP_METHOD, params, __this.auth);
 };
 
 /**
@@ -1158,7 +1158,7 @@ Upstox.prototype.subscribeFeed = function(params){
     var __this = this;
     var HTTP_METHOD = "GET";
 
-    return utils.restify("liveFeedSubscribe", HTTP_METHOD, params, __this.auth.accessToken)
+    return utils.restify("liveFeedSubscribe", HTTP_METHOD, params, __this.auth)
 }
 
 /**
@@ -1188,7 +1188,7 @@ Upstox.prototype.unsubscribeFeed = function(params){
     var __this = this;
     var HTTP_METHOD = "GET";
 
-    return utils.restify("liveFeedUnsubscribe", HTTP_METHOD, params, __this.auth.accessToken)
+    return utils.restify("liveFeedUnsubscribe", HTTP_METHOD, params, __this.auth)
 }
 
 /**
@@ -1276,7 +1276,7 @@ Upstox.prototype.connectSocket = function() {
                 });
                 resolve();
             });
-            logger.debug("In socket ---" + JSON.stringify(__this.auth.accessToken));
+            logger.debug("In socket ---" + JSON.stringify(__this.auth));
             socket.connect(utils.getSocketEndpoint(__this.auth));
         } else {
             reject(new Error("User not authenticated"))
@@ -1412,7 +1412,7 @@ module.exports.Upstox = Upstox;</pre>
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a>
 	
-		on Wed Apr 26th 2017
+		on Tue May 2nd 2017
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

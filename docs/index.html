@@ -97,59 +97,141 @@
 <p>Upstox Node Js Library provides an easy to use wrapper over the HTTP APIs. The HTTP calls have been converted to methods and their JSON responses.
 Moreover we provide websocket connection APIS to get live updates from Upstox APIs.</p>
 <h2>Installation</h2><p>This module is installed via npm:</p>
-<pre class="prettyprint source"><code> npm install --save Upstox</code></pre><h2>Getting started with API</h2><pre class="prettyprint source"><code> var Upstox = require(&quot;Upstox&quot;);
- var up = new Upstox(&quot;your_apikey&quot;, &quot;your_apiSecretKey&quot;);
+<pre class="prettyprint source"><code> npm install --save Upstox</code></pre><h2>Getting started with API</h2><pre class="prettyprint source"><code> * To start using upstox services -
+ *  1. Get authentication url provide with getLoginUri. Params required are - apiKey, redirect_uri, response_type
+ *  2. Authenticate with your uccid and password with Upstox using login url provide with getLoginUri method.
+ *  3. On completion of authentication user will be redirected to the redirect_uri provided while creating the app on developer console of Upstox.
+ *  4. User need to provide the code added in query param of redirect-uri in getAccessToken method.
+ *  6. getAccessToken method requires following params: {
+        &quot;apiSecret&quot; : &quot;your_apiSecret&quot;,
+        &quot;code&quot; : &quot;your_code_generated_in login&quot;,
+        &quot;grant_type&quot; : &quot;authorization_code&quot;,
+        &quot;redirect_uri&quot; : &quot;your_redirect_uri&quot;
+        };
+    7. Set access token by invoking method called setAccessToken(your_access_token); // pass the accessToken generated in response with getAccessToken.
+ *  8. Subsequent services can be called as shown in below
+ *
+ *
+ *  Every service returns a promise which will either be resolved or rejected.
+ *
+ *  Websocket services are available for following events -[live data, position updates, tradeUpdates, liveFeeds]
+ *
+ *  To get an active socket connection use connectSocket Method.
+ * @module Example
+ */
 
- var params = {
-    &quot;username&quot; : &quot;123345&quot;,   
-    &quot;password&quot; : &quot;5xcvbns&quot;
- }
+var Upstox = require(&quot;../Upstox&quot;);
+var upstox = new Upstox(&quot;your apiKey&quot;);
 
- up.getSessionToken(params)
+var params ={
+    &quot;apiKey&quot; : &quot;your_apiKey&quot;,
+    &quot;apiSecret&quot; : &quot;your_apiSecret&quot;,
+    &quot;code&quot; : &quot;your_code_generated_in login&quot;,
+    &quot;grant_type&quot; : &quot;authorization_code&quot;,
+    &quot;redirect_uri&quot; : &quot;your_redirect_uri&quot;
+};
+
+var orderObject = {
+    transaction_type:&quot;b&quot;,
+    exchange:&quot;NSE_EQ&quot;,
+    symbol: &quot;RELIANCE&quot;,
+    quantity: 1,
+    order_type:&quot;m&quot;
+};
+
+upstox.getAccessToken(params)
     .then(function(response) {
-         start();
-     })
-   .catch(function(err) {
-         console.log(err.response);
- })
+        start();
+    })
+    .catch(function(err) {
+        logger.error(err);
+    });
 
 function start() {
     // Fetch holdings.
     // You can have other api calls here.
 
-    up.getHoldings()
+    // Get Holdings
+    upstox.getHoldings()
         .then(function(response) {
             // You got user's holding details.
+            logger.debug(response);
         }).catch(function(err) {
-            // Something went wrong.
+        // Something went wrong.
+        logger.error(err);
+    });
+
+    // GetProfile
+    upstox.getProfile()
+        .then(function (response) {
+            // expect(response.code === 200);
+            // should.exist(response.data);
+            // var data = response.data;
+            // should.exist(data.apiKey);
+            // should.exist(data.name);
+            // should.exist(data.account_type);
+            // should.exist(data.pan);
+            // should.exist(data.email);
+            // should.exist(data.phone);
+            // should.exist(data.nse_pcode);
+            // should.exist(data.bse_pcode);
+            // should.exist(data.bse_custodian_code);
+            // should.exist(data.dp_account_number);
+            // should.exist(data.products_enabled);
+            // should.exist(data);
+            logger.debug(response);
+            //done();
+        })
+        .catch(function(error){
+            logger.error(&quot;%%%%%%%%%%%%% &quot;, error);
+            //done(error);
         });
 
-    up.connectSocket()
-        .then(function(){
-            // Socket Connection successfull 
-            // Now you can setup listeners
-             up.on(&quot;orderUpdate&quot;, function(message) {
-                 //message for order updates            
-             });
-             up.on(&quot;positionUpdate&quot;, function(message) {
-                 //message for position conversion
-             });
-            up.on(&quot;tradeUpdate&quot;, function(message) {
-                 //message for trade updates
-             });
-             up.on(&quot;liveFeed&quot;, function(message) {
-                 //message for live feed
-             });                
-            up.on(&quot;disconnected&quot;, function(message) {
-                //listener after socket connection is disconnected
-            });
-            up.on(&quot;error&quot;, function(error) {
-                //error listener 
-            });
-            //You can call up.closeSocket() to disconnect
-        }).catch(function(err){
+    // PlaceOrder
+    upstox.placeOrder(orderObject)
+        .then(function(response) {
+            // Order details received
+            logger.debug(response);
+        })
+        .catch(function(err) {
             // Something went wrong.
+            logger.error(err);
         });
+
+    // Socket
+    upstox.connectSocket()
+        .then(function(){
+            // Socket Connection successfull
+            // Now you can setup listeners
+            upstox.on(&quot;orderUpdate&quot;, function(message) {
+                //message for order updates
+                logger.debug(message);
+            });
+            upstox.on(&quot;positionUpdate&quot;, function(message) {
+                //message for position conversion
+                logger.debug(message);
+            });
+            upstox.on(&quot;tradeUpdate&quot;, function(message) {
+                //message for trade updates
+                logger.debug(message);
+            });
+            upstox.on(&quot;liveFeed&quot;, function(message) {
+                //message for live feed
+                logger.debug(message);
+            });
+            upstox.on(&quot;disconnected&quot;, function(message) {
+                //listener after socket connection is disconnected
+                logger.debug(message);
+            });
+            upstox.on(&quot;error&quot;, function(error) {
+                //error listener
+                logger.debug(error);
+            });
+            //You can call upstox.closeSocket() to disconnect
+        }).catch(function(err) {
+            // Something went wrong.
+            logger.error(err);
+        })
 }</code></pre></article>
     </section>
 
@@ -299,7 +381,7 @@ function start() {
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a>
 	
-		on Wed Apr 26th 2017
+		on Tue May 2nd 2017
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

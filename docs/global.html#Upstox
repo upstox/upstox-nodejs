@@ -797,7 +797,7 @@ var up = new Upstox(&quot;your_apikey&quot;, &quot;your_apiSecretKey&quot;);</pr
     &quot;timestamp&quot;: &quot;2017-03-07T12:39:00+05:30&quot;,
     &quot;message&quot;: &quot;success&quot;,
     &quot;data&quot;:{
-        &quot;client_id&quot;: &quot;1203&quot;,
+        &quot;apiKey&quot;: &quot;1203&quot;,
         &quot;name&quot;: &quot;xyz&quot;,
         &quot;account_type&quot;: &quot;--&quot;,
         &quot;pan&quot;: &quot;ABCDERYTUIU&quot;,
