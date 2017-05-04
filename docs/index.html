@@ -97,57 +97,55 @@
 <p>Upstox Node Js Library provides an easy to use wrapper over the HTTP APIs. The HTTP calls have been converted to methods and their JSON responses.
 Moreover we provide websocket connection APIS to get live updates from Upstox APIs.</p>
 <h2>Installation</h2><p>This module is installed via npm:</p>
-<pre class="prettyprint source"><code> npm install --save Upstox</code></pre><h2>Getting started with API</h2><pre class="prettyprint source"><code> * To start using upstox services -
- *  1. Get authentication url provide with getLoginUri. Params required are - apiKey, redirect_uri, response_type
- *  2. Authenticate with your uccid and password with Upstox using login url provide with getLoginUri method.
- *  3. On completion of authentication user will be redirected to the redirect_uri provided while creating the app on developer console of Upstox.
- *  4. User need to provide the code added in query param of redirect-uri in getAccessToken method.
- *  6. getAccessToken method requires following params: {
-        &quot;apiSecret&quot; : &quot;your_apiSecret&quot;,
-        &quot;code&quot; : &quot;your_code_generated_in login&quot;,
-        &quot;grant_type&quot; : &quot;authorization_code&quot;,
-        &quot;redirect_uri&quot; : &quot;your_redirect_uri&quot;
+<pre class="prettyprint source"><code> npm install --save Upstox</code></pre><h2>Getting started with API</h2><pre class="prettyprint source"><code> To start using upstox services -
+ ------------------------------
+ Require Upstox - 
+     var Upstox = require(&quot;../Upstox&quot;);
+
+ Craete an upstox object by passing apiKey as a parameter. (Note: apiKey is required field)
+     var upstox = new Upstox(&quot;your apiKey&quot;);
+
+ 1. Get authentication url with getLoginUri method. Params required are - apiKey, redirect_uri(provided while creating the app on developer console of Upstox), response_type
+    var loginUrl = upstox.getLoginUri(testdata.accessToken.redirect_uri, &quot;code&quot;);
+
+ 2. Get authenticated with your uccid and password with Upstox.
+    Upstox Login screen will be popup up with which you need to get logged in.
+
+ 3. On completion of authentication user will be redirected to the redirect_uri with code added in query parameter.
+
+ 4. Get the accessToken required for getting authenticated for all subsequent API calls.
+     getAccessToken method requires following- 
+        var params: {
+            &quot;apiSecret&quot; : &quot;your_apiSecret&quot;,
+            &quot;code&quot; : &quot;your_code_generated_in login&quot;,
+            &quot;grant_type&quot; : &quot;authorization_code&quot;,
+            &quot;redirect_uri&quot; : &quot;your_redirect_uri&quot;
         };
-    7. Set access token by invoking method called setAccessToken(your_access_token); // pass the accessToken generated in response with getAccessToken.
- *  8. Subsequent services can be called as shown in below
- *
- *
- *  Every service returns a promise which will either be resolved or rejected.
- *
- *  Websocket services are available for following events -[live data, position updates, tradeUpdates, liveFeeds]
- *
- *  To get an active socket connection use connectSocket Method.
- * @module Example
- */
 
-var Upstox = require(&quot;../Upstox&quot;);
-var upstox = new Upstox(&quot;your apiKey&quot;);
+        var accessToken;
 
-var params ={
-    &quot;apiKey&quot; : &quot;your_apiKey&quot;,
-    &quot;apiSecret&quot; : &quot;your_apiSecret&quot;,
-    &quot;code&quot; : &quot;your_code_generated_in login&quot;,
-    &quot;grant_type&quot; : &quot;authorization_code&quot;,
-    &quot;redirect_uri&quot; : &quot;your_redirect_uri&quot;
-};
+        upstox.getAccessToken(params)
+            .then(function(response) {
+              accessToken = response.access_token;
+            })
+            .catch(function(err) {
+                logger.error(err);
+            });
 
-var orderObject = {
-    transaction_type:&quot;b&quot;,
-    exchange:&quot;NSE_EQ&quot;,
-    symbol: &quot;RELIANCE&quot;,
-    quantity: 1,
-    order_type:&quot;m&quot;
-};
+ 5. Set access token by invoking method called setAccessToken(your_access_token); // pass the accessToken generated in response with getAccessToken.
 
-upstox.getAccessToken(params)
-    .then(function(response) {
-        start();
-    })
-    .catch(function(err) {
-        logger.error(err);
-    });
+    upstox.setToken(accessToken);
 
-function start() {
+ 6. Subsequent services can be called as shown in below
+
+     var orderObject = {
+        transaction_type:&quot;b&quot;,
+        exchange:&quot;NSE_EQ&quot;,
+        symbol: &quot;RELIANCE&quot;,
+        quantity: 1,
+        order_type:&quot;m&quot;
+     };
+
     // Fetch holdings.
     // You can have other api calls here.
 
@@ -198,6 +196,12 @@ function start() {
             logger.error(err);
         });
 
+    Every service returns a promise which will either be resolved or rejected.
+     *
+     *  Websocket services are available for following events -[live data, position updates, tradeUpdates, liveFeeds]
+     *
+     *  To get an active socket connection use connectSocket Method.
+
     // Socket
     upstox.connectSocket()
         .then(function(){
@@ -231,8 +235,7 @@ function start() {
         }).catch(function(err) {
             // Something went wrong.
             logger.error(err);
-        })
-}</code></pre></article>
+        })</code></pre></article>
     </section>
 
 
@@ -381,7 +384,7 @@ function start() {
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a>
 	
-		on Tue May 2nd 2017
+		on Thu May 4th 2017
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
