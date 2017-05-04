@@ -20,7 +20,7 @@ Getting started with API
      To start using upstox services -
      ------------------------------
      Require Upstox - 
-         var Upstox = require("../Upstox");
+         var Upstox = require("Upstox");
          
      Craete an upstox object by passing apiKey as a parameter. (Note: apiKey is required field)
          var upstox = new Upstox("your apiKey");
@@ -61,15 +61,7 @@ Getting started with API
 ### Examples
 
      Subsequent services can be called as shown in below
-     
-         var orderObject = {
-            transaction_type:"b",
-            exchange:"NSE_EQ",
-            symbol: "RELIANCE",
-            quantity: 1,
-            order_type:"m"
-         };
-   
+    
         // Fetch holdings.
         // You can have other api calls here.
 
@@ -92,6 +84,14 @@ Getting started with API
         });
 
         // PlaceOrder
+        var orderObject = {
+                transaction_type:"b",
+                exchange:"NSE_EQ",
+                symbol: "RELIANCE",
+                quantity: 1,
+                order_type:"m"
+             };
+             
         upstox.placeOrder(orderObject)
             .then(function(response) {
                 // You got user's holding details.
