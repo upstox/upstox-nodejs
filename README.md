@@ -1,20 +1,21 @@
 # Upstox API Nodejs client
-
-
 The official Javascript node client for communicating with the Upstox APIs
-
-Upstox Node Js Library provides an easy to use wrapper over the HTTP APIs. The HTTP calls have been converted to methods and their JSON responses.
-Moreover we provide websocket connection APIS to get live updates from Upstox APIs.
+Upstox Node Js Library provides an easy to use wrapper over the HTTPs APIs. The HTTP calls have been converted to methods and their JSON responses.
+Moreover we provide websocket connection to get live updates from Upstox APIs.
 
 ## Installation
 
 This module is installed via npm:
 
 	 npm install --save Upstox
-	
+
+## Documentation
+
 
 Getting started with API
 ------------------------
+
+### Authentication with Oauth
 
      To start using upstox services -
      ------------------------------
@@ -48,15 +49,19 @@ Getting started with API
                   accessToken = response.access_token;
                 })
                 .catch(function(err) {
-                    logger.error(err);
+                    // handle error 
                 });
                 
      5. Set access token by invoking method called setAccessToken(your_access_token); // pass the accessToken generated in response with getAccessToken.
         
         upstox.setToken(accessToken);
         
-     6. Subsequent services can be called as shown in below
+     
     
+### Examples
+
+     Subsequent services can be called as shown in below
+     
          var orderObject = {
             transaction_type:"b",
             exchange:"NSE_EQ",
@@ -72,49 +77,32 @@ Getting started with API
         upstox.getHoldings()
             .then(function(response) {
                 // You got user's holding details.
-                logger.debug(response);
-            }).catch(function(err) {
+            })
+            .catch(function(err) {
             // Something went wrong.
-            logger.error(err);
         });
 
         // GetProfile
         upstox.getProfile()
-            .then(function (response) {
-                // expect(response.code === 200);
-                // should.exist(response.data);
-                // var data = response.data;
-                // should.exist(data.apiKey);
-                // should.exist(data.name);
-                // should.exist(data.account_type);
-                // should.exist(data.pan);
-                // should.exist(data.email);
-                // should.exist(data.phone);
-                // should.exist(data.nse_pcode);
-                // should.exist(data.bse_pcode);
-                // should.exist(data.bse_custodian_code);
-                // should.exist(data.dp_account_number);
-                // should.exist(data.products_enabled);
-                // should.exist(data);
-                logger.debug(response);
-                //done();
+            .then(function(response) {
+                // You got user's holding details.
             })
-            .catch(function(error){
-                logger.error("%%%%%%%%%%%%% ", error);
-                //done(error);
-            });
+            .catch(function(err) {
+            // Something went wrong.
+        });
 
         // PlaceOrder
         upstox.placeOrder(orderObject)
             .then(function(response) {
-                // Order details received
-                logger.debug(response);
+                // You got user's holding details.
             })
             .catch(function(err) {
-                // Something went wrong.
-                logger.error(err);
-            });
+            // Something went wrong.
+        });
 
+
+## Websocket
+ 
         Every service returns a promise which will either be resolved or rejected.
          *
          *  Websocket services are available for following events -[live data, position updates, tradeUpdates, liveFeeds]
@@ -128,30 +116,28 @@ Getting started with API
                 // Now you can setup listeners
                 upstox.on("orderUpdate", function(message) {
                     //message for order updates
-                    logger.debug(message);
                 });
                 upstox.on("positionUpdate", function(message) {
                     //message for position conversion
-                    logger.debug(message);
                 });
                 upstox.on("tradeUpdate", function(message) {
                     //message for trade updates
-                    logger.debug(message);
                 });
                 upstox.on("liveFeed", function(message) {
                     //message for live feed
-                    logger.debug(message);
                 });
                 upstox.on("disconnected", function(message) {
                     //listener after socket connection is disconnected
-                    logger.debug(message);
                 });
                 upstox.on("error", function(error) {
                     //error listener
-                    logger.debug(error);
                 });
                 //You can call upstox.closeSocket() to disconnect
             }).catch(function(err) {
                 // Something went wrong.
-                logger.error(err);
             })
+            
+## Test
+    npm test // Please add the oauth token details in testData.json
+   
+## Licence
