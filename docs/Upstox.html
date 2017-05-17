@@ -86,54 +86,100 @@ This module provides an easy to use wrapper over the HTTP APIs.
 The HTTP calls have been converted to methods and their JSON responses.
 Moreover we provide websocket connection APIS to get live updates from Upstox APIs.</p>
 <pre class="prettyprint source"><code>
-var Upstox = require(&quot;upstox&quot;);
-var up = new Upstox(&quot;your_apikey&quot;, &quot;your_apiSecretKey&quot;);
-up.getSessionToken({
- &quot;username&quot;: &quot;your_clientId&quot;,
- &quot;password&quot;: &quot;password&quot;
-})
-.then(function(response) {
+ var Upstox = require(&quot;upstox&quot;);
+ var upstox = new Upstox(&quot;your_apikey&quot;);
+
+ var params = {
+    &quot;apiSecret&quot; : &quot;your_apiSecret&quot;,
+    &quot;code&quot; : &quot;your_code_generated_in login&quot;,
+    &quot;grant_type&quot; : &quot;authorization_code&quot;,
+    &quot;redirect_uri&quot; : &quot;your_redirect_uri&quot;
+ };
+ upstox.getAccessToken(params)
+ .then(function(response) {
         start();
     })
  .catch(function(err) {
-        logger.debug(err.response);
-    })
+        console.log(err);
+    });
 
-start(){
-       up.getProfile()
-          .then(function(response){
-               //get the result here
+ start();
+ function start() {
+    // Fetch holdings.
+    // You can have other api calls here.
+
+    var loginUrl = upstox.getLoginUri(&quot;your_redirect_uri&quot;);
+    console.log(&quot;**************** loginUri ***********&quot; + loginUrl);
+
+    // Get Holdings
+    upstox.getHoldings()
+        .then(function(response) {
+            // You got user's holding details.
+            console.log(response);
+        }).catch(function(err) {
+        // Something went wrong.
+        console.log(err);
+    });
+
+    // GetProfile
+    upstox.getProfile()
+        .then(function (response) {
+            console.log(response);
+            //done();
         })
         .catch(function(error){
-            //catch the error here
-         });
-       up.connectSocket()
-            .then(function(){
-                // Socket Connection successfull
-                // Now you can setup listeners
+            console.log(&quot;%%%%%%%%%%%%% &quot;, error);
+            //done(error);
+        });
 
-                up.on(&quot;orderUpdate&quot;, function(message) {
-                    //message for order updates
-                });
-             up.on(&quot;positionUpdate&quot;, function(message) {
-                    //message for position conversion
-                });
-             up.on(&quot;tradeUpdate&quot;, function(message) {
-                    //message for trade updates
-                });
-             up.on(&quot;liveFeed&quot;, function(message) {
-                    //message for live feed
-                });
-                up.on(&quot;disconnected&quot;, function(message) {
-                    //listener after socket connection is disconnected
-                });
-                up.on(&quot;error&quot;, function(error) {
-                    //error listener
-                });
-                //You can call up.closeSocket() to disconnect
-            }).catch(function(err){
-                // Something went wrong.
+    // PlaceOrder Note : default product = I i.e intra day order will be placed.
+    var orderObject = {
+        transaction_type:&quot;b&quot;,
+        exchange:&quot;NSE_EQ&quot;,
+        symbol: &quot;RELIANCE&quot;,
+        quantity: 1,
+        order_type:&quot;m&quot;
+    };
+
+    upstox.placeOrder(orderObject)
+        .then(function(response) {
+            // Order details received
+            console.log(response);
+        })
+        .catch(function(err) {
+            // Something went wrong.
+            console.log(err);
+        });
+
+    // Web socket
+    upstox.connectSocket()
+        .then(function(){
+            upstox.on(&quot;orderUpdate&quot;, function(message) {
+                console.log(&quot;orderUpdate&quot;, message);
             });
+            upstox.on(&quot;positionUpdate&quot;, function(message) {
+                //message for position conversion
+                console.log(&quot;positionUpdate&quot;, message);
+            });
+            upstox.on(&quot;tradeUpdate&quot;, function(message) {
+                //message for trade updates
+                console.log(&quot;tradeUpdate&quot;, message);
+            });
+            upstox.on(&quot;liveFeed&quot;, function(message) {
+                //message for live feed
+                console.log(&quot;liveFeed&quot;, message);
+            });
+            // upstox.on(&quot;disconnected&quot;, function(message) {
+            //     //listener after socket connection is disconnected
+            //     console.log(&quot;disconnected&quot;, message);
+            // });
+            upstox.on(&quot;error&quot;, function(error) {
+                //error listener
+                console.log(&quot;error&quot;, message);
+            });
+        }).catch(function(error) {
+        console.log( &quot;******** &quot; , error);
+    });
 }</code></pre></div>
         
     
@@ -412,7 +458,7 @@ var up = new Upstox(&quot;your_apikey&quot;);</pre>
 		<ul class="dummy">
 			<li>
 				<a href="src_UpstoxAPI.js.html">src/UpstoxAPI.js</a>,
-				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-107">line 107</a>
+				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-153">line 153</a>
 			</li>
 		</ul>
 	</dd>
@@ -540,7 +586,7 @@ var up = new Upstox(&quot;your_apikey&quot;);</pre>
 		<ul class="dummy">
 			<li>
 				<a href="src_UpstoxAPI.js.html">src/UpstoxAPI.js</a>,
-				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-119">line 119</a>
+				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-166">line 166</a>
 			</li>
 		</ul>
 	</dd>
@@ -800,7 +846,7 @@ var up = new Upstox(&quot;your_apikey&quot;);</pre>
 		<ul class="dummy">
 			<li>
 				<a href="src_UpstoxAPI.js.html">src/UpstoxAPI.js</a>,
-				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-133">line 133</a>
+				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-180">line 180</a>
 			</li>
 		</ul>
 	</dd>
@@ -899,7 +945,7 @@ var up = new Upstox(&quot;your_apikey&quot;);</pre>
 		<ul class="dummy">
 			<li>
 				<a href="src_UpstoxAPI.js.html">src/UpstoxAPI.js</a>,
-				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-167">line 167</a>
+				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-214">line 214</a>
 			</li>
 		</ul>
 	</dd>
@@ -949,27 +995,37 @@ var up = new Upstox(&quot;your_apikey&quot;);</pre>
         <h5>Example</h5>
         
     <pre class="sunlight-highlight-javascript">{
-    &quot;code&quot;: 200,
-    &quot;status&quot;: &quot;OK&quot;,
-    &quot;timestamp&quot;: &quot;2017-03-07T12:39:00+05:30&quot;,
-    &quot;message&quot;: &quot;success&quot;,
-    &quot;data&quot;:{
-        &quot;apiKey&quot;: &quot;1203&quot;,
-        &quot;name&quot;: &quot;xyz&quot;,
-        &quot;account_type&quot;: &quot;--&quot;,
-        &quot;pan&quot;: &quot;ABCDERYTUIU&quot;,
-        &quot;email&quot;: &quot;xyz@gmail.com&quot;,
-        &quot;phone&quot;: &quot;&quot;,
-        &quot;nse_pcode&quot;: &quot;&quot;,
-        &quot;bse_pcode&quot;: &quot;&quot;,
-        &quot;bse_custodian_code&quot;: &quot;&quot;,
-        &quot;dp_account_number&quot;: &quot;--&quot;,
-        &quot;dob&quot;: &quot;14/10/2001&quot;,
-        &quot;is_active&quot;: true,
-        &quot;exchanges_enabled&quot;:[&quot;BSE_EQ&quot;, &quot;NSE_EQ&quot;, &quot;NSE_FO&quot;, &quot;NCD_FO&quot;, &quot;BCD_FO&quot;],
-        &quot;products_enabled&quot;:[&quot;OCO&quot;, &quot;D&quot;, &quot;CO&quot;, &quot;I&quot;]
-    }
- }</pre>
+  &quot;code&quot;: 200,
+  &quot;status&quot;: &quot;OK&quot;,
+  &quot;timestamp&quot;: &quot;2017-05-16T11:00:04+05:30&quot;,
+  &quot;message&quot;: &quot;success&quot;,
+  &quot;data&quot;: {
+    &quot;client_id&quot;: &quot;990099&quot;,
+    &quot;name&quot;: &quot;Upstox API&quot;,
+    &quot;account_type&quot;: &quot;--&quot;,
+    &quot;pan&quot;: &quot;ABCDE1234F&quot;,
+    &quot;email&quot;: &quot;support@upstox.com&quot;,
+    &quot;phone&quot;: &quot;02261309999&quot;,
+    &quot;dob&quot;: &quot;01/01/2012&quot;,
+    &quot;is_active&quot;: true,
+    &quot;exchanges_enabled&quot;: [
+      &quot;BSE_EQ&quot;,
+      &quot;NSE_EQ&quot;,
+      &quot;NSE_FO&quot;,
+      &quot;MCX_FO&quot;,
+      &quot;NCD_FO&quot;,
+      &quot;BCD_FO&quot;
+    ],
+    &quot;products_enabled&quot;: [
+      &quot;OCO&quot;,
+      &quot;D&quot;,
+      &quot;CO&quot;,
+      &quot;I&quot;
+    ],
+    &quot;bank_name&quot;: &quot;State Bank of india&quot;,
+    &quot;bank_account&quot;: &quot;123456789&quot;,
+  }
+}</pre>
 
 
     
@@ -1034,7 +1090,7 @@ var up = new Upstox(&quot;your_apikey&quot;);</pre>
 		<ul class="dummy">
 			<li>
 				<a href="src_UpstoxAPI.js.html">src/UpstoxAPI.js</a>,
-				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-205">line 205</a>
+				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-262">line 262</a>
 			</li>
 		</ul>
 	</dd>
@@ -1084,12 +1140,33 @@ var up = new Upstox(&quot;your_apikey&quot;);</pre>
         <h5>Example</h5>
         
     <pre class="sunlight-highlight-javascript">{
-    &quot;code&quot;: 200,
-    &quot;status&quot;: &quot;OK&quot;,
-    &quot;timestamp&quot;: &quot;2017-03-07T15:47:22+05:30&quot;,
-    &quot;message&quot;: &quot;get_holdings&quot;,
-    &quot;data&quot;:[]
-    }</pre>
+      &quot;code&quot;: 200,
+      &quot;status&quot;: &quot;OK&quot;,
+      &quot;timestamp&quot;: &quot;2017-05-17T10:37:58+05:30&quot;,
+      &quot;message&quot;: &quot;success&quot;,
+      &quot;data&quot;: [
+        {
+          &quot;instrument&quot;: [
+            {
+              &quot;exchange&quot;: &quot;NSE_EQ&quot;,
+              &quot;symbol&quot;: &quot;DAAWAT&quot;,
+              &quot;token&quot;: 13816
+            },
+            {
+              &quot;exchange&quot;: &quot;BSE_EQ&quot;,
+              &quot;symbol&quot;: &quot;DAAWAT&quot;,
+              &quot;token&quot;: 532783
+            }
+          ],
+          &quot;product&quot;: &quot;D&quot;,
+          &quot;collateral_type&quot;: &quot;WC&quot;,
+          &quot;cnc_used_quantity&quot;: 0,
+          &quot;quantity&quot;: 1,
+          &quot;collateral_qty&quot;: 0,
+          &quot;haircut&quot;: 25
+        }
+      ]
+   }</pre>
 
 
     
@@ -1254,7 +1331,7 @@ var up = new Upstox(&quot;your_apikey&quot;);</pre>
 		<ul class="dummy">
 			<li>
 				<a href="src_UpstoxAPI.js.html">src/UpstoxAPI.js</a>,
-				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-227">line 227</a>
+				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-305">line 305</a>
 			</li>
 		</ul>
 	</dd>
@@ -1304,15 +1381,35 @@ var up = new Upstox(&quot;your_apikey&quot;);</pre>
         <h5>Example</h5>
         
     <pre class="sunlight-highlight-javascript">{
-    &quot;code&quot;: 200,
-    &quot;status&quot;: &quot;OK&quot;,
-    &quot;timestamp&quot;: &quot;2017-03-07T15:43:40+05:30&quot;,
-    &quot;message&quot;: &quot;success&quot;,
-    &quot;data&quot;:{
-        &quot;equity&quot;:{&quot;used_margin&quot;: 149.62875, &quot;unrealized_mtm&quot;: 0, &quot;realized_mtm&quot;: 0, &quot;payin_amount&quot;: 878000, &quot;span_margin&quot;: 0,…},
-        &quot;commodity&quot;:{&quot;used_margin&quot;: 0, &quot;unrealized_mtm&quot;: 0, &quot;realized_mtm&quot;: 0, &quot;payin_amount&quot;: 10000, &quot;span_margin&quot;: 0,…}
-    }
-}</pre>
+      &quot;code&quot;: 200,
+      &quot;status&quot;: &quot;OK&quot;,
+      &quot;timestamp&quot;: &quot;2017-05-17T11:00:04+05:30&quot;,
+      &quot;message&quot;: &quot;success&quot;,
+      &quot;data&quot;: {
+        &quot;equity&quot;: {
+          &quot;used_margin&quot;: 0,
+          &quot;unrealized_mtm&quot;: 0,
+          &quot;realized_mtm&quot;: 0,
+          &quot;payin_amount&quot;: 0,
+          &quot;span_margin&quot;: 0,
+          &quot;adhoc_margin&quot;: 12000,
+          &quot;notional_cash&quot;: 0,
+          &quot;available_margin&quot;: 10717.11,
+          &quot;exposure_margin&quot;: 0
+        },
+        &quot;commodity&quot;: {
+          &quot;used_margin&quot;: 0,
+          &quot;unrealized_mtm&quot;: 0,
+          &quot;realized_mtm&quot;: 0,
+          &quot;payin_amount&quot;: 0,
+          &quot;span_margin&quot;: 0,
+          &quot;adhoc_margin&quot;: 0,
+          &quot;notional_cash&quot;: 0,
+          &quot;available_margin&quot;: 520.45,
+          &quot;exposure_margin&quot;: 0
+        }
+      }
+  }</pre>
 
 
     
@@ -1377,7 +1474,7 @@ var up = new Upstox(&quot;your_apikey&quot;);</pre>
 		<ul class="dummy">
 			<li>
 				<a href="src_UpstoxAPI.js.html">src/UpstoxAPI.js</a>,
-				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-254">line 254</a>
+				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-352">line 352</a>
 			</li>
 		</ul>
 	</dd>
@@ -1427,26 +1524,33 @@ var up = new Upstox(&quot;your_apikey&quot;);</pre>
         <h5>Example</h5>
         
     <pre class="sunlight-highlight-javascript">{
-      &quot;code&quot;: 200,
-      &quot;status&quot;: &quot;OK&quot;,
-      &quot;timestamp&quot;: &quot;2017-03-07T15:39:07+05:30&quot;,
-      &quot;message&quot;: &quot;get_positions&quot;,
-      &quot;data&quot;: [
-        {
-          &quot;exchange&quot;: &quot;NSE_EQ&quot;,
-          &quot;token&quot;: &quot;2885&quot;,
-          &quot;product&quot;: &quot;I&quot;,
-          &quot;fill_buy_amount&quot;: &quot;1015.00&quot;,
-          &quot;fill_sell_amount&quot;: &quot;0&quot;,
-          &quot;fill_buy_cf_amount&quot;: &quot;0&quot;,
-          &quot;fill_sell_cf_amount&quot;: &quot;0&quot;,
-          &quot;fill_buy_cf_qty&quot;: 0,
-          &quot;fill_sell_quantity&quot;: 0,
-          &quot;fill_buy_quantity&quot;: 1,
-          &quot;fill_sell_cf_qty&quot;: 0
-        }
-      ]
-    }</pre>
+  &quot;code&quot;: 200,
+  &quot;status&quot;: &quot;OK&quot;,
+  &quot;timestamp&quot;: &quot;2017-05-15T14:40:04+05:30&quot;,
+  &quot;message&quot;: &quot;success&quot;,
+  &quot;data&quot;: [
+    {
+      &quot;exchange&quot;: &quot;NSE_EQ&quot;,
+      &quot;product&quot;: &quot;I&quot;,
+      &quot;symbol&quot;: &quot;RELIANCE&quot;,
+      &quot;token&quot;: 2885,
+      &quot;buy_amount&quot;: 1344.25,
+      &quot;sell_amount&quot;: 0,
+      &quot;buy_quantity&quot;: 1,
+      &quot;sell_quantity&quot;: 0,
+      &quot;cf_buy_amount&quot;: 0,
+      &quot;cf_sell_amount&quot;: 0,
+      &quot;cf_buy_quantity&quot;: 0,
+      &quot;cf_sell_quantity&quot;: 0,
+      &quot;avg_buy_price&quot;: 1344.25,
+      &quot;avg_sell_price&quot;: 0.00,
+      &quot;net_quantity&quot;: 1,
+      &quot;close_price&quot;: 1350.45,
+      &quot;realized_profit&quot;: 0.00,
+      &quot;unrealized_profit&quot;: 3.09
+    }
+  ]
+ }</pre>
 
 
     
@@ -2021,7 +2125,7 @@ var up = new Upstox(&quot;your_apikey&quot;);</pre>
 		<ul class="dummy">
 			<li>
 				<a href="src_UpstoxAPI.js.html">src/UpstoxAPI.js</a>,
-				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-290">line 290</a>
+				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-395">line 395</a>
 			</li>
 		</ul>
 	</dd>
@@ -2071,28 +2175,28 @@ var up = new Upstox(&quot;your_apikey&quot;);</pre>
         <h5>Example</h5>
         
     <pre class="sunlight-highlight-javascript">{
-    &quot;code&quot;: 200,
-    &quot;status&quot;: &quot;OK&quot;,
-    &quot;timestamp&quot;: &quot;2017-03-07T15:49:27+05:30&quot;,
-    &quot;message&quot;: &quot;success&quot;,
-    &quot;data&quot;:{
+      &quot;code&quot;: 200,
+      &quot;status&quot;: &quot;OK&quot;,
+      &quot;timestamp&quot;: &quot;2017-05-17T11:01:45+05:30&quot;,
+      &quot;message&quot;: &quot;success&quot;,
+      &quot;data&quot;: {
         &quot;exchange&quot;: &quot;NSE_EQ&quot;,
         &quot;token&quot;: 2885,
         &quot;symbol&quot;: &quot;RELIANCE&quot;,
         &quot;product&quot;: &quot;I&quot;,
-        &quot;order_type&quot;: &quot;M&quot;,
+        &quot;order_type&quot;: &quot;L&quot;,
         &quot;duration&quot;: &quot;DAY&quot;,
-        &quot;price&quot;: 0,
+        &quot;price&quot;: 1200,
         &quot;trigger_price&quot;: 0,
         &quot;quantity&quot;: 1,
-        &quot;disclosed_quantity&quot;: 1,
+        &quot;disclosed_quantity&quot;: 0,
         &quot;transaction_type&quot;: &quot;B&quot;,
         &quot;average_price&quot;: 0,
         &quot;traded_quantity&quot;: 0,
         &quot;message&quot;: &quot;&quot;,
         &quot;exchange_order_id&quot;: &quot;&quot;,
         &quot;parent_order_id&quot;: &quot;NA&quot;,
-        &quot;order_id&quot;: &quot;170307000000021&quot;,
+        &quot;order_id&quot;: &quot;170517000028023&quot;,
         &quot;exchange_time&quot;: &quot;&quot;,
         &quot;time_in_micro&quot;: &quot;0&quot;,
         &quot;status&quot;: &quot;put order req received&quot;,
@@ -2102,10 +2206,10 @@ var up = new Upstox(&quot;your_apikey&quot;);</pre>
         &quot;total_traded_quantity&quot;: 0,
         &quot;traded_shares&quot;: 0,
         &quot;traded_price&quot;: 0,
-        &quot;stop_loss&quot;: 0,
-        &quot;square_off&quot;: 0,
+        &quot;stoploss&quot;: 0,
+        &quot;squareoff&quot;: 0,
         &quot;trailing_ticks&quot;: 0
-    }
+      }
  }</pre>
 
 
@@ -2171,7 +2275,7 @@ var up = new Upstox(&quot;your_apikey&quot;);</pre>
 		<ul class="dummy">
 			<li>
 				<a href="src_UpstoxAPI.js.html">src/UpstoxAPI.js</a>,
-				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-356">line 356</a>
+				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-461">line 461</a>
 			</li>
 		</ul>
 	</dd>
@@ -2221,44 +2325,42 @@ var up = new Upstox(&quot;your_apikey&quot;);</pre>
         <h5>Example</h5>
         
     <pre class="sunlight-highlight-javascript">{
-    &quot;code&quot;: 200,
-    &quot;status&quot;: &quot;OK&quot;,
-    &quot;timestamp&quot;: &quot;2017-03-28T17:01:02+05:30&quot;,
-    &quot;message&quot;: &quot;success&quot;,
-    &quot;data&quot;: [
-        {
-            &quot;exchange&quot;: &quot;NSE_EQ&quot;,
-            &quot;token&quot;: 2885,
-            &quot;symbol&quot;: &quot;RELIANCE&quot;,
-            &quot;product&quot;: &quot;I&quot;,
-            &quot;order_type&quot;: &quot;L&quot;,
-            &quot;duration&quot;: &quot;DAY&quot;,
-            &quot;price&quot;: 1080,
-            &quot;trigger_price&quot;: 0,
-            &quot;quantity&quot;: 1,
-            &quot;disclosed_quantity&quot;: 0,
-            &quot;transaction_type&quot;: &quot;B&quot;,
-            &quot;average_price&quot;: 1080,
-            &quot;traded_quantity&quot;: 1,
-            &quot;message&quot;: &quot;&quot;,
-            &quot;exchange_order_id&quot;: &quot;1100000000006972&quot;,
-            &quot;parent_order_id&quot;: &quot;NA&quot;,
-            &quot;order_id&quot;: &quot;170328000000030&quot;,
-            &quot;exchange_time&quot;: &quot;28-Mar-2017 12:42:42&quot;,
-            &quot;time_in_micro&quot;: &quot;1490697859120172&quot;,
-            &quot;status&quot;: &quot;complete&quot;,
-            &quot;is_amo&quot;: false,
-            &quot;valid_date&quot;: &quot;--&quot;,
-            &quot;order_request_id&quot;: &quot;1&quot;,
-            &quot;total_traded_quantity&quot;: 0,
-            &quot;traded_shares&quot;: 0,
-            &quot;traded_price&quot;: 0,
-            &quot;stop_loss&quot;: 0,
-            &quot;square_off&quot;: 0,
-            &quot;trailing_ticks&quot;: 0
-        }
-    ]
-}</pre>
+   &quot;code&quot;: 200,
+   &quot;status&quot;: &quot;OK&quot;,
+   &quot;timestamp&quot;: &quot;2017-05-17T11:02:39+05:30&quot;,
+   &quot;message&quot;: &quot;success&quot;,
+   &quot;data&quot;: [
+     {
+       &quot;exchange&quot;: &quot;NSE_EQ&quot;,
+       &quot;token&quot;: 2885,
+       &quot;symbol&quot;: &quot;RELIANCE&quot;,
+       &quot;product&quot;: &quot;I&quot;,
+       &quot;order_type&quot;: &quot;L&quot;,
+       &quot;duration&quot;: &quot;DAY&quot;,
+       &quot;price&quot;: 1250,
+       &quot;trigger_price&quot;: 0,
+       &quot;quantity&quot;: 1,
+       &quot;disclosed_quantity&quot;: 0,
+       &quot;transaction_type&quot;: &quot;B&quot;,
+       &quot;average_price&quot;: 0,
+       &quot;traded_quantity&quot;: 0,
+       &quot;message&quot;: &quot;&quot;,
+       &quot;exchange_order_id&quot;: &quot;1200000000219469&quot;,
+       &quot;parent_order_id&quot;: &quot;NA&quot;,
+       &quot;order_id&quot;: &quot;170517000003728&quot;,
+       &quot;exchange_time&quot;: &quot;17-May-2017 09:17:43&quot;,
+       &quot;time_in_micro&quot;: &quot;1494992898053855&quot;,
+       &quot;status&quot;: &quot;cancelled&quot;,
+       &quot;is_amo&quot;: false,
+       &quot;valid_date&quot;: &quot;--&quot;,
+       &quot;order_request_id&quot;: &quot;1&quot;,
+       &quot;total_traded_quantity&quot;: 0,
+       &quot;stoploss&quot;: 0,
+       &quot;squareoff&quot;: 0,
+       &quot;trailing_ticks&quot;: 0
+     }
+   ]
+ }</pre>
 
 
     
@@ -2423,7 +2525,7 @@ var up = new Upstox(&quot;your_apikey&quot;);</pre>
 		<ul class="dummy">
 			<li>
 				<a href="src_UpstoxAPI.js.html">src/UpstoxAPI.js</a>,
-				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-410">line 410</a>
+				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-513">line 513</a>
 			</li>
 		</ul>
 	</dd>
@@ -2473,273 +2575,30 @@ var up = new Upstox(&quot;your_apikey&quot;);</pre>
         <h5>Example</h5>
         
     <pre class="sunlight-highlight-javascript">{
-    &quot;code&quot;: 200,
-    &quot;status&quot;: &quot;OK&quot;,
-    &quot;timestamp&quot;: &quot;2017-03-28T18:19:24+05:30&quot;,
-    &quot;message&quot;: &quot;success&quot;,
-    &quot;data&quot;: [
-        {
-            &quot;exchange&quot;: &quot;NSE_EQ&quot;,
-            &quot;token&quot;: 2885,
-            &quot;symbol&quot;: &quot;RELIANCE&quot;,
-            &quot;product&quot;: &quot;I&quot;,
-            &quot;order_type&quot;: &quot;M&quot;,
-            &quot;price&quot;: null,
-            &quot;trigger_price&quot;: null,
-            &quot;quantity&quot;: null,
-            &quot;disclosed_quantity&quot;: null,
-            &quot;transaction_type&quot;: &quot;B&quot;,
-            &quot;average_price&quot;: null,
-            &quot;traded_quantity&quot;: 1,
-            &quot;exchange_order_id&quot;: &quot;1100000000020501&quot;,
-            &quot;order_id&quot;: &quot;170328000000054&quot;,
-            &quot;exchange_time&quot;: &quot;28-Mar-2017 18:04:22&quot;,
-            &quot;time_in_micro&quot;: &quot;1490704218023191&quot;,
-            &quot;status&quot;: &quot;complete&quot;,
-            &quot;total_traded_quantity&quot;: 0,
-            &quot;traded_shares&quot;: 0,
-            &quot;traded_price&quot;: 0,
-            &quot;trade_id&quot;: &quot;50031226&quot;,
-            &quot;stop_loss&quot;: 0,
-            &quot;square_off&quot;: 0,
-            &quot;trailing_ticks&quot;: 0
-        },
-        {
-            &quot;exchange&quot;: &quot;NSE_EQ&quot;,
-            &quot;token&quot;: 2885,
-            &quot;symbol&quot;: &quot;RELIANCE&quot;,
-            &quot;product&quot;: &quot;I&quot;,
-            &quot;order_type&quot;: &quot;M&quot;,
-            &quot;price&quot;: null,
-            &quot;trigger_price&quot;: null,
-            &quot;quantity&quot;: null,
-            &quot;disclosed_quantity&quot;: null,
-            &quot;transaction_type&quot;: &quot;B&quot;,
-            &quot;average_price&quot;: null,
-            &quot;traded_quantity&quot;: 1,
-            &quot;exchange_order_id&quot;: &quot;1100000000020532&quot;,
-            &quot;order_id&quot;: &quot;170328000000055&quot;,
-            &quot;exchange_time&quot;: &quot;28-Mar-2017 18:04:40&quot;,
-            &quot;time_in_micro&quot;: &quot;1490704235700345&quot;,
-            &quot;status&quot;: &quot;complete&quot;,
-            &quot;total_traded_quantity&quot;: 0,
-            &quot;traded_shares&quot;: 0,
-            &quot;traded_price&quot;: 0,
-            &quot;trade_id&quot;: &quot;50031308&quot;,
-            &quot;stop_loss&quot;: 0,
-            &quot;square_off&quot;: 0,
-            &quot;trailing_ticks&quot;: 0
-        },
-        {
-            &quot;exchange&quot;: &quot;NSE_EQ&quot;,
-            &quot;token&quot;: 2885,
-            &quot;symbol&quot;: &quot;RELIANCE&quot;,
-            &quot;product&quot;: &quot;I&quot;,
-            &quot;order_type&quot;: &quot;M&quot;,
-            &quot;price&quot;: null,
-            &quot;trigger_price&quot;: null,
-            &quot;quantity&quot;: null,
-            &quot;disclosed_quantity&quot;: null,
-            &quot;transaction_type&quot;: &quot;B&quot;,
-            &quot;average_price&quot;: null,
-            &quot;traded_quantity&quot;: 1,
-            &quot;exchange_order_id&quot;: &quot;1100000000019491&quot;,
-            &quot;order_id&quot;: &quot;170328000000049&quot;,
-            &quot;exchange_time&quot;: &quot;28-Mar-2017 17:58:14&quot;,
-            &quot;time_in_micro&quot;: &quot;1490703850303152&quot;,
-            &quot;status&quot;: &quot;complete&quot;,
-            &quot;total_traded_quantity&quot;: 0,
-            &quot;traded_shares&quot;: 0,
-            &quot;traded_price&quot;: 0,
-            &quot;trade_id&quot;: &quot;50028841&quot;,
-            &quot;stop_loss&quot;: 0,
-            &quot;square_off&quot;: 0,
-            &quot;trailing_ticks&quot;: 0
-        },
-        {
-            &quot;exchange&quot;: &quot;NSE_EQ&quot;,
-            &quot;token&quot;: 2885,
-            &quot;symbol&quot;: &quot;RELIANCE&quot;,
-            &quot;product&quot;: &quot;I&quot;,
-            &quot;order_type&quot;: &quot;M&quot;,
-            &quot;price&quot;: null,
-            &quot;trigger_price&quot;: null,
-            &quot;quantity&quot;: null,
-            &quot;disclosed_quantity&quot;: null,
-            &quot;transaction_type&quot;: &quot;B&quot;,
-            &quot;average_price&quot;: null,
-            &quot;traded_quantity&quot;: 1,
-            &quot;exchange_order_id&quot;: &quot;1100000000019490&quot;,
-            &quot;order_id&quot;: &quot;170328000000048&quot;,
-            &quot;exchange_time&quot;: &quot;28-Mar-2017 17:58:12&quot;,
-            &quot;time_in_micro&quot;: &quot;1490703847853846&quot;,
-            &quot;status&quot;: &quot;complete&quot;,
-            &quot;total_traded_quantity&quot;: 0,
-            &quot;traded_shares&quot;: 0,
-            &quot;traded_price&quot;: 0,
-            &quot;trade_id&quot;: &quot;50028824&quot;,
-            &quot;stop_loss&quot;: 0,
-            &quot;square_off&quot;: 0,
-            &quot;trailing_ticks&quot;: 0
-        },
-        {
-            &quot;exchange&quot;: &quot;NSE_EQ&quot;,
-            &quot;token&quot;: 2885,
-            &quot;symbol&quot;: &quot;RELIANCE&quot;,
-            &quot;product&quot;: &quot;I&quot;,
-            &quot;order_type&quot;: &quot;M&quot;,
-            &quot;price&quot;: null,
-            &quot;trigger_price&quot;: null,
-            &quot;quantity&quot;: null,
-            &quot;disclosed_quantity&quot;: null,
-            &quot;transaction_type&quot;: &quot;B&quot;,
-            &quot;average_price&quot;: null,
-            &quot;traded_quantity&quot;: 1,
-            &quot;exchange_order_id&quot;: &quot;1100000000020350&quot;,
-            &quot;order_id&quot;: &quot;170328000000052&quot;,
-            &quot;exchange_time&quot;: &quot;28-Mar-2017 18:03:20&quot;,
-            &quot;time_in_micro&quot;: &quot;1490704156310111&quot;,
-            &quot;status&quot;: &quot;complete&quot;,
-            &quot;total_traded_quantity&quot;: 0,
-            &quot;traded_shares&quot;: 0,
-            &quot;traded_price&quot;: 0,
-            &quot;trade_id&quot;: &quot;50030874&quot;,
-            &quot;stop_loss&quot;: 0,
-            &quot;square_off&quot;: 0,
-            &quot;trailing_ticks&quot;: 0
-        },
-        {
-            &quot;exchange&quot;: &quot;NSE_EQ&quot;,
-            &quot;token&quot;: 2885,
-            &quot;symbol&quot;: &quot;RELIANCE&quot;,
-            &quot;product&quot;: &quot;I&quot;,
-            &quot;order_type&quot;: &quot;L&quot;,
-            &quot;price&quot;: null,
-            &quot;trigger_price&quot;: null,
-            &quot;quantity&quot;: null,
-            &quot;disclosed_quantity&quot;: null,
-            &quot;transaction_type&quot;: &quot;B&quot;,
-            &quot;average_price&quot;: null,
-            &quot;traded_quantity&quot;: 1,
-            &quot;exchange_order_id&quot;: &quot;1100000000006972&quot;,
-            &quot;order_id&quot;: &quot;170328000000030&quot;,
-            &quot;exchange_time&quot;: &quot;28-Mar-2017 12:42:42&quot;,
-            &quot;time_in_micro&quot;: &quot;1490697859120172&quot;,
-            &quot;status&quot;: &quot;complete&quot;,
-            &quot;total_traded_quantity&quot;: 0,
-            &quot;traded_shares&quot;: 0,
-            &quot;traded_price&quot;: 0,
-            &quot;trade_id&quot;: &quot;50027602&quot;,
-            &quot;stop_loss&quot;: 0,
-            &quot;square_off&quot;: 0,
-            &quot;trailing_ticks&quot;: 0
-        },
-        {
-            &quot;exchange&quot;: &quot;NSE_EQ&quot;,
-            &quot;token&quot;: 2885,
-            &quot;symbol&quot;: &quot;RELIANCE&quot;,
-            &quot;product&quot;: &quot;I&quot;,
-            &quot;order_type&quot;: &quot;M&quot;,
-            &quot;price&quot;: null,
-            &quot;trigger_price&quot;: null,
-            &quot;quantity&quot;: null,
-            &quot;disclosed_quantity&quot;: null,
-            &quot;transaction_type&quot;: &quot;B&quot;,
-            &quot;average_price&quot;: null,
-            &quot;traded_quantity&quot;: 1,
-            &quot;exchange_order_id&quot;: &quot;1100000000020474&quot;,
-            &quot;order_id&quot;: &quot;170328000000053&quot;,
-            &quot;exchange_time&quot;: &quot;28-Mar-2017 18:04:20&quot;,
-            &quot;time_in_micro&quot;: &quot;1490704215355625&quot;,
-            &quot;status&quot;: &quot;complete&quot;,
-            &quot;total_traded_quantity&quot;: 0,
-            &quot;traded_shares&quot;: 0,
-            &quot;traded_price&quot;: 0,
-            &quot;trade_id&quot;: &quot;50031207&quot;,
-            &quot;stop_loss&quot;: 0,
-            &quot;square_off&quot;: 0,
-            &quot;trailing_ticks&quot;: 0
-        },
-        {
-            &quot;exchange&quot;: &quot;NSE_FO&quot;,
-            &quot;token&quot;: 44866,
-            &quot;symbol&quot;: &quot;NIFTY17MARFUT&quot;,
-            &quot;product&quot;: &quot;I&quot;,
-            &quot;order_type&quot;: &quot;L&quot;,
-            &quot;price&quot;: null,
-            &quot;trigger_price&quot;: null,
-            &quot;quantity&quot;: null,
-            &quot;disclosed_quantity&quot;: null,
-            &quot;transaction_type&quot;: &quot;B&quot;,
-            &quot;average_price&quot;: null,
-            &quot;traded_quantity&quot;: 75,
-            &quot;exchange_order_id&quot;: &quot;1100000000004623&quot;,
-            &quot;order_id&quot;: &quot;170328000000031&quot;,
-            &quot;exchange_time&quot;: &quot;28-Mar-2017 12:43:00&quot;,
-            &quot;time_in_micro&quot;: &quot;1490684935796062&quot;,
-            &quot;status&quot;: &quot;complete&quot;,
-            &quot;total_traded_quantity&quot;: 0,
-            &quot;traded_shares&quot;: 0,
-            &quot;traded_price&quot;: 0,
-            &quot;trade_id&quot;: &quot;50000457&quot;,
-            &quot;stop_loss&quot;: 0,
-            &quot;square_off&quot;: 0,
-            &quot;trailing_ticks&quot;: 0
-        },
-        {
-            &quot;exchange&quot;: &quot;NSE_EQ&quot;,
-            &quot;token&quot;: 2885,
-            &quot;symbol&quot;: &quot;RELIANCE&quot;,
-            &quot;product&quot;: &quot;I&quot;,
-            &quot;order_type&quot;: &quot;M&quot;,
-            &quot;price&quot;: null,
-            &quot;trigger_price&quot;: null,
-            &quot;quantity&quot;: null,
-            &quot;disclosed_quantity&quot;: null,
-            &quot;transaction_type&quot;: &quot;B&quot;,
-            &quot;average_price&quot;: null,
-            &quot;traded_quantity&quot;: 1,
-            &quot;exchange_order_id&quot;: &quot;1100000000019840&quot;,
-            &quot;order_id&quot;: &quot;170328000000050&quot;,
-            &quot;exchange_time&quot;: &quot;28-Mar-2017 17:59:33&quot;,
-            &quot;time_in_micro&quot;: &quot;1490703928614186&quot;,
-            &quot;status&quot;: &quot;complete&quot;,
-            &quot;total_traded_quantity&quot;: 0,
-            &quot;traded_shares&quot;: 0,
-            &quot;traded_price&quot;: 0,
-            &quot;trade_id&quot;: &quot;50029505&quot;,
-            &quot;stop_loss&quot;: 0,
-            &quot;square_off&quot;: 0,
-            &quot;trailing_ticks&quot;: 0
-        },
-        {
-            &quot;exchange&quot;: &quot;NSE_EQ&quot;,
-            &quot;token&quot;: 2885,
-            &quot;symbol&quot;: &quot;RELIANCE&quot;,
-            &quot;product&quot;: &quot;I&quot;,
-            &quot;order_type&quot;: &quot;M&quot;,
-            &quot;price&quot;: null,
-            &quot;trigger_price&quot;: null,
-            &quot;quantity&quot;: null,
-            &quot;disclosed_quantity&quot;: null,
-            &quot;transaction_type&quot;: &quot;B&quot;,
-            &quot;average_price&quot;: null,
-            &quot;traded_quantity&quot;: 1,
-            &quot;exchange_order_id&quot;: &quot;1100000000020149&quot;,
-            &quot;order_id&quot;: &quot;170328000000051&quot;,
-            &quot;exchange_time&quot;: &quot;28-Mar-2017 18:01:49&quot;,
-            &quot;time_in_micro&quot;: &quot;1490704064457870&quot;,
-            &quot;status&quot;: &quot;complete&quot;,
-            &quot;total_traded_quantity&quot;: 0,
-            &quot;traded_shares&quot;: 0,
-            &quot;traded_price&quot;: 0,
-            &quot;trade_id&quot;: &quot;50030314&quot;,
-            &quot;stop_loss&quot;: 0,
-            &quot;square_off&quot;: 0,
-            &quot;trailing_ticks&quot;: 0
-        }
-    ]
-}</pre>
+   &quot;code&quot;: 200,
+   &quot;status&quot;: &quot;OK&quot;,
+   &quot;timestamp&quot;: &quot;2017-05-15T14:48:52+05:30&quot;,
+   &quot;message&quot;: &quot;success&quot;,
+   &quot;data&quot;: [
+     {
+       &quot;exchange&quot;: &quot;NSE_EQ&quot;,
+       &quot;token&quot;: 2885,
+       &quot;symbol&quot;: &quot;RELIANCE&quot;,
+       &quot;product&quot;: &quot;I&quot;,
+       &quot;order_type&quot;: &quot;M&quot;,
+       &quot;transaction_type&quot;: &quot;B&quot;,
+       &quot;traded_quantity&quot;: 1,
+       &quot;exchange_order_id&quot;: &quot;1200000003336976&quot;,
+       &quot;order_id&quot;: &quot;170515000047270&quot;,
+       &quot;exchange_time&quot;: &quot;15-May-2017 13:56:31&quot;,
+       &quot;time_in_micro&quot;: &quot;1494836825761723&quot;,
+       &quot;total_traded_quantity&quot;: 0,
+       &quot;traded_shares&quot;: 0,
+       &quot;traded_price&quot;: 0,
+       &quot;trade_id&quot;: &quot;51345784&quot;,
+     }
+   ]
+ }</pre>
 
 
     
@@ -3118,7 +2977,7 @@ var up = new Upstox(&quot;your_apikey&quot;);</pre>
 		<ul class="dummy">
 			<li>
 				<a href="src_UpstoxAPI.js.html">src/UpstoxAPI.js</a>,
-				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-696">line 696</a>
+				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-555">line 555</a>
 			</li>
 		</ul>
 	</dd>
@@ -3368,7 +3227,7 @@ var up = new Upstox(&quot;your_apikey&quot;);</pre>
 		<ul class="dummy">
 			<li>
 				<a href="src_UpstoxAPI.js.html">src/UpstoxAPI.js</a>,
-				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-760">line 760</a>
+				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-619">line 619</a>
 			</li>
 		</ul>
 	</dd>
@@ -3639,7 +3498,7 @@ Gets all contracts or filter contracts by exchange segment.</p>
 		<ul class="dummy">
 			<li>
 				<a href="src_UpstoxAPI.js.html">src/UpstoxAPI.js</a>,
-				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-819">line 819</a>
+				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-678">line 678</a>
 			</li>
 		</ul>
 	</dd>
@@ -3983,7 +3842,7 @@ Gets all contracts or filter contracts by exchange segment.</p>
 		<ul class="dummy">
 			<li>
 				<a href="src_UpstoxAPI.js.html">src/UpstoxAPI.js</a>,
-				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-865">line 865</a>
+				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-724">line 724</a>
 			</li>
 		</ul>
 	</dd>
@@ -4032,36 +3891,143 @@ Gets all contracts or filter contracts by exchange segment.</p>
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">{
-    &quot;code&quot;: 200,
-    &quot;status&quot;: &quot;OK&quot;,
-    &quot;timestamp&quot;: &quot;2017-03-07T15:50:40+05:30&quot;,
-    &quot;message&quot;: &quot;feed&quot;,
-    &quot;data&quot;:{
-        &quot;timestamp&quot;: 1488882035000,
-        &quot;ltp&quot;: 1304.95,
-        &quot;open&quot;: 1318.85,
-        &quot;high&quot;: 1327,
-        &quot;low&quot;: 1296.15,
-        &quot;close&quot;: 1304.95,
-        &quot;vtt&quot;: 9616358,
-        &quot;atp&quot;: 1309.21,
-        &quot;oi&quot;: null,
-        &quot;spot_price&quot;: 0,
-        &quot;total_buy_qty&quot;: 7454,
-        &quot;total_sell_qty&quot;: 0,
-        &quot;bids&quot;:[{
-        &quot;quantity&quot;: 7454,
-        &quot;price&quot;: 1304.95,
-        &quot;orders&quot;: 36
-        }],
-        &quot;asks&quot;:[{
-        &quot;quantity&quot;: 0,
-        &quot;price&quot;: 0,
-        &quot;orders&quot;: 0
-        }]
-    }
- }</pre>
+    <pre class="sunlight-highlight-javascript">~~~
+ If you request for LTP, following will be the response
+
+ {
+   &quot;code&quot;: 200,
+   &quot;status&quot;: &quot;OK&quot;,
+   &quot;timestamp&quot;: &quot;2017-05-15T16:45:12+05:30&quot;,
+   &quot;message&quot;: &quot;feed&quot;,
+   &quot;data&quot;: {
+     &quot;timestamp&quot;: 1494843956000,
+     &quot;exchange&quot;: &quot;NSE_EQ&quot;,
+     &quot;symbol&quot;: &quot;RELIANCE&quot;,
+     &quot;ltp&quot;: 1344.1,
+     &quot;close&quot;: 1350.45
+   }
+ }
+~~~
+ If you request for Mini, following will be the response
+
+ {
+   &quot;code&quot;: 200,
+   &quot;status&quot;: &quot;OK&quot;,
+   &quot;timestamp&quot;: &quot;2017-05-15T15:10:12+05:30&quot;,
+   &quot;message&quot;: &quot;feed&quot;,
+   &quot;data&quot;: {
+     &quot;timestamp&quot;: 1494837991000,
+     &quot;exchange&quot;: &quot;NSE_FO&quot;,
+     &quot;symbol&quot;: &quot;NIFTY17MAYFUT&quot;,
+     &quot;ltp&quot;: 9446.8,
+     &quot;open&quot;: 9448,
+     &quot;high&quot;: 9454.4,
+     &quot;low&quot;: 9437,
+     &quot;close&quot;: 9414.8,
+     &quot;vtt&quot;: 2802525,
+     &quot;atp&quot;: 9446.71,
+     &quot;oi&quot;: 21256725,
+     &quot;spot_price&quot;: 9442.5,
+     &quot;total_buy_qty&quot;: 831075,
+     &quot;total_sell_qty&quot;: 858375,
+     &quot;bids&quot;: [
+       {
+         &quot;quantity&quot;: 900,
+         &quot;price&quot;: 9446.7,
+         &quot;orders&quot;: 2
+       }
+     ],
+     &quot;asks&quot;: [
+       {
+         &quot;quantity&quot;: 450,
+         &quot;price&quot;: 9447,
+         &quot;orders&quot;: 1
+       }
+     ]
+   }
+ }
+ ~~~
+ If you request for Full, following will be the response
+
+ {
+   &quot;code&quot;: 200,
+   &quot;status&quot;: &quot;OK&quot;,
+   &quot;timestamp&quot;: &quot;2017-05-15T15:10:42+05:30&quot;,
+   &quot;message&quot;: &quot;feed&quot;,
+   &quot;data&quot;: {
+     &quot;timestamp&quot;: 1494837991000,
+     &quot;exchange&quot;: &quot;NSE_FO&quot;,
+     &quot;symbol&quot;: &quot;NIFTY17MAYFUT&quot;,
+     &quot;ltp&quot;: 9446.8,
+     &quot;open&quot;: 9448,
+     &quot;high&quot;: 9454.4,
+     &quot;low&quot;: 9437,
+     &quot;close&quot;: 9414.8,
+     &quot;vtt&quot;: 2802525,
+     &quot;atp&quot;: 9446.71,
+     &quot;oi&quot;: 21256725,
+     &quot;spot_price&quot;: 9442.15,
+     &quot;total_buy_qty&quot;: 830925,
+     &quot;total_sell_qty&quot;: 858375,
+     &quot;lower_circuit&quot;: 8473.35,
+     &quot;upper_circuit&quot;: 10356.3,
+     &quot;bids&quot;: [
+       {
+         &quot;quantity&quot;: 900,
+         &quot;price&quot;: 9446.7,
+         &quot;orders&quot;: 2
+       },
+       {
+         &quot;quantity&quot;: 75,
+         &quot;price&quot;: 9446.65,
+         &quot;orders&quot;: 1
+       },
+       {
+         &quot;quantity&quot;: 1050,
+         &quot;price&quot;: 9446.6,
+         &quot;orders&quot;: 4
+       },
+       {
+         &quot;quantity&quot;: 150,
+         &quot;price&quot;: 9446.55,
+         &quot;orders&quot;: 1
+       },
+       {
+         &quot;quantity&quot;: 75,
+         &quot;price&quot;: 9446.1,
+         &quot;orders&quot;: 1
+       }
+     ],
+     &quot;asks&quot;: [
+       {
+         &quot;quantity&quot;: 450,
+         &quot;price&quot;: 9447,
+         &quot;orders&quot;: 1
+       },
+       {
+         &quot;quantity&quot;: 450,
+         &quot;price&quot;: 9447.3,
+         &quot;orders&quot;: 1
+       },
+       {
+         &quot;quantity&quot;: 900,
+         &quot;price&quot;: 9447.4,
+         &quot;orders&quot;: 1
+       },
+       {
+         &quot;quantity&quot;: 75,
+         &quot;price&quot;: 9447.45,
+         &quot;orders&quot;: 1
+       },
+       {
+         &quot;quantity&quot;: 75,
+         &quot;price&quot;: 9447.55,
+         &quot;orders&quot;: 1
+       }
+     ]
+   }
+ }
+ ~~~</pre>
 
 
     
@@ -4418,7 +4384,7 @@ Gets all contracts or filter contracts by exchange segment.</p>
 		<ul class="dummy">
 			<li>
 				<a href="src_UpstoxAPI.js.html">src/UpstoxAPI.js</a>,
-				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-933">line 933</a>
+				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-899">line 899</a>
 			</li>
 		</ul>
 	</dd>
@@ -4468,21 +4434,21 @@ Gets all contracts or filter contracts by exchange segment.</p>
         <h5>Example</h5>
         
     <pre class="sunlight-highlight-javascript">{
-  &quot;code&quot;: 200,
-  &quot;status&quot;: &quot;OK&quot;,
-  &quot;timestamp&quot;: &quot;&quot;,
-  &quot;message&quot;: &quot;ohlc&quot;,
-  &quot;data&quot;: [
-    {
-      &quot;timestamp&quot;: 1485973800000,
-      &quot;open&quot;: 1050,
-      &quot;high&quot;: 1050.8,
-      &quot;low&quot;: 1038.25,
-      &quot;close&quot;: 1043.5,
-      &quot;volume&quot;: 2079908,
-      &quot;cp&quot;: 1045.55
-    }
-  ]
+ &quot;code&quot;: 200,
+ &quot;status&quot;: &quot;OK&quot;,
+ &quot;timestamp&quot;: &quot;&quot;,
+ &quot;message&quot;: &quot;ohlc&quot;,
+ &quot;data&quot;: [
+   {
+     &quot;timestamp&quot;: 1485973800000,
+     &quot;open&quot;: 1050,
+     &quot;high&quot;: 1050.8,
+     &quot;low&quot;: 1038.25,
+     &quot;close&quot;: 1043.5,
+     &quot;volume&quot;: 2079908,
+     &quot;cp&quot;: 1045.55
+   }
+ ]
 }</pre>
 
 
@@ -4698,7 +4664,7 @@ Gets all contracts or filter contracts by exchange segment.</p>
 		<ul class="dummy">
 			<li>
 				<a href="src_UpstoxAPI.js.html">src/UpstoxAPI.js</a>,
-				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-1003">line 1003</a>
+				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-970">line 970</a>
 			</li>
 		</ul>
 	</dd>
@@ -4956,7 +4922,7 @@ Gets all contracts or filter contracts by exchange segment.</p>
 		<ul class="dummy">
 			<li>
 				<a href="src_UpstoxAPI.js.html">src/UpstoxAPI.js</a>,
-				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-1033">line 1033</a>
+				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-1000">line 1000</a>
 			</li>
 		</ul>
 	</dd>
@@ -5064,7 +5030,7 @@ Gets all contracts or filter contracts by exchange segment.</p>
 		<ul class="dummy">
 			<li>
 				<a href="src_UpstoxAPI.js.html">src/UpstoxAPI.js</a>,
-				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-1063">line 1063</a>
+				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-1030">line 1030</a>
 			</li>
 		</ul>
 	</dd>
@@ -5232,7 +5198,7 @@ upstox.getSessionToken(login_credentials)
 		<ul class="dummy">
 			<li>
 				<a href="src_UpstoxAPI.js.html">src/UpstoxAPI.js</a>,
-				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-1156">line 1156</a>
+				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-1123">line 1123</a>
 			</li>
 		</ul>
 	</dd>
@@ -5401,7 +5367,7 @@ error</code></pre></td>
 		<ul class="dummy">
 			<li>
 				<a href="src_UpstoxAPI.js.html">src/UpstoxAPI.js</a>,
-				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-1168">line 1168</a>
+				 <a href="src_UpstoxAPI.js.html#sunlight-1-line-1135">line 1135</a>
 			</li>
 		</ul>
 	</dd>
@@ -5567,7 +5533,7 @@ upstox.getSessionToken(login_credentials)
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a>
 	
-		on Wed May 10th 2017
+		on Wed May 17th 2017
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

@@ -11,7 +11,7 @@ This module is installed via npm:
 	 npm install --save Upstox
 
 ## Documentation
-
+   [Upstox API documentation](https://upstox.com/developer/api/v1/docs/)
 
 Getting started with API
 ------------------------

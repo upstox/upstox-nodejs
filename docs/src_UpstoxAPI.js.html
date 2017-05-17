@@ -99,55 +99,101 @@ var constants = require("./constants.json");
  * Moreover we provide websocket connection APIS to get live updates from Upstox APIs.
  * ~~~~
  *
- * var Upstox = require("upstox");
- * var up = new Upstox("your_apikey", "your_apiSecretKey");
- * up.getSessionToken({
- *  "username": "your_clientId",
- *  "password": "password"
- * })
- * .then(function(response) {
- * 		start();
- * 	})
- *  .catch(function(err) {
- * 		logger.debug(err.response);
- * 	})
- *
- * start(){
- * 	   up.getProfile()
- * 	      .then(function(response){
- * 	           //get the result here
- *         })
- *         .catch(function(error){
- *             //catch the error here
- *          });
- *        up.connectSocket()
- *			.then(function(){
- *				// Socket Connection successfull
- *				// Now you can setup listeners
- *
- *				up.on("orderUpdate", function(message) {
- *					//message for order updates
- *				});
- *              up.on("positionUpdate", function(message) {
- *					//message for position conversion
- *				});
- *              up.on("tradeUpdate", function(message) {
- *					//message for trade updates
- *				});
- *              up.on("liveFeed", function(message) {
- *					//message for live feed
- *				});
- *				up.on("disconnected", function(message) {
- *					//listener after socket connection is disconnected
- *				});
- *				up.on("error", function(error) {
- *					//error listener
- *				});
- *				//You can call up.closeSocket() to disconnect
- *			}).catch(function(err){
- *				// Something went wrong.
- *			});
- * }
+ var Upstox = require("upstox");
+ var upstox = new Upstox("your_apikey");
+
+ var params = {
+    "apiSecret" : "your_apiSecret",
+    "code" : "your_code_generated_in login",
+    "grant_type" : "authorization_code",
+    "redirect_uri" : "your_redirect_uri"
+ };
+ upstox.getAccessToken(params)
+ .then(function(response) {
+        start();
+    })
+ .catch(function(err) {
+        console.log(err);
+    });
+
+ start();
+ function start() {
+    // Fetch holdings.
+    // You can have other api calls here.
+
+    var loginUrl = upstox.getLoginUri("your_redirect_uri");
+    console.log("**************** loginUri ***********" + loginUrl);
+
+    // Get Holdings
+    upstox.getHoldings()
+        .then(function(response) {
+            // You got user's holding details.
+            console.log(response);
+        }).catch(function(err) {
+        // Something went wrong.
+        console.log(err);
+    });
+
+    // GetProfile
+    upstox.getProfile()
+        .then(function (response) {
+            console.log(response);
+            //done();
+        })
+        .catch(function(error){
+            console.log("%%%%%%%%%%%%% ", error);
+            //done(error);
+        });
+
+    // PlaceOrder Note : default product = I i.e intra day order will be placed.
+    var orderObject = {
+        transaction_type:"b",
+        exchange:"NSE_EQ",
+        symbol: "RELIANCE",
+        quantity: 1,
+        order_type:"m"
+    };
+
+    upstox.placeOrder(orderObject)
+        .then(function(response) {
+            // Order details received
+            console.log(response);
+        })
+        .catch(function(err) {
+            // Something went wrong.
+            console.log(err);
+        });
+
+    // Web socket
+    upstox.connectSocket()
+        .then(function(){
+            upstox.on("orderUpdate", function(message) {
+                console.log("orderUpdate", message);
+            });
+            upstox.on("positionUpdate", function(message) {
+                //message for position conversion
+                console.log("positionUpdate", message);
+            });
+            upstox.on("tradeUpdate", function(message) {
+                //message for trade updates
+                console.log("tradeUpdate", message);
+            });
+            upstox.on("liveFeed", function(message) {
+                //message for live feed
+                console.log("liveFeed", message);
+            });
+            // upstox.on("disconnected", function(message) {
+            //     //listener after socket connection is disconnected
+            //     console.log("disconnected", message);
+            // });
+            upstox.on("error", function(error) {
+                //error listener
+                console.log("error", message);
+            });
+        }).catch(function(error) {
+        console.log( "******** " , error);
+    });
+}
  * ~~~~
  *
  * @constructor
@@ -193,6 +239,7 @@ function Upstox(apiKey) {
 Upstox.prototype.setToken = function(accessToken){
     var __this = this;
     __this.auth.accessToken = accessToken;
+    __this.isAuthenticated = true;
 };
 
 /**
@@ -251,27 +298,37 @@ Upstox.prototype.getAccessToken = function(params) {
  * @return {res}
  * @example
  * {
-    "code": 200,
-    "status": "OK",
-    "timestamp": "2017-03-07T12:39:00+05:30",
-    "message": "success",
-    "data":{
-        "apiKey": "1203",
-        "name": "xyz",
-        "account_type": "--",
-        "pan": "ABCDERYTUIU",
-        "email": "xyz@gmail.com",
-        "phone": "",
-        "nse_pcode": "",
-        "bse_pcode": "",
-        "bse_custodian_code": "",
-        "dp_account_number": "--",
-        "dob": "14/10/2001",
-        "is_active": true,
-        "exchanges_enabled":["BSE_EQ", "NSE_EQ", "NSE_FO", "NCD_FO", "BCD_FO"],
-        "products_enabled":["OCO", "D", "CO", "I"]
-    }
- }
+  "code": 200,
+  "status": "OK",
+  "timestamp": "2017-05-16T11:00:04+05:30",
+  "message": "success",
+  "data": {
+    "client_id": "990099",
+    "name": "Upstox API",
+    "account_type": "--",
+    "pan": "ABCDE1234F",
+    "email": "support@upstox.com",
+    "phone": "02261309999",
+    "dob": "01/01/2012",
+    "is_active": true,
+    "exchanges_enabled": [
+      "BSE_EQ",
+      "NSE_EQ",
+      "NSE_FO",
+      "MCX_FO",
+      "NCD_FO",
+      "BCD_FO"
+    ],
+    "products_enabled": [
+      "OCO",
+      "D",
+      "CO",
+      "I"
+    ],
+    "bank_name": "State Bank of india",
+    "bank_account": "123456789",
+  }
+}
  */
 Upstox.prototype.getProfile = function () {
 
@@ -288,13 +345,34 @@ Upstox.prototype.getProfile = function () {
  * @memberOf Upstox
  * @return {res}
  * @example
- * {
-    "code": 200,
-    "status": "OK",
-    "timestamp": "2017-03-07T15:47:22+05:30",
-    "message": "get_holdings",
-    "data":[]
-    }
+   {
+      "code": 200,
+      "status": "OK",
+      "timestamp": "2017-05-17T10:37:58+05:30",
+      "message": "success",
+      "data": [
+        {
+          "instrument": [
+            {
+              "exchange": "NSE_EQ",
+              "symbol": "DAAWAT",
+              "token": 13816
+            },
+            {
+              "exchange": "BSE_EQ",
+              "symbol": "DAAWAT",
+              "token": 532783
+            }
+          ],
+          "product": "D",
+          "collateral_type": "WC",
+          "cnc_used_quantity": 0,
+          "quantity": 1,
+          "collateral_qty": 0,
+          "haircut": 25
+        }
+      ]
+   }
  */
 Upstox.prototype.getHoldings = function () {
 
@@ -309,16 +387,36 @@ Upstox.prototype.getHoldings = function () {
  * @description Get the user's account balances for equity and commodity.
  * @memberOf Upstox
  * @example
- * {
-    "code": 200,
-    "status": "OK",
-    "timestamp": "2017-03-07T15:43:40+05:30",
-    "message": "success",
-    "data":{
-        "equity":{"used_margin": 149.62875, "unrealized_mtm": 0, "realized_mtm": 0, "payin_amount": 878000, "span_margin": 0,…},
-        "commodity":{"used_margin": 0, "unrealized_mtm": 0, "realized_mtm": 0, "payin_amount": 10000, "span_margin": 0,…}
-    }
-}
+  {
+      "code": 200,
+      "status": "OK",
+      "timestamp": "2017-05-17T11:00:04+05:30",
+      "message": "success",
+      "data": {
+        "equity": {
+          "used_margin": 0,
+          "unrealized_mtm": 0,
+          "realized_mtm": 0,
+          "payin_amount": 0,
+          "span_margin": 0,
+          "adhoc_margin": 12000,
+          "notional_cash": 0,
+          "available_margin": 10717.11,
+          "exposure_margin": 0
+        },
+        "commodity": {
+          "used_margin": 0,
+          "unrealized_mtm": 0,
+          "realized_mtm": 0,
+          "payin_amount": 0,
+          "span_margin": 0,
+          "adhoc_margin": 0,
+          "notional_cash": 0,
+          "available_margin": 520.45,
+          "exposure_margin": 0
+        }
+      }
+  }
  * @param {object} params
  * @param {string} params.type eq - Equity , com - Commodity
  * @return {res}
@@ -337,27 +435,34 @@ Upstox.prototype.getBalance = function () {
  * @memberOf Upstox
  * @return {res}
  * @example
- * {
-      "code": 200,
-      "status": "OK",
-      "timestamp": "2017-03-07T15:39:07+05:30",
-      "message": "get_positions",
-      "data": [
-        {
-          "exchange": "NSE_EQ",
-          "token": "2885",
-          "product": "I",
-          "fill_buy_amount": "1015.00",
-          "fill_sell_amount": "0",
-          "fill_buy_cf_amount": "0",
-          "fill_sell_cf_amount": "0",
-          "fill_buy_cf_qty": 0,
-          "fill_sell_quantity": 0,
-          "fill_buy_quantity": 1,
-          "fill_sell_cf_qty": 0
-        }
-      ]
+ {
+  "code": 200,
+  "status": "OK",
+  "timestamp": "2017-05-15T14:40:04+05:30",
+  "message": "success",
+  "data": [
+    {
+      "exchange": "NSE_EQ",
+      "product": "I",
+      "symbol": "RELIANCE",
+      "token": 2885,
+      "buy_amount": 1344.25,
+      "sell_amount": 0,
+      "buy_quantity": 1,
+      "sell_quantity": 0,
+      "cf_buy_amount": 0,
+      "cf_sell_amount": 0,
+      "cf_buy_quantity": 0,
+      "cf_sell_quantity": 0,
+      "avg_buy_price": 1344.25,
+      "avg_sell_price": 0.00,
+      "net_quantity": 1,
+      "close_price": 1350.45,
+      "realized_profit": 0.00,
+      "unrealized_profit": 3.09
     }
+  ]
+ }
  */
 Upstox.prototype.getPositions = function () {
 
@@ -387,29 +492,29 @@ Upstox.prototype.getPositions = function () {
  * @param {number} [params.squareoff] The squareoff or profit taking for OCO order. It is mandatory for OCO.
  * @return {res}
  * @example
- * {
-    "code": 200,
-    "status": "OK",
-    "timestamp": "2017-03-07T15:49:27+05:30",
-    "message": "success",
-    "data":{
+ {
+      "code": 200,
+      "status": "OK",
+      "timestamp": "2017-05-17T11:01:45+05:30",
+      "message": "success",
+      "data": {
         "exchange": "NSE_EQ",
         "token": 2885,
         "symbol": "RELIANCE",
         "product": "I",
-        "order_type": "M",
+        "order_type": "L",
         "duration": "DAY",
-        "price": 0,
+        "price": 1200,
         "trigger_price": 0,
         "quantity": 1,
-        "disclosed_quantity": 1,
+        "disclosed_quantity": 0,
         "transaction_type": "B",
         "average_price": 0,
         "traded_quantity": 0,
         "message": "",
         "exchange_order_id": "",
         "parent_order_id": "NA",
-        "order_id": "170307000000021",
+        "order_id": "170517000028023",
         "exchange_time": "",
         "time_in_micro": "0",
         "status": "put order req received",
@@ -419,10 +524,10 @@ Upstox.prototype.getPositions = function () {
         "total_traded_quantity": 0,
         "traded_shares": 0,
         "traded_price": 0,
-        "stop_loss": 0,
-        "square_off": 0,
+        "stoploss": 0,
+        "squareoff": 0,
         "trailing_ticks": 0
-    }
+      }
  }
  */
 Upstox.prototype.placeOrder = function(params){
@@ -439,46 +544,44 @@ Upstox.prototype.placeOrder = function(params){
  * @memberOf Upstox
  * @return {res}
  * @example
-{
-    "code": 200,
-    "status": "OK",
-    "timestamp": "2017-03-28T17:01:02+05:30",
-    "message": "success",
-    "data": [
-        {
-            "exchange": "NSE_EQ",
-            "token": 2885,
-            "symbol": "RELIANCE",
-            "product": "I",
-            "order_type": "L",
-            "duration": "DAY",
-            "price": 1080,
-            "trigger_price": 0,
-            "quantity": 1,
-            "disclosed_quantity": 0,
-            "transaction_type": "B",
-            "average_price": 1080,
-            "traded_quantity": 1,
-            "message": "",
-            "exchange_order_id": "1100000000006972",
-            "parent_order_id": "NA",
-            "order_id": "170328000000030",
-            "exchange_time": "28-Mar-2017 12:42:42",
-            "time_in_micro": "1490697859120172",
-            "status": "complete",
-            "is_amo": false,
-            "valid_date": "--",
-            "order_request_id": "1",
-            "total_traded_quantity": 0,
-            "traded_shares": 0,
-            "traded_price": 0,
-            "stop_loss": 0,
-            "square_off": 0,
-            "trailing_ticks": 0
-        }
-    ]
-}
- */
+ {
+   "code": 200,
+   "status": "OK",
+   "timestamp": "2017-05-17T11:02:39+05:30",
+   "message": "success",
+   "data": [
+     {
+       "exchange": "NSE_EQ",
+       "token": 2885,
+       "symbol": "RELIANCE",
+       "product": "I",
+       "order_type": "L",
+       "duration": "DAY",
+       "price": 1250,
+       "trigger_price": 0,
+       "quantity": 1,
+       "disclosed_quantity": 0,
+       "transaction_type": "B",
+       "average_price": 0,
+       "traded_quantity": 0,
+       "message": "",
+       "exchange_order_id": "1200000000219469",
+       "parent_order_id": "NA",
+       "order_id": "170517000003728",
+       "exchange_time": "17-May-2017 09:17:43",
+       "time_in_micro": "1494992898053855",
+       "status": "cancelled",
+       "is_amo": false,
+       "valid_date": "--",
+       "order_request_id": "1",
+       "total_traded_quantity": 0,
+       "stoploss": 0,
+       "squareoff": 0,
+       "trailing_ticks": 0
+     }
+   ]
+ }
+*/
 Upstox.prototype.getOrders = function(){
 
     var __this = this;
@@ -495,275 +598,31 @@ Upstox.prototype.getOrders = function(){
  * @memberOf Upstox
  * @return {res}
  * @example
-{
-    "code": 200,
-    "status": "OK",
-    "timestamp": "2017-03-28T18:19:24+05:30",
-    "message": "success",
-    "data": [
-        {
-            "exchange": "NSE_EQ",
-            "token": 2885,
-            "symbol": "RELIANCE",
-            "product": "I",
-            "order_type": "M",
-            "price": null,
-            "trigger_price": null,
-            "quantity": null,
-            "disclosed_quantity": null,
-            "transaction_type": "B",
-            "average_price": null,
-            "traded_quantity": 1,
-            "exchange_order_id": "1100000000020501",
-            "order_id": "170328000000054",
-            "exchange_time": "28-Mar-2017 18:04:22",
-            "time_in_micro": "1490704218023191",
-            "status": "complete",
-            "total_traded_quantity": 0,
-            "traded_shares": 0,
-            "traded_price": 0,
-            "trade_id": "50031226",
-            "stop_loss": 0,
-            "square_off": 0,
-            "trailing_ticks": 0
-        },
-        {
-            "exchange": "NSE_EQ",
-            "token": 2885,
-            "symbol": "RELIANCE",
-            "product": "I",
-            "order_type": "M",
-            "price": null,
-            "trigger_price": null,
-            "quantity": null,
-            "disclosed_quantity": null,
-            "transaction_type": "B",
-            "average_price": null,
-            "traded_quantity": 1,
-            "exchange_order_id": "1100000000020532",
-            "order_id": "170328000000055",
-            "exchange_time": "28-Mar-2017 18:04:40",
-            "time_in_micro": "1490704235700345",
-            "status": "complete",
-            "total_traded_quantity": 0,
-            "traded_shares": 0,
-            "traded_price": 0,
-            "trade_id": "50031308",
-            "stop_loss": 0,
-            "square_off": 0,
-            "trailing_ticks": 0
-        },
-        {
-            "exchange": "NSE_EQ",
-            "token": 2885,
-            "symbol": "RELIANCE",
-            "product": "I",
-            "order_type": "M",
-            "price": null,
-            "trigger_price": null,
-            "quantity": null,
-            "disclosed_quantity": null,
-            "transaction_type": "B",
-            "average_price": null,
-            "traded_quantity": 1,
-            "exchange_order_id": "1100000000019491",
-            "order_id": "170328000000049",
-            "exchange_time": "28-Mar-2017 17:58:14",
-            "time_in_micro": "1490703850303152",
-            "status": "complete",
-            "total_traded_quantity": 0,
-            "traded_shares": 0,
-            "traded_price": 0,
-            "trade_id": "50028841",
-            "stop_loss": 0,
-            "square_off": 0,
-            "trailing_ticks": 0
-        },
-        {
-            "exchange": "NSE_EQ",
-            "token": 2885,
-            "symbol": "RELIANCE",
-            "product": "I",
-            "order_type": "M",
-            "price": null,
-            "trigger_price": null,
-            "quantity": null,
-            "disclosed_quantity": null,
-            "transaction_type": "B",
-            "average_price": null,
-            "traded_quantity": 1,
-            "exchange_order_id": "1100000000019490",
-            "order_id": "170328000000048",
-            "exchange_time": "28-Mar-2017 17:58:12",
-            "time_in_micro": "1490703847853846",
-            "status": "complete",
-            "total_traded_quantity": 0,
-            "traded_shares": 0,
-            "traded_price": 0,
-            "trade_id": "50028824",
-            "stop_loss": 0,
-            "square_off": 0,
-            "trailing_ticks": 0
-        },
-        {
-            "exchange": "NSE_EQ",
-            "token": 2885,
-            "symbol": "RELIANCE",
-            "product": "I",
-            "order_type": "M",
-            "price": null,
-            "trigger_price": null,
-            "quantity": null,
-            "disclosed_quantity": null,
-            "transaction_type": "B",
-            "average_price": null,
-            "traded_quantity": 1,
-            "exchange_order_id": "1100000000020350",
-            "order_id": "170328000000052",
-            "exchange_time": "28-Mar-2017 18:03:20",
-            "time_in_micro": "1490704156310111",
-            "status": "complete",
-            "total_traded_quantity": 0,
-            "traded_shares": 0,
-            "traded_price": 0,
-            "trade_id": "50030874",
-            "stop_loss": 0,
-            "square_off": 0,
-            "trailing_ticks": 0
-        },
-        {
-            "exchange": "NSE_EQ",
-            "token": 2885,
-            "symbol": "RELIANCE",
-            "product": "I",
-            "order_type": "L",
-            "price": null,
-            "trigger_price": null,
-            "quantity": null,
-            "disclosed_quantity": null,
-            "transaction_type": "B",
-            "average_price": null,
-            "traded_quantity": 1,
-            "exchange_order_id": "1100000000006972",
-            "order_id": "170328000000030",
-            "exchange_time": "28-Mar-2017 12:42:42",
-            "time_in_micro": "1490697859120172",
-            "status": "complete",
-            "total_traded_quantity": 0,
-            "traded_shares": 0,
-            "traded_price": 0,
-            "trade_id": "50027602",
-            "stop_loss": 0,
-            "square_off": 0,
-            "trailing_ticks": 0
-        },
-        {
-            "exchange": "NSE_EQ",
-            "token": 2885,
-            "symbol": "RELIANCE",
-            "product": "I",
-            "order_type": "M",
-            "price": null,
-            "trigger_price": null,
-            "quantity": null,
-            "disclosed_quantity": null,
-            "transaction_type": "B",
-            "average_price": null,
-            "traded_quantity": 1,
-            "exchange_order_id": "1100000000020474",
-            "order_id": "170328000000053",
-            "exchange_time": "28-Mar-2017 18:04:20",
-            "time_in_micro": "1490704215355625",
-            "status": "complete",
-            "total_traded_quantity": 0,
-            "traded_shares": 0,
-            "traded_price": 0,
-            "trade_id": "50031207",
-            "stop_loss": 0,
-            "square_off": 0,
-            "trailing_ticks": 0
-        },
-        {
-            "exchange": "NSE_FO",
-            "token": 44866,
-            "symbol": "NIFTY17MARFUT",
-            "product": "I",
-            "order_type": "L",
-            "price": null,
-            "trigger_price": null,
-            "quantity": null,
-            "disclosed_quantity": null,
-            "transaction_type": "B",
-            "average_price": null,
-            "traded_quantity": 75,
-            "exchange_order_id": "1100000000004623",
-            "order_id": "170328000000031",
-            "exchange_time": "28-Mar-2017 12:43:00",
-            "time_in_micro": "1490684935796062",
-            "status": "complete",
-            "total_traded_quantity": 0,
-            "traded_shares": 0,
-            "traded_price": 0,
-            "trade_id": "50000457",
-            "stop_loss": 0,
-            "square_off": 0,
-            "trailing_ticks": 0
-        },
-        {
-            "exchange": "NSE_EQ",
-            "token": 2885,
-            "symbol": "RELIANCE",
-            "product": "I",
-            "order_type": "M",
-            "price": null,
-            "trigger_price": null,
-            "quantity": null,
-            "disclosed_quantity": null,
-            "transaction_type": "B",
-            "average_price": null,
-            "traded_quantity": 1,
-            "exchange_order_id": "1100000000019840",
-            "order_id": "170328000000050",
-            "exchange_time": "28-Mar-2017 17:59:33",
-            "time_in_micro": "1490703928614186",
-            "status": "complete",
-            "total_traded_quantity": 0,
-            "traded_shares": 0,
-            "traded_price": 0,
-            "trade_id": "50029505",
-            "stop_loss": 0,
-            "square_off": 0,
-            "trailing_ticks": 0
-        },
-        {
-            "exchange": "NSE_EQ",
-            "token": 2885,
-            "symbol": "RELIANCE",
-            "product": "I",
-            "order_type": "M",
-            "price": null,
-            "trigger_price": null,
-            "quantity": null,
-            "disclosed_quantity": null,
-            "transaction_type": "B",
-            "average_price": null,
-            "traded_quantity": 1,
-            "exchange_order_id": "1100000000020149",
-            "order_id": "170328000000051",
-            "exchange_time": "28-Mar-2017 18:01:49",
-            "time_in_micro": "1490704064457870",
-            "status": "complete",
-            "total_traded_quantity": 0,
-            "traded_shares": 0,
-            "traded_price": 0,
-            "trade_id": "50030314",
-            "stop_loss": 0,
-            "square_off": 0,
-            "trailing_ticks": 0
-        }
-    ]
-}
-
+ {
+   "code": 200,
+   "status": "OK",
+   "timestamp": "2017-05-15T14:48:52+05:30",
+   "message": "success",
+   "data": [
+     {
+       "exchange": "NSE_EQ",
+       "token": 2885,
+       "symbol": "RELIANCE",
+       "product": "I",
+       "order_type": "M",
+       "transaction_type": "B",
+       "traded_quantity": 1,
+       "exchange_order_id": "1200000003336976",
+       "order_id": "170515000047270",
+       "exchange_time": "15-May-2017 13:56:31",
+       "time_in_micro": "1494836825761723",
+       "total_traded_quantity": 0,
+       "traded_shares": 0,
+       "traded_price": 0,
+       "trade_id": "51345784",
+     }
+   ]
+ }
  */
 Upstox.prototype.getTrades = function(params){
 
@@ -970,36 +829,143 @@ eg: "ltp",
  * @return {res}
  * @example
  *
+~~~
+ If you request for LTP, following will be the response
+
  {
-    "code": 200,
-    "status": "OK",
-    "timestamp": "2017-03-07T15:50:40+05:30",
-    "message": "feed",
-    "data":{
-        "timestamp": 1488882035000,
-        "ltp": 1304.95,
-        "open": 1318.85,
-        "high": 1327,
-        "low": 1296.15,
-        "close": 1304.95,
-        "vtt": 9616358,
-        "atp": 1309.21,
-        "oi": null,
-        "spot_price": 0,
-        "total_buy_qty": 7454,
-        "total_sell_qty": 0,
-        "bids":[{
-        "quantity": 7454,
-        "price": 1304.95,
-        "orders": 36
-        }],
-        "asks":[{
-        "quantity": 0,
-        "price": 0,
-        "orders": 0
-        }]
-    }
+   "code": 200,
+   "status": "OK",
+   "timestamp": "2017-05-15T16:45:12+05:30",
+   "message": "feed",
+   "data": {
+     "timestamp": 1494843956000,
+     "exchange": "NSE_EQ",
+     "symbol": "RELIANCE",
+     "ltp": 1344.1,
+     "close": 1350.45
+   }
  }
+~~~
+ If you request for Mini, following will be the response
+
+ {
+   "code": 200,
+   "status": "OK",
+   "timestamp": "2017-05-15T15:10:12+05:30",
+   "message": "feed",
+   "data": {
+     "timestamp": 1494837991000,
+     "exchange": "NSE_FO",
+     "symbol": "NIFTY17MAYFUT",
+     "ltp": 9446.8,
+     "open": 9448,
+     "high": 9454.4,
+     "low": 9437,
+     "close": 9414.8,
+     "vtt": 2802525,
+     "atp": 9446.71,
+     "oi": 21256725,
+     "spot_price": 9442.5,
+     "total_buy_qty": 831075,
+     "total_sell_qty": 858375,
+     "bids": [
+       {
+         "quantity": 900,
+         "price": 9446.7,
+         "orders": 2
+       }
+     ],
+     "asks": [
+       {
+         "quantity": 450,
+         "price": 9447,
+         "orders": 1
+       }
+     ]
+   }
+ }
+ ~~~
+ If you request for Full, following will be the response
+
+ {
+   "code": 200,
+   "status": "OK",
+   "timestamp": "2017-05-15T15:10:42+05:30",
+   "message": "feed",
+   "data": {
+     "timestamp": 1494837991000,
+     "exchange": "NSE_FO",
+     "symbol": "NIFTY17MAYFUT",
+     "ltp": 9446.8,
+     "open": 9448,
+     "high": 9454.4,
+     "low": 9437,
+     "close": 9414.8,
+     "vtt": 2802525,
+     "atp": 9446.71,
+     "oi": 21256725,
+     "spot_price": 9442.15,
+     "total_buy_qty": 830925,
+     "total_sell_qty": 858375,
+     "lower_circuit": 8473.35,
+     "upper_circuit": 10356.3,
+     "bids": [
+       {
+         "quantity": 900,
+         "price": 9446.7,
+         "orders": 2
+       },
+       {
+         "quantity": 75,
+         "price": 9446.65,
+         "orders": 1
+       },
+       {
+         "quantity": 1050,
+         "price": 9446.6,
+         "orders": 4
+       },
+       {
+         "quantity": 150,
+         "price": 9446.55,
+         "orders": 1
+       },
+       {
+         "quantity": 75,
+         "price": 9446.1,
+         "orders": 1
+       }
+     ],
+     "asks": [
+       {
+         "quantity": 450,
+         "price": 9447,
+         "orders": 1
+       },
+       {
+         "quantity": 450,
+         "price": 9447.3,
+         "orders": 1
+       },
+       {
+         "quantity": 900,
+         "price": 9447.4,
+         "orders": 1
+       },
+       {
+         "quantity": 75,
+         "price": 9447.45,
+         "orders": 1
+       },
+       {
+         "quantity": 75,
+         "price": 9447.55,
+         "orders": 1
+       }
+     ]
+   }
+ }
+ ~~~
  */
 Upstox.prototype.getLiveFeed = function(params){
 
@@ -1054,22 +1020,23 @@ Upstox.prototype.getLiveFeed = function(params){
      json
     ~~~~
  * @return {res}
- * @example {
-  "code": 200,
-  "status": "OK",
-  "timestamp": "",
-  "message": "ohlc",
-  "data": [
-    {
-      "timestamp": 1485973800000,
-      "open": 1050,
-      "high": 1050.8,
-      "low": 1038.25,
-      "close": 1043.5,
-      "volume": 2079908,
-      "cp": 1045.55
-    }
-  ]
+ * @example
+ {
+ "code": 200,
+ "status": "OK",
+ "timestamp": "",
+ "message": "ohlc",
+ "data": [
+   {
+     "timestamp": 1485973800000,
+     "open": 1050,
+     "high": 1050.8,
+     "low": 1038.25,
+     "close": 1043.5,
+     "volume": 2079908,
+     "cp": 1045.55
+   }
+ ]
 }
  */
 Upstox.prototype.getOHLC = function(params){
@@ -1317,7 +1284,7 @@ Upstox.prototype.on = function(eventName, listener) {
                 break;
         }
     }
-}
+};
 
 module.exports.Upstox = Upstox;</pre>
     </article>
@@ -1360,7 +1327,7 @@ module.exports.Upstox = Upstox;</pre>
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a>
 	
-		on Wed May 10th 2017
+		on Wed May 17th 2017
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
