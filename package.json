@@ -1,5 +1,5 @@
 {
-  "name": "upstox-nodejs",
+  "name": "upstox",
   "version": "1.0.0",
   "description": "Library for node js to trade with Upstox APIs.",
   "main": "./lib/index.js",

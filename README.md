@@ -13,7 +13,10 @@ This module is installed via npm:
 
 ## Documentation
    [Upstox API documentation](https://upstox.com/developer/api/v1/docs/)
-
+   
+## Prerequisites   
+    node version 6 and above
+  
 Getting started with API
 ------------------------
 
