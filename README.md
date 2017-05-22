@@ -1,14 +1,15 @@
 
 # Upstox API Nodejs client
-The official Javascript node client for communicating with the Upstox APIs
+The official Javascript node client for communicating with the Upstox APIs.
+
 Upstox Node Js Library provides an easy to use wrapper over the HTTPs APIs. The HTTP calls have been converted to methods and their JSON responses.
-Moreover we provide websocket connection to get live updates from Upstox APIs.
+Moreover we provide websocket connection to get live updates of order and trade.
 
 ## Installation
 
 This module is installed via npm:
 
-	 npm install --save Upstox
+	 npm install --save upstox
 
 ## Documentation
    [Upstox API documentation](https://upstox.com/developer/api/v1/docs/)
@@ -18,43 +19,46 @@ Getting started with API
 
 ### Authentication with Oauth
 
-     To start using upstox services -
-     ------------------------------
-     Require Upstox - 
-         var Upstox = require("Upstox");
+To start using upstox services -
+------------------------------
+1. Require Upstox - 
          
-     Craete an upstox object by passing apiKey as a parameter. (Note: apiKey is required field)
-         var upstox = new Upstox("your apiKey");
-
-     1. Get authentication url with getLoginUri method. Params required are - apiKey, redirect_uri(provided while creating the app on developer console of Upstox), response_type
-        var loginUrl = upstox.getLoginUri(testdata.accessToken.redirect_uri, "code");
-     
-     2. Get authenticated with your uccid and password with Upstox.
-        Upstox Login screen will be popup up with which you need to get logged in.
+        var Upstox = require("upstox");
+         
+2. Create an upstox object by passing apiKey as a parameter. (Note: apiKey is required field)
         
-     3. On completion of authentication user will be redirected to the redirect_uri with code added in query parameter.
+        var upstox = new Upstox("your apiKey");
+
+3. Get authentication url with getLoginUri method. Params required are - * redirect_uri (provided while creating the app on developer console of Upstox)
+   
+        var loginUrl = upstox.getLoginUri(your-redirect-uri);
      
-     4. Get the accessToken required for getting authenticated for all subsequent API calls.
+4. Upstox Login screen will appear and in that you need to input your user_id and password provided by Upstox.
+
+5. On completion of authentication user will be redirected to the redirect_uri with code added in query parameter.
+
+6. AccessToken is required for getting authenticated with all subsequent API calls.
+ Steps to generate accessToken:
+ 
          getAccessToken method requires following- 
             var params: {
                 "apiSecret" : "your_apiSecret",
                 "code" : "your_code_generated_in login",
-                "grant_type" : "authorization_code",
                 "redirect_uri" : "your_redirect_uri"
             };
-            
-            var accessToken;
-            
-            upstox.getAccessToken(params)
-                .then(function(response) {
-                  accessToken = response.access_token;
-                })
-                .catch(function(err) {
-                    // handle error 
-                });
-                
-     5. Set access token by invoking method called setAccessToken(your_access_token); // pass the accessToken generated in response with getAccessToken.
         
+        var accessToken;
+        
+        upstox.getAccessToken(params)
+            .then(function(response) {
+              accessToken = response.access_token;
+            })
+            .catch(function(err) {
+                // handle error 
+            });
+        
+5. Set access token by invoking method called setAccessToken(your_access_token); // pass the accessToken generated in response with getAccessToken.
+
         upstox.setToken(accessToken);
         
      
@@ -141,4 +145,6 @@ Getting started with API
 ## Test
     npm test // Please add the oauth token details in testData.json
    
-## Licence
+## License
+Licensed under the MIT License. 
+
