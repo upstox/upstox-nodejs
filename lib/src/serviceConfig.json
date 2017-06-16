@@ -5,10 +5,10 @@
     "accessToken" : "/index/oauth/token",
     "profile" : "/index/profile",
     "masterContract":"/index/master-contract/{exchange}",
-    "logout" : "/logout",
+    "logout" : "/index/logout",
 
     "holdings" : "/live/profile/holdings",
-    "balance" : "/live/profile/balance/{type}",
+    "balance" : "/live/profile/balance",
     "positions" : "/live/profile/positions",
 
     "placeOrder" :"/live/orders",
