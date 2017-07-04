@@ -68,45 +68,58 @@ To start using upstox services -
     
 ### Examples
 
-     Subsequent services can be called as shown in below
+        Subsequent services can be called as shown in below
     
-        // Fetch holdings.
         // You can have other api calls here.
-
-        // Get Holdings
-        upstox.getHoldings()
-            .then(function(response) {
-                // You got user's holding details.
-            })
-            .catch(function(err) {
-            // Something went wrong.
-        });
-
+        var loginUrl = upstox.getLoginUri("your_redirect_uri");
+        console.log("**************** loginUri ***********" + loginUrl);
+        
         // GetProfile
         upstox.getProfile()
-            .then(function(response) {
-                // You got user's holding details.
-            })
-            .catch(function(err) {
-            // Something went wrong.
-        });
-
-        // PlaceOrder
+          .then(function (response) {
+              console.log(response);
+          })
+          .catch(function(error){
+              console.log("Error", error);
+          });
+        
+        // Get Balance
+        upstox.getBalance({type: "security"})  // type can be security or commodity
+          .then(function(response) {
+              console.log(response);
+          })
+          .catch(function(err) {
+              console.log(err);
+          });
+        
+        // Get Master Contract
+        /* Exchanges */
+        upstox.getMasterContract({exchange: "nse_eq", symbol: "reliance"})
+          .then(function(response) {
+              console.log(response);
+          })
+          .catch(function(err) {
+              console.log(err);
+          });
+        
+        // PlaceOrder Note : default product = I i.e intra day order will be placed.
         var orderObject = {
-                transaction_type:"b",
-                exchange:"NSE_EQ",
-                symbol: "RELIANCE",
-                quantity: 1,
-                order_type:"m"
-             };
-             
+          transaction_type:"b",
+          exchange:"NSE_EQ",
+          symbol: "RELIANCE",
+          quantity: 1,
+          order_type:"m"
+        };
+        
         upstox.placeOrder(orderObject)
-            .then(function(response) {
-                // You got user's holding details.
-            })
-            .catch(function(err) {
-            // Something went wrong.
-        });
+          .then(function(response) {
+              // Order details received
+              console.log(response);
+          })
+          .catch(function(err) {
+              // Something went wrong.
+              console.log(err);
+          });
 
 
 ## Websocket
