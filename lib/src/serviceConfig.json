@@ -13,7 +13,7 @@
 
     "placeOrder" :"/live/orders",
     "getOrders" : "/live/orders",
-    "getOrdersInfo" : "/live/orders/{order_ids}",
+    "getOrdersInfo" : "/live/orders/{order_id}",
     "modifyOrder" :"/live/orders/{order_id}/{parent_order_id}",
     "cancelOrder" : "/live/orders/{order_id}/{parent_order_id}",
     "tradesInfo": "/live/orders/{order_id}/trades",
