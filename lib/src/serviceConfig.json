@@ -1,5 +1,5 @@
 {
- "host" : "https://api.upstox.com",
+ "host" : "http://localhost:7070",
  "routes" : {
     "authorize" : "/index/dialog/authorize",
     "accessToken" : "/index/oauth/token",
@@ -27,5 +27,5 @@
 
     "socket-params" : "/live/socket-params"
  },
- "socketEndpoint": "wss://ws-api.upstox.com"
+ "socketEndpoint": "ws://localhost:7070"
 }
