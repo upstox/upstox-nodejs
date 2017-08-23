@@ -1,29 +1,31 @@
 {
- "host" : "https://api.upstox.com",
- "routes" : {
-    "authorize" : "/index/dialog/authorize",
-    "accessToken" : "/index/oauth/token",
-    "profile" : "/index/profile",
-    "masterContract":"/index/master-contract/{exchange}",
-    "logout" : "/index/logout",
+   "host" : "https://api.upstox.com",
+   "routes" : {
+      "authorize" : "/index/dialog/authorize",
+      "accessToken" : "/index/oauth/token",
+      "profile" : "/index/profile",
+      "masterContract":"/index/master-contract/{exchange}",
+      "logout" : "/index/logout",
 
-    "holdings" : "/live/profile/holdings",
-    "balance" : "/live/profile/balance",
-    "positions" : "/live/profile/positions",
+      "holdings" : "/live/profile/holdings",
+      "balance" : "/live/profile/balance",
+      "positions" : "/live/profile/positions",
 
-    "placeOrder" :"/live/orders",
-    "getOrders" : "/live/orders",
-    "getOrdersInfo" : "/live/orders/{order_id}",
-    "modifyOrder" :"/live/orders/{order_id}/{parent_order_id}",
-    "cancelOrder" : "/live/orders/{order_id}/{parent_order_id}",
-    "tradesInfo": "/live/orders/{order_id}/trades",
-    "tradeBook": "/live/trade-book",
+      "placeOrder" :"/live/orders",
+      "getOrders" : "/live/orders",
+      "getOrdersInfo" : "/live/orders/{order_id}",
+      "modifyOrder" :"/live/orders/{order_id}/{parent_order_id}",
+      "cancelOrder" : "/live/orders/{order_id}/{parent_order_id}",
+      "tradesInfo": "/live/orders/{order_id}/trades",
+      "tradeBook": "/live/trade-book",
 
 
-    "liveFeed" : "/live/feed/now/{exchange}/{symbol}/{type}",
-    "liveFeedSubscribe": "/live/feed/sub/{type}/{exchange}",
-    "liveFeedUnsubscribe": "/live/feed/unsub/{type}/{exchange}",
-    "OHLC" : "/historical/ohlc/{exchange}/{symbol}"
- },
- "socketEndpoint": "wss://ws-api.upstox.com"
+      "liveFeed" : "/live/feed/now/{exchange}/{symbol}/{type}",
+      "liveFeedSubscribe": "/live/feed/sub/{type}/{exchange}",
+      "liveFeedUnsubscribe": "/live/feed/unsub/{type}/{exchange}",
+      "OHLC" : "/historical/ohlc/{exchange}/{symbol}",
+
+      "socket-params" : "/live/socket-params"
+   },
+   "socketEndpoint": "wss://ws-api.upstox.com"
 }
