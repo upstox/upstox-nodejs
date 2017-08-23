@@ -1,5 +1,5 @@
 {
-   "host" : "https://uat-test-api.upstox.com",
+   "host" : "https://api.upstox.com",
    "routes" : {
       "authorize" : "/index/dialog/authorize",
       "accessToken" : "/index/oauth/token",
@@ -27,5 +27,5 @@
 
       "socket-params" : "/live/socket-params"
    },
-   "socketEndpoint": "wss://uat-test-ws-api.upstox.com"
+   "socketEndpoint": "wss://ws-api.upstox.com"
 }
