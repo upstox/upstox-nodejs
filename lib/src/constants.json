@@ -14,5 +14,39 @@
         "TRADE_UPDATE": "tradeUpdate",
         "LIVE_FEED": "liveFeed"
     },
-    "ALLOWED_EVENTS": ["disconnected", "error", "orderUpdate", "positionUpdate", "tradeUpdate", "liveFeed"]
+    "VERSIONS": {
+        "DEFAULT": "DEFAULT",
+        "Version_1_5_6": "1.5.6"
+    },
+    "ALLOWED_EVENTS": ["disconnected", "error", "orderUpdate", "positionUpdate", "tradeUpdate", "liveFeed"],
+    "OHLC_INTERVALS_DEFAULT": {
+        "1MINUTE": "1MINUTE",
+        "3MINUTE": "3MINUTE",
+        "5MINUTE": "5MINUTE",
+
+        "10MINUTE": "10MINUTE",
+        "15MINUTE": "15MINUTE",
+        "30MINUTE": "30MINUTE",
+
+        "60MINUTE": "60MINUTE",
+        "1DAY": "1MINUTE",
+        "1WEEK": "1MINUTE",
+
+        "1MONTH": "1MONTH"
+    },
+    "OHLC_INTERVALS_VERSION_1_5_6": {
+        "1MINUTE": 1,
+        "3MINUTE": 3,
+        "5MINUTE": 5,
+
+        "10MINUTE": 10,
+        "15MINUTE": 15,
+        "30MINUTE": 30,
+
+        "60MINUTE": 60,
+        "1DAY": "day",
+        "1WEEK": "week",
+
+        "1MONTH": "month"
+    }
 }
