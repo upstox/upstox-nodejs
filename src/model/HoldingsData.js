@@ -226,6 +226,12 @@ HoldingsData.ExchangeEnum = {
   BCD: "BCD",
 
   /**
+   * value: "BFO"
+   * @const
+   */
+  BFO: "BFO",
+
+  /**
    * value: "MCX"
    * @const
    */
