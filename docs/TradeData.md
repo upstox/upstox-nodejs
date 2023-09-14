@@ -26,6 +26,7 @@ Name | Type | Description | Notes
 * `CDS` (value: `"CDS"`)
 * `BSE` (value: `"BSE"`)
 * `BCD` (value: `"BCD"`)
+* `BFO` (value: `"BFO"`)
 * `MCX` (value: `"MCX"`)
 
 
