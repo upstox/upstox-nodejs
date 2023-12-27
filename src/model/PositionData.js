@@ -89,6 +89,8 @@ export class PositionData {
         obj.sellValue = ApiClient.convertToType(data['sell_value'], 'Number');
       if (data.hasOwnProperty('tradingsymbol'))
         obj.tradingsymbol = ApiClient.convertToType(data['tradingsymbol'], 'String');
+      if (data.hasOwnProperty('trading_symbol'))
+        obj.tradingSymbol = ApiClient.convertToType(data['trading_symbol'], 'String');
       if (data.hasOwnProperty('close_price'))
         obj.closePrice = ApiClient.convertToType(data['close_price'], 'Number');
       if (data.hasOwnProperty('buy_price'))
@@ -297,6 +299,12 @@ PositionData.prototype.sellValue = undefined;
  * @member {String} tradingsymbol
  */
 PositionData.prototype.tradingsymbol = undefined;
+
+/**
+ * Shows the trading symbol of the instrument
+ * @member {String} tradingSymbol
+ */
+PositionData.prototype.tradingSymbol = undefined;
 
 /**
  * Closing price of the instrument from the last trading day

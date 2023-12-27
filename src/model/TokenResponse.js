@@ -60,6 +60,8 @@ export class TokenResponse {
         obj.isActive = ApiClient.convertToType(data['is_active'], 'Boolean');
       if (data.hasOwnProperty('access_token'))
         obj.accessToken = ApiClient.convertToType(data['access_token'], 'String');
+      if (data.hasOwnProperty('extended_token'))
+        obj.extendedToken = ApiClient.convertToType(data['extended_token'], 'String');
     }
     return obj;
   }
@@ -244,4 +246,10 @@ TokenResponse.prototype.isActive = undefined;
  * @member {String} accessToken
  */
 TokenResponse.prototype.accessToken = undefined;
+
+/**
+ * The authentication token that is to used with every subsequent API requests
+ * @member {String} extendedToken
+ */
+TokenResponse.prototype.extendedToken = undefined;
 

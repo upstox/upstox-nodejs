@@ -55,6 +55,8 @@ export class HoldingsData {
         obj.quantity = ApiClient.convertToType(data['quantity'], 'Number');
       if (data.hasOwnProperty('tradingsymbol'))
         obj.tradingsymbol = ApiClient.convertToType(data['tradingsymbol'], 'String');
+      if (data.hasOwnProperty('trading_symbol'))
+        obj.tradingSymbol = ApiClient.convertToType(data['trading_symbol'], 'String');
       if (data.hasOwnProperty('last_price'))
         obj.lastPrice = ApiClient.convertToType(data['last_price'], 'Number');
       if (data.hasOwnProperty('close_price'))
@@ -129,6 +131,12 @@ HoldingsData.prototype.quantity = undefined;
  * @member {String} tradingsymbol
  */
 HoldingsData.prototype.tradingsymbol = undefined;
+
+/**
+ * Shows the trading symbol of the instrument
+ * @member {String} tradingSymbol
+ */
+HoldingsData.prototype.tradingSymbol = undefined;
 
 /**
  * The last traded price of the instrument

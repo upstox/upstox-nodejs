@@ -59,6 +59,8 @@ export class OrderBookData {
         obj.placedBy = ApiClient.convertToType(data['placed_by'], 'String');
       if (data.hasOwnProperty('tradingsymbol'))
         obj.tradingsymbol = ApiClient.convertToType(data['tradingsymbol'], 'String');
+      if (data.hasOwnProperty('trading_symbol'))
+        obj.tradingSymbol = ApiClient.convertToType(data['trading_symbol'], 'String');
       if (data.hasOwnProperty('order_type'))
         obj.orderType = ApiClient.convertToType(data['order_type'], 'String');
       if (data.hasOwnProperty('validity'))
@@ -244,6 +246,12 @@ OrderBookData.prototype.placedBy = undefined;
  * @member {String} tradingsymbol
  */
 OrderBookData.prototype.tradingsymbol = undefined;
+
+/**
+ * Shows the trading symbol of the instrument
+ * @member {String} tradingSymbol
+ */
+OrderBookData.prototype.tradingSymbol = undefined;
 
 /**
  * Allowed values for the <code>orderType</code> property.
