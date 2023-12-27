@@ -45,6 +45,8 @@ export class TradeData {
         obj.product = ApiClient.convertToType(data['product'], 'String');
       if (data.hasOwnProperty('tradingsymbol'))
         obj.tradingsymbol = ApiClient.convertToType(data['tradingsymbol'], 'String');
+      if (data.hasOwnProperty('trading_symbol'))
+        obj.tradingSymbol = ApiClient.convertToType(data['trading_symbol'], 'String');
       if (data.hasOwnProperty('instrument_token'))
         obj.instrumentToken = ApiClient.convertToType(data['instrument_token'], 'String');
       if (data.hasOwnProperty('order_type'))
@@ -173,6 +175,12 @@ TradeData.prototype.product = undefined;
  * @member {String} tradingsymbol
  */
 TradeData.prototype.tradingsymbol = undefined;
+
+/**
+ * Shows the trading symbol which could be a combination of symbol name, instrument, expiry date etc
+ * @member {String} tradingSymbol
+ */
+TradeData.prototype.tradingSymbol = undefined;
 
 /**
  * Identifier issued by Upstox used for subscribing to live market quotes

@@ -77,6 +77,8 @@ export class OrderData {
         obj.parentOrderId = ApiClient.convertToType(data['parent_order_id'], 'String');
       if (data.hasOwnProperty('tradingsymbol'))
         obj.tradingsymbol = ApiClient.convertToType(data['tradingsymbol'], 'String');
+      if (data.hasOwnProperty('trading_symbol'))
+        obj.tradingSymbol = ApiClient.convertToType(data['trading_symbol'], 'String');
       if (data.hasOwnProperty('order_timestamp'))
         obj.orderTimestamp = ApiClient.convertToType(data['order_timestamp'], 'String');
       if (data.hasOwnProperty('filled_quantity'))
@@ -339,6 +341,12 @@ OrderData.prototype.parentOrderId = undefined;
  * @member {String} tradingsymbol
  */
 OrderData.prototype.tradingsymbol = undefined;
+
+/**
+ * Shows the trading symbol of the instrument
+ * @member {String} tradingSymbol
+ */
+OrderData.prototype.tradingSymbol = undefined;
 
 /**
  * User readable timestamp at which the order was placed

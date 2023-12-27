@@ -34,7 +34,7 @@ export class ApiClient {
          * @type {String}
          * @default https://api-v2.upstox.com
          */
-        this.basePath = 'https://api-v2.upstox.com'.replace(/\/+$/, '');
+        this.basePath = 'https://api.upstox.com/v2'.replace(/\/+$/, '');
 
         /**
          * The authentication methods to be included for all API calls.
