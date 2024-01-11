@@ -1,0 +1,51 @@
+* {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.app-container {
+  min-width: 1080px;
+  display: flex;
+  column-gap: 2rem;
+}
+
+.app-container .feed-container {
+  width: 50%;
+}
+
+.app-container .feed-container .header-section {
+  height: 100px;
+}
+
+.app-container .feed-container .header-section .status.connected span {
+  color: green;
+}
+
+.app-container .feed-container .header-section .status.not-connected span {
+  color: red;
+}
+
+.app-container .feed-container .feed-section {
+  max-height: 700px;
+  overflow: auto;
+  background-color: antiquewhite;
+  border-radius: 1rem;
+  padding: 0rem 1rem 1rem 1rem;
+}
+
+.app-container .feed-container .feed-section .title {
+  position: sticky;
+  top: 0;
+  background-color: antiquewhite;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
+.app-container .feed-container .feed-section .feed-item {
+  word-break: break-all;
+  margin-bottom: 1rem;
+}
