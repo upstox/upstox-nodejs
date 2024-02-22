@@ -1,13 +1,16 @@
 {
   "name": "upstox-js-sdk",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "The official Node Js client for communicating with the Upstox API",
   "license": "MIT",
   "main": "dist/index.js",
   "homepage": "https://github.com/upstox/upstox-nodejs#readme",
   "scripts": {
-    "build": "babel src --out-dir dist",
-    "test": "mocha --require @babel/register --recursive"
+    "build": "babel src --out-dir dist && shx mkdir -p dist/feeder/proto/ && shx cp src/feeder/proto/*.proto dist/feeder/proto/",
+    "test": "mocha --require @babel/register --recursive",
+    "dev-publish-local": "yalc publish",
+    "dev-push-local": "yalc push",
+    "dev-release": "npm run build && npm run dev-publish-local && npm run dev-push-local"
   },
   "keywords": [
     "Upstox",
@@ -31,7 +34,8 @@
     "@babel/traverse": "^7.23.2",
     "minimatch": "^3.0.5",
     "nanoid": "^3.1.31",
-    "superagent": "^5.3.0"
+    "superagent": "^5.3.0",
+    "uuid4": "^2.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
@@ -54,7 +58,8 @@
     "@babel/preset-env": "^7.0.0",
     "@babel/register": "^7.0.0",
     "expect.js": "^0.3.1",
-    "mocha": "^8.0.1",
+    "mocha": "^10.3.0",
+    "shx": "^0.3.4",
     "sinon": "^7.2.0"
   }
 }
