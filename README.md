@@ -120,7 +120,7 @@ var OAUTH2 = defaultClient.authentications["OAUTH2"];
 OAUTH2.accessToken = <ACCESS_TOKEN>;
 
 const streamer = new UpstoxClient.MarketDataStreamer(["MCX_FO|426268", "MCX_FO|427608"], "full");
-await streamer.connect();
+streamer.connect();
 
 streamer.on("message", (data) => {
   const feed = data.toString("utf-8");
@@ -168,7 +168,7 @@ var OAUTH2 = defaultClient.authentications["OAUTH2"];
 OAUTH2.accessToken = <ACCESS_TOKEN>;
 
 const streamer = new UpstoxClient.MarketDataStreamer();
-await streamer.connect();
+streamer.connect();
 
 // Subscribe to instrument keys upon the 'open' event
 streamer.on("open", () => {
@@ -193,7 +193,7 @@ var OAUTH2 = defaultClient.authentications["OAUTH2"];
 OAUTH2.accessToken = <ACCESS_TOKEN>;
 
 const streamer = new UpstoxClient.MarketDataStreamer();
-await streamer.connect();
+streamer.connect();
 
 // Subscribe to the first set of instrument keys immediately upon connection
 streamer.on("open", () => {
@@ -223,7 +223,7 @@ var OAUTH2 = defaultClient.authentications["OAUTH2"];
 OAUTH2.accessToken = <ACCESS_TOKEN>;
 
 const streamer = new UpstoxClient.MarketDataStreamer();
-await streamer.connect();
+streamer.connect();
 
 // Subscribe to instrument keys immediately upon connection
 streamer.on("open", () => {
@@ -254,7 +254,7 @@ var OAUTH2 = defaultClient.authentications["OAUTH2"];
 OAUTH2.accessToken = <ACCESS_TOKEN>;
 
 const streamer = new UpstoxClient.MarketDataStreamer();
-await streamer.connect();
+streamer.connect();
 
 // Initially subscribe to instrument keys in 'full' mode
 streamer.on("open", async () => {
@@ -294,7 +294,7 @@ var OAUTH2 = defaultClient.authentications["OAUTH2"];
 OAUTH2.accessToken = <ACCESS_TOKEN>;
 
 const streamer = new UpstoxClient.MarketDataStreamer();
-await streamer.connect();
+streamer.connect();
 
 // Disable auto-reconnect feature
 streamer.autoReconnect(false);
@@ -315,7 +315,7 @@ var OAUTH2 = defaultClient.authentications["OAUTH2"];
 OAUTH2.accessToken = <ACCESS_TOKEN>;
 
 const streamer = new UpstoxClient.MarketDataStreamer();
-await streamer.connect();
+streamer.connect();
 
 // Modify auto-reconnect parameters: enable it, set interval to 10 seconds, and retry count to 3
 streamer.autoReconnect(true, 10, 3);
@@ -334,7 +334,7 @@ var OAUTH2 = defaultClient.authentications["OAUTH2"];
 OAUTH2.accessToken = "<ACCESS_TOKEN>";
 
 const streamer = new UpstoxClient.PortfolioDataStreamer();
-await streamer.connect();
+streamer.connect();
 
 streamer.on("message", (data) => {
   const feed = data.toString("utf-8");
