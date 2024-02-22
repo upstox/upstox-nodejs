@@ -7,7 +7,7 @@ class PortfolioDataStreamer extends Streamer {
   }
 
   async connect() {
-    this.streamer = new PortfolioDataFeeder(this.instrumentKeys, this.mode);
+    this.streamer = new PortfolioDataFeeder();
     this.setupEventListeners();
     await this.streamer.connect();
   }

@@ -57,8 +57,8 @@ class MarketDataStreamer extends Streamer {
     });
   }
 
-  changeMode(instrumentKeys, mode) {
-    this.streamer.changeMode(instrumentKeys, mode);
+  changeMode(instrumentKeys, newMode) {
+    this.streamer.changeMode(instrumentKeys, newMode);
     const oldMode =
       newMode === this.Mode.LTPC ? this.Mode.FULL : this.Mode.LTPC;
 
