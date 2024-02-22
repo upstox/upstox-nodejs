@@ -172,7 +172,7 @@ await streamer.connect();
 
 // Subscribe to instrument keys upon the 'open' event
 streamer.on("open", () => {
-  streamer.subscribe(["NSE_FO|RELIANCE", "NSE_FO|TCS"], "full");
+  streamer.subscribe(["NSE_EQ|INE020B01018", "NSE_EQ|INE467B01029"], "full");
 });
 
 // Handle incoming market data messages
@@ -197,11 +197,11 @@ await streamer.connect();
 
 // Subscribe to the first set of instrument keys immediately upon connection
 streamer.on("open", () => {
-  streamer.subscribe(["NSE_FO|RELIANCE"], "full");
+  streamer.subscribe(["NSE_EQ|INE020B01018"], "full");
   
   // Subscribe to another set of instrument keys after a delay
   setTimeout(() => {
-    streamer.subscribe(["NSE_FO|TCS"], "full");
+    streamer.subscribe(["NSE_EQ|INE467B01029"], "full");
   }, 5000); // 5-second delay before subscribing to the second set
 });
 
@@ -228,12 +228,12 @@ await streamer.connect();
 // Subscribe to instrument keys immediately upon connection
 streamer.on("open", () => {
   console.log("Connected. Subscribing to instrument keys.");
-  streamer.subscribe(["NSE_FO|RELIANCE", "NSE_FO|TCS"], "full");
+  streamer.subscribe(["NSE_EQ|INE020B01018", "NSE_EQ|INE467B01029"], "full");
   
   // Unsubscribe after a delay
   setTimeout(() => {
     console.log("Unsubscribing from instrument keys.");
-    streamer.unsubscribe(["NSE_FO|RELIANCE", "NSE_FO|TCS"]);
+    streamer.unsubscribe(["NSE_EQ|INE020B01018", "NSE_EQ|INE467B01029"]);
   }, 5000); // Adjust delay as needed
 });
 
@@ -259,18 +259,18 @@ await streamer.connect();
 // Initially subscribe to instrument keys in 'full' mode
 streamer.on("open", async () => {
   console.log("Connected. Subscribing in full mode...");
-  streamer.subscribe(["NSE_FO|RELIANCE", "NSE_FO|TCS"], "full");
+  streamer.subscribe(["NSE_EQ|INE020B01018", "NSE_EQ|INE467B01029"], "full");
 
   // Change mode to 'ltpc' after a short delay
   setTimeout(() => {
     console.log("Changing subscription mode to ltpc...");
-    streamer.changeMode(["NSE_FO|RELIANCE", "NSE_FO|TCS"], "ltpc");
+    streamer.changeMode(["NSE_EQ|INE020B01018", "NSE_EQ|INE467B01029"], "ltpc");
   }, 5000); // 5-second delay
 
   // Unsubscribe after another delay
   setTimeout(() => {
     console.log("Unsubscribing...");
-    streamer.unsubscribe(["NSE_FO|RELIANCE", "NSE_FO|TCS"]);
+    streamer.unsubscribe(["NSE_EQ|INE020B01018", "NSE_EQ|INE467B01029"]);
   }, 10000); // 10 seconds after subscription
 });
 
