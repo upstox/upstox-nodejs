@@ -84,7 +84,7 @@ export class MarketQuoteApi {
       let returnType = GetFullMarketQuoteResponse;
 
       return this.apiClient.callApi(
-        '/market-quote/quotes', 'GET',
+        '/v2/market-quote/quotes', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );

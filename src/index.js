@@ -12,82 +12,97 @@
  * Do not edit the class manually.
  *
  */
-import {ApiClient} from './ApiClient';
-import {ApiGatewayErrorResponse} from './model/ApiGatewayErrorResponse';
-import {BrokerageData} from './model/BrokerageData';
-import {BrokerageTaxes} from './model/BrokerageTaxes';
-import {BrokerageWrapperData} from './model/BrokerageWrapperData';
-import {CancelOrderData} from './model/CancelOrderData';
-import {CancelOrderResponse} from './model/CancelOrderResponse';
-import {ConvertPositionData} from './model/ConvertPositionData';
-import {ConvertPositionRequest} from './model/ConvertPositionRequest';
-import {ConvertPositionResponse} from './model/ConvertPositionResponse';
-import {Depth} from './model/Depth';
-import {DepthMap} from './model/DepthMap';
-import {DpPlan} from './model/DpPlan';
-import {GetBrokerageResponse} from './model/GetBrokerageResponse';
-import {GetFullMarketQuoteResponse} from './model/GetFullMarketQuoteResponse';
-import {GetHistoricalCandleResponse} from './model/GetHistoricalCandleResponse';
-import {GetHoldingsResponse} from './model/GetHoldingsResponse';
-import {GetIntraDayCandleResponse} from './model/GetIntraDayCandleResponse';
-import {GetMarketQuoteLastTradedPriceResponse} from './model/GetMarketQuoteLastTradedPriceResponse';
-import {GetMarketQuoteOHLCResponse} from './model/GetMarketQuoteOHLCResponse';
-import {GetOrderBookResponse} from './model/GetOrderBookResponse';
-import {GetOrderResponse} from './model/GetOrderResponse';
-import {GetPositionResponse} from './model/GetPositionResponse';
-import {GetProfileResponse} from './model/GetProfileResponse';
-import {GetProfitAndLossChargesResponse} from './model/GetProfitAndLossChargesResponse';
-import {GetTradeResponse} from './model/GetTradeResponse';
-import {GetTradeWiseProfitAndLossDataResponse} from './model/GetTradeWiseProfitAndLossDataResponse';
-import {GetTradeWiseProfitAndLossMetaDataResponse} from './model/GetTradeWiseProfitAndLossMetaDataResponse';
-import {GetUserFundMarginResponse} from './model/GetUserFundMarginResponse';
-import {HistoricalCandleData} from './model/HistoricalCandleData';
-import {HoldingsData} from './model/HoldingsData';
-import {IntraDayCandleData} from './model/IntraDayCandleData';
-import {LogoutResponse} from './model/LogoutResponse';
-import {MarketQuoteOHLC} from './model/MarketQuoteOHLC';
-import {MarketQuoteSymbol} from './model/MarketQuoteSymbol';
-import {MarketQuoteSymbolLtp} from './model/MarketQuoteSymbolLtp';
-import {ModifyOrderData} from './model/ModifyOrderData';
-import {ModifyOrderRequest} from './model/ModifyOrderRequest';
-import {ModifyOrderResponse} from './model/ModifyOrderResponse';
-import {OAuthClientException} from './model/OAuthClientException';
-import {OAuthClientExceptionCause} from './model/OAuthClientExceptionCause';
-import {OAuthClientExceptionCauseStackTrace} from './model/OAuthClientExceptionCauseStackTrace';
-import {OAuthClientExceptionCauseSuppressed} from './model/OAuthClientExceptionCauseSuppressed';
-import {Ohlc} from './model/Ohlc';
-import {OrderBookData} from './model/OrderBookData';
-import {OrderData} from './model/OrderData';
-import {OtherTaxes} from './model/OtherTaxes';
-import {PlaceOrderData} from './model/PlaceOrderData';
-import {PlaceOrderRequest} from './model/PlaceOrderRequest';
-import {PlaceOrderResponse} from './model/PlaceOrderResponse';
-import {PositionData} from './model/PositionData';
-import {Problem} from './model/Problem';
-import {ProfileData} from './model/ProfileData';
-import {ProfitAndLossChargesData} from './model/ProfitAndLossChargesData';
-import {ProfitAndLossChargesTaxes} from './model/ProfitAndLossChargesTaxes';
-import {ProfitAndLossChargesWrapperData} from './model/ProfitAndLossChargesWrapperData';
-import {ProfitAndLossMetaData} from './model/ProfitAndLossMetaData';
-import {ProfitAndLossMetaDataWrapper} from './model/ProfitAndLossMetaDataWrapper';
-import {ProfitAndLossOtherChargesTaxes} from './model/ProfitAndLossOtherChargesTaxes';
-import {TokenRequest} from './model/TokenRequest';
-import {TokenResponse} from './model/TokenResponse';
-import {TradeData} from './model/TradeData';
-import {TradeWiseMetaData} from './model/TradeWiseMetaData';
-import {TradeWiseProfitAndLossData} from './model/TradeWiseProfitAndLossData';
-import {UserFundMarginData} from './model/UserFundMarginData';
-import {WebsocketAuthRedirectResponse} from './model/WebsocketAuthRedirectResponse';
-import {WebsocketAuthRedirectResponseData} from './model/WebsocketAuthRedirectResponseData';
-import {ChargeApi} from './api/ChargeApi';
-import {HistoryApi} from './api/HistoryApi';
-import {LoginApi} from './api/LoginApi';
-import {MarketQuoteApi} from './api/MarketQuoteApi';
-import {OrderApi} from './api/OrderApi';
-import {PortfolioApi} from './api/PortfolioApi';
-import {TradeProfitAndLossApi} from './api/TradeProfitAndLossApi';
-import {UserApi} from './api/UserApi';
-import {WebsocketApi} from './api/WebsocketApi';
+import ApiClient from './ApiClient';
+import AnalyticsData from './model/AnalyticsData';
+import ApiGatewayErrorResponse from './model/ApiGatewayErrorResponse';
+import BrokerageData from './model/BrokerageData';
+import BrokerageTaxes from './model/BrokerageTaxes';
+import BrokerageWrapperData from './model/BrokerageWrapperData';
+import CancelOrderData from './model/CancelOrderData';
+import CancelOrderResponse from './model/CancelOrderResponse';
+import ConvertPositionData from './model/ConvertPositionData';
+import ConvertPositionRequest from './model/ConvertPositionRequest';
+import ConvertPositionResponse from './model/ConvertPositionResponse';
+import Depth from './model/Depth';
+import DepthMap from './model/DepthMap';
+import DpPlan from './model/DpPlan';
+import ExchangeTimingData from './model/ExchangeTimingData';
+import GetBrokerageResponse from './model/GetBrokerageResponse';
+import GetExchangeTimingResponse from './model/GetExchangeTimingResponse';
+import GetFullMarketQuoteResponse from './model/GetFullMarketQuoteResponse';
+import GetHistoricalCandleResponse from './model/GetHistoricalCandleResponse';
+import GetHoldingsResponse from './model/GetHoldingsResponse';
+import GetHolidayResponse from './model/GetHolidayResponse';
+import GetIntraDayCandleResponse from './model/GetIntraDayCandleResponse';
+import GetMarketQuoteLastTradedPriceResponse from './model/GetMarketQuoteLastTradedPriceResponse';
+import GetMarketQuoteOHLCResponse from './model/GetMarketQuoteOHLCResponse';
+import GetMarketStatusResponse from './model/GetMarketStatusResponse';
+import GetOptionChainResponse from './model/GetOptionChainResponse';
+import GetOptionContractResponse from './model/GetOptionContractResponse';
+import GetOrderBookResponse from './model/GetOrderBookResponse';
+import GetOrderResponse from './model/GetOrderResponse';
+import GetPositionResponse from './model/GetPositionResponse';
+import GetProfileResponse from './model/GetProfileResponse';
+import GetProfitAndLossChargesResponse from './model/GetProfitAndLossChargesResponse';
+import GetTradeResponse from './model/GetTradeResponse';
+import GetTradeWiseProfitAndLossDataResponse from './model/GetTradeWiseProfitAndLossDataResponse';
+import GetTradeWiseProfitAndLossMetaDataResponse from './model/GetTradeWiseProfitAndLossMetaDataResponse';
+import GetUserFundMarginResponse from './model/GetUserFundMarginResponse';
+import HistoricalCandleData from './model/HistoricalCandleData';
+import HoldingsData from './model/HoldingsData';
+import HolidayData from './model/HolidayData';
+import InstrumentData from './model/InstrumentData';
+import IntraDayCandleData from './model/IntraDayCandleData';
+import LogoutResponse from './model/LogoutResponse';
+import MarketData from './model/MarketData';
+import MarketQuoteOHLC from './model/MarketQuoteOHLC';
+import MarketQuoteSymbol from './model/MarketQuoteSymbol';
+import MarketQuoteSymbolLtp from './model/MarketQuoteSymbolLtp';
+import MarketStatusData from './model/MarketStatusData';
+import ModifyOrderData from './model/ModifyOrderData';
+import ModifyOrderRequest from './model/ModifyOrderRequest';
+import ModifyOrderResponse from './model/ModifyOrderResponse';
+import OAuthClientException from './model/OAuthClientException';
+import OAuthClientExceptionCause from './model/OAuthClientExceptionCause';
+import OAuthClientExceptionCauseStackTrace from './model/OAuthClientExceptionCauseStackTrace';
+import OAuthClientExceptionCauseSuppressed from './model/OAuthClientExceptionCauseSuppressed';
+import Ohlc from './model/Ohlc';
+import OptionStrikeData from './model/OptionStrikeData';
+import OrderBookData from './model/OrderBookData';
+import OrderData from './model/OrderData';
+import OtherTaxes from './model/OtherTaxes';
+import PlaceOrderData from './model/PlaceOrderData';
+import PlaceOrderRequest from './model/PlaceOrderRequest';
+import PlaceOrderResponse from './model/PlaceOrderResponse';
+import PositionData from './model/PositionData';
+import Problem from './model/Problem';
+import ProfileData from './model/ProfileData';
+import ProfitAndLossChargesData from './model/ProfitAndLossChargesData';
+import ProfitAndLossChargesTaxes from './model/ProfitAndLossChargesTaxes';
+import ProfitAndLossChargesWrapperData from './model/ProfitAndLossChargesWrapperData';
+import ProfitAndLossMetaData from './model/ProfitAndLossMetaData';
+import ProfitAndLossMetaDataWrapper from './model/ProfitAndLossMetaDataWrapper';
+import ProfitAndLossOtherChargesTaxes from './model/ProfitAndLossOtherChargesTaxes';
+import PutCallOptionChainData from './model/PutCallOptionChainData';
+import TokenRequest from './model/TokenRequest';
+import TokenResponse from './model/TokenResponse';
+import TradeData from './model/TradeData';
+import TradeWiseMetaData from './model/TradeWiseMetaData';
+import TradeWiseProfitAndLossData from './model/TradeWiseProfitAndLossData';
+import UserFundMarginData from './model/UserFundMarginData';
+import WebsocketAuthRedirectResponse from './model/WebsocketAuthRedirectResponse';
+import WebsocketAuthRedirectResponseData from './model/WebsocketAuthRedirectResponseData';
+import ChargeApi from './api/ChargeApi';
+import HistoryApi from './api/HistoryApi';
+import LoginApi from './api/LoginApi';
+import MarketHolidaysAndTimingsApi from './api/MarketHolidaysAndTimingsApi';
+import MarketQuoteApi from './api/MarketQuoteApi';
+import OptionsApi from './api/OptionsApi';
+import OrderApi from './api/OrderApi';
+import PortfolioApi from './api/PortfolioApi';
+import TradeProfitAndLossApi from './api/TradeProfitAndLossApi';
+import UserApi from './api/UserApi';
+import WebsocketApi from './api/WebsocketApi';
 import {MarketDataStreamer} from './feeder/MarketDataStreamer';
 import {PortfolioDataStreamer} from './feeder/PortfolioDataStreamer';
 
@@ -130,6 +145,13 @@ export {
     ApiClient,
     MarketDataStreamer,
     PortfolioDataStreamer,
+
+    /**
+     * The AnalyticsData model constructor.
+     * @property {module:model/AnalyticsData}
+     */
+    AnalyticsData,
+
     /**
      * The ApiGatewayErrorResponse model constructor.
      * @property {module:model/ApiGatewayErrorResponse}
@@ -203,10 +225,22 @@ export {
     DpPlan,
 
     /**
+     * The ExchangeTimingData model constructor.
+     * @property {module:model/ExchangeTimingData}
+     */
+    ExchangeTimingData,
+
+    /**
      * The GetBrokerageResponse model constructor.
      * @property {module:model/GetBrokerageResponse}
      */
     GetBrokerageResponse,
+
+    /**
+     * The GetExchangeTimingResponse model constructor.
+     * @property {module:model/GetExchangeTimingResponse}
+     */
+    GetExchangeTimingResponse,
 
     /**
      * The GetFullMarketQuoteResponse model constructor.
@@ -227,6 +261,12 @@ export {
     GetHoldingsResponse,
 
     /**
+     * The GetHolidayResponse model constructor.
+     * @property {module:model/GetHolidayResponse}
+     */
+    GetHolidayResponse,
+
+    /**
      * The GetIntraDayCandleResponse model constructor.
      * @property {module:model/GetIntraDayCandleResponse}
      */
@@ -243,6 +283,24 @@ export {
      * @property {module:model/GetMarketQuoteOHLCResponse}
      */
     GetMarketQuoteOHLCResponse,
+
+    /**
+     * The GetMarketStatusResponse model constructor.
+     * @property {module:model/GetMarketStatusResponse}
+     */
+    GetMarketStatusResponse,
+
+    /**
+     * The GetOptionChainResponse model constructor.
+     * @property {module:model/GetOptionChainResponse}
+     */
+    GetOptionChainResponse,
+
+    /**
+     * The GetOptionContractResponse model constructor.
+     * @property {module:model/GetOptionContractResponse}
+     */
+    GetOptionContractResponse,
 
     /**
      * The GetOrderBookResponse model constructor.
@@ -311,6 +369,18 @@ export {
     HoldingsData,
 
     /**
+     * The HolidayData model constructor.
+     * @property {module:model/HolidayData}
+     */
+    HolidayData,
+
+    /**
+     * The InstrumentData model constructor.
+     * @property {module:model/InstrumentData}
+     */
+    InstrumentData,
+
+    /**
      * The IntraDayCandleData model constructor.
      * @property {module:model/IntraDayCandleData}
      */
@@ -321,6 +391,12 @@ export {
      * @property {module:model/LogoutResponse}
      */
     LogoutResponse,
+
+    /**
+     * The MarketData model constructor.
+     * @property {module:model/MarketData}
+     */
+    MarketData,
 
     /**
      * The MarketQuoteOHLC model constructor.
@@ -339,6 +415,12 @@ export {
      * @property {module:model/MarketQuoteSymbolLtp}
      */
     MarketQuoteSymbolLtp,
+
+    /**
+     * The MarketStatusData model constructor.
+     * @property {module:model/MarketStatusData}
+     */
+    MarketStatusData,
 
     /**
      * The ModifyOrderData model constructor.
@@ -387,6 +469,12 @@ export {
      * @property {module:model/Ohlc}
      */
     Ohlc,
+
+    /**
+     * The OptionStrikeData model constructor.
+     * @property {module:model/OptionStrikeData}
+     */
+    OptionStrikeData,
 
     /**
      * The OrderBookData model constructor.
@@ -479,6 +567,12 @@ export {
     ProfitAndLossOtherChargesTaxes,
 
     /**
+     * The PutCallOptionChainData model constructor.
+     * @property {module:model/PutCallOptionChainData}
+     */
+    PutCallOptionChainData,
+
+    /**
      * The TokenRequest model constructor.
      * @property {module:model/TokenRequest}
      */
@@ -545,10 +639,22 @@ export {
     LoginApi,
 
     /**
+    * The MarketHolidaysAndTimingsApi service constructor.
+    * @property {module:api/MarketHolidaysAndTimingsApi}
+    */
+    MarketHolidaysAndTimingsApi,
+
+    /**
     * The MarketQuoteApi service constructor.
     * @property {module:api/MarketQuoteApi}
     */
     MarketQuoteApi,
+
+    /**
+    * The OptionsApi service constructor.
+    * @property {module:api/OptionsApi}
+    */
+    OptionsApi,
 
     /**
     * The OrderApi service constructor.
