@@ -78,7 +78,7 @@ export class UserApi {
       let returnType = GetProfileResponse;
 
       return this.apiClient.callApi(
-        '/user/profile', 'GET',
+        '/v2/user/profile', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
@@ -127,7 +127,7 @@ export class UserApi {
       let returnType = GetUserFundMarginResponse;
 
       return this.apiClient.callApi(
-        '/user/get-funds-and-margin', 'GET',
+        '/v2/user/get-funds-and-margin', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );

@@ -102,7 +102,7 @@ export class PortfolioApi {
       let returnType = ConvertPositionResponse;
 
       return this.apiClient.callApi(
-        '/portfolio/convert-position', 'PUT',
+        '/v2/portfolio/convert-position', 'PUT',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
@@ -149,7 +149,7 @@ export class PortfolioApi {
       let returnType = GetHoldingsResponse;
 
       return this.apiClient.callApi(
-        '/portfolio/long-term-holdings', 'GET',
+        '/v2/portfolio/long-term-holdings', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
@@ -196,7 +196,7 @@ export class PortfolioApi {
       let returnType = GetPositionResponse;
 
       return this.apiClient.callApi(
-        '/portfolio/short-term-positions', 'GET',
+        '/v2/portfolio/short-term-positions', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
