@@ -35,7 +35,7 @@ export class ApiClient {
          * @default https://api-v2.upstox.com
          */
         this.basePath = 'https://api.upstox.com/v2'.replace(/\/+$/, '');
-
+        this.orderBasePath = 'https://api-hft.upstox.com/v2'.replace(/\/+$/, '');
         /**
          * The authentication methods to be included for all API calls.
          * @type {Array.<String>}
@@ -115,8 +115,13 @@ export class ApiClient {
         if (!path.match(/^\//)) {
             path = '/' + path;
         }
-
-        var url = this.basePath + path;
+        var url;
+        if(this.isOrderPath(path)){
+            url = this.orderBasePath + path;
+        }
+        else{
+            url = this.basePath + path;
+        }
         url = url.replace(/\{([\w-]+)\}/g, (fullMatch, key) => {
             var value;
             if (pathParams.hasOwnProperty(key)) {
@@ -131,6 +136,9 @@ export class ApiClient {
         return url;
     }
 
+    isOrderPath(path){
+        return path.includes("/order/place") || path.includes("/order/modify") || path.inlcudes("/order/cancel");
+    }
     /**
     * Checks whether the given content type represents JSON.<br>
     * JSON content type examples:<br>
