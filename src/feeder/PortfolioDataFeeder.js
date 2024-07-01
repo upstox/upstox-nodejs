@@ -12,16 +12,16 @@ class PortfolioDataFeeder extends Feeder {
     this.apiClient = ApiClient.instance;
   }
 
-  async connect() {
+  async connect(orderUpdate = true, positionUpdate = false, holdingUpdate = false) {
     // Skip if its already connected
     if (
       this.ws &&
       (this.ws.readyState == ws.CONNECTING || ws.readyState == ws.OPEN)
     )
       return;
-
+    let wsUrl = this.getWebSocketUrl(orderUpdate, holdingUpdate, positionUpdate);
     this.ws = await this.connectWebSocket(
-      `wss://api.upstox.com/v2/feed/portfolio-stream-feed`,
+      wsUrl,
       this.apiClient.authentications["OAUTH2"].accessToken
     );
     this.onOpen();
@@ -80,6 +80,33 @@ class PortfolioDataFeeder extends Feeder {
       });
       resolve(ws);
     });
+  }
+  getWebSocketUrl(orderUpdate, holdingUpdate, positionUpdate) {
+    let wsUrl = "wss://api.upstox.com/v2/feed/portfolio-stream-feed";
+    let updateTypes = [];
+
+    if (orderUpdate) {
+      updateTypes.push("order");
+    }
+    if (holdingUpdate) {
+      updateTypes.push("holding");
+    }
+    if (positionUpdate) {
+      updateTypes.push("position");
+    }
+
+    if (updateTypes.length >= 1) {
+      wsUrl += "?update_types=";
+    }
+
+    for (let i = 0; i < updateTypes.length - 1; i++) {
+      wsUrl += updateTypes[i] + "%2C";
+    }
+
+    if (updateTypes.length >= 1) {
+      wsUrl += updateTypes[updateTypes.length - 1];
+    }
+    return wsUrl;
   }
 }
 
