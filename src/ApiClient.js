@@ -137,8 +137,8 @@ export class ApiClient {
     }
 
     isOrderPath(path) {
-        const path_set = new Set(path.split("/"));
-        return path_set.has("order") && (path_set.has("place") || path_set.has("modify") || path_set.has("cancel"));
+        const orderRegex = /\/order\/(place|modify|cancel)/;
+        return orderRegex.test(path);
     }
     /**
     * Checks whether the given content type represents JSON.<br>
@@ -411,9 +411,12 @@ export class ApiClient {
         request.set(this.defaultHeaders).set(this.normalizeParams(headerParams));
 
         // set requestAgent if it is set by user
+        
         if (this.requestAgent) {
             request.agent(this.requestAgent);
         }
+
+        request.set('User-Agent','udapi-nodejs-sdk');
 
         // set request timeout
         request.timeout(this.timeout);
@@ -466,7 +469,7 @@ export class ApiClient {
                 request.withCredentials();
             }
         }
-
+        
 
 
         request.end((error, response) => {
