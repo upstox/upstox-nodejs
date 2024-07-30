@@ -76,7 +76,7 @@ export class WebsocketApi {
       let returnType = null;
 
       return this.apiClient.callApi(
-        '/feed/market-data-feed', 'GET',
+        '/v2/feed/market-data-feed', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
@@ -123,7 +123,7 @@ export class WebsocketApi {
       let returnType = WebsocketAuthRedirectResponse;
 
       return this.apiClient.callApi(
-        '/feed/market-data-feed/authorize', 'GET',
+        '/v2/feed/market-data-feed/authorize', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
@@ -169,7 +169,7 @@ export class WebsocketApi {
       let returnType = null;
 
       return this.apiClient.callApi(
-        '/feed/portfolio-stream-feed', 'GET',
+        '/v2/feed/portfolio-stream-feed', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
@@ -216,7 +216,7 @@ export class WebsocketApi {
       let returnType = WebsocketAuthRedirectResponse;
 
       return this.apiClient.callApi(
-        '/feed/portfolio-stream-feed/authorize', 'GET',
+        '/v2/feed/portfolio-stream-feed/authorize', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );

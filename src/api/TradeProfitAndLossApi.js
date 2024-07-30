@@ -92,7 +92,7 @@ export class TradeProfitAndLossApi {
       let returnType = GetProfitAndLossChargesResponse;
 
       return this.apiClient.callApi(
-        '/trade/profit-loss/charges', 'GET',
+        '/v2/trade/profit-loss/charges', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
@@ -162,7 +162,7 @@ export class TradeProfitAndLossApi {
       let returnType = GetTradeWiseProfitAndLossDataResponse;
 
       return this.apiClient.callApi(
-        '/trade/profit-loss/data', 'GET',
+        '/v2/trade/profit-loss/data', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
@@ -222,7 +222,7 @@ export class TradeProfitAndLossApi {
       let returnType = GetTradeWiseProfitAndLossMetaDataResponse;
 
       return this.apiClient.callApi(
-        '/trade/profit-loss/metadata', 'GET',
+        '/v2/trade/profit-loss/metadata', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );

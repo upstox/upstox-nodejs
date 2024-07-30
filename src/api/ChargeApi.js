@@ -102,7 +102,7 @@ export class ChargeApi {
       let returnType = GetBrokerageResponse;
 
       return this.apiClient.callApi(
-        '/charges/brokerage', 'GET',
+        '/v2/charges/brokerage', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );

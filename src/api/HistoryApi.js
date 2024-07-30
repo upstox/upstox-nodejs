@@ -93,7 +93,7 @@ export class HistoryApi {
       let returnType = GetHistoricalCandleResponse;
 
       return this.apiClient.callApi(
-        '/historical-candle/{instrumentKey}/{interval}/{to_date}', 'GET',
+        '/v2/historical-candle/{instrumentKey}/{interval}/{to_date}', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
@@ -160,7 +160,7 @@ export class HistoryApi {
       let returnType = GetHistoricalCandleResponse;
 
       return this.apiClient.callApi(
-        '/historical-candle/{instrumentKey}/{interval}/{to_date}/{from_date}', 'GET',
+        '/v2/historical-candle/{instrumentKey}/{interval}/{to_date}/{from_date}', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
@@ -217,7 +217,7 @@ export class HistoryApi {
       let returnType = GetIntraDayCandleResponse;
 
       return this.apiClient.callApi(
-        '/historical-candle/intraday/{instrumentKey}/{interval}', 'GET',
+        '/v2/historical-candle/intraday/{instrumentKey}/{interval}', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
