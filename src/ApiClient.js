@@ -34,14 +34,16 @@ export class ApiClient {
          * @type {String}
          * @default https://api-v2.upstox.com
          */
-        this.basePath = 'https://api.upstox.com/v2'.replace(/\/+$/, '');
+
+        this.basePath = 'https://api.upstox.com'.replace(/\/+$/, '');
+        this.orderBasePath = 'https://api-hft.upstox.com'.replace(/\/+$/, '');
 
         /**
          * The authentication methods to be included for all API calls.
          * @type {Array.<String>}
          */
         this.authentications = {
-            'OAUTH2': {type: 'oauth2'}
+            'OAUTH2': { type: 'oauth2' }
         }
 
         /**
@@ -78,13 +80,13 @@ export class ApiClient {
          * if this.enableCookies is set to true.
          */
         if (typeof window === 'undefined') {
-          this.agent = new superagent.agent();
+            this.agent = new superagent.agent();
         }
 
         /*
          * Allow user to override superagent agent
          */
-         this.requestAgent = null;
+        this.requestAgent = null;
 
     }
 
@@ -115,8 +117,13 @@ export class ApiClient {
         if (!path.match(/^\//)) {
             path = '/' + path;
         }
-
-        var url = this.basePath + path;
+        var url;
+        if (this.isOrderPath(path)) {
+            url = this.orderBasePath + path;
+        }
+        else {
+            url = this.basePath + path;
+        }
         url = url.replace(/\{([\w-]+)\}/g, (fullMatch, key) => {
             var value;
             if (pathParams.hasOwnProperty(key)) {
@@ -131,6 +138,10 @@ export class ApiClient {
         return url;
     }
 
+    isOrderPath(path) {
+        const orderRegex = /\/order\/(place|modify|cancel)/;
+        return orderRegex.test(path);
+    }
     /**
     * Checks whether the given content type represents JSON.<br>
     * JSON content type examples:<br>
@@ -172,7 +183,7 @@ export class ApiClient {
             let fs;
             try {
                 fs = require('fs');
-            } catch (err) {}
+            } catch (err) { }
             if (fs && fs.ReadStream && param instanceof fs.ReadStream) {
                 return true;
             }
@@ -321,7 +332,7 @@ export class ApiClient {
                     break;
                 case 'oauth2':
                     if (auth.accessToken) {
-                        request.set({'Authorization': 'Bearer ' + auth.accessToken});
+                        request.set({ 'Authorization': 'Bearer ' + auth.accessToken });
                     }
 
                     break;
@@ -402,9 +413,12 @@ export class ApiClient {
         request.set(this.defaultHeaders).set(this.normalizeParams(headerParams));
 
         // set requestAgent if it is set by user
+        
         if (this.requestAgent) {
-          request.agent(this.requestAgent);
+            request.agent(this.requestAgent);
         }
+
+        request.set('User-Agent','udapi-nodejs-sdk');
 
         // set request timeout
         request.timeout(this.timeout);
@@ -412,7 +426,7 @@ export class ApiClient {
         var contentType = this.jsonPreferredMime(contentTypes);
         if (contentType) {
             // Issue with superagent and multipart/form-data (https://github.com/visionmedia/superagent/issues/746)
-            if(contentType != 'multipart/form-data') {
+            if (contentType != 'multipart/form-data') {
                 request.type(contentType);
             }
         } else if (!request.header['Content-Type']) {
@@ -443,13 +457,13 @@ export class ApiClient {
         }
 
         if (returnType === 'Blob') {
-          request.responseType('blob');
+            request.responseType('blob');
         } else if (returnType === 'String') {
-          request.responseType('string');
+            request.responseType('string');
         }
 
         // Attach previously saved cookies, if enabled
-        if (this.enableCookies){
+        if (this.enableCookies) {
             if (typeof window === 'undefined') {
                 this.agent.attachCookies(request);
             }
@@ -457,8 +471,8 @@ export class ApiClient {
                 request.withCredentials();
             }
         }
-
         
+
 
         request.end((error, response) => {
             if (callback) {
@@ -466,7 +480,7 @@ export class ApiClient {
                 if (!error) {
                     try {
                         data = this.deserialize(response, returnType);
-                        if (this.enableCookies && typeof window === 'undefined'){
+                        if (this.enableCookies && typeof window === 'undefined') {
                             this.agent.saveCookies(response);
                         }
                     } catch (err) {

@@ -84,7 +84,7 @@ export class MarketQuoteApi {
       let returnType = GetFullMarketQuoteResponse;
 
       return this.apiClient.callApi(
-        '/market-quote/quotes', 'GET',
+        '/v2/market-quote/quotes', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
@@ -141,7 +141,7 @@ export class MarketQuoteApi {
       let returnType = GetMarketQuoteOHLCResponse;
 
       return this.apiClient.callApi(
-        '/market-quote/ohlc', 'GET',
+        '/v2/market-quote/ohlc', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
@@ -193,7 +193,7 @@ export class MarketQuoteApi {
       let returnType = GetMarketQuoteLastTradedPriceResponse;
 
       return this.apiClient.callApi(
-        '/market-quote/ltp', 'GET',
+        '/v2/market-quote/ltp', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );

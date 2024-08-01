@@ -89,7 +89,7 @@ export class OrderApi {
       let returnType = CancelOrderResponse;
 
       return this.apiClient.callApi(
-        '/order/cancel', 'DELETE',
+        '/v2/order/cancel', 'DELETE',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
@@ -136,7 +136,7 @@ export class OrderApi {
       let returnType = GetOrderBookResponse;
 
       return this.apiClient.callApi(
-        '/order/retrieve-all', 'GET',
+        '/v2/order/retrieve-all', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
@@ -186,7 +186,7 @@ export class OrderApi {
       let returnType = GetOrderResponse;
 
       return this.apiClient.callApi(
-        '/order/history', 'GET',
+        '/v2/order/history', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
@@ -233,7 +233,7 @@ export class OrderApi {
       let returnType = GetTradeResponse;
 
       return this.apiClient.callApi(
-        '/order/trades/get-trades-for-day', 'GET',
+        '/v2/order/trades/get-trades-for-day', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
@@ -285,7 +285,7 @@ export class OrderApi {
       let returnType = GetTradeResponse;
 
       return this.apiClient.callApi(
-        '/order/trades', 'GET',
+        '/v2/order/trades', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
@@ -358,7 +358,7 @@ export class OrderApi {
       let returnType = ModifyOrderResponse;
 
       return this.apiClient.callApi(
-        '/order/modify', 'PUT',
+        '/v2/order/modify', 'PUT',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
@@ -439,7 +439,7 @@ export class OrderApi {
       let returnType = PlaceOrderResponse;
 
       return this.apiClient.callApi(
-        '/order/place', 'POST',
+        '/v2/order/place', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );

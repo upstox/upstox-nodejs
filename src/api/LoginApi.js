@@ -91,7 +91,7 @@ export class LoginApi {
       let returnType = null;
 
       return this.apiClient.callApi(
-        '/login/authorization/dialog', 'GET',
+        '/v2/login/authorization/dialog', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
@@ -138,7 +138,7 @@ export class LoginApi {
       let returnType = LogoutResponse;
 
       return this.apiClient.callApi(
-        '/logout', 'DELETE',
+        '/v2/logout', 'DELETE',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
@@ -191,7 +191,7 @@ export class LoginApi {
       let returnType = TokenResponse;
 
       return this.apiClient.callApi(
-        '/login/authorization/token', 'POST',
+        '/v2/login/authorization/token', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
