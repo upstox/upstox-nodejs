@@ -45,10 +45,24 @@ apiInstance.getUserFundMargin(apiVersion, null, (error, data, response) => {
         console.error(error);
     } else {
         if(data.status != "success"){
-            console.log("error in get funds and margin");
+            console.log("error get brokerage");
         }
       }
     });
+
+    let instruments =[ new UpstoxClient.Instrument("NSE_EQ|INE669E01016",1,"D","BUY"), new UpstoxClient.Instrument("NSE_FO|38707",25,"D","BUY")];
+
+    let postMarginRequest = new UpstoxClient.MarginRequest(instruments)
+    
+    apiInstance.postMargin(postMarginRequest, (error, data, response) => {
+        if (error) {
+          console.log("error in post margin api call");
+          console.error(error.response.text);
+        } else {
+          if(data.status != "success") console.log("error in post margin api call");
+        }
+      });
+
 
     var apiInstance = new UpstoxClient.OrderApi();
     var body = new UpstoxClient.PlaceOrderRequest(1, UpstoxClient.PlaceOrderRequest.ProductEnum.D, UpstoxClient.PlaceOrderRequest.ValidityEnum.DAY, 0.0, "NSE_EQ|INE528G01035",UpstoxClient.PlaceOrderRequest.OrderTypeEnum.MARKET,UpstoxClient.PlaceOrderRequest.TransactionTypeEnum.BUY, 0, 0.0, false); 
@@ -323,6 +337,22 @@ apiInstance1.getMarketStatus("NSE", (error, data, response) => {
         }
       }
 });
+
+apiInstance = new UpstoxClient.PostTradeApi();
+
+
+opts = {
+    segment: "EQ"
+}
+
+apiInstance.getTradeHistory1("2023-04-01","2024-08-30",1,1000,opts,(error, data, response) => {
+  if (error) {
+    console.error(error.response.text);
+  } else {
+    if(data.status != "success") console.log("error in post trade")
+  }
+});
+
 
 setTimeout(() => {
   apiInstance = new UpstoxClient.LoginApi();

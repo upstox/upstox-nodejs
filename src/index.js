@@ -51,9 +51,13 @@ import {GetUserFundMarginResponse} from './model/GetUserFundMarginResponse';
 import {HistoricalCandleData} from './model/HistoricalCandleData';
 import {HoldingsData} from './model/HoldingsData';
 import {HolidayData} from './model/HolidayData';
+import {Instrument} from './model/Instrument';
 import {InstrumentData} from './model/InstrumentData';
 import {IntraDayCandleData} from './model/IntraDayCandleData';
 import {LogoutResponse} from './model/LogoutResponse';
+import {Margin} from './model/Margin';
+import {MarginData} from './model/MarginData';
+import {MarginRequest} from './model/MarginRequest';
 import {MarketData} from './model/MarketData';
 import {MarketQuoteOHLC} from './model/MarketQuoteOHLC';
 import {MarketQuoteSymbol} from './model/MarketQuoteSymbol';
@@ -75,6 +79,7 @@ import {PlaceOrderData} from './model/PlaceOrderData';
 import {PlaceOrderRequest} from './model/PlaceOrderRequest';
 import {PlaceOrderResponse} from './model/PlaceOrderResponse';
 import {PositionData} from './model/PositionData';
+import {PostMarginResponse} from './model/PostMarginResponse';
 import {Problem} from './model/Problem';
 import {ProfileData} from './model/ProfileData';
 import {ProfitAndLossChargesData} from './model/ProfitAndLossChargesData';
@@ -87,6 +92,10 @@ import {PutCallOptionChainData} from './model/PutCallOptionChainData';
 import {TokenRequest} from './model/TokenRequest';
 import {TokenResponse} from './model/TokenResponse';
 import {TradeData} from './model/TradeData';
+import {TradeHistoryResponse} from './model/TradeHistoryResponse';
+import {TradeHistoryResponseMetaData} from './model/TradeHistoryResponseMetaData';
+import {TradeHistoryResponsePageData} from './model/TradeHistoryResponsePageData';
+import {TradeHistoryResponseTradeData} from './model/TradeHistoryResponseTradeData';
 import {TradeWiseMetaData} from './model/TradeWiseMetaData';
 import {TradeWiseProfitAndLossData} from './model/TradeWiseProfitAndLossData';
 import {UserFundMarginData} from './model/UserFundMarginData';
@@ -100,6 +109,7 @@ import {MarketQuoteApi} from './api/MarketQuoteApi';
 import {OptionsApi} from './api/OptionsApi';
 import {OrderApi} from './api/OrderApi';
 import {PortfolioApi} from './api/PortfolioApi';
+import {PostTradeApi} from './api/PostTradeApi';
 import {TradeProfitAndLossApi} from './api/TradeProfitAndLossApi';
 import {UserApi} from './api/UserApi';
 import {WebsocketApi} from './api/WebsocketApi';
@@ -374,6 +384,12 @@ export {
     HolidayData,
 
     /**
+     * The Instrument model constructor.
+     * @property {module:model/Instrument}
+     */
+    Instrument,
+
+    /**
      * The InstrumentData model constructor.
      * @property {module:model/InstrumentData}
      */
@@ -390,6 +406,24 @@ export {
      * @property {module:model/LogoutResponse}
      */
     LogoutResponse,
+
+    /**
+     * The Margin model constructor.
+     * @property {module:model/Margin}
+     */
+    Margin,
+
+    /**
+     * The MarginData model constructor.
+     * @property {module:model/MarginData}
+     */
+    MarginData,
+
+    /**
+     * The MarginRequest model constructor.
+     * @property {module:model/MarginRequest}
+     */
+    MarginRequest,
 
     /**
      * The MarketData model constructor.
@@ -518,6 +552,12 @@ export {
     PositionData,
 
     /**
+     * The PostMarginResponse model constructor.
+     * @property {module:model/PostMarginResponse}
+     */
+    PostMarginResponse,
+
+    /**
      * The Problem model constructor.
      * @property {module:model/Problem}
      */
@@ -588,6 +628,30 @@ export {
      * @property {module:model/TradeData}
      */
     TradeData,
+
+    /**
+     * The TradeHistoryResponse model constructor.
+     * @property {module:model/TradeHistoryResponse}
+     */
+    TradeHistoryResponse,
+
+    /**
+     * The TradeHistoryResponseMetaData model constructor.
+     * @property {module:model/TradeHistoryResponseMetaData}
+     */
+    TradeHistoryResponseMetaData,
+
+    /**
+     * The TradeHistoryResponsePageData model constructor.
+     * @property {module:model/TradeHistoryResponsePageData}
+     */
+    TradeHistoryResponsePageData,
+
+    /**
+     * The TradeHistoryResponseTradeData model constructor.
+     * @property {module:model/TradeHistoryResponseTradeData}
+     */
+    TradeHistoryResponseTradeData,
 
     /**
      * The TradeWiseMetaData model constructor.
@@ -666,6 +730,12 @@ export {
     * @property {module:api/PortfolioApi}
     */
     PortfolioApi,
+
+    /**
+    * The PostTradeApi service constructor.
+    * @property {module:api/PostTradeApi}
+    */
+    PostTradeApi,
 
     /**
     * The TradeProfitAndLossApi service constructor.
