@@ -10,6 +10,7 @@ message LTPC {
 
 message MarketLevel {
   repeated Quote bidAskQuote = 1;
+  int64 lut = 2;
 }
 
 message MarketOHLC {
@@ -24,6 +25,8 @@ message Quote {
   int32 aq = 4; // ask quantity
   double ap = 5; // ask price
   int32 ano = 6; // ask number of orders
+  int64 bidQ = 7; //bid quantity
+  int64 askQ = 8; // ask quantity
 }
 
 message OptionGreeks {
@@ -70,6 +73,7 @@ message OHLC {
   double close = 5;
   int32 volume = 6;
   int64 ts = 7;
+  int64 vol = 9;
 }
 
 enum Type{
@@ -119,4 +123,5 @@ message Feed {
 message FeedResponse{
   Type type = 1;
   map<string, Feed> feeds = 2;
+  int64 currentTs = 3;
 }
