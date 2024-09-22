@@ -50,7 +50,7 @@ apiInstance.getUserFundMargin(apiVersion, null, (error, data, response) => {
       }
     });
 
-    let instruments =[ new UpstoxClient.Instrument("NSE_EQ|INE669E01016",1,"D","BUY"), new UpstoxClient.Instrument("NSE_FO|38707",25,"D","BUY")];
+    let instruments =[ new UpstoxClient.Instrument("NSE_EQ|INE669E01016",1,"D","BUY"), new UpstoxClient.Instrument("NSE_EQ|INE917I01010",2,"D","BUY")];
 
     let postMarginRequest = new UpstoxClient.MarginRequest(instruments)
     
