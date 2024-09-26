@@ -40,6 +40,7 @@ import {GetMarketStatusResponse} from './model/GetMarketStatusResponse';
 import {GetOptionChainResponse} from './model/GetOptionChainResponse';
 import {GetOptionContractResponse} from './model/GetOptionContractResponse';
 import {GetOrderBookResponse} from './model/GetOrderBookResponse';
+import {GetOrderDetailsResponse} from './model/GetOrderDetailsResponse';
 import {GetOrderResponse} from './model/GetOrderResponse';
 import {GetPositionResponse} from './model/GetPositionResponse';
 import {GetProfileResponse} from './model/GetProfileResponse';
@@ -316,6 +317,12 @@ export {
      * @property {module:model/GetOrderBookResponse}
      */
     GetOrderBookResponse,
+
+    /**
+     * The GetOrderDetailsResponse model constructor.
+     * @property {module:model/GetOrderDetailsResponse}
+     */
+    GetOrderDetailsResponse,
 
     /**
      * The GetOrderResponse model constructor.

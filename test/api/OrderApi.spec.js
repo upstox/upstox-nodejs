@@ -95,6 +95,27 @@
           done();
         });
       });
+      describe('getOrderStatus', function() {
+        it('should call getOrderStatus successfully', function(done) {
+          // TODO: uncomment, update parameter values for getOrderStatus call and complete the assertions
+          /*
+          var opts = {};
+
+          instance.getOrderStatus(opts, function(error, data, response) {
+            if (error) {
+              done(error);
+              return;
+            }
+            // TODO: update response assertions
+            expect(data).to.be.a(UpstoxClient.GetOrderDetailsResponse);
+
+            done();
+          });
+          */
+          // TODO: uncomment and complete method invocation above, then delete this line and the next:
+          done();
+        });
+      });
       describe('getTradeHistory', function() {
         it('should call getTradeHistory successfully', function(done) {
           // TODO: uncomment, update parameter values for getTradeHistory call and complete the assertions

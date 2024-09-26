@@ -4,11 +4,11 @@ All URIs are relative to *https://api-v2.upstox.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getTradeHistory1**](PostTradeApi.md#getTradeHistory1) | **GET** /v2/charges/historical-trades | 
+[**getTradesByDateRange**](PostTradeApi.md#getTradesByDateRange) | **GET** /v2/charges/historical-trades | 
 
-<a name="getTradeHistory1"></a>
-# **getTradeHistory1**
-> TradeHistoryResponse getTradeHistory1(startDate, endDate, pageNumber, pageSize, opts)
+<a name="getTradesByDateRange"></a>
+# **getTradesByDateRange**
+> TradeHistoryResponse getTradesByDateRange(startDate, endDate, pageNumber, pageSize, opts)
 
 
 
@@ -29,7 +29,7 @@ let pageSize = 56; // Number | How many records you want for a page
 let opts = { 
   'segment': "" // String | Segment for which data is requested can be from the following options EQ - Equity,   FO - Futures and Options,   COM  - Commodity,   CD - Currency Derivatives MF - Mutual Funds
 };
-apiInstance.getTradeHistory1(startDate, endDate, pageNumber, pageSize, opts, (error, data, response) => {
+apiInstance.getTradesByDateRange(startDate, endDate, pageNumber, pageSize, opts, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {

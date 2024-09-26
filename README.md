@@ -88,6 +88,7 @@ Class | Method | HTTP request | Description
 *UpstoxClient.OrderApi* | [**cancelOrder**](docs/OrderApi.md#cancelOrder) | **DELETE** /v2/order/cancel | Cancel order
 *UpstoxClient.OrderApi* | [**getOrderBook**](docs/OrderApi.md#getOrderBook) | **GET** /v2/order/retrieve-all | Get order book
 *UpstoxClient.OrderApi* | [**getOrderDetails**](docs/OrderApi.md#getOrderDetails) | **GET** /v2/order/history | Get order history
+*UpstoxClient.OrderApi* | [**getOrderStatus**](docs/OrderApi.md#getOrderStatus) | **GET** /v2/order/details | Get order details
 *UpstoxClient.OrderApi* | [**getTradeHistory**](docs/OrderApi.md#getTradeHistory) | **GET** /v2/order/trades/get-trades-for-day | Get trades
 *UpstoxClient.OrderApi* | [**getTradesByOrder**](docs/OrderApi.md#getTradesByOrder) | **GET** /v2/order/trades | Get trades for order
 *UpstoxClient.OrderApi* | [**modifyOrder**](docs/OrderApi.md#modifyOrder) | **PUT** /v2/order/modify | Modify order
@@ -95,7 +96,7 @@ Class | Method | HTTP request | Description
 *UpstoxClient.PortfolioApi* | [**convertPositions**](docs/PortfolioApi.md#convertPositions) | **PUT** /v2/portfolio/convert-position | Convert Positions
 *UpstoxClient.PortfolioApi* | [**getHoldings**](docs/PortfolioApi.md#getHoldings) | **GET** /v2/portfolio/long-term-holdings | Get Holdings
 *UpstoxClient.PortfolioApi* | [**getPositions**](docs/PortfolioApi.md#getPositions) | **GET** /v2/portfolio/short-term-positions | Get Positions
-*UpstoxClient.PostTradeApi* | [**getTradeHistory1**](docs/PostTradeApi.md#getTradeHistory1) | **GET** /v2/charges/historical-trades | 
+*UpstoxClient.PostTradeApi* | [**getTradesByDateRange**](docs/PostTradeApi.md#getTradesByDateRange) | **GET** /v2/charges/historical-trades | 
 *UpstoxClient.TradeProfitAndLossApi* | [**getProfitAndLossCharges**](docs/TradeProfitAndLossApi.md#getProfitAndLossCharges) | **GET** /v2/trade/profit-loss/charges | Get profit and loss on trades
 *UpstoxClient.TradeProfitAndLossApi* | [**getTradeWiseProfitAndLossData**](docs/TradeProfitAndLossApi.md#getTradeWiseProfitAndLossData) | **GET** /v2/trade/profit-loss/data | Get Trade-wise Profit and Loss Report Data
 *UpstoxClient.TradeProfitAndLossApi* | [**getTradeWiseProfitAndLossMetaData**](docs/TradeProfitAndLossApi.md#getTradeWiseProfitAndLossMetaData) | **GET** /v2/trade/profit-loss/metadata | Get profit and loss meta data on trades
@@ -398,6 +399,7 @@ This example demonstrates initializing the PortfolioDataStreamer, connecting it 
  - [UpstoxClient.GetOptionChainResponse](docs/GetOptionChainResponse.md)
  - [UpstoxClient.GetOptionContractResponse](docs/GetOptionContractResponse.md)
  - [UpstoxClient.GetOrderBookResponse](docs/GetOrderBookResponse.md)
+ - [UpstoxClient.GetOrderDetailsResponse](docs/GetOrderDetailsResponse.md)
  - [UpstoxClient.GetOrderResponse](docs/GetOrderResponse.md)
  - [UpstoxClient.GetPositionResponse](docs/GetPositionResponse.md)
  - [UpstoxClient.GetProfileResponse](docs/GetProfileResponse.md)

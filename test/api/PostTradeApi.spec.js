@@ -34,13 +34,13 @@
 
   describe('(package)', function() {
     describe('PostTradeApi', function() {
-      describe('getTradeHistory1', function() {
-        it('should call getTradeHistory1 successfully', function(done) {
-          // TODO: uncomment, update parameter values for getTradeHistory1 call and complete the assertions
+      describe('getTradesByDateRange', function() {
+        it('should call getTradesByDateRange successfully', function(done) {
+          // TODO: uncomment, update parameter values for getTradesByDateRange call and complete the assertions
           /*
           var opts = {};
 
-          instance.getTradeHistory1(startDate, endDate, pageNumber, pageSize, opts, function(error, data, response) {
+          instance.getTradesByDateRange(startDate, endDate, pageNumber, pageSize, opts, function(error, data, response) {
             if (error) {
               done(error);
               return;
