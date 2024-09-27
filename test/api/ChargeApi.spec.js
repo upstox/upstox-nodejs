@@ -54,6 +54,26 @@
           done();
         });
       });
+      describe('postMargin', function() {
+        it('should call postMargin successfully', function(done) {
+          // TODO: uncomment, update parameter values for postMargin call and complete the assertions
+          /*
+
+          instance.postMargin(body, function(error, data, response) {
+            if (error) {
+              done(error);
+              return;
+            }
+            // TODO: update response assertions
+            expect(data).to.be.a(UpstoxClient.PostMarginResponse);
+
+            done();
+          });
+          */
+          // TODO: uncomment and complete method invocation above, then delete this line and the next:
+          done();
+        });
+      });
     });
   });
 

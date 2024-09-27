@@ -22,6 +22,7 @@ import {ModifyOrderRequest} from '../model/ModifyOrderRequest';
 import {ModifyOrderResponse} from '../model/ModifyOrderResponse';
 import {PlaceOrderRequest} from '../model/PlaceOrderRequest';
 import {PlaceOrderResponse} from '../model/PlaceOrderResponse';
+import { GetOrderDetailsResponse } from "../model/GetOrderDetailsResponse";
 
 /**
 * Order service.
@@ -187,6 +188,50 @@ export class OrderApi {
 
       return this.apiClient.callApi(
         '/v2/order/history', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+    /**
+     * Callback function to receive the result of the getOrderStatus operation.
+     * @callback moduleapi/OrderApi~getOrderStatusCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/GetOrderDetailsResponse{ data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Get order details
+     * This API provides the recent detail of the particular order the user has placed. The orders placed by the user is transient for a day and are cleared by the end of the trading session.\\n\\nThe order details can be requested using order_id.  
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.orderId The order reference ID for which the order details is required
+     * @param {module:api/OrderApi~getOrderStatusCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link <&vendorExtensions.x-jsdoc-type>}
+     */
+    getOrderStatus(opts, callback) {
+      opts = opts || {};
+      let postBody = null;
+
+      let pathParams = {
+        
+      };
+      let queryParams = {
+        'order_id': opts['orderId']
+      };
+      let headerParams = {
+        
+      };
+      let formParams = {
+        
+      };
+
+      let authNames = ['OAUTH2'];
+      let contentTypes = [];
+      let accepts = ['application/json', '*/*'];
+      let returnType = GetOrderDetailsResponse;
+
+      return this.apiClient.callApi(
+        '/v2/order/details', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );

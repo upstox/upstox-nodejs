@@ -69,6 +69,7 @@ All URIs are relative to *https://api-v2.upstox.com*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *UpstoxClient.ChargeApi* | [**getBrokerage**](docs/ChargeApi.md#getBrokerage) | **GET** /v2/charges/brokerage | Brokerage details
+*UpstoxClient.ChargeApi* | [**postMargin**](docs/ChargeApi.md#postMargin) | **POST** /v2/charges/margin | Calculate Margin
 *UpstoxClient.HistoryApi* | [**getHistoricalCandleData**](docs/HistoryApi.md#getHistoricalCandleData) | **GET** /v2/historical-candle/{instrumentKey}/{interval}/{to_date} | Historical candle data
 *UpstoxClient.HistoryApi* | [**getHistoricalCandleData1**](docs/HistoryApi.md#getHistoricalCandleData1) | **GET** /v2/historical-candle/{instrumentKey}/{interval}/{to_date}/{from_date} | Historical candle data
 *UpstoxClient.HistoryApi* | [**getIntraDayCandleData**](docs/HistoryApi.md#getIntraDayCandleData) | **GET** /v2/historical-candle/intraday/{instrumentKey}/{interval} | Intra day candle data
@@ -87,6 +88,7 @@ Class | Method | HTTP request | Description
 *UpstoxClient.OrderApi* | [**cancelOrder**](docs/OrderApi.md#cancelOrder) | **DELETE** /v2/order/cancel | Cancel order
 *UpstoxClient.OrderApi* | [**getOrderBook**](docs/OrderApi.md#getOrderBook) | **GET** /v2/order/retrieve-all | Get order book
 *UpstoxClient.OrderApi* | [**getOrderDetails**](docs/OrderApi.md#getOrderDetails) | **GET** /v2/order/history | Get order history
+*UpstoxClient.OrderApi* | [**getOrderStatus**](docs/OrderApi.md#getOrderStatus) | **GET** /v2/order/details | Get order details
 *UpstoxClient.OrderApi* | [**getTradeHistory**](docs/OrderApi.md#getTradeHistory) | **GET** /v2/order/trades/get-trades-for-day | Get trades
 *UpstoxClient.OrderApi* | [**getTradesByOrder**](docs/OrderApi.md#getTradesByOrder) | **GET** /v2/order/trades | Get trades for order
 *UpstoxClient.OrderApi* | [**modifyOrder**](docs/OrderApi.md#modifyOrder) | **PUT** /v2/order/modify | Modify order
@@ -94,6 +96,7 @@ Class | Method | HTTP request | Description
 *UpstoxClient.PortfolioApi* | [**convertPositions**](docs/PortfolioApi.md#convertPositions) | **PUT** /v2/portfolio/convert-position | Convert Positions
 *UpstoxClient.PortfolioApi* | [**getHoldings**](docs/PortfolioApi.md#getHoldings) | **GET** /v2/portfolio/long-term-holdings | Get Holdings
 *UpstoxClient.PortfolioApi* | [**getPositions**](docs/PortfolioApi.md#getPositions) | **GET** /v2/portfolio/short-term-positions | Get Positions
+*UpstoxClient.PostTradeApi* | [**getTradesByDateRange**](docs/PostTradeApi.md#getTradesByDateRange) | **GET** /v2/charges/historical-trades | 
 *UpstoxClient.TradeProfitAndLossApi* | [**getProfitAndLossCharges**](docs/TradeProfitAndLossApi.md#getProfitAndLossCharges) | **GET** /v2/trade/profit-loss/charges | Get profit and loss on trades
 *UpstoxClient.TradeProfitAndLossApi* | [**getTradeWiseProfitAndLossData**](docs/TradeProfitAndLossApi.md#getTradeWiseProfitAndLossData) | **GET** /v2/trade/profit-loss/data | Get Trade-wise Profit and Loss Report Data
 *UpstoxClient.TradeProfitAndLossApi* | [**getTradeWiseProfitAndLossMetaData**](docs/TradeProfitAndLossApi.md#getTradeWiseProfitAndLossMetaData) | **GET** /v2/trade/profit-loss/metadata | Get profit and loss meta data on trades
@@ -396,6 +399,7 @@ This example demonstrates initializing the PortfolioDataStreamer, connecting it 
  - [UpstoxClient.GetOptionChainResponse](docs/GetOptionChainResponse.md)
  - [UpstoxClient.GetOptionContractResponse](docs/GetOptionContractResponse.md)
  - [UpstoxClient.GetOrderBookResponse](docs/GetOrderBookResponse.md)
+ - [UpstoxClient.GetOrderDetailsResponse](docs/GetOrderDetailsResponse.md)
  - [UpstoxClient.GetOrderResponse](docs/GetOrderResponse.md)
  - [UpstoxClient.GetPositionResponse](docs/GetPositionResponse.md)
  - [UpstoxClient.GetProfileResponse](docs/GetProfileResponse.md)
@@ -407,9 +411,13 @@ This example demonstrates initializing the PortfolioDataStreamer, connecting it 
  - [UpstoxClient.HistoricalCandleData](docs/HistoricalCandleData.md)
  - [UpstoxClient.HoldingsData](docs/HoldingsData.md)
  - [UpstoxClient.HolidayData](docs/HolidayData.md)
+ - [UpstoxClient.Instrument](docs/Instrument.md)
  - [UpstoxClient.InstrumentData](docs/InstrumentData.md)
  - [UpstoxClient.IntraDayCandleData](docs/IntraDayCandleData.md)
  - [UpstoxClient.LogoutResponse](docs/LogoutResponse.md)
+ - [UpstoxClient.Margin](docs/Margin.md)
+ - [UpstoxClient.MarginData](docs/MarginData.md)
+ - [UpstoxClient.MarginRequest](docs/MarginRequest.md)
  - [UpstoxClient.MarketData](docs/MarketData.md)
  - [UpstoxClient.MarketQuoteOHLC](docs/MarketQuoteOHLC.md)
  - [UpstoxClient.MarketQuoteSymbol](docs/MarketQuoteSymbol.md)
@@ -431,6 +439,7 @@ This example demonstrates initializing the PortfolioDataStreamer, connecting it 
  - [UpstoxClient.PlaceOrderRequest](docs/PlaceOrderRequest.md)
  - [UpstoxClient.PlaceOrderResponse](docs/PlaceOrderResponse.md)
  - [UpstoxClient.PositionData](docs/PositionData.md)
+ - [UpstoxClient.PostMarginResponse](docs/PostMarginResponse.md)
  - [UpstoxClient.Problem](docs/Problem.md)
  - [UpstoxClient.ProfileData](docs/ProfileData.md)
  - [UpstoxClient.ProfitAndLossChargesData](docs/ProfitAndLossChargesData.md)
@@ -443,6 +452,10 @@ This example demonstrates initializing the PortfolioDataStreamer, connecting it 
  - [UpstoxClient.TokenRequest](docs/TokenRequest.md)
  - [UpstoxClient.TokenResponse](docs/TokenResponse.md)
  - [UpstoxClient.TradeData](docs/TradeData.md)
+ - [UpstoxClient.TradeHistoryResponse](docs/TradeHistoryResponse.md)
+ - [UpstoxClient.TradeHistoryResponseMetaData](docs/TradeHistoryResponseMetaData.md)
+ - [UpstoxClient.TradeHistoryResponsePageData](docs/TradeHistoryResponsePageData.md)
+ - [UpstoxClient.TradeHistoryResponseTradeData](docs/TradeHistoryResponseTradeData.md)
  - [UpstoxClient.TradeWiseMetaData](docs/TradeWiseMetaData.md)
  - [UpstoxClient.TradeWiseProfitAndLossData](docs/TradeWiseProfitAndLossData.md)
  - [UpstoxClient.UserFundMarginData](docs/UserFundMarginData.md)

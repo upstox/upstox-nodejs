@@ -15,6 +15,8 @@
 import {ApiClient} from "../ApiClient";
 import {ApiGatewayErrorResponse} from '../model/ApiGatewayErrorResponse';
 import {GetBrokerageResponse} from '../model/GetBrokerageResponse';
+import MarginRequest from '../model/MarginRequest';
+import {PostMarginResponse} from '../model/PostMarginResponse';
 
 /**
 * Charge service.
@@ -103,6 +105,53 @@ export class ChargeApi {
 
       return this.apiClient.callApi(
         '/v2/charges/brokerage', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+    /**
+     * Callback function to receive the result of the postMargin operation.
+     * @callback moduleapi/ChargeApi~postMarginCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/PostMarginResponse{ data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Calculate Margin
+     * Compute Margin
+     * @param {module:model/MarginRequest} body 
+     * @param {module:api/ChargeApi~postMarginCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link <&vendorExtensions.x-jsdoc-type>}
+     */
+    postMargin(body, callback) {
+      
+      let postBody = body;
+      // verify the required parameter 'body' is set
+      if (body === undefined || body === null) {
+        throw new Error("Missing the required parameter 'body' when calling postMargin");
+      }
+
+      let pathParams = {
+        
+      };
+      let queryParams = {
+        
+      };
+      let headerParams = {
+        
+      };
+      let formParams = {
+        
+      };
+
+      let authNames = ['OAUTH2'];
+      let contentTypes = ['application/json'];
+      let accepts = ['application/json', '*/*'];
+      let returnType = PostMarginResponse;
+
+      return this.apiClient.callApi(
+        '/v2/charges/margin', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );

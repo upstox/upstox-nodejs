@@ -45,10 +45,24 @@ apiInstance.getUserFundMargin(apiVersion, null, (error, data, response) => {
         console.error(error);
     } else {
         if(data.status != "success"){
-            console.log("error in get funds and margin");
+            console.log("error get brokerage");
         }
       }
     });
+
+    let instruments =[ new UpstoxClient.Instrument("NSE_EQ|INE669E01016",1,"D","BUY"), new UpstoxClient.Instrument("NSE_EQ|INE917I01010",2,"D","BUY")];
+
+    let postMarginRequest = new UpstoxClient.MarginRequest(instruments)
+    
+    apiInstance.postMargin(postMarginRequest, (error, data, response) => {
+        if (error) {
+          console.log("error in post margin api call");
+          console.error(error.response.text);
+        } else {
+          if(data.status != "success") console.log("error in post margin api call");
+        }
+      });
+
 
     var apiInstance = new UpstoxClient.OrderApi();
     var body = new UpstoxClient.PlaceOrderRequest(1, UpstoxClient.PlaceOrderRequest.ProductEnum.D, UpstoxClient.PlaceOrderRequest.ValidityEnum.DAY, 0.0, "NSE_EQ|INE528G01035",UpstoxClient.PlaceOrderRequest.OrderTypeEnum.MARKET,UpstoxClient.PlaceOrderRequest.TransactionTypeEnum.BUY, 0, 0.0, false); 
@@ -63,7 +77,9 @@ apiInstance.getUserFundMargin(apiVersion, null, (error, data, response) => {
       }
     });
 
-    var body = new UpstoxClient.ModifyOrderRequest(UpstoxClient.ModifyOrderRequest.ValidityEnum.DAY,0,"240111010331447",UpstoxClient.ModifyOrderRequest.OrderTypeEnum.MARKET,0); 
+
+
+var body = new UpstoxClient.ModifyOrderRequest(UpstoxClient.ModifyOrderRequest.ValidityEnum.DAY,0,"240111010331447",UpstoxClient.ModifyOrderRequest.OrderTypeEnum.MARKET,0); 
 var apiVersion = "2.0"; // String | API Version Header
 
 apiInstance.modifyOrder(body, apiVersion, (error, data, response) => {
@@ -73,6 +89,7 @@ apiInstance.modifyOrder(body, apiVersion, (error, data, response) => {
     console.log('API called successfully. Returned data: ' + JSON.stringify(data));
   }
 });
+
 var orderId = "240111010403654"; 
 apiInstance.cancelOrder(orderId, apiVersion, (error, data, response) => {
     if (error) {
@@ -323,6 +340,35 @@ apiInstance1.getMarketStatus("NSE", (error, data, response) => {
         }
       }
 });
+
+apiInstance = new UpstoxClient.PostTradeApi();
+
+
+opts = {
+    segment: "EQ"
+}
+
+apiInstance.getTradesByDateRange("2023-04-01","2024-08-30",1,1000,opts,(error, data, response) => {
+  if (error) {
+    console.error(error.response.text);
+  } else {
+    if(data.status != "success") console.log("error in post trade")
+  }
+});
+
+let orderApiInstance = new UpstoxClient.OrderApi();
+let orderStatusId = "240926010304511";
+let optsOrderStatus = {
+  orderId: orderStatusId
+};
+orderApiInstance.getOrderStatus(optsOrderStatus,(error,data,response) => {
+  if (error) {
+    if(JSON.parse(error.response.text).errors[0].errorCode != "UDAPI100010") console.log("error in order status");
+  } else {
+    console.log('API called successfully. Returned data: ' + JSON.stringify(data));
+  }
+})
+
 
 setTimeout(() => {
   apiInstance = new UpstoxClient.LoginApi();
