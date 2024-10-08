@@ -14,6 +14,7 @@
  */
 import {ApiClient} from "../ApiClient";
 import {ApiGatewayErrorResponse} from '../model/ApiGatewayErrorResponse';
+import {CancelOrExitMultiOrderResponse} from '../model/CancelOrExitMultiOrderResponse';
 import {CancelOrderResponse} from '../model/CancelOrderResponse';
 import {GetOrderBookResponse} from '../model/GetOrderBookResponse';
 import {GetOrderResponse} from '../model/GetOrderResponse';
@@ -23,6 +24,8 @@ import {ModifyOrderResponse} from '../model/ModifyOrderResponse';
 import {PlaceOrderRequest} from '../model/PlaceOrderRequest';
 import {PlaceOrderResponse} from '../model/PlaceOrderResponse';
 import { GetOrderDetailsResponse } from "../model/GetOrderDetailsResponse";
+import {MultiOrderRequest} from '../model/MultiOrderRequest';
+import {MultiOrderResponse} from '../model/MultiOrderResponse';
 
 /**
 * Order service.
@@ -42,6 +45,53 @@ export class OrderApi {
     constructor(apiClient) {
         this.apiClient = apiClient || ApiClient.instance;
     }
+
+  
+    /**
+     * Callback function to receive the result of the cancelMultiOrder operation.
+     * @callback moduleapi/OrderApi~cancelMultiOrderCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/CancelOrExitMultiOrderResponse{ data The data returned by the service call.
+    * @param {String} response The complete HTTP response.
+    */
+
+   /**
+    * Cancel multi order
+    * API to cancel all the open or pending orders which can be applied to both AMO and regular orders.
+    * @param {Object} opts Optional parameters
+    * @param {String} opts.tag The tag associated with the orders for which the orders must be cancelled
+    * @param {String} opts.segment The segment for which the orders must be cancelled
+    * @param {module:api/OrderApi~cancelMultiOrderCallback} callback The callback function, accepting three arguments: error, data, response
+    * data is of type: {@link <&vendorExtensions.x-jsdoc-type>}
+    */
+   cancelMultiOrder(opts, callback) {
+     opts = opts || {};
+     let postBody = null;
+
+     let pathParams = {
+       
+     };
+     let queryParams = {
+       'tag': opts['tag'],'segment': opts['segment']
+     };
+     let headerParams = {
+       
+     };
+     let formParams = {
+       
+     };
+
+     let authNames = ['OAUTH2'];
+     let contentTypes = [];
+     let accepts = ['application/json', '*/*'];
+     let returnType = CancelOrExitMultiOrderResponse;
+
+     return this.apiClient.callApi(
+       '/v2/order/multi/cancel', 'DELETE',
+       pathParams, queryParams, headerParams, formParams, postBody,
+       authNames, contentTypes, accepts, returnType, callback
+     );
+   }
 
     /**
      * Callback function to receive the result of the cancelOrder operation.
@@ -95,6 +145,43 @@ export class OrderApi {
         authNames, contentTypes, accepts, returnType, callback
       );
     }
+/**
+     * Exit all positions
+     * This API provides the functionality to exit all the positions 
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.tag The tag associated with the positions for which the positions must be exit
+     * @param {String} opts.segment The segment for which the positions must be exit
+     * @param {module:api/OrderApi~exitPositionsCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link <&vendorExtensions.x-jsdoc-type>}
+     */
+        exitPositions(opts, callback) {
+          opts = opts || {};
+          let postBody = null;
+    
+          let pathParams = {
+            
+          };
+          let queryParams = {
+            'tag': opts['tag'],'segment': opts['segment']
+          };
+          let headerParams = {
+            
+          };
+          let formParams = {
+            
+          };
+    
+          let authNames = ['OAUTH2'];
+          let contentTypes = [];
+          let accepts = ['application/json', '*/*'];
+          let returnType = CancelOrExitMultiOrderResponse;
+    
+          return this.apiClient.callApi(
+            '/v2/order/positions/exit', 'POST',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType, callback
+          );
+        }
     /**
      * Callback function to receive the result of the getOrderBook operation.
      * @callback moduleapi/OrderApi~getOrderBookCallback
@@ -335,6 +422,54 @@ export class OrderApi {
         authNames, contentTypes, accepts, returnType, callback
       );
     }
+/**
+     * Callback function to receive the result of the placeMultiOrder operation.
+     * @callback moduleapi/OrderApi~placeMultiOrderCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/MultiOrderResponse{ data The data returned by the service call.
+        * @param {String} response The complete HTTP response.
+        */
+   
+       /**
+        * Place multi order
+        * This API allows you to place multiple orders to the exchange via Upstox.
+        * @param {Array.<module:model/MultiOrderRequest>} body 
+        * @param {module:api/OrderApi~placeMultiOrderCallback} callback The callback function, accepting three arguments: error, data, response
+        * data is of type: {@link <&vendorExtensions.x-jsdoc-type>}
+        */
+       placeMultiOrder(body, callback) {
+         
+         let postBody = body;
+         // verify the required parameter 'body' is set
+         if (body === undefined || body === null) {
+           throw new Error("Missing the required parameter 'body' when calling placeMultiOrder");
+         }
+   
+         let pathParams = {
+           
+         };
+         let queryParams = {
+           
+         };
+         let headerParams = {
+           
+         };
+         let formParams = {
+           
+         };
+   
+         let authNames = ['OAUTH2'];
+         let contentTypes = ['application/json'];
+         let accepts = ['*/*', 'application/json'];
+         let returnType = MultiOrderResponse;
+   
+         return this.apiClient.callApi(
+           '/v2/order/multi/place', 'POST',
+           pathParams, queryParams, headerParams, formParams, postBody,
+           authNames, contentTypes, accepts, returnType, callback
+         );
+       }
+   
     /**
      * Callback function to receive the result of the modifyOrder operation.
      * @callback moduleapi/OrderApi~modifyOrderCallback

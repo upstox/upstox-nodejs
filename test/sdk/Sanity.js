@@ -65,7 +65,7 @@ apiInstance.getUserFundMargin(apiVersion, null, (error, data, response) => {
 
 
     var apiInstance = new UpstoxClient.OrderApi();
-    var body = new UpstoxClient.PlaceOrderRequest(1, UpstoxClient.PlaceOrderRequest.ProductEnum.D, UpstoxClient.PlaceOrderRequest.ValidityEnum.DAY, 0.0, "NSE_EQ|INE528G01035",UpstoxClient.PlaceOrderRequest.OrderTypeEnum.MARKET,UpstoxClient.PlaceOrderRequest.TransactionTypeEnum.BUY, 0, 0.0, false); 
+    var body = new UpstoxClient.PlaceOrderRequest(1, UpstoxClient.PlaceOrderRequest.ProductEnum.D, UpstoxClient.PlaceOrderRequest.ValidityEnum.DAY, 0.0, "NSE_EQ|INE528G01035",UpstoxClient.PlaceOrderRequest.OrderTypeEnum.MARKET,UpstoxClient.PlaceOrderRequest.TransactionTypeEnum.BUY, 0, 0.0, true); 
     var apiVersion = "2.0"; 
 
     apiInstance.placeOrder(body, apiVersion, (error, data, response) => {
@@ -369,6 +369,40 @@ orderApiInstance.getOrderStatus(optsOrderStatus,(error,data,response) => {
   }
 })
 
+apiInstance = new UpstoxClient.OrderApi();
+body = []
+one_req = new UpstoxClient.MultiOrderRequest(1,"D","DAY",8.9,true,"NSE_EQ|INE669E01016","LIMIT","BUY",0,9,true,"tag_should_be_tg1");
+one_req.tag = "tg1"
+body = body.concat(one_req);
+body = body.concat(new UpstoxClient.MultiOrderRequest(1,"D","DAY",8.9,true,"NSE_EQ|INE669E01016","LIMIT","BUY",0,9.0,true,"cid2"));
+
+
+apiInstance.placeMultiOrder(body, (error, data, response) => {
+  if (error) {
+    console.error(error.response.text);
+  } else {
+    console.log('API called successfully. Returned data: ' + JSON.stringify(data));
+  }
+});
+
+opts = {
+  'tag': 'unknown_tag'
+}
+apiInstance.cancelMultiOrder(opts, (error, data, response) => {
+  if (error) {
+    if(JSON.parse(error.response.text).errors[0].errorCode != "UDAPI1109") console.log("error in CANCEL Multi order");
+  } else {
+    console.log('API called successfully. Returned data: ' + JSON.stringify(data));
+  }
+});
+
+apiInstance.exitPositions(opts, (error, data, response) => {
+  if (error) {
+    if((JSON.parse(error.response.text).errors[0].errorCode != "UDAPI1111") && (JSON.parse(error.response.text).errors[0].errorCode != "UDAPI1113")) console.log("error in Exit all order");
+  }  else {
+    console.log('API called successfully. Returned data: ' + JSON.stringify(data));
+  }
+});
 
 setTimeout(() => {
   apiInstance = new UpstoxClient.LoginApi();
