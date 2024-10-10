@@ -85,13 +85,16 @@ Class | Method | HTTP request | Description
 *UpstoxClient.MarketQuoteApi* | [**ltp**](docs/MarketQuoteApi.md#ltp) | **GET** /v2/market-quote/ltp | Market quotes and instruments - LTP quotes.
 *UpstoxClient.OptionsApi* | [**getOptionContracts**](docs/OptionsApi.md#getOptionContracts) | **GET** /v2/option/contract | Get option contracts
 *UpstoxClient.OptionsApi* | [**getPutCallOptionChain**](docs/OptionsApi.md#getPutCallOptionChain) | **GET** /v2/option/chain | Get option chain
+*UpstoxClient.OrderApi* | [**cancelMultiOrder**](docs/OrderApi.md#cancelMultiOrder) | **DELETE** /v2/order/multi/cancel | Cancel multi order
 *UpstoxClient.OrderApi* | [**cancelOrder**](docs/OrderApi.md#cancelOrder) | **DELETE** /v2/order/cancel | Cancel order
+*UpstoxClient.OrderApi* | [**exitPositions**](docs/OrderApi.md#exitPositions) | **POST** /v2/order/positions/exit | Exit all positions
 *UpstoxClient.OrderApi* | [**getOrderBook**](docs/OrderApi.md#getOrderBook) | **GET** /v2/order/retrieve-all | Get order book
 *UpstoxClient.OrderApi* | [**getOrderDetails**](docs/OrderApi.md#getOrderDetails) | **GET** /v2/order/history | Get order history
 *UpstoxClient.OrderApi* | [**getOrderStatus**](docs/OrderApi.md#getOrderStatus) | **GET** /v2/order/details | Get order details
 *UpstoxClient.OrderApi* | [**getTradeHistory**](docs/OrderApi.md#getTradeHistory) | **GET** /v2/order/trades/get-trades-for-day | Get trades
 *UpstoxClient.OrderApi* | [**getTradesByOrder**](docs/OrderApi.md#getTradesByOrder) | **GET** /v2/order/trades | Get trades for order
 *UpstoxClient.OrderApi* | [**modifyOrder**](docs/OrderApi.md#modifyOrder) | **PUT** /v2/order/modify | Modify order
+*UpstoxClient.OrderApi* | [**placeMultiOrder**](docs/OrderApi.md#placeMultiOrder) | **POST** /v2/order/multi/place | Place multi order
 *UpstoxClient.OrderApi* | [**placeOrder**](docs/OrderApi.md#placeOrder) | **POST** /v2/order/place | Place order
 *UpstoxClient.PortfolioApi* | [**convertPositions**](docs/PortfolioApi.md#convertPositions) | **PUT** /v2/portfolio/convert-position | Convert Positions
 *UpstoxClient.PortfolioApi* | [**getHoldings**](docs/PortfolioApi.md#getHoldings) | **GET** /v2/portfolio/long-term-holdings | Get Holdings
@@ -374,9 +377,13 @@ This example demonstrates initializing the PortfolioDataStreamer, connecting it 
 
  - [UpstoxClient.AnalyticsData](docs/AnalyticsData.md)
  - [UpstoxClient.ApiGatewayErrorResponse](docs/ApiGatewayErrorResponse.md)
+ - [UpstoxClient.BatchExecutionSummary](docs/BatchExecutionSummary.md)
  - [UpstoxClient.BrokerageData](docs/BrokerageData.md)
  - [UpstoxClient.BrokerageTaxes](docs/BrokerageTaxes.md)
  - [UpstoxClient.BrokerageWrapperData](docs/BrokerageWrapperData.md)
+ - [UpstoxClient.CancelOrExitMultiOrderData](docs/CancelOrExitMultiOrderData.md)
+ - [UpstoxClient.CancelOrExitMultiOrderResponse](docs/CancelOrExitMultiOrderResponse.md)
+ - [UpstoxClient.CancelOrExitOrderErrorData](docs/CancelOrExitOrderErrorData.md)
  - [UpstoxClient.CancelOrderData](docs/CancelOrderData.md)
  - [UpstoxClient.CancelOrderResponse](docs/CancelOrderResponse.md)
  - [UpstoxClient.ConvertPositionData](docs/ConvertPositionData.md)
@@ -426,6 +433,11 @@ This example demonstrates initializing the PortfolioDataStreamer, connecting it 
  - [UpstoxClient.ModifyOrderData](docs/ModifyOrderData.md)
  - [UpstoxClient.ModifyOrderRequest](docs/ModifyOrderRequest.md)
  - [UpstoxClient.ModifyOrderResponse](docs/ModifyOrderResponse.md)
+ - [UpstoxClient.MultiOrderData](docs/MultiOrderData.md)
+ - [UpstoxClient.MultiOrderError](docs/MultiOrderError.md)
+ - [UpstoxClient.MultiOrderRequest](docs/MultiOrderRequest.md)
+ - [UpstoxClient.MultiOrderResponse](docs/MultiOrderResponse.md)
+ - [UpstoxClient.MultiOrderSummary](docs/MultiOrderSummary.md)
  - [UpstoxClient.OAuthClientException](docs/OAuthClientException.md)
  - [UpstoxClient.OAuthClientExceptionCause](docs/OAuthClientExceptionCause.md)
  - [UpstoxClient.OAuthClientExceptionCauseStackTrace](docs/OAuthClientExceptionCauseStackTrace.md)

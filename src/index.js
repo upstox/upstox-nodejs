@@ -15,9 +15,13 @@
 import {ApiClient} from './ApiClient';
 import {AnalyticsData} from './model/AnalyticsData';
 import {ApiGatewayErrorResponse} from './model/ApiGatewayErrorResponse';
+import {BatchExecutionSummary} from './model/BatchExecutionSummary';
 import {BrokerageData} from './model/BrokerageData';
 import {BrokerageTaxes} from './model/BrokerageTaxes';
 import {BrokerageWrapperData} from './model/BrokerageWrapperData';
+import {CancelOrExitMultiOrderData} from './model/CancelOrExitMultiOrderData';
+import {CancelOrExitMultiOrderResponse} from './model/CancelOrExitMultiOrderResponse';
+import {CancelOrExitOrderErrorData} from './model/CancelOrExitOrderErrorData';
 import {CancelOrderData} from './model/CancelOrderData';
 import {CancelOrderResponse} from './model/CancelOrderResponse';
 import {ConvertPositionData} from './model/ConvertPositionData';
@@ -67,6 +71,11 @@ import {MarketStatusData} from './model/MarketStatusData';
 import {ModifyOrderData} from './model/ModifyOrderData';
 import {ModifyOrderRequest} from './model/ModifyOrderRequest';
 import {ModifyOrderResponse} from './model/ModifyOrderResponse';
+import {MultiOrderData} from './model/MultiOrderData';
+import {MultiOrderError} from './model/MultiOrderError';
+import {MultiOrderRequest} from './model/MultiOrderRequest';
+import {MultiOrderResponse} from './model/MultiOrderResponse';
+import {MultiOrderSummary} from './model/MultiOrderSummary';
 import {OAuthClientException} from './model/OAuthClientException';
 import {OAuthClientExceptionCause} from './model/OAuthClientExceptionCause';
 import {OAuthClientExceptionCauseStackTrace} from './model/OAuthClientExceptionCauseStackTrace';
@@ -169,6 +178,12 @@ export {
     ApiGatewayErrorResponse,
 
     /**
+     * The BatchExecutionSummary model constructor.
+     * @property {module:model/BatchExecutionSummary}
+     */
+    BatchExecutionSummary,
+
+    /**
      * The BrokerageData model constructor.
      * @property {module:model/BrokerageData}
      */
@@ -185,6 +200,24 @@ export {
      * @property {module:model/BrokerageWrapperData}
      */
     BrokerageWrapperData,
+
+    /**
+     * The CancelOrExitMultiOrderData model constructor.
+     * @property {module:model/CancelOrExitMultiOrderData}
+     */
+    CancelOrExitMultiOrderData,
+
+    /**
+     * The CancelOrExitMultiOrderResponse model constructor.
+     * @property {module:model/CancelOrExitMultiOrderResponse}
+     */
+    CancelOrExitMultiOrderResponse,
+
+    /**
+     * The CancelOrExitOrderErrorData model constructor.
+     * @property {module:model/CancelOrExitOrderErrorData}
+     */
+    CancelOrExitOrderErrorData,
 
     /**
      * The CancelOrderData model constructor.
@@ -479,6 +512,36 @@ export {
      * @property {module:model/ModifyOrderResponse}
      */
     ModifyOrderResponse,
+
+    /**
+     * The MultiOrderData model constructor.
+     * @property {module:model/MultiOrderData}
+     */
+    MultiOrderData,
+
+    /**
+     * The MultiOrderError model constructor.
+     * @property {module:model/MultiOrderError}
+     */
+    MultiOrderError,
+
+    /**
+     * The MultiOrderRequest model constructor.
+     * @property {module:model/MultiOrderRequest}
+     */
+    MultiOrderRequest,
+
+    /**
+     * The MultiOrderResponse model constructor.
+     * @property {module:model/MultiOrderResponse}
+     */
+    MultiOrderResponse,
+
+    /**
+     * The MultiOrderSummary model constructor.
+     * @property {module:model/MultiOrderSummary}
+     */
+    MultiOrderSummary,
 
     /**
      * The OAuthClientException model constructor.

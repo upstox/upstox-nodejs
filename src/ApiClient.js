@@ -51,7 +51,10 @@ export class ApiClient {
          * @type {Array.<String>}
          * @default {}
          */
-        this.defaultHeaders = {};
+        this.defaultHeaders = {
+            'X-Upstox-SDK-Language': 'nodejs',
+            'X-Upstox-SDK-Version': '2.11.0'
+        };
 
         /**
          * The default HTTP timeout for all API calls.
@@ -412,7 +415,6 @@ export class ApiClient {
 
         // set header parameters
         request.set(this.defaultHeaders).set(this.normalizeParams(headerParams));
-
         // set requestAgent if it is set by user
         
         if (this.requestAgent) {
