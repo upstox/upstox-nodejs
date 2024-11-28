@@ -116,7 +116,13 @@ ProfileData.ExchangesEnum = {
    * value: "MCX"
    * @const
    */
-  MCX: "MCX"
+  MCX: "MCX",
+
+  /**
+   * value: "NSCOM"
+   * @const
+   */
+  NSCOM: "NSCOM"
 };
 /**
  * Lists the exchanges to which the user has access

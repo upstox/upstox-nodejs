@@ -24,6 +24,7 @@ Name | Type | Description | Notes
 * `BCD` (value: `"BCD"`)
 * `BFO` (value: `"BFO"`)
 * `MCX` (value: `"MCX"`)
+* `NSCOM` (value: `"NSCOM"`)
 
 
 <a name="[ProductsEnum]"></a>
