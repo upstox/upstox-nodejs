@@ -123,6 +123,232 @@ Both functions are designed to simplify the process of subscribing to essential 
 
 ### MarketDataStreamer
 
+
+<details>
+<summary style="cursor: pointer; font-size: 1.2em;">V3</summary>
+<p>
+
+The `MarketDataStreamerV3` function is designed for effortless connection to the market WebSocket, enabling users to receive instantaneous updates on various instruments. The following example demonstrates how to quickly set up and start receiving market updates for selected instrument keys:
+
+```javascript
+let UpstoxClient = require("upstox-js-sdk");
+let defaultClient = UpstoxClient.ApiClient.instance;
+var OAUTH2 = defaultClient.authentications["OAUTH2"];
+OAUTH2.accessToken = <ACCESS_TOKEN>;
+
+const streamer = new UpstoxClient.MarketDataStreamerV3(["MCX_FO|426268", "MCX_FO|427608"], "full");
+streamer.connect();
+
+streamer.on("message", (data) => {
+  const feed = data.toString("utf-8");
+  console.log(feed);
+});
+```
+
+In this example, you first authenticate using an access token, then instantiate MarketDataStreamerV3 with specific instrument keys and a subscription mode. Upon connecting, the streamer listens for market updates, which are logged to the console as they arrive.
+
+Feel free to adjust the access token placeholder and any other specifics to better fit your actual implementation or usage scenario.
+
+### Exploring the MarketDataStreamerV3 Functionality
+
+#### Modes
+- **ltpc**: ltpc provides information solely about the most recent trade, encompassing details such as the last trade price, time of the last trade, quantity traded, and the closing price from the previous day.
+- **full**: The full option offers comprehensive information, including the latest trade prices, D5 depth, 1-minute, 30-minute, and daily candlestick data, along with some additional details.
+- **full_d30**: full_d30 includes Full mode data plus 30 market level quotes.      
+- **option_greeks**: Contains only option greeks.
+
+#### Functions
+1. **constructor MarketDataStreamerV3(instrumentKeys, mode)**: Initializes the streamer with optional instrument keys and mode (`full` or `ltpc`).
+2. **connect()**: Establishes the WebSocket connection.
+3. **subscribe(instrumentKeys, mode)**: Subscribes to updates for given instrument keys in the specified mode. Both parameters are mandatory.
+4. **unsubscribe(instrumentKeys)**: Stops updates for the specified instrument keys.
+5. **changeMode(instrumentKeys, mode)**: Switches the mode for already subscribed instrument keys.
+6. **disconnect()**: Ends the active WebSocket connection.
+7. **autoReconnect(enable, interval, retryCount)**: Customizes auto-reconnect functionality. Parameters include a flag to enable/disable it, the interval(in seconds) between attempts, and the maximum number of retries.
+
+#### Events
+- **open**: Emitted upon successful connection establishment.
+- **close**: Indicates the WebSocket connection has been closed.
+- **message**: Delivers market updates.
+- **error**: Signals an error has occurred.
+- **reconnecting**: Announced when a reconnect attempt is initiated.
+- **autoReconnectStopped**: Informs when auto-reconnect efforts have ceased after exhausting the retry count.
+
+The following documentation includes examples to illustrate the usage of these functions and events, providing a practical understanding of how to interact with the MarketDataStreamerV3 effectively.
+
+<br/>
+
+1. Subscribing to Market Data on Connection Open with MarketDataStreameV3
+
+```javascript
+let UpstoxClient = require("upstox-js-sdk");
+let defaultClient = UpstoxClient.ApiClient.instance;
+var OAUTH2 = defaultClient.authentications["OAUTH2"];
+OAUTH2.accessToken = <ACCESS_TOKEN>;
+
+const streamer = new UpstoxClient.MarketDataStreamerV3();
+streamer.connect();
+
+// Subscribe to instrument keys upon the 'open' event
+streamer.on("open", () => {
+  streamer.subscribe(["NSE_EQ|INE020B01018", "NSE_EQ|INE467B01029"], "full");
+});
+
+// Handle incoming market data messages
+streamer.on("message", (data) => {
+  const feed = data.toString("utf-8");
+  console.log(feed);
+});
+```
+
+<br/>
+
+2. Subscribing to Instruments with Delays
+
+```javascript
+let UpstoxClient = require("upstox-js-sdk");
+let defaultClient = UpstoxClient.ApiClient.instance;
+var OAUTH2 = defaultClient.authentications["OAUTH2"];
+OAUTH2.accessToken = <ACCESS_TOKEN>;
+
+const streamer = new UpstoxClient.MarketDataStreamerV3();
+streamer.connect();
+
+// Subscribe to the first set of instrument keys immediately upon connection
+streamer.on("open", () => {
+  streamer.subscribe(["NSE_EQ|INE020B01018"], "full");
+  
+  // Subscribe to another set of instrument keys after a delay
+  setTimeout(() => {
+    streamer.subscribe(["NSE_EQ|INE467B01029"], "full");
+  }, 5000); // 5-second delay before subscribing to the second set
+});
+
+// Handle incoming market data messages
+streamer.on("message", (data) => {
+  const feed = data.toString("utf-8");
+  console.log(feed);
+});
+```
+
+<br/>
+
+3. Subscribing and Unsubscribing to Instruments
+
+```javascript
+let UpstoxClient = require("upstox-js-sdk");
+let defaultClient = UpstoxClient.ApiClient.instance;
+var OAUTH2 = defaultClient.authentications["OAUTH2"];
+OAUTH2.accessToken = <ACCESS_TOKEN>;
+
+const streamer = new UpstoxClient.MarketDataStreamerV3();
+streamer.connect();
+
+// Subscribe to instrument keys immediately upon connection
+streamer.on("open", () => {
+  console.log("Connected. Subscribing to instrument keys.");
+  streamer.subscribe(["NSE_EQ|INE020B01018", "NSE_EQ|INE467B01029"], "full");
+  
+  // Unsubscribe after a delay
+  setTimeout(() => {
+    console.log("Unsubscribing from instrument keys.");
+    streamer.unsubscribe(["NSE_EQ|INE020B01018", "NSE_EQ|INE467B01029"]);
+  }, 5000); // Adjust delay as needed
+});
+
+streamer.on("message", (data) => {
+  const feed = data.toString("utf-8");
+  console.log("Market Update:", feed);
+});
+```
+
+<br/>
+
+4. Subscribe, Change Mode and Unsubscribe
+
+```javascript
+let UpstoxClient = require("upstox-js-sdk");
+let defaultClient = UpstoxClient.ApiClient.instance;
+var OAUTH2 = defaultClient.authentications["OAUTH2"];
+OAUTH2.accessToken = <ACCESS_TOKEN>;
+
+const streamer = new UpstoxClient.MarketDataStreamerV3();
+streamer.connect();
+
+// Initially subscribe to instrument keys in 'full' mode
+streamer.on("open", async () => {
+  console.log("Connected. Subscribing in full mode...");
+  streamer.subscribe(["NSE_EQ|INE020B01018", "NSE_EQ|INE467B01029"], "full");
+
+  // Change mode to 'ltpc' after a short delay
+  setTimeout(() => {
+    console.log("Changing subscription mode to ltpc...");
+    streamer.changeMode(["NSE_EQ|INE020B01018", "NSE_EQ|INE467B01029"], "ltpc");
+  }, 5000); // 5-second delay
+
+  // Unsubscribe after another delay
+  setTimeout(() => {
+    console.log("Unsubscribing...");
+    streamer.unsubscribe(["NSE_EQ|INE020B01018", "NSE_EQ|INE467B01029"]);
+  }, 10000); // 10 seconds after subscription
+});
+
+// Setup event listeners to log messages, errors, and closure
+streamer.on("message", (data) => {
+  const feed = data.toString("utf-8");
+  console.log("Market Update:", feed);
+});
+streamer.on("error", (error) => console.error("Error:", error));
+streamer.on("close", () => console.log("Connection closed."));
+```
+
+<br/>
+
+5. Disable Auto-Reconnect
+
+```javascript
+let UpstoxClient = require("upstox-js-sdk");
+let defaultClient = UpstoxClient.ApiClient.instance;
+var OAUTH2 = defaultClient.authentications["OAUTH2"];
+OAUTH2.accessToken = <ACCESS_TOKEN>;
+
+const streamer = new UpstoxClient.MarketDataStreamerV3();
+streamer.connect();
+
+// Disable auto-reconnect feature
+streamer.autoReconnect(false);
+
+streamer.on("autoReconnectStopped", (data) => {
+  console.log(data);
+});
+```
+
+<br/>
+
+6. Modify Auto-Reconnect parameters
+
+```javascript
+let UpstoxClient = require("upstox-js-sdk");
+let defaultClient = UpstoxClient.ApiClient.instance;
+var OAUTH2 = defaultClient.authentications["OAUTH2"];
+OAUTH2.accessToken = <ACCESS_TOKEN>;
+
+const streamer = new UpstoxClient.MarketDataStreamerV3();
+streamer.connect();
+
+// Modify auto-reconnect parameters: enable it, set interval to 10 seconds, and retry count to 3
+streamer.autoReconnect(true, 10, 3);
+```
+
+<br/>
+</p>
+</details>
+
+
+<details>
+<summary style="cursor: pointer; font-size: 1.2em;">V2</summary>
+<p>
+
 The `MarketDataStreamer` function is designed for effortless connection to the market WebSocket, enabling users to receive instantaneous updates on various instruments. The following example demonstrates how to quickly set up and start receiving market updates for selected instrument keys:
 
 ```javascript
@@ -334,6 +560,8 @@ streamer.autoReconnect(true, 10, 3);
 ```
 
 <br/>
+</p>
+</details>
 
 ### PortfolioDataStreamer
 
