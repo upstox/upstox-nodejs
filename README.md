@@ -158,7 +158,7 @@ Feel free to adjust the access token placeholder and any other specifics to bett
 - **option_greeks**: Contains only option greeks.
 
 #### Functions
-1. **constructor MarketDataStreamerV3(instrumentKeys, mode)**: Initializes the streamer with optional instrument keys and mode (`full` or `ltpc`).
+1. **constructor MarketDataStreamerV3(instrumentKeys, mode)**: Initializes the streamer with optional instrument keys and mode (`full`, `ltpc`, `full_d30` or `option_greeks`).
 2. **connect()**: Establishes the WebSocket connection.
 3. **subscribe(instrumentKeys, mode)**: Subscribes to updates for given instrument keys in the specified mode. Both parameters are mandatory.
 4. **unsubscribe(instrumentKeys)**: Stops updates for the specified instrument keys.
