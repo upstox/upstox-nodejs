@@ -6,8 +6,7 @@ class MarketDataStreamerV3 extends Streamer {
   Mode = Object.freeze({
     LTPC: "ltpc",
     FULL: "full",
-    OPTION: "option_greeks",
-    D30: "full_d30",
+    OPTION: "option_greeks"
   });
 
   constructor(instrumentKeys = [], mode = "ltpc") {
@@ -17,8 +16,7 @@ class MarketDataStreamerV3 extends Streamer {
     this.subscriptions = {
       [this.Mode.LTPC]: new Set(),
       [this.Mode.FULL]: new Set(),
-      [this.Mode.OPTION]: new Set(),
-      [this.Mode.D30]: new Set(),
+      [this.Mode.OPTION]: new Set()
     };
     if(!Object.values(this.Mode).includes(mode)){
         throw new Error("Invalid mode provided ", mode);
@@ -92,7 +90,6 @@ class MarketDataStreamerV3 extends Streamer {
     this.subscriptions[this.Mode.LTPC].clear();
     this.subscriptions[this.Mode.FULL].clear();
     this.subscriptions[this.Mode.OPTION].clear();
-    this.subscriptions[this.Mode.D30].clear();
   }
 
   isInvalidMode(mode) {
