@@ -74,6 +74,7 @@ Class | Method | HTTP request | Description
 *UpstoxClient.HistoryApi* | [**getHistoricalCandleData1**](docs/HistoryApi.md#getHistoricalCandleData1) | **GET** /v2/historical-candle/{instrumentKey}/{interval}/{to_date}/{from_date} | Historical candle data
 *UpstoxClient.HistoryApi* | [**getIntraDayCandleData**](docs/HistoryApi.md#getIntraDayCandleData) | **GET** /v2/historical-candle/intraday/{instrumentKey}/{interval} | Intra day candle data
 *UpstoxClient.LoginApi* | [**authorize**](docs/LoginApi.md#authorize) | **GET** /v2/login/authorization/dialog | Authorize API
+*UpstoxClient.LoginApi* | [**initTokenRequestForIndieUser**](docs/LoginApi.md#initTokenRequestForIndieUser) | **POST** /v3/login/auth/token/request/{client_id} | Init token API
 *UpstoxClient.LoginApi* | [**logout**](docs/LoginApi.md#logout) | **DELETE** /v2/logout | Logout
 *UpstoxClient.LoginApi* | [**token**](docs/LoginApi.md#token) | **POST** /v2/login/authorization/token | Get token API
 *UpstoxClient.MarketHolidaysAndTimingsApi* | [**getExchangeTimings**](docs/MarketHolidaysAndTimingsApi.md#getExchangeTimings) | **GET** /v2/market/timings/{date} | Get Exchange Timings on particular date
@@ -95,7 +96,10 @@ Class | Method | HTTP request | Description
 *UpstoxClient.OrderApi* | [**getTradesByOrder**](docs/OrderApi.md#getTradesByOrder) | **GET** /v2/order/trades | Get trades for order
 *UpstoxClient.OrderApi* | [**modifyOrder**](docs/OrderApi.md#modifyOrder) | **PUT** /v2/order/modify | Modify order
 *UpstoxClient.OrderApi* | [**placeMultiOrder**](docs/OrderApi.md#placeMultiOrder) | **POST** /v2/order/multi/place | Place multi order
-*UpstoxClient.OrderApi* | [**placeOrder**](docs/OrderApi.md#placeOrder) | **POST** /v2/order/place | Place order
+*UpstoxClient.OrderApi* | [**placeOrder1**](docs/OrderApi.md#placeOrder1) | **POST** /v2/order/place | Place order
+*UpstoxClient.OrderApiV3* | [**cancelOrder**](docs/OrderApiV3.md#cancelOrder) | **DELETE** /v3/order/cancel | 
+*UpstoxClient.OrderApiV3* | [**modifyOrder**](docs/OrderApiV3.md#modifyOrder) | **PUT** /v3/order/modify | 
+*UpstoxClient.OrderApiV3* | [**placeOrder**](docs/OrderApiV3.md#placeOrder) | **POST** /v3/order/place | 
 *UpstoxClient.PortfolioApi* | [**convertPositions**](docs/PortfolioApi.md#convertPositions) | **PUT** /v2/portfolio/convert-position | Convert Positions
 *UpstoxClient.PortfolioApi* | [**getHoldings**](docs/PortfolioApi.md#getHoldings) | **GET** /v2/portfolio/long-term-holdings | Get Holdings
 *UpstoxClient.PortfolioApi* | [**getPositions**](docs/PortfolioApi.md#getPositions) | **GET** /v2/portfolio/short-term-positions | Get Positions
@@ -613,6 +617,7 @@ This example demonstrates initializing the PortfolioDataStreamer, connecting it 
  - [UpstoxClient.CancelOrExitOrderErrorData](docs/CancelOrExitOrderErrorData.md)
  - [UpstoxClient.CancelOrderData](docs/CancelOrderData.md)
  - [UpstoxClient.CancelOrderResponse](docs/CancelOrderResponse.md)
+ - [UpstoxClient.CancelOrderV3Response](docs/CancelOrderV3Response.md)
  - [UpstoxClient.ConvertPositionData](docs/ConvertPositionData.md)
  - [UpstoxClient.ConvertPositionRequest](docs/ConvertPositionRequest.md)
  - [UpstoxClient.ConvertPositionResponse](docs/ConvertPositionResponse.md)
@@ -645,6 +650,9 @@ This example demonstrates initializing the PortfolioDataStreamer, connecting it 
  - [UpstoxClient.HistoricalCandleData](docs/HistoricalCandleData.md)
  - [UpstoxClient.HoldingsData](docs/HoldingsData.md)
  - [UpstoxClient.HolidayData](docs/HolidayData.md)
+ - [UpstoxClient.IndieUserInitTokenData](docs/IndieUserInitTokenData.md)
+ - [UpstoxClient.IndieUserInitTokenResponse](docs/IndieUserInitTokenResponse.md)
+ - [UpstoxClient.IndieUserTokenRequest](docs/IndieUserTokenRequest.md)
  - [UpstoxClient.Instrument](docs/Instrument.md)
  - [UpstoxClient.InstrumentData](docs/InstrumentData.md)
  - [UpstoxClient.IntraDayCandleData](docs/IntraDayCandleData.md)
@@ -660,11 +668,13 @@ This example demonstrates initializing the PortfolioDataStreamer, connecting it 
  - [UpstoxClient.ModifyOrderData](docs/ModifyOrderData.md)
  - [UpstoxClient.ModifyOrderRequest](docs/ModifyOrderRequest.md)
  - [UpstoxClient.ModifyOrderResponse](docs/ModifyOrderResponse.md)
+ - [UpstoxClient.ModifyOrderV3Response](docs/ModifyOrderV3Response.md)
  - [UpstoxClient.MultiOrderData](docs/MultiOrderData.md)
  - [UpstoxClient.MultiOrderError](docs/MultiOrderError.md)
  - [UpstoxClient.MultiOrderRequest](docs/MultiOrderRequest.md)
  - [UpstoxClient.MultiOrderResponse](docs/MultiOrderResponse.md)
  - [UpstoxClient.MultiOrderSummary](docs/MultiOrderSummary.md)
+ - [UpstoxClient.MultiOrderV3Data](docs/MultiOrderV3Data.md)
  - [UpstoxClient.OAuthClientException](docs/OAuthClientException.md)
  - [UpstoxClient.OAuthClientExceptionCause](docs/OAuthClientExceptionCause.md)
  - [UpstoxClient.OAuthClientExceptionCauseStackTrace](docs/OAuthClientExceptionCauseStackTrace.md)
@@ -673,10 +683,13 @@ This example demonstrates initializing the PortfolioDataStreamer, connecting it 
  - [UpstoxClient.OptionStrikeData](docs/OptionStrikeData.md)
  - [UpstoxClient.OrderBookData](docs/OrderBookData.md)
  - [UpstoxClient.OrderData](docs/OrderData.md)
+ - [UpstoxClient.OrderMetadata](docs/OrderMetadata.md)
  - [UpstoxClient.OtherTaxes](docs/OtherTaxes.md)
  - [UpstoxClient.PlaceOrderData](docs/PlaceOrderData.md)
  - [UpstoxClient.PlaceOrderRequest](docs/PlaceOrderRequest.md)
  - [UpstoxClient.PlaceOrderResponse](docs/PlaceOrderResponse.md)
+ - [UpstoxClient.PlaceOrderV3Request](docs/PlaceOrderV3Request.md)
+ - [UpstoxClient.PlaceOrderV3Response](docs/PlaceOrderV3Response.md)
  - [UpstoxClient.PositionData](docs/PositionData.md)
  - [UpstoxClient.PostMarginResponse](docs/PostMarginResponse.md)
  - [UpstoxClient.Problem](docs/Problem.md)

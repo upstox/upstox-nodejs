@@ -28,15 +28,21 @@ import querystring from "querystring";
 * @class
 */
 export class ApiClient {
-    constructor() {
+    constructor(sandbox = false) {
         /**
          * The base URL against which to resolve every API call's (relative) path.
          * @type {String}
          * @default https://api-v2.upstox.com
          */
 
-        this.basePath = 'https://api.upstox.com'.replace(/\/+$/, '');
-        this.orderBasePath = 'https://api-hft.upstox.com'.replace(/\/+$/, '');
+        if(sandbox) {
+            this.basePath = 'https://api-sandbox.upstox.com'.replace(/\/+$/, '');
+            this.orderBasePath = 'https://api-sandbox.upstox.com'.replace(/\/+$/, '');
+        }
+        else{
+            this.basePath = 'https://api.upstox.com'.replace(/\/+$/, '');
+            this.orderBasePath = 'https://api-hft.upstox.com'.replace(/\/+$/, '');
+        }
 
         /**
          * The authentication methods to be included for all API calls.
@@ -53,7 +59,7 @@ export class ApiClient {
          */
         this.defaultHeaders = {
             'X-Upstox-SDK-Language': 'nodejs',
-            'X-Upstox-SDK-Version': '2.12.0'
+            'X-Upstox-SDK-Version': '2.13.0'
         };
 
         /**
@@ -90,7 +96,7 @@ export class ApiClient {
          * Allow user to override superagent agent
          */
         this.requestAgent = null;
-
+        ApiClient.instance = this;
     }
 
     /**
