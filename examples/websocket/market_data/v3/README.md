@@ -4,8 +4,7 @@ This Node.js project illustrates how to connect to the Upstox Websocket API to s
 
 ## Getting Started
 
-We recommend using the v3 WebSocket over the v2 version for enhanced functionality. For an example, please refer to the [V3 Example](https://github.com/upstox/upstox-nodejs/tree/include-v3-url/examples/websocket/market_data/v3).
-These instructions will help you run the sample v2 websocket client.
+These instructions will help you run the sample v3 websocket client.
 
 ### Prerequisites
 
@@ -15,14 +14,14 @@ Before you can run this script, you need to have Node.js and npm installed on yo
 
 You will also need to install several npm packages:
 
-- `upstox-js-sdk`
+- `axios`
 - `ws`
 - `protobufjs`
 
 You can install these packages using npm, a package manager for Node.js. Open a terminal and enter the following command:
 
 ```sh
-npm install upstox-js-sdk ws protobufjs
+npm install axios ws protobufjs
 ```
 
 ### Configuration
@@ -30,7 +29,7 @@ npm install upstox-js-sdk ws protobufjs
 The script requires an Upstox API access token for authorization. You will need to specify your Upstox API access token in the script. Look for the line below and replace 'ACCESS_TOKEN' with your actual access token.
 
 ```
-OAUTH2.accessToken = "ACCESS_TOKEN";
+const accessToken = "ACCESS_TOKEN";
 ```
 
 ### Running the Script
@@ -41,17 +40,17 @@ After installing the prerequisites and setting up your access token, you can run
 node websocket_client.js
 ```
 
-Replace websocket_client.py with the name of your JavaScript file.
+Replace websocket_client.js with the name of your JavaScript file.
 
 ## Understanding the Code
 
-The script first authenticates using an OAuth2 access token. It fetches the authorized redirect URI from the Upstox server and uses this to establish a connection to the Websocket server.
+The script fetches the authorized redirect URI from the Upstox server using a valid access token and utilizes this URI to establish a connection with the WebSocket server.
 
-The script then establishes a websocket connection, sends a subscription request for "NSE_INDEX|Nifty Bank" and "NSE_INDEX|Nifty 50". When it receives data from the server, it decodes the protobuf data and then logs the decoded data.
+After that it sends a subscription request for "NSE_INDEX|Nifty Bank" and "NSE_INDEX|Nifty 50". When it receives data from the server, it decodes the protobuf data and then logs the decoded data.
 
 ## Support
 
-If you encounter any problems or have any questions about this project, feel free to open an issue in this repository.
+If you encounter any problems or have any questions about this project, feel free to post it on our [Developer Community](https://community.upstox.com/c/developer-api/15).
 
 ## Disclaimer
 

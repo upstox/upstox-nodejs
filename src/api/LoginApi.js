@@ -14,6 +14,8 @@
  */
 import {ApiClient} from "../ApiClient";
 import {ApiGatewayErrorResponse} from '../model/ApiGatewayErrorResponse';
+import {IndieUserInitTokenResponse} from '../model/IndieUserInitTokenResponse';
+import {IndieUserTokenRequest} from '../model/IndieUserTokenRequest';
 import {LogoutResponse} from '../model/LogoutResponse';
 import {OAuthClientException} from '../model/OAuthClientException';
 import {TokenResponse} from '../model/TokenResponse';
@@ -92,6 +94,67 @@ export class LoginApi {
 
       return this.apiClient.callApi(
         '/v2/login/authorization/dialog', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+    mapToInitTokenRequestForIndieUser(data) {
+      let obj = {};
+      if (data) {
+        if (data.hasOwnProperty('clientSecret'))
+          obj.client_secret = ApiClient.convertToType(data['clientSecret'], 'String');
+
+      }
+      return obj;
+    }
+    /**
+     * Callback function to receive the result of the initTokenRequestForIndieUser operation.
+     * @callback moduleapi/LoginApi~initTokenRequestForIndieUserCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/IndieUserInitTokenResponse{ data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Init token API
+     * This API provides the initialize the generate token and it&#x27;s expiry for an indie user
+     * @param {module:model/IndieUserTokenRequest} body 
+     * @param {String} clientId 
+     * @param {module:api/LoginApi~initTokenRequestForIndieUserCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link <&vendorExtensions.x-jsdoc-type>}
+     */
+    initTokenRequestForIndieUser(body, clientId, callback) {
+      
+      let postBody = this.mapToInitTokenRequestForIndieUser(body);
+      // verify the required parameter 'body' is set
+      if (body === undefined || body === null) {
+        throw new Error("Missing the required parameter 'body' when calling initTokenRequestForIndieUser");
+      }
+      // verify the required parameter 'clientId' is set
+      if (clientId === undefined || clientId === null) {
+        throw new Error("Missing the required parameter 'clientId' when calling initTokenRequestForIndieUser");
+      }
+
+      let pathParams = {
+        'client_id': clientId
+      };
+      let queryParams = {
+        
+      };
+      let headerParams = {
+        
+      };
+      let formParams = {
+        
+      };
+
+      let authNames = [];
+      let contentTypes = ['application/json'];
+      let accepts = ['application/json', '*/*'];
+      let returnType = IndieUserInitTokenResponse;
+
+      return this.apiClient.callApi(
+        '/v3/login/auth/token/request/{client_id}', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );

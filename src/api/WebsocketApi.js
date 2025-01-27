@@ -81,6 +81,38 @@ export class WebsocketApi {
         authNames, contentTypes, accepts, returnType, callback
       );
     }
+
+      /**
+     * Market Data Feed
+     *  This API redirects the client to the respective socket endpoint to receive Market updates.
+     * @param {module:api/WebsocketApi~getMarketDataFeedCallback} callback The callback function, accepting three arguments: error, data, response
+     */
+      getMarketDataFeedV3(callback) {
+        let postBody = null;
+  
+        let pathParams = {
+          
+        };
+        let queryParams = {
+          
+        };
+        let headerParams = {};
+
+        let formParams = {
+          
+        };
+  
+        let authNames = ['OAUTH2'];
+        let contentTypes = [];
+        let accepts = ['*/*'];
+        let returnType = null;
+  
+        return this.apiClient.callApi(
+          '/v3/feed/market-data-feed', 'GET',
+          pathParams, queryParams, headerParams, formParams, postBody,
+          authNames, contentTypes, accepts, returnType, callback
+        );
+      }
     /**
      * Callback function to receive the result of the getMarketDataFeedAuthorize operation.
      * @callback moduleapi/WebsocketApi~getMarketDataFeedAuthorizeCallback
@@ -128,6 +160,42 @@ export class WebsocketApi {
         authNames, contentTypes, accepts, returnType, callback
       );
     }
+
+     /**
+     * Market Data Feed Authorize
+     * This API provides the functionality to retrieve the socket endpoint URI for Market updates.
+     * @param {module:api/WebsocketApi~getMarketDataFeedAuthorizeCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link <&vendorExtensions.x-jsdoc-type>}
+     */
+        getMarketDataFeedAuthorizeV3(callback) {
+      
+          let postBody = null;
+    
+          let pathParams = {
+            
+          };
+          let queryParams = {
+            
+          };
+          let headerParams = {
+
+          };
+          let formParams = {
+            
+          };
+    
+          let authNames = ['OAUTH2'];
+          let contentTypes = [];
+          let accepts = ['*/*', 'application/json'];
+          let returnType = WebsocketAuthRedirectResponse;
+    
+          return this.apiClient.callApi(
+            '/v3/feed/market-data-feed/authorize', 'GET',
+            pathParams, queryParams, headerParams, formParams, postBody,
+            authNames, contentTypes, accepts, returnType, callback
+          );
+        }
+
     /**
      * Callback function to receive the result of the getPortfolioStreamFeed operation.
      * @callback moduleapi/WebsocketApi~getPortfolioStreamFeedCallback

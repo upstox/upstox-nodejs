@@ -28,15 +28,30 @@ import querystring from "querystring";
 * @class
 */
 export class ApiClient {
-    constructor() {
+    constructor(sandbox = false) {
         /**
          * The base URL against which to resolve every API call's (relative) path.
          * @type {String}
          * @default https://api-v2.upstox.com
          */
-
-        this.basePath = 'https://api.upstox.com'.replace(/\/+$/, '');
-        this.orderBasePath = 'https://api-hft.upstox.com'.replace(/\/+$/, '');
+        this.sandbox = sandbox;
+        this.sandboxUrls = new Set([
+            "/v2/order/place",
+            "/v2/order/modify",
+            "/v2/order/cancel",
+            "/v2/order/multi/place",
+            "/v3/order/place",
+            "/v3/order/modify",
+            "/v3/order/cancel"
+        ]);
+        if(this.sandbox) {
+            this.basePath = 'https://api-sandbox.upstox.com'.replace(/\/+$/, '');
+            this.orderBasePath = 'https://api-sandbox.upstox.com'.replace(/\/+$/, '');
+        }
+        else{
+            this.basePath = 'https://api.upstox.com'.replace(/\/+$/, '');
+            this.orderBasePath = 'https://api-hft.upstox.com'.replace(/\/+$/, '');
+        }
 
         /**
          * The authentication methods to be included for all API calls.
@@ -53,7 +68,7 @@ export class ApiClient {
          */
         this.defaultHeaders = {
             'X-Upstox-SDK-Language': 'nodejs',
-            'X-Upstox-SDK-Version': '2.12.0'
+            'X-Upstox-SDK-Version': '2.13.0'
         };
 
         /**
@@ -90,7 +105,7 @@ export class ApiClient {
          * Allow user to override superagent agent
          */
         this.requestAgent = null;
-
+        ApiClient.instance = this;
     }
 
     /**
@@ -399,7 +414,9 @@ export class ApiClient {
     callApi(path, httpMethod, pathParams,
         queryParams, headerParams, formParams, bodyParam, authNames, contentTypes, accepts,
         returnType, callback) {
-
+        if(this.sandbox && (!this.sandboxUrls.has(path))) {
+            throw new Error(`This API is not available in sandbox mode.`);
+        }
         var url = this.buildUrl(path, pathParams);
         var request = superagent(httpMethod, url);
 

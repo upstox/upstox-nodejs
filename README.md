@@ -32,39 +32,34 @@ npm install upstox-js-sdk --save
 - [Websocket Market data](examples/websocket/market_data/)
 - [Websocket Order updates](examples/websocket/order_updates/)
 
-## Getting Started
-
-Please follow the [installation](#installation) instruction and execute the following JS code:
+## Sandbox Mode
+We recommend using the sandbox environment for testing purposes. To enable sandbox mode, set the `sandbox` flag to `true` in the client object.
 
 ```javascript
-var UpstoxClient = require('upstox-js-sdk');
-var defaultClient = UpstoxClient.ApiClient.instance;
+let UpstoxClient = require("upstox-js-sdk");
+let sandboxClient = new UpstoxClient.ApiClient(true);
+sandboxClient.authentications["OAUTH2"].accessToken = "SANDBOX_ACCESS_TOKEN";
 
-// Configure OAuth2 access token for authorization: OAUTH2
-var OAUTH2 = defaultClient.authentications['OAUTH2'];
-OAUTH2.accessToken = "YOUR ACCESS TOKEN"
 
-var api = new UpstoxClient.ChargeApi()
-var instrumentToken = "instrumentToken_example"; // {String} Key of the instrument
-var quantity = 56; // {Number} Quantity with which the order is to be placed
-var product = "product_example"; // {String} Product with which the order is to be placed
-var transactionType = "transactionType_example"; // {String} Indicates whether its a BUY or SELL order
-var price = 3.4; // {Number} Price with which the order is to be placed
-var apiVersion = "apiVersion_example"; // {String} API Version Header
-
-var callback = function(error, data, response) {
+let apiInstance = new UpstoxClient.OrderApiV3();
+let body = new UpstoxClient.PlaceOrderV3Request(1,UpstoxClient.PlaceOrderV3Request.ProductEnum.D,
+    UpstoxClient.PlaceOrderV3Request.ValidityEnum.DAY, 0,"NSE_EQ|INE528G01035",UpstoxClient.PlaceOrderV3Request.OrderTypeEnum.MARKET,
+    UpstoxClient.PlaceOrderV3Request.TransactionTypeEnum.BUY,0,0,true);
+let opt = {"slice": true}
+apiInstance.placeOrder(body, opt, (error, data, response) => {
   if (error) {
-    console.error(error);
+    console.log("error->" + JSON.stringify(error));
   } else {
-    console.log('API called successfully. Returned data: ' + data);
+    console.log('API called successfully. Returned data: ' + JSON.stringify(data));
   }
-};
-api.getBrokerage(instrumentToken, quantity, product, transactionType, price, apiVersion, callback);
+});
 ```
+To learn more about the sandbox environment and the available sandbox APIs, please visit the [Upstox API documentation - Sandbox](https://upstox.com/developer/api-documentation/sandbox).
+
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://api-v2.upstox.com*
+All URIs are relative to *https://api.upstox.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -74,6 +69,7 @@ Class | Method | HTTP request | Description
 *UpstoxClient.HistoryApi* | [**getHistoricalCandleData1**](docs/HistoryApi.md#getHistoricalCandleData1) | **GET** /v2/historical-candle/{instrumentKey}/{interval}/{to_date}/{from_date} | Historical candle data
 *UpstoxClient.HistoryApi* | [**getIntraDayCandleData**](docs/HistoryApi.md#getIntraDayCandleData) | **GET** /v2/historical-candle/intraday/{instrumentKey}/{interval} | Intra day candle data
 *UpstoxClient.LoginApi* | [**authorize**](docs/LoginApi.md#authorize) | **GET** /v2/login/authorization/dialog | Authorize API
+*UpstoxClient.LoginApi* | [**initTokenRequestForIndieUser**](docs/LoginApi.md#initTokenRequestForIndieUser) | **POST** /v3/login/auth/token/request/{client_id} | Init token API
 *UpstoxClient.LoginApi* | [**logout**](docs/LoginApi.md#logout) | **DELETE** /v2/logout | Logout
 *UpstoxClient.LoginApi* | [**token**](docs/LoginApi.md#token) | **POST** /v2/login/authorization/token | Get token API
 *UpstoxClient.MarketHolidaysAndTimingsApi* | [**getExchangeTimings**](docs/MarketHolidaysAndTimingsApi.md#getExchangeTimings) | **GET** /v2/market/timings/{date} | Get Exchange Timings on particular date
@@ -95,7 +91,10 @@ Class | Method | HTTP request | Description
 *UpstoxClient.OrderApi* | [**getTradesByOrder**](docs/OrderApi.md#getTradesByOrder) | **GET** /v2/order/trades | Get trades for order
 *UpstoxClient.OrderApi* | [**modifyOrder**](docs/OrderApi.md#modifyOrder) | **PUT** /v2/order/modify | Modify order
 *UpstoxClient.OrderApi* | [**placeMultiOrder**](docs/OrderApi.md#placeMultiOrder) | **POST** /v2/order/multi/place | Place multi order
-*UpstoxClient.OrderApi* | [**placeOrder**](docs/OrderApi.md#placeOrder) | **POST** /v2/order/place | Place order
+*UpstoxClient.OrderApi* | [**placeOrder1**](docs/OrderApi.md#placeOrder1) | **POST** /v2/order/place | Place order
+*UpstoxClient.OrderApiV3* | [**cancelOrder**](docs/OrderApiV3.md#cancelOrder) | **DELETE** /v3/order/cancel | 
+*UpstoxClient.OrderApiV3* | [**modifyOrder**](docs/OrderApiV3.md#modifyOrder) | **PUT** /v3/order/modify | 
+*UpstoxClient.OrderApiV3* | [**placeOrder**](docs/OrderApiV3.md#placeOrder) | **POST** /v3/order/place | 
 *UpstoxClient.PortfolioApi* | [**convertPositions**](docs/PortfolioApi.md#convertPositions) | **PUT** /v2/portfolio/convert-position | Convert Positions
 *UpstoxClient.PortfolioApi* | [**getHoldings**](docs/PortfolioApi.md#getHoldings) | **GET** /v2/portfolio/long-term-holdings | Get Holdings
 *UpstoxClient.PortfolioApi* | [**getPositions**](docs/PortfolioApi.md#getPositions) | **GET** /v2/portfolio/short-term-positions | Get Positions
@@ -613,6 +612,7 @@ This example demonstrates initializing the PortfolioDataStreamer, connecting it 
  - [UpstoxClient.CancelOrExitOrderErrorData](docs/CancelOrExitOrderErrorData.md)
  - [UpstoxClient.CancelOrderData](docs/CancelOrderData.md)
  - [UpstoxClient.CancelOrderResponse](docs/CancelOrderResponse.md)
+ - [UpstoxClient.CancelOrderV3Response](docs/CancelOrderV3Response.md)
  - [UpstoxClient.ConvertPositionData](docs/ConvertPositionData.md)
  - [UpstoxClient.ConvertPositionRequest](docs/ConvertPositionRequest.md)
  - [UpstoxClient.ConvertPositionResponse](docs/ConvertPositionResponse.md)
@@ -645,6 +645,9 @@ This example demonstrates initializing the PortfolioDataStreamer, connecting it 
  - [UpstoxClient.HistoricalCandleData](docs/HistoricalCandleData.md)
  - [UpstoxClient.HoldingsData](docs/HoldingsData.md)
  - [UpstoxClient.HolidayData](docs/HolidayData.md)
+ - [UpstoxClient.IndieUserInitTokenData](docs/IndieUserInitTokenData.md)
+ - [UpstoxClient.IndieUserInitTokenResponse](docs/IndieUserInitTokenResponse.md)
+ - [UpstoxClient.IndieUserTokenRequest](docs/IndieUserTokenRequest.md)
  - [UpstoxClient.Instrument](docs/Instrument.md)
  - [UpstoxClient.InstrumentData](docs/InstrumentData.md)
  - [UpstoxClient.IntraDayCandleData](docs/IntraDayCandleData.md)
@@ -660,11 +663,13 @@ This example demonstrates initializing the PortfolioDataStreamer, connecting it 
  - [UpstoxClient.ModifyOrderData](docs/ModifyOrderData.md)
  - [UpstoxClient.ModifyOrderRequest](docs/ModifyOrderRequest.md)
  - [UpstoxClient.ModifyOrderResponse](docs/ModifyOrderResponse.md)
+ - [UpstoxClient.ModifyOrderV3Response](docs/ModifyOrderV3Response.md)
  - [UpstoxClient.MultiOrderData](docs/MultiOrderData.md)
  - [UpstoxClient.MultiOrderError](docs/MultiOrderError.md)
  - [UpstoxClient.MultiOrderRequest](docs/MultiOrderRequest.md)
  - [UpstoxClient.MultiOrderResponse](docs/MultiOrderResponse.md)
  - [UpstoxClient.MultiOrderSummary](docs/MultiOrderSummary.md)
+ - [UpstoxClient.MultiOrderV3Data](docs/MultiOrderV3Data.md)
  - [UpstoxClient.OAuthClientException](docs/OAuthClientException.md)
  - [UpstoxClient.OAuthClientExceptionCause](docs/OAuthClientExceptionCause.md)
  - [UpstoxClient.OAuthClientExceptionCauseStackTrace](docs/OAuthClientExceptionCauseStackTrace.md)
@@ -673,10 +678,13 @@ This example demonstrates initializing the PortfolioDataStreamer, connecting it 
  - [UpstoxClient.OptionStrikeData](docs/OptionStrikeData.md)
  - [UpstoxClient.OrderBookData](docs/OrderBookData.md)
  - [UpstoxClient.OrderData](docs/OrderData.md)
+ - [UpstoxClient.OrderMetadata](docs/OrderMetadata.md)
  - [UpstoxClient.OtherTaxes](docs/OtherTaxes.md)
  - [UpstoxClient.PlaceOrderData](docs/PlaceOrderData.md)
  - [UpstoxClient.PlaceOrderRequest](docs/PlaceOrderRequest.md)
  - [UpstoxClient.PlaceOrderResponse](docs/PlaceOrderResponse.md)
+ - [UpstoxClient.PlaceOrderV3Request](docs/PlaceOrderV3Request.md)
+ - [UpstoxClient.PlaceOrderV3Response](docs/PlaceOrderV3Response.md)
  - [UpstoxClient.PositionData](docs/PositionData.md)
  - [UpstoxClient.PostMarginResponse](docs/PostMarginResponse.md)
  - [UpstoxClient.Problem](docs/Problem.md)

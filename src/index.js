@@ -24,6 +24,7 @@ import {CancelOrExitMultiOrderResponse} from './model/CancelOrExitMultiOrderResp
 import {CancelOrExitOrderErrorData} from './model/CancelOrExitOrderErrorData';
 import {CancelOrderData} from './model/CancelOrderData';
 import {CancelOrderResponse} from './model/CancelOrderResponse';
+import {CancelOrderV3Response} from './model/CancelOrderV3Response';
 import {ConvertPositionData} from './model/ConvertPositionData';
 import {ConvertPositionRequest} from './model/ConvertPositionRequest';
 import {ConvertPositionResponse} from './model/ConvertPositionResponse';
@@ -56,6 +57,9 @@ import {GetUserFundMarginResponse} from './model/GetUserFundMarginResponse';
 import {HistoricalCandleData} from './model/HistoricalCandleData';
 import {HoldingsData} from './model/HoldingsData';
 import {HolidayData} from './model/HolidayData';
+import {IndieUserInitTokenData} from './model/IndieUserInitTokenData';
+import {IndieUserInitTokenResponse} from './model/IndieUserInitTokenResponse';
+import {IndieUserTokenRequest} from './model/IndieUserTokenRequest';
 import {Instrument} from './model/Instrument';
 import {InstrumentData} from './model/InstrumentData';
 import {IntraDayCandleData} from './model/IntraDayCandleData';
@@ -71,11 +75,13 @@ import {MarketStatusData} from './model/MarketStatusData';
 import {ModifyOrderData} from './model/ModifyOrderData';
 import {ModifyOrderRequest} from './model/ModifyOrderRequest';
 import {ModifyOrderResponse} from './model/ModifyOrderResponse';
+import {ModifyOrderV3Response} from './model/ModifyOrderV3Response';
 import {MultiOrderData} from './model/MultiOrderData';
 import {MultiOrderError} from './model/MultiOrderError';
 import {MultiOrderRequest} from './model/MultiOrderRequest';
 import {MultiOrderResponse} from './model/MultiOrderResponse';
 import {MultiOrderSummary} from './model/MultiOrderSummary';
+import {MultiOrderV3Data} from './model/MultiOrderV3Data';
 import {OAuthClientException} from './model/OAuthClientException';
 import {OAuthClientExceptionCause} from './model/OAuthClientExceptionCause';
 import {OAuthClientExceptionCauseStackTrace} from './model/OAuthClientExceptionCauseStackTrace';
@@ -84,10 +90,13 @@ import {Ohlc} from './model/Ohlc';
 import {OptionStrikeData} from './model/OptionStrikeData';
 import {OrderBookData} from './model/OrderBookData';
 import {OrderData} from './model/OrderData';
+import {OrderMetadata} from './model/OrderMetadata';
 import {OtherTaxes} from './model/OtherTaxes';
 import {PlaceOrderData} from './model/PlaceOrderData';
 import {PlaceOrderRequest} from './model/PlaceOrderRequest';
 import {PlaceOrderResponse} from './model/PlaceOrderResponse';
+import {PlaceOrderV3Request} from './model/PlaceOrderV3Request';
+import {PlaceOrderV3Response} from './model/PlaceOrderV3Response';
 import {PositionData} from './model/PositionData';
 import {PostMarginResponse} from './model/PostMarginResponse';
 import {Problem} from './model/Problem';
@@ -118,6 +127,7 @@ import {MarketHolidaysAndTimingsApi} from './api/MarketHolidaysAndTimingsApi';
 import {MarketQuoteApi} from './api/MarketQuoteApi';
 import {OptionsApi} from './api/OptionsApi';
 import {OrderApi} from './api/OrderApi';
+import {OrderApiV3} from './api/OrderControllerV3Api';
 import {PortfolioApi} from './api/PortfolioApi';
 import {PostTradeApi} from './api/PostTradeApi';
 import {TradeProfitAndLossApi} from './api/TradeProfitAndLossApi';
@@ -231,6 +241,12 @@ export {
      * @property {module:model/CancelOrderResponse}
      */
     CancelOrderResponse,
+
+    /**
+     * The CancelOrderV3Response model constructor.
+     * @property {module:model/CancelOrderV3Response}
+     */
+    CancelOrderV3Response,
 
     /**
      * The ConvertPositionData model constructor.
@@ -425,6 +441,24 @@ export {
     HolidayData,
 
     /**
+     * The IndieUserInitTokenData model constructor.
+     * @property {module:model/IndieUserInitTokenData}
+     */
+    IndieUserInitTokenData,
+
+    /**
+     * The IndieUserInitTokenResponse model constructor.
+     * @property {module:model/IndieUserInitTokenResponse}
+     */
+    IndieUserInitTokenResponse,
+
+    /**
+     * The IndieUserTokenRequest model constructor.
+     * @property {module:model/IndieUserTokenRequest}
+     */
+    IndieUserTokenRequest,
+
+    /**
      * The Instrument model constructor.
      * @property {module:model/Instrument}
      */
@@ -515,6 +549,12 @@ export {
     ModifyOrderResponse,
 
     /**
+     * The ModifyOrderV3Response model constructor.
+     * @property {module:model/ModifyOrderV3Response}
+     */
+    ModifyOrderV3Response,
+
+    /**
      * The MultiOrderData model constructor.
      * @property {module:model/MultiOrderData}
      */
@@ -543,6 +583,12 @@ export {
      * @property {module:model/MultiOrderSummary}
      */
     MultiOrderSummary,
+
+    /**
+     * The MultiOrderV3Data model constructor.
+     * @property {module:model/MultiOrderV3Data}
+     */
+    MultiOrderV3Data,
 
     /**
      * The OAuthClientException model constructor.
@@ -593,6 +639,12 @@ export {
     OrderData,
 
     /**
+     * The OrderMetadata model constructor.
+     * @property {module:model/OrderMetadata}
+     */
+    OrderMetadata,
+
+    /**
      * The OtherTaxes model constructor.
      * @property {module:model/OtherTaxes}
      */
@@ -615,6 +667,18 @@ export {
      * @property {module:model/PlaceOrderResponse}
      */
     PlaceOrderResponse,
+
+    /**
+     * The PlaceOrderV3Request model constructor.
+     * @property {module:model/PlaceOrderV3Request}
+     */
+    PlaceOrderV3Request,
+
+    /**
+     * The PlaceOrderV3Response model constructor.
+     * @property {module:model/PlaceOrderV3Response}
+     */
+    PlaceOrderV3Response,
 
     /**
      * The PositionData model constructor.
@@ -795,6 +859,12 @@ export {
     * @property {module:api/OrderApi}
     */
     OrderApi,
+
+    /**
+    * The OrderControllerV3Api service constructor.
+    * @property {module:api/OrderControllerV3Api}
+    */
+    OrderApiV3,
 
     /**
     * The PortfolioApi service constructor.
