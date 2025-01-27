@@ -74,9 +74,9 @@ export class WebsocketApi {
       let contentTypes = [];
       let accepts = ['*/*'];
       let returnType = null;
-
+      let path = apiVersion === "2.0" ? '/v2/feed/market-data-feed' : '/v3/feed/market-data-feed';
       return this.apiClient.callApi(
-        '/v2/feed/market-data-feed', 'GET',
+        path, 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
@@ -121,9 +121,9 @@ export class WebsocketApi {
       let contentTypes = [];
       let accepts = ['*/*', 'application/json'];
       let returnType = WebsocketAuthRedirectResponse;
-
+      const path = apiVersion === "2.0" ? '/v2/feed/market-data-feed/authorize' : '/v3/feed/market-data-feed/authorize';
       return this.apiClient.callApi(
-        '/v2/feed/market-data-feed/authorize', 'GET',
+        path, 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );

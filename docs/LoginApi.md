@@ -60,6 +60,51 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json, */*
 
+<a name="initTokenRequestForIndieUser"></a>
+# **initTokenRequestForIndieUser**
+> IndieUserInitTokenResponse initTokenRequestForIndieUser(body, clientId)
+
+Init token API
+
+This API provides the initialize the generate token and it&#x27;s expiry for an indie user
+
+### Example
+```javascript
+import {UpstoxClient} from 'upstox-js-sdk';
+
+let apiInstance = new UpstoxClient.LoginApi();
+let body = new UpstoxClient.IndieUserTokenRequest(); // IndieUserTokenRequest | 
+let clientId = "clientId_example"; // String | 
+
+apiInstance.initTokenRequestForIndieUser(body, clientId, (error, data, response) => {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+});
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**IndieUserTokenRequest**](IndieUserTokenRequest.md)|  | 
+ **clientId** | **String**|  | 
+
+### Return type
+
+[**IndieUserInitTokenResponse**](IndieUserInitTokenResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json, */*
+
 <a name="logout"></a>
 # **logout**
 > LogoutResponse logout(apiVersion)

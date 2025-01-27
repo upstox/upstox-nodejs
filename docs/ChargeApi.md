@@ -64,3 +64,51 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json, */*
 
+<a name="postMargin"></a>
+# **postMargin**
+> PostMarginResponse postMargin(body)
+
+Calculate Margin
+
+Compute Margin
+
+### Example
+```javascript
+import {UpstoxClient} from 'upstox-js-sdk';
+let defaultClient = UpstoxClient.ApiClient.instance;
+
+// Configure OAuth2 access token for authorization: OAUTH2
+let OAUTH2 = defaultClient.authentications['OAUTH2'];
+OAUTH2.accessToken = 'YOUR ACCESS TOKEN';
+
+let apiInstance = new UpstoxClient.ChargeApi();
+let body = new UpstoxClient.MarginRequest(); // MarginRequest | 
+
+apiInstance.postMargin(body, (error, data, response) => {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+});
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**MarginRequest**](MarginRequest.md)|  | 
+
+### Return type
+
+[**PostMarginResponse**](PostMarginResponse.md)
+
+### Authorization
+
+[OAUTH2](../README.md#OAUTH2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json, */*
+

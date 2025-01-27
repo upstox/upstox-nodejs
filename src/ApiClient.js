@@ -34,8 +34,17 @@ export class ApiClient {
          * @type {String}
          * @default https://api-v2.upstox.com
          */
-
-        if(sandbox) {
+        this.sandbox = sandbox;
+        this.sandboxUrls = new Set([
+            "/v2/order/place",
+            "/v2/order/modify",
+            "/v2/order/cancel",
+            "/v2/order/multi/place",
+            "/v3/order/place",
+            "/v3/order/modify",
+            "/v3/order/cancel"
+        ]);
+        if(this.sandbox) {
             this.basePath = 'https://api-sandbox.upstox.com'.replace(/\/+$/, '');
             this.orderBasePath = 'https://api-sandbox.upstox.com'.replace(/\/+$/, '');
         }
@@ -405,7 +414,9 @@ export class ApiClient {
     callApi(path, httpMethod, pathParams,
         queryParams, headerParams, formParams, bodyParam, authNames, contentTypes, accepts,
         returnType, callback) {
-
+        if(this.sandbox && (!this.sandboxUrls.has(path))) {
+            throw new Error(`URL ${path} is not allowed for sandbox.`);
+        }
         var url = this.buildUrl(path, pathParams);
         var request = superagent(httpMethod, url);
 
