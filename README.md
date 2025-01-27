@@ -59,7 +59,7 @@ To learn more about the sandbox environment and the available sandbox APIs, plea
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://api-v2.upstox.com*
+All URIs are relative to *https://api.upstox.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
