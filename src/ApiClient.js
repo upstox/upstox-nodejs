@@ -415,7 +415,7 @@ export class ApiClient {
         queryParams, headerParams, formParams, bodyParam, authNames, contentTypes, accepts,
         returnType, callback) {
         if(this.sandbox && (!this.sandboxUrls.has(path))) {
-            throw new Error(`URL ${path} is not allowed for sandbox.`);
+            throw new Error(`This API is not available in sandbox mode.`);
         }
         var url = this.buildUrl(path, pathParams);
         var request = superagent(httpMethod, url);

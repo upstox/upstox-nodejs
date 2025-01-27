@@ -32,35 +32,30 @@ npm install upstox-js-sdk --save
 - [Websocket Market data](examples/websocket/market_data/)
 - [Websocket Order updates](examples/websocket/order_updates/)
 
-## Getting Started
-
-Please follow the [installation](#installation) instruction and execute the following JS code:
+## Sandbox Mode
+We recommend using the sandbox environment for testing purposes. To enable sandbox mode, set the `sandbox` flag to `true` in the client object.
 
 ```javascript
-var UpstoxClient = require('upstox-js-sdk');
-var defaultClient = UpstoxClient.ApiClient.instance;
+let UpstoxClient = require("upstox-js-sdk");
+let sandboxClient = new UpstoxClient.ApiClient(true);
+sandboxClient.authentications["OAUTH2"].accessToken = "SANDBOX_ACCESS_TOKEN";
 
-// Configure OAuth2 access token for authorization: OAUTH2
-var OAUTH2 = defaultClient.authentications['OAUTH2'];
-OAUTH2.accessToken = "YOUR ACCESS TOKEN"
 
-var api = new UpstoxClient.ChargeApi()
-var instrumentToken = "instrumentToken_example"; // {String} Key of the instrument
-var quantity = 56; // {Number} Quantity with which the order is to be placed
-var product = "product_example"; // {String} Product with which the order is to be placed
-var transactionType = "transactionType_example"; // {String} Indicates whether its a BUY or SELL order
-var price = 3.4; // {Number} Price with which the order is to be placed
-var apiVersion = "apiVersion_example"; // {String} API Version Header
-
-var callback = function(error, data, response) {
+let apiInstance = new UpstoxClient.OrderApiV3();
+let body = new UpstoxClient.PlaceOrderV3Request(1,UpstoxClient.PlaceOrderV3Request.ProductEnum.D,
+    UpstoxClient.PlaceOrderV3Request.ValidityEnum.DAY, 0,"NSE_EQ|INE528G01035",UpstoxClient.PlaceOrderV3Request.OrderTypeEnum.MARKET,
+    UpstoxClient.PlaceOrderV3Request.TransactionTypeEnum.BUY,0,0,true);
+let opt = {"slice": true}
+apiInstance.placeOrder(body, opt, (error, data, response) => {
   if (error) {
-    console.error(error);
+    console.log("error->" + JSON.stringify(error));
   } else {
-    console.log('API called successfully. Returned data: ' + data);
+    console.log('API called successfully. Returned data: ' + JSON.stringify(data));
   }
-};
-api.getBrokerage(instrumentToken, quantity, product, transactionType, price, apiVersion, callback);
+});
 ```
+To learn more about the sandbox environment and the available sandbox APIs, please visit the [Upstox API documentation - Sandbox](https://upstox.com/developer/api-documentation/sandbox).
+
 
 ## Documentation for API Endpoints
 

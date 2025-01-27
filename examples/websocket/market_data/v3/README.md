@@ -4,7 +4,7 @@ This Node.js project illustrates how to connect to the Upstox Websocket API to s
 
 ## Getting Started
 
-Follow these instructions to run the websocket client.
+These instructions will help you run the sample v3 websocket client.
 
 ### Prerequisites
 
