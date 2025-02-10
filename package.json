@@ -1,6 +1,6 @@
 {
   "name": "upstox-js-sdk",
-  "version": "2.13.0",
+  "version": "2.14.0",
   "description": "The official Node Js client for communicating with the Upstox API",
   "license": "MIT",
   "main": "dist/index.js",
@@ -32,6 +32,7 @@
   "dependencies": {
     "@babel/cli": "^7.0.0",
     "@babel/traverse": "^7.23.2",
+    "axios": "^1.7.9",
     "minimatch": "^3.0.5",
     "nanoid": "^3.1.31",
     "protobufjs": "^7.2.6",
