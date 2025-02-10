@@ -68,7 +68,7 @@ export class ApiClient {
          */
         this.defaultHeaders = {
             'X-Upstox-SDK-Language': 'nodejs',
-            'X-Upstox-SDK-Version': '2.13.0'
+            'X-Upstox-SDK-Version': '2.14.0'
         };
 
         /**
