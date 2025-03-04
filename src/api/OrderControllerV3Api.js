@@ -15,6 +15,11 @@
 import {ApiClient} from "../ApiClient";
 import {ApiGatewayErrorResponse} from '../model/ApiGatewayErrorResponse';
 import {CancelOrderV3Response} from '../model/CancelOrderV3Response';
+import {GetGttOrderResponse} from '../model/GetGttOrderResponse';
+import {GttCancelOrderRequest} from '../model/GttCancelOrderRequest';
+import {GttModifyOrderRequest} from '../model/GttModifyOrderRequest';
+import {GttPlaceOrderRequest} from '../model/GttPlaceOrderRequest';
+import {GttTriggerOrderResponse} from '../model/GttTriggerOrderResponse';
 import {ModifyOrderRequest} from '../model/ModifyOrderRequest';
 import {ModifyOrderV3Response} from '../model/ModifyOrderV3Response';
 import {PlaceOrderV3Request} from '../model/PlaceOrderV3Request';
@@ -38,6 +43,54 @@ export class OrderApiV3 {
     constructor(apiClient) {
         this.apiClient = apiClient || ApiClient.instance;
     }
+
+    /**
+     * Callback function to receive the result of the cancelGTTOrder operation.
+     * @callback moduleapi/OrderControllerV3Api~cancelGTTOrderCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/GttTriggerOrderResponse{ data The data returned by the service call.
+    * @param {String} response The complete HTTP response.
+    */
+
+   /**
+    * Cancel GTT order
+    * This API allows you to cancel GTT orders.
+    * @param {module:model/GttCancelOrderRequest} body 
+    * @param {module:api/OrderControllerV3Api~cancelGTTOrderCallback} callback The callback function, accepting three arguments: error, data, response
+    * data is of type: {@link <&vendorExtensions.x-jsdoc-type>}
+    */
+   cancelGTTOrder(body, callback) {
+     
+     let postBody = body;
+     // verify the required parameter 'body' is set
+     if (body === undefined || body === null) {
+       throw new Error("Missing the required parameter 'body' when calling cancelGTTOrder");
+     }
+
+     let pathParams = {
+       
+     };
+     let queryParams = {
+       
+     };
+     let headerParams = {
+       
+     };
+     let formParams = {
+       
+     };
+
+     let authNames = ['OAUTH2'];
+     let contentTypes = ['application/json'];
+     let accepts = ['*/*', 'application/json'];
+     let returnType = GttTriggerOrderResponse;
+
+     return this.apiClient.callApi(
+       '/v3/order/gtt/cancel', 'DELETE',
+       pathParams, queryParams, headerParams, formParams, postBody,
+       authNames, contentTypes, accepts, returnType, callback
+     );
+   }
 
     /**
      * Callback function to receive the result of the cancelOrder operation.
@@ -83,6 +136,99 @@ export class OrderApiV3 {
         authNames, contentTypes, accepts, returnType, callback
       );
     }
+
+    /**
+     * Callback function to receive the result of the getGttOrderDetails operation.
+     * @callback moduleapi/OrderControllerV3Api~getGttOrderDetailsCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/GetGttOrderResponse{ data The data returned by the service call.
+    * @param {String} response The complete HTTP response.
+    */
+
+   /**
+    * Get GTT order details
+    * GTT_ORDER_DESCRIPTION
+    * @param {Object} opts Optional parameters
+    * @param {String} opts.gttOrderId Unique identifier of the GTT order for which the order history is required
+    * @param {module:api/OrderControllerV3Api~getGttOrderDetailsCallback} callback The callback function, accepting three arguments: error, data, response
+    * data is of type: {@link <&vendorExtensions.x-jsdoc-type>}
+    */
+   getGttOrderDetails(opts, callback) {
+     opts = opts || {};
+     let postBody = null;
+
+     let pathParams = {
+       
+     };
+     let queryParams = {
+       'gtt_order_id': opts['gttOrderId']
+     };
+     let headerParams = {
+       
+     };
+     let formParams = {
+       
+     };
+
+     let authNames = ['OAUTH2'];
+     let contentTypes = [];
+     let accepts = ['*/*', 'application/json'];
+     let returnType = GetGttOrderResponse;
+
+     return this.apiClient.callApi(
+       '/v3/order/gtt', 'GET',
+       pathParams, queryParams, headerParams, formParams, postBody,
+       authNames, contentTypes, accepts, returnType, callback
+     );
+   }
+   /**
+    * Callback function to receive the result of the modifyGTTOrder operation.
+    * @callback moduleapi/OrderControllerV3Api~modifyGTTOrderCallback
+    * @param {String} error Error message, if any.
+    * @param {module:model/GttTriggerOrderResponse{ data The data returned by the service call.
+    * @param {String} response The complete HTTP response.
+    */
+
+   /**
+    * Modify GTT order
+    * This API allows you to modify GTT orders.
+    * @param {module:model/GttModifyOrderRequest} body 
+    * @param {module:api/OrderControllerV3Api~modifyGTTOrderCallback} callback The callback function, accepting three arguments: error, data, response
+    * data is of type: {@link <&vendorExtensions.x-jsdoc-type>}
+    */
+   modifyGTTOrder(body, callback) {
+     
+     let postBody = body;
+     // verify the required parameter 'body' is set
+     if (body === undefined || body === null) {
+       throw new Error("Missing the required parameter 'body' when calling modifyGTTOrder");
+     }
+
+     let pathParams = {
+       
+     };
+     let queryParams = {
+       
+     };
+     let headerParams = {
+       
+     };
+     let formParams = {
+       
+     };
+
+     let authNames = ['OAUTH2'];
+     let contentTypes = ['application/json'];
+     let accepts = ['*/*', 'application/json'];
+     let returnType = GttTriggerOrderResponse;
+
+     return this.apiClient.callApi(
+       '/v3/order/gtt/modify', 'PUT',
+       pathParams, queryParams, headerParams, formParams, postBody,
+       authNames, contentTypes, accepts, returnType, callback
+     );
+   }
+
     mapToModifyOrderRequest(data) {
       let obj = {};
       if (data) {
@@ -178,6 +324,54 @@ export class OrderApiV3 {
       }
       return obj;
     }
+
+    /**
+     * Callback function to receive the result of the placeGTTOrder operation.
+     * @callback moduleapi/OrderControllerV3Api~placeGTTOrderCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/GttTriggerOrderResponse{ data The data returned by the service call.
+    * @param {String} response The complete HTTP response.
+    */
+
+   /**
+    * Place GTT order
+    * This API allows you to place GTT orders.
+    * @param {module:model/GttPlaceOrderRequest} body 
+    * @param {module:api/OrderControllerV3Api~placeGTTOrderCallback} callback The callback function, accepting three arguments: error, data, response
+    * data is of type: {@link <&vendorExtensions.x-jsdoc-type>}
+    */
+   placeGTTOrder(body, callback) {
+     
+     let postBody = body;
+     // verify the required parameter 'body' is set
+     if (body === undefined || body === null) {
+       throw new Error("Missing the required parameter 'body' when calling placeGTTOrder");
+     }
+
+     let pathParams = {
+       
+     };
+     let queryParams = {
+       
+     };
+     let headerParams = {
+       
+     };
+     let formParams = {
+       
+     };
+
+     let authNames = ['OAUTH2'];
+     let contentTypes = ['application/json'];
+     let accepts = ['*/*', 'application/json'];
+     let returnType = GttTriggerOrderResponse;
+
+     return this.apiClient.callApi(
+       '/v3/order/gtt/place', 'POST',
+       pathParams, queryParams, headerParams, formParams, postBody,
+       authNames, contentTypes, accepts, returnType, callback
+     );
+   }
 
     /**
      * Callback function to receive the result of the placeOrder operation.
