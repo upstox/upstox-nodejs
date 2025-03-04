@@ -44,6 +44,38 @@ export class OrderApiV3 {
         this.apiClient = apiClient || ApiClient.instance;
     }
 
+    mapToGttOrderRequest(data) {
+      let obj = {};
+      if(data) {
+        if (data.hasOwnProperty('quantity'))
+          obj.quantity = ApiClient.convertToType(data['quantity'], 'Number');
+        if (data.hasOwnProperty('product'))
+          obj.product = ApiClient.convertToType(data['product'], 'String');
+        if (data.hasOwnProperty('type'))
+          obj.type = ApiClient.convertToType(data['type'], 'String');
+        if (data.hasOwnProperty('rules')){
+          obj.rules = [];
+          data['rules'].forEach(userRule => {
+            const rule = {};
+            if(userRule.hasOwnProperty('strategy'))
+              rule.strategy = ApiClient.convertToType(userRule['strategy'], 'String');
+            if(userRule.hasOwnProperty('triggerType'))
+              rule.trigger_type = ApiClient.convertToType(userRule['triggerType'], 'String');
+            if(userRule.hasOwnProperty('triggerPrice'))
+              rule.trigger_price = ApiClient.convertToType(userRule['triggerPrice'], 'Number');
+            obj.rules.push(rule);
+          });
+        }
+        if (data.hasOwnProperty('instrumentToken'))
+          obj.instrument_token = ApiClient.convertToType(data['instrumentToken'], 'String');
+        if (data.hasOwnProperty('transactionType'))
+          obj.transaction_type = ApiClient.convertToType(data['transactionType'], 'String');
+        if (data.hasOwnProperty('gttOrderId'))
+          obj.gtt_order_id = ApiClient.convertToType(data['gttOrderId'], 'String');
+      }
+      return obj;
+    }
+
     /**
      * Callback function to receive the result of the cancelGTTOrder operation.
      * @callback moduleapi/OrderControllerV3Api~cancelGTTOrderCallback
@@ -61,7 +93,7 @@ export class OrderApiV3 {
     */
    cancelGTTOrder(body, callback) {
      
-     let postBody = body;
+    let postBody = this.mapToGttOrderRequest(body);
      // verify the required parameter 'body' is set
      if (body === undefined || body === null) {
        throw new Error("Missing the required parameter 'body' when calling cancelGTTOrder");
@@ -198,7 +230,7 @@ export class OrderApiV3 {
     */
    modifyGTTOrder(body, callback) {
      
-     let postBody = body;
+    let postBody = this.mapToGttOrderRequest(body);
      // verify the required parameter 'body' is set
      if (body === undefined || body === null) {
        throw new Error("Missing the required parameter 'body' when calling modifyGTTOrder");
@@ -342,7 +374,7 @@ export class OrderApiV3 {
     */
    placeGTTOrder(body, callback) {
      
-     let postBody = body;
+     let postBody = this.mapToGttOrderRequest(body);
      // verify the required parameter 'body' is set
      if (body === undefined || body === null) {
        throw new Error("Missing the required parameter 'body' when calling placeGTTOrder");
