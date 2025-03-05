@@ -92,9 +92,13 @@ Class | Method | HTTP request | Description
 *UpstoxClient.OrderApi* | [**modifyOrder**](docs/OrderApi.md#modifyOrder) | **PUT** /v2/order/modify | Modify order
 *UpstoxClient.OrderApi* | [**placeMultiOrder**](docs/OrderApi.md#placeMultiOrder) | **POST** /v2/order/multi/place | Place multi order
 *UpstoxClient.OrderApi* | [**placeOrder1**](docs/OrderApi.md#placeOrder1) | **POST** /v2/order/place | Place order
-*UpstoxClient.OrderApiV3* | [**cancelOrder**](docs/OrderApiV3.md#cancelOrder) | **DELETE** /v3/order/cancel | 
-*UpstoxClient.OrderApiV3* | [**modifyOrder**](docs/OrderApiV3.md#modifyOrder) | **PUT** /v3/order/modify | 
-*UpstoxClient.OrderApiV3* | [**placeOrder**](docs/OrderApiV3.md#placeOrder) | **POST** /v3/order/place | 
+*UpstoxClient.OrderControllerV3Api* | [**cancelGTTOrder**](docs/OrderControllerV3Api.md#cancelGTTOrder) | **DELETE** /v3/order/gtt/cancel | Cancel GTT order
+*UpstoxClient.OrderControllerV3Api* | [**cancelOrder**](docs/OrderControllerV3Api.md#cancelOrder) | **DELETE** /v3/order/cancel | 
+*UpstoxClient.OrderControllerV3Api* | [**getGttOrderDetails**](docs/OrderControllerV3Api.md#getGttOrderDetails) | **GET** /v3/order/gtt | Get GTT order details
+*UpstoxClient.OrderControllerV3Api* | [**modifyGTTOrder**](docs/OrderControllerV3Api.md#modifyGTTOrder) | **PUT** /v3/order/gtt/modify | Modify GTT order
+*UpstoxClient.OrderControllerV3Api* | [**modifyOrder**](docs/OrderControllerV3Api.md#modifyOrder) | **PUT** /v3/order/modify | 
+*UpstoxClient.OrderControllerV3Api* | [**placeGTTOrder**](docs/OrderControllerV3Api.md#placeGTTOrder) | **POST** /v3/order/gtt/place | Place GTT order
+*UpstoxClient.OrderControllerV3Api* | [**placeOrder**](docs/OrderControllerV3Api.md#placeOrder) | **POST** /v3/order/place | 
 *UpstoxClient.PortfolioApi* | [**convertPositions**](docs/PortfolioApi.md#convertPositions) | **PUT** /v2/portfolio/convert-position | Convert Positions
 *UpstoxClient.PortfolioApi* | [**getHoldings**](docs/PortfolioApi.md#getHoldings) | **GET** /v2/portfolio/long-term-holdings | Get Holdings
 *UpstoxClient.PortfolioApi* | [**getPositions**](docs/PortfolioApi.md#getPositions) | **GET** /v2/portfolio/short-term-positions | Get Positions
@@ -623,6 +627,7 @@ This example demonstrates initializing the PortfolioDataStreamer, connecting it 
  - [UpstoxClient.GetBrokerageResponse](docs/GetBrokerageResponse.md)
  - [UpstoxClient.GetExchangeTimingResponse](docs/GetExchangeTimingResponse.md)
  - [UpstoxClient.GetFullMarketQuoteResponse](docs/GetFullMarketQuoteResponse.md)
+ - [UpstoxClient.GetGttOrderResponse](docs/GetGttOrderResponse.md)
  - [UpstoxClient.GetHistoricalCandleResponse](docs/GetHistoricalCandleResponse.md)
  - [UpstoxClient.GetHoldingsResponse](docs/GetHoldingsResponse.md)
  - [UpstoxClient.GetHolidayResponse](docs/GetHolidayResponse.md)
@@ -642,6 +647,13 @@ This example demonstrates initializing the PortfolioDataStreamer, connecting it 
  - [UpstoxClient.GetTradeWiseProfitAndLossDataResponse](docs/GetTradeWiseProfitAndLossDataResponse.md)
  - [UpstoxClient.GetTradeWiseProfitAndLossMetaDataResponse](docs/GetTradeWiseProfitAndLossMetaDataResponse.md)
  - [UpstoxClient.GetUserFundMarginResponse](docs/GetUserFundMarginResponse.md)
+ - [UpstoxClient.GttCancelOrderRequest](docs/GttCancelOrderRequest.md)
+ - [UpstoxClient.GttModifyOrderRequest](docs/GttModifyOrderRequest.md)
+ - [UpstoxClient.GttOrderData](docs/GttOrderData.md)
+ - [UpstoxClient.GttOrderDetails](docs/GttOrderDetails.md)
+ - [UpstoxClient.GttPlaceOrderRequest](docs/GttPlaceOrderRequest.md)
+ - [UpstoxClient.GttRule](docs/GttRule.md)
+ - [UpstoxClient.GttTriggerOrderResponse](docs/GttTriggerOrderResponse.md)
  - [UpstoxClient.HistoricalCandleData](docs/HistoricalCandleData.md)
  - [UpstoxClient.HoldingsData](docs/HoldingsData.md)
  - [UpstoxClient.HolidayData](docs/HolidayData.md)
@@ -696,6 +708,7 @@ This example demonstrates initializing the PortfolioDataStreamer, connecting it 
  - [UpstoxClient.ProfitAndLossMetaDataWrapper](docs/ProfitAndLossMetaDataWrapper.md)
  - [UpstoxClient.ProfitAndLossOtherChargesTaxes](docs/ProfitAndLossOtherChargesTaxes.md)
  - [UpstoxClient.PutCallOptionChainData](docs/PutCallOptionChainData.md)
+ - [UpstoxClient.Rule](docs/Rule.md)
  - [UpstoxClient.TokenRequest](docs/TokenRequest.md)
  - [UpstoxClient.TokenResponse](docs/TokenResponse.md)
  - [UpstoxClient.TradeData](docs/TradeData.md)

@@ -404,6 +404,76 @@ apiInstance.exitPositions(opts, (error, data, response) => {
   }
 });
 
+apiInstance = new UpstoxClient.OrderApiV3();
+let entryRule = new UpstoxClient.GttRule(UpstoxClient.GttRule.StrategyEnum.ENTRY, UpstoxClient.GttRule.TriggerTypeEnum.ABOVE, 100);
+body = new UpstoxClient.GttPlaceOrderRequest(UpstoxClient.GttPlaceOrderRequest.TypeEnum.SINGLE, 1, UpstoxClient.GttPlaceOrderRequest.ProductEnum.D, [entryRule],"NSE_EQ|INE669E01016", UpstoxClient.GttPlaceOrderRequest.TransactionTypeEnum.BUY);
+apiInstance.placeGTTOrder(body, (error, data, response) => {
+  if (error) {
+    console.error(error.response.text);
+  } else {
+    console.log('GTT place order ' + JSON.stringify(data));
+  }
+});
+
+body = new UpstoxClient.ModifyOrderRequest(UpstoxClient.ModifyOrderRequest.ValidityEnum.DAY,0,"2501270424977",UpstoxClient.ModifyOrderRequest.OrderTypeEnum.MARKET,12); 
+body.quantity = 1;
+apiInstance.modifyOrder(body, (error, data, response) => {
+    if (error) {
+      if((JSON.parse(error.response.text).errors[0].errorCode != "UDAPI100010")) console.log("error in gtt modify");
+    } else {
+      console.log('API called successfully. Returned data: ' + JSON.stringify(data));
+    }
+  });
+
+  body = new UpstoxClient.GttCancelOrderRequest("GTT-C25040064103");
+  apiInstance.cancelGTTOrder(body, (error, data, response) => {
+    if (error) {
+      if((JSON.parse(error.response.text).errors[0].errorCode != "UDAPI100010")) console.log("error in gtt cancel");
+    } else {
+      console.log('API called successfully. Returned data: ' + JSON.stringify(data));
+    }
+  });
+
+  apiInstance.getGttOrderDetails({gttOrderId: 'GTT-C2504000164103'}, (error, data, response) => {
+    if (error) {
+      console.error(error.response.text);
+    } else {
+      if(data.status != "success"){
+        console.log("error in gtt get order details");
+      }
+    }
+  });
+  
+body = new UpstoxClient.PlaceOrderV3Request(1,UpstoxClient.PlaceOrderV3Request.ProductEnum.D,
+    UpstoxClient.PlaceOrderV3Request.ValidityEnum.DAY, 7.2,"NSE_EQ|INE669E01016",UpstoxClient.PlaceOrderV3Request.OrderTypeEnum.LIMIT,
+    UpstoxClient.PlaceOrderV3Request.TransactionTypeEnum.BUY,0,0,true);
+let opt = {"slice": true}
+apiInstance.placeOrder(body, opt, (error, data, response) => {
+  if (error) {
+    console.error(error.response.text);
+  } else {
+    console.log('place order V3 => ' + JSON.stringify(data));
+  }
+});
+
+body = new UpstoxClient.ModifyOrderRequest(UpstoxClient.ModifyOrderRequest.ValidityEnum.DAY,0,"2505010177418",UpstoxClient.ModifyOrderRequest.OrderTypeEnum.MARKET,1); 
+body.quantity = 1;
+apiInstance.modifyOrder(body, (error, data, response) => {
+    if (error) {
+      if((JSON.parse(error.response.text).errors[0].errorCode != "UDAPI100010")) console.log("error in modify order v3");
+    } else {
+      console.log('API called successfully. Returned data: ' + JSON.stringify(data));
+    }
+  });
+
+apiInstance.cancelOrder("2503050177418", (error, data, response) => {
+    if (error) {
+      if((JSON.parse(error.response.text).errors[0].errorCode != "UDAPI100010")) console.log("error in cancel order v3");
+    } else {
+      console.log('API called successfully. Returned data: ' + JSON.stringify(data));
+    }
+  });
+
 setTimeout(() => {
   apiInstance = new UpstoxClient.LoginApi();
 opts = { 
@@ -413,6 +483,15 @@ opts = {
   'redirectUri': "{your_redirect_url}", 
   'grantType': "authorization_code" 
 };
+body = new UpstoxClient.IndieUserTokenRequest();
+body.clientSecret = "e"
+apiInstance.initTokenRequestForIndieUser(body,"e",  (error, data, response) => {
+    if (error) {
+      if(JSON.parse(error.response.text).errors[0].errorCode != "UDAPI100069") console.log("error in indie token api " + JSON.stringify(error));
+    } else {
+      console.log('API called successfully. Returned data: ' + JSON.stringify(data));
+    }
+  });
 
 apiInstance.token(apiVersion, opts, (error, data, response) => {
   if (error) {

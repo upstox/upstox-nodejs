@@ -35,6 +35,7 @@ import {ExchangeTimingData} from './model/ExchangeTimingData';
 import {GetBrokerageResponse} from './model/GetBrokerageResponse';
 import {GetExchangeTimingResponse} from './model/GetExchangeTimingResponse';
 import {GetFullMarketQuoteResponse} from './model/GetFullMarketQuoteResponse';
+import {GetGttOrderResponse} from './model/GetGttOrderResponse';
 import {GetHistoricalCandleResponse} from './model/GetHistoricalCandleResponse';
 import {GetHoldingsResponse} from './model/GetHoldingsResponse';
 import {GetHolidayResponse} from './model/GetHolidayResponse';
@@ -54,6 +55,13 @@ import {GetTradeResponse} from './model/GetTradeResponse';
 import {GetTradeWiseProfitAndLossDataResponse} from './model/GetTradeWiseProfitAndLossDataResponse';
 import {GetTradeWiseProfitAndLossMetaDataResponse} from './model/GetTradeWiseProfitAndLossMetaDataResponse';
 import {GetUserFundMarginResponse} from './model/GetUserFundMarginResponse';
+import {GttCancelOrderRequest} from './model/GttCancelOrderRequest';
+import {GttModifyOrderRequest} from './model/GttModifyOrderRequest';
+import {GttOrderData} from './model/GttOrderData';
+import {GttOrderDetails} from './model/GttOrderDetails';
+import {GttPlaceOrderRequest} from './model/GttPlaceOrderRequest';
+import {GttRule} from './model/GttRule';
+import {GttTriggerOrderResponse} from './model/GttTriggerOrderResponse';
 import {HistoricalCandleData} from './model/HistoricalCandleData';
 import {HoldingsData} from './model/HoldingsData';
 import {HolidayData} from './model/HolidayData';
@@ -108,6 +116,7 @@ import {ProfitAndLossMetaData} from './model/ProfitAndLossMetaData';
 import {ProfitAndLossMetaDataWrapper} from './model/ProfitAndLossMetaDataWrapper';
 import {ProfitAndLossOtherChargesTaxes} from './model/ProfitAndLossOtherChargesTaxes';
 import {PutCallOptionChainData} from './model/PutCallOptionChainData';
+import {Rule} from './model/Rule';
 import {TokenRequest} from './model/TokenRequest';
 import {TokenResponse} from './model/TokenResponse';
 import {TradeData} from './model/TradeData';
@@ -309,6 +318,12 @@ export {
     GetFullMarketQuoteResponse,
 
     /**
+     * The GetGttOrderResponse model constructor.
+     * @property {module:model/GetGttOrderResponse}
+     */
+    GetGttOrderResponse,
+
+    /**
      * The GetHistoricalCandleResponse model constructor.
      * @property {module:model/GetHistoricalCandleResponse}
      */
@@ -421,6 +436,48 @@ export {
      * @property {module:model/GetUserFundMarginResponse}
      */
     GetUserFundMarginResponse,
+
+    /**
+     * The GttCancelOrderRequest model constructor.
+     * @property {module:model/GttCancelOrderRequest}
+     */
+    GttCancelOrderRequest,
+
+    /**
+     * The GttModifyOrderRequest model constructor.
+     * @property {module:model/GttModifyOrderRequest}
+     */
+    GttModifyOrderRequest,
+
+    /**
+     * The GttOrderData model constructor.
+     * @property {module:model/GttOrderData}
+     */
+    GttOrderData,
+
+    /**
+     * The GttOrderDetails model constructor.
+     * @property {module:model/GttOrderDetails}
+     */
+    GttOrderDetails,
+
+    /**
+     * The GttPlaceOrderRequest model constructor.
+     * @property {module:model/GttPlaceOrderRequest}
+     */
+    GttPlaceOrderRequest,
+
+    /**
+     * The GttRule model constructor.
+     * @property {module:model/GttRule}
+     */
+    GttRule,
+
+    /**
+     * The GttTriggerOrderResponse model constructor.
+     * @property {module:model/GttTriggerOrderResponse}
+     */
+    GttTriggerOrderResponse,
 
     /**
      * The HistoricalCandleData model constructor.
@@ -745,6 +802,12 @@ export {
      * @property {module:model/PutCallOptionChainData}
      */
     PutCallOptionChainData,
+
+    /**
+     * The Rule model constructor.
+     * @property {module:model/Rule}
+     */
+    Rule,
 
     /**
      * The TokenRequest model constructor.
