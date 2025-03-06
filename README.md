@@ -590,18 +590,42 @@ This example demonstrates initializing the PortfolioDataStreamer, connecting it 
 ### Exploring the PortfolioDataStreamer Functionality
 
 #### Functions
-1. **constructor PortfolioDataStreamer()**: Initializes the streamer.
+1. **constructor PortfolioDataStreamer(orderUpdate = true, positionUpdate = false, holdingUpdate = false, gttUpdate = false)**: Initializes the streamer with options to receive different types of updates.
 2. **connect()**: Establishes the WebSocket connection.
-6. **disconnect()**: Ends the active WebSocket connection.
-7. **autoReconnect(enable, interval, retryCount)**: Customizes auto-reconnect functionality. Parameters include a flag to enable/disable it, the interval(in seconds) between attempts, and the maximum number of retries.
+3. **disconnect()**: Ends the active WebSocket connection.
+4. **autoReconnect(enable, interval, retryCount)**: Customizes auto-reconnect functionality. Parameters include a flag to enable/disable it, the interval(in seconds) between attempts, and the maximum number of retries.
+
+#### Update Types
+- **orderUpdate**: Receive regular order updates (enabled by default)
+- **positionUpdate**: Receive position updates (disabled by default)
+- **holdingUpdate**: Receive holding updates (disabled by default)
+- **gttUpdate**: Receive GTT order updates (disabled by default)
 
 #### Events
 - **open**: Emitted upon successful connection establishment.
 - **close**: Indicates the WebSocket connection has been closed.
-- **message**: Delivers market updates.
+- **message**: Delivers portfolio updates.
 - **error**: Signals an error has occurred.
 - **reconnecting**: Announced when a reconnect attempt is initiated.
 - **autoReconnectStopped**: Informs when auto-reconnect efforts have ceased after exhausting the retry count.
+
+#### Example with all update types enabled:
+
+```javascript
+let UpstoxClient = require("upstox-js-sdk");
+let defaultClient = UpstoxClient.ApiClient.instance;
+var OAUTH2 = defaultClient.authentications["OAUTH2"];
+OAUTH2.accessToken = "<ACCESS_TOKEN>";
+
+// Enable all update types: orders, positions, holdings, and GTT orders
+const streamer = new UpstoxClient.PortfolioDataStreamer(true, true, true, true);
+streamer.connect();
+
+streamer.on("message", (data) => {
+  const feed = data.toString("utf-8");
+  console.log(feed);
+});
+```
 
 ## Documentation for Models
 
