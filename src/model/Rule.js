@@ -42,6 +42,8 @@ export class Rule {
         obj.strategy = ApiClient.convertToType(data['strategy'], 'String');
       if (data.hasOwnProperty('status'))
         obj.status = ApiClient.convertToType(data['status'], 'String');
+      if (data.hasOwnProperty('message'))
+        obj.message = ApiClient.convertToType(data['message'], 'String');
       if (data.hasOwnProperty('trigger_type'))
         obj.triggerType = ApiClient.convertToType(data['trigger_type'], 'String');
       if (data.hasOwnProperty('trigger_price'))
@@ -64,6 +66,11 @@ Rule.prototype.strategy = undefined;
  * @member {String} status
  */
 Rule.prototype.status = undefined;
+
+/**
+ * @member {String} message
+ */
+Rule.prototype.message = undefined;
 
 /**
  * @member {String} triggerType
