@@ -12,14 +12,14 @@ class PortfolioDataFeeder extends Feeder {
     this.apiClient = ApiClient.instance;
   }
 
-  async connect(orderUpdate = true, positionUpdate = false, holdingUpdate = false) {
+  async connect(orderUpdate = true, positionUpdate = false, holdingUpdate = false, gttUpdate = false) {
     // Skip if its already connected
     if (
       this.ws &&
       (this.ws.readyState == ws.CONNECTING || ws.readyState == ws.OPEN)
     )
       return;
-    let wsUrl = this.getWebSocketUrl(orderUpdate, positionUpdate,holdingUpdate);
+    let wsUrl = this.getWebSocketUrl(orderUpdate, positionUpdate, holdingUpdate, gttUpdate);
     this.ws = await this.connectWebSocket(
       wsUrl,
       this.apiClient.authentications["OAUTH2"].accessToken
@@ -81,7 +81,7 @@ class PortfolioDataFeeder extends Feeder {
       resolve(ws);
     });
   }
-  getWebSocketUrl(orderUpdate, positionUpdate,holdingUpdate) {
+  getWebSocketUrl(orderUpdate, positionUpdate, holdingUpdate, gttUpdate) {
     let wsUrl = "wss://api.upstox.com/v2/feed/portfolio-stream-feed";
     let updateTypes = [];
 
@@ -93,6 +93,9 @@ class PortfolioDataFeeder extends Feeder {
     }
     if (positionUpdate) {
       updateTypes.push("position");
+    }
+    if (gttUpdate) {
+      updateTypes.push("gtt_order");
     }
 
     if (updateTypes.length >= 1) {
