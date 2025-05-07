@@ -155,6 +155,48 @@ export class PortfolioApi {
       );
     }
     /**
+     * Callback function to receive the result of the getMtfPositions operation.
+     * @callback moduleapi/PortfolioApi~getMtfPositionsCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/GetPositionResponse{ data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Get MTF positions
+     * This API allows you to get MTF positions.
+     * @param {module:api/PortfolioApi~getMtfPositionsCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link <&vendorExtensions.x-jsdoc-type>}
+     */
+    getMtfPositions(callback) {
+      
+      let postBody = null;
+
+      let pathParams = {
+        
+      };
+      let queryParams = {
+        
+      };
+      let headerParams = {
+        
+      };
+      let formParams = {
+        
+      };
+
+      let authNames = ['OAUTH2'];
+      let contentTypes = [];
+      let accepts = ['*/*', 'application/json'];
+      let returnType = GetPositionResponse;
+
+      return this.apiClient.callApi(
+        '/v3/portfolio/mtf-positions', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+    /**
      * Callback function to receive the result of the getPositions operation.
      * @callback moduleapi/PortfolioApi~getPositionsCallback
      * @param {String} error Error message, if any.

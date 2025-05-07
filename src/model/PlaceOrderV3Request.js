@@ -109,7 +109,13 @@ PlaceOrderV3Request.ProductEnum = {
    * value: "D"
    * @const
    */
-  D: "D"
+  D: "D",
+
+  /**
+   * value: "MTF"
+   * @const
+   */
+  MTF: "MTF"
 };
 /**
  * Signifies if the order was either Intraday, Delivery, CO or OCO
