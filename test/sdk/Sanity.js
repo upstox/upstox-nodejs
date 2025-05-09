@@ -474,6 +474,126 @@ apiInstance.cancelOrder("2503050177418", (error, data, response) => {
     }
   });
 
+apiInstance = new UpstoxClient.PortfolioApi();
+apiInstance.getMtfPositions((error, data, response) => {
+  if (error) {
+    console.error(error.response.text);
+  } else {
+    if(data.status != "success"){
+      console.log("error get mtf positions");
+    }
+  }
+  });
+
+
+const historicalApiInstance = new UpstoxClient.HistoryV3Api();
+historicalApiInstance.getHistoricalCandleData("NSE_EQ|INE669E01016", "minutes", "1", "2025-04-04", (error, data, response) => {
+  if (error) {
+    console.error(error.response.text);
+  } else {
+    if(data.status != "success"){
+      console.log("error historical candle data v3");
+    }
+  }
+});
+
+historicalApiInstance.getHistoricalCandleData1("NSE_EQ|INE669E01016", "minutes", "1", "2025-05-04","2025-04-04",(error, data, response) => {
+  if (error) {
+    console.error(error.response.text);
+  } else {
+    if(data.status != "success"){
+      console.log("error historical candle data v3");
+    }
+  }
+});
+
+historicalApiInstance.getIntraDayCandleData("NSE_EQ|INE669E01016", "minutes", "1", (error, data, response) => {
+  if (error) {
+    console.error(error.response.text);
+  } else {
+    if(data.status != "success"){
+      console.log("error historical candle data v3");
+    }
+  }
+})
+
+
+let marketQuoteApiInstance = new UpstoxClient.MarketQuoteV3Api();
+marketQuoteApiInstance.getMarketQuoteOHLC("I1", {instrumentKey: "NSE_EQ|INE669E01016"}, (error, data, response) => {
+  if (error) {
+    console.error(error.response.text);
+  } else {
+    if(data.status != "success"){
+      console.log("error market quote v3");
+    }
+  }
+});
+
+
+marketQuoteApiInstance.getLtp({instrumentKey: "NSE_EQ|INE669E01016"}, (error, data, response) => {
+  if (error) {
+    console.error(error.response.text);
+  } else {
+    if(data.status != "success"){
+      console.log("error market quote ltp");
+    }
+  }
+});
+
+marketQuoteApiInstance.getMarketQuoteOptionGreek({instrumentKey: "NSE_FO|38606"}, (error, data, response) => {
+  if (error) {
+    console.error(error.response.text);
+  } else {
+    if(data.status != "success"){
+      console.log("error market option greek");
+    }
+  }
+});
+
+
+let expiredInstrumentsApiInstance = new UpstoxClient.ExpiredInstrumentApi();
+expiredInstrumentsApiInstance.getExpiries("NSE_INDEX|Nifty 50", (error, data, response) => {
+  if (error) {
+    console.error(error.response.text);
+  } else {
+    if(data.status != "success"){
+      console.log("error get expiries");
+    }
+  }
+});
+
+
+expiredInstrumentsApiInstance.getExpiredFutureContracts("NSE_INDEX|Nifty 50", "2025-04-24", (error, data, response) => {
+  if (error) {
+    console.error(error.response.text);
+  } else {
+    if(data.status != "success"){
+      console.log("error get getExpiredFutureContracts");
+    }
+  }
+});
+
+expiredInstrumentsApiInstance.getExpiredHistoricalCandleData("NSE_FO|54452|24-04-2025", "1minute","2025-04-24", "2025-01-03", (error, data, response) => {
+  if (error) {
+    console.error(error.response.text);
+  } else {
+    if(data.status != "success"){
+      console.log("error get getExpiredHistoricalCandleData");
+    }
+  }
+});
+
+expiredInstrumentsApiInstance.getExpiredOptionContracts("NSE_INDEX|Nifty 50", "2025-04-24", (error, data, response) => {
+  if (error) {
+    console.error(error.response.text);
+  } else {
+    if(data.status != "success"){
+      console.log("error get getExpiredOptionContracts");
+    }
+  }
+});
+
+
 setTimeout(() => {
   apiInstance = new UpstoxClient.LoginApi();
 opts = { 
