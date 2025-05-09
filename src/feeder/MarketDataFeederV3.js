@@ -10,7 +10,8 @@ class MarketDataFeederV3 extends Feeder {
   Mode = Object.freeze({
     LTPC: "ltpc",
     FULL: "full",
-    OPTION: "option_greeks"
+    OPTION: "option_greeks",
+    D30: "full_d30"
   });
 
   Method = Object.freeze({
