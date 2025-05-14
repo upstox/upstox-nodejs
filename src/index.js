@@ -1,6 +1,6 @@
 /*
  * Upstox Developer API
- * Build your App on the Upstox platform  ![Banner](https://api-v2.upstox.com/api-docs/images/banner.jpg \"banner\")  # Introduction  Upstox API is a set of rest APIs that provide data required to build a complete investment and trading platform. Execute orders in real time, manage user portfolio, stream live market data (using Websocket), and more, with the easy to understand API collection.  All requests are over HTTPS and the requests are sent with the content-type ‘application/json’. Developers have the option of choosing the response type as JSON or CSV for a few API calls.  To be able to use these APIs you need to create an App in the Developer Console and generate your **apiKey** and **apiSecret**. You can use a redirect URL which will be called after the login flow.  If you are a **trader**, you can directly create apps from Upstox mobile app or the desktop platform itself from **Apps** sections inside the **Account** Tab. Head over to <a href=\"http://account.upstox.com/developer/apps\" target=\"_blank\">account.upstox.com/developer/apps</a>.</br> If you are a **business** looking to integrate Upstox APIs, reach out to us and we will get a custom app created for you in no time.  It is highly recommended that you do not embed the **apiSecret** in your frontend app. Create a remote backend which does the handshake on behalf of the frontend app. Marking the apiSecret in the frontend app will make your app vulnerable to threats and potential issues. 
+ * Build your App on the Upstox platform  ![Banner](https://api.upstox.com/api-docs/images/banner.jpg \"banner\")  # Introduction  Upstox API is a set of rest APIs that provide data required to build a complete investment and trading platform. Execute orders in real time, manage user portfolio, stream live market data (using Websocket), and more, with the easy to understand API collection.  All requests are over HTTPS and the requests are sent with the content-type ‘application/json’. Developers have the option of choosing the response type as JSON or CSV for a few API calls.  To be able to use these APIs you need to create an App in the Developer Console and generate your **apiKey** and **apiSecret**. You can use a redirect URL which will be called after the login flow.  If you are a **trader**, you can directly create apps from Upstox mobile app or the desktop platform itself from **Apps** sections inside the **Account** Tab. Head over to <a href=\"http://account.upstox.com/developer/apps\" target=\"_blank\">account.upstox.com/developer/apps</a>.</br> If you are a **business** looking to integrate Upstox APIs, reach out to us and we will get a custom app created for you in no time.  It is highly recommended that you do not embed the **apiSecret** in your frontend app. Create a remote backend which does the handshake on behalf of the frontend app. Marking the apiSecret in the frontend app will make your app vulnerable to threats and potential issues. 
  *
  * OpenAPI spec version: v2
  *
@@ -32,8 +32,11 @@ import {Depth} from './model/Depth';
 import {DepthMap} from './model/DepthMap';
 import {DpPlan} from './model/DpPlan';
 import {ExchangeTimingData} from './model/ExchangeTimingData';
+import {ExpiredFutureData} from './model/ExpiredFutureData';
 import {GetBrokerageResponse} from './model/GetBrokerageResponse';
 import {GetExchangeTimingResponse} from './model/GetExchangeTimingResponse';
+import {GetExpiredFuturesContractResponse} from './model/GetExpiredFuturesContractResponse';
+import {GetExpiriesResponse} from './model/GetExpiriesResponse';
 import {GetFullMarketQuoteResponse} from './model/GetFullMarketQuoteResponse';
 import {GetGttOrderResponse} from './model/GetGttOrderResponse';
 import {GetHistoricalCandleResponse} from './model/GetHistoricalCandleResponse';
@@ -41,7 +44,10 @@ import {GetHoldingsResponse} from './model/GetHoldingsResponse';
 import {GetHolidayResponse} from './model/GetHolidayResponse';
 import {GetIntraDayCandleResponse} from './model/GetIntraDayCandleResponse';
 import {GetMarketQuoteLastTradedPriceResponse} from './model/GetMarketQuoteLastTradedPriceResponse';
+import {GetMarketQuoteLastTradedPriceResponseV3} from './model/GetMarketQuoteLastTradedPriceResponseV3';
 import {GetMarketQuoteOHLCResponse} from './model/GetMarketQuoteOHLCResponse';
+import {GetMarketQuoteOHLCResponseV3} from './model/GetMarketQuoteOHLCResponseV3';
+import {GetMarketQuoteOptionGreekResponseV3} from './model/GetMarketQuoteOptionGreekResponseV3';
 import {GetMarketStatusResponse} from './model/GetMarketStatusResponse';
 import {GetOptionChainResponse} from './model/GetOptionChainResponse';
 import {GetOptionContractResponse} from './model/GetOptionContractResponse';
@@ -77,8 +83,11 @@ import {MarginData} from './model/MarginData';
 import {MarginRequest} from './model/MarginRequest';
 import {MarketData} from './model/MarketData';
 import {MarketQuoteOHLC} from './model/MarketQuoteOHLC';
+import {MarketQuoteOHLCV3} from './model/MarketQuoteOHLCV3';
+import {MarketQuoteOptionGreekV3} from './model/MarketQuoteOptionGreekV3';
 import {MarketQuoteSymbol} from './model/MarketQuoteSymbol';
 import {MarketQuoteSymbolLtp} from './model/MarketQuoteSymbolLtp';
+import {MarketQuoteSymbolLtpV3} from './model/MarketQuoteSymbolLtpV3';
 import {MarketStatusData} from './model/MarketStatusData';
 import {ModifyOrderData} from './model/ModifyOrderData';
 import {ModifyOrderRequest} from './model/ModifyOrderRequest';
@@ -95,6 +104,7 @@ import {OAuthClientExceptionCause} from './model/OAuthClientExceptionCause';
 import {OAuthClientExceptionCauseStackTrace} from './model/OAuthClientExceptionCauseStackTrace';
 import {OAuthClientExceptionCauseSuppressed} from './model/OAuthClientExceptionCauseSuppressed';
 import {Ohlc} from './model/Ohlc';
+import {OhlcV3} from './model/OhlcV3';
 import {OptionStrikeData} from './model/OptionStrikeData';
 import {OrderBookData} from './model/OrderBookData';
 import {OrderData} from './model/OrderData';
@@ -130,10 +140,13 @@ import {UserFundMarginData} from './model/UserFundMarginData';
 import {WebsocketAuthRedirectResponse} from './model/WebsocketAuthRedirectResponse';
 import {WebsocketAuthRedirectResponseData} from './model/WebsocketAuthRedirectResponseData';
 import {ChargeApi} from './api/ChargeApi';
+import {ExpiredInstrumentApi} from './api/ExpiredInstrumentApi';
 import {HistoryApi} from './api/HistoryApi';
+import {HistoryV3Api} from './api/HistoryV3Api';
 import {LoginApi} from './api/LoginApi';
 import {MarketHolidaysAndTimingsApi} from './api/MarketHolidaysAndTimingsApi';
 import {MarketQuoteApi} from './api/MarketQuoteApi';
+import {MarketQuoteV3Api} from './api/MarketQuoteV3Api';
 import {OptionsApi} from './api/OptionsApi';
 import {OrderApi} from './api/OrderApi';
 import {OrderApiV3} from './api/OrderControllerV3Api';
@@ -300,6 +313,12 @@ export {
     ExchangeTimingData,
 
     /**
+     * The ExpiredFutureData model constructor.
+     * @property {module:model/ExpiredFutureData}
+     */
+    ExpiredFutureData,
+
+    /**
      * The GetBrokerageResponse model constructor.
      * @property {module:model/GetBrokerageResponse}
      */
@@ -310,6 +329,18 @@ export {
      * @property {module:model/GetExchangeTimingResponse}
      */
     GetExchangeTimingResponse,
+
+    /**
+     * The GetExpiredFuturesContractResponse model constructor.
+     * @property {module:model/GetExpiredFuturesContractResponse}
+     */
+    GetExpiredFuturesContractResponse,
+
+    /**
+     * The GetExpiriesResponse model constructor.
+     * @property {module:model/GetExpiriesResponse}
+     */
+    GetExpiriesResponse,
 
     /**
      * The GetFullMarketQuoteResponse model constructor.
@@ -354,10 +385,28 @@ export {
     GetMarketQuoteLastTradedPriceResponse,
 
     /**
+     * The GetMarketQuoteLastTradedPriceResponseV3 model constructor.
+     * @property {module:model/GetMarketQuoteLastTradedPriceResponseV3}
+     */
+    GetMarketQuoteLastTradedPriceResponseV3,
+
+    /**
      * The GetMarketQuoteOHLCResponse model constructor.
      * @property {module:model/GetMarketQuoteOHLCResponse}
      */
     GetMarketQuoteOHLCResponse,
+
+    /**
+     * The GetMarketQuoteOHLCResponseV3 model constructor.
+     * @property {module:model/GetMarketQuoteOHLCResponseV3}
+     */
+    GetMarketQuoteOHLCResponseV3,
+
+    /**
+     * The GetMarketQuoteOptionGreekResponseV3 model constructor.
+     * @property {module:model/GetMarketQuoteOptionGreekResponseV3}
+     */
+    GetMarketQuoteOptionGreekResponseV3,
 
     /**
      * The GetMarketStatusResponse model constructor.
@@ -570,6 +619,18 @@ export {
     MarketQuoteOHLC,
 
     /**
+     * The MarketQuoteOHLCV3 model constructor.
+     * @property {module:model/MarketQuoteOHLCV3}
+     */
+    MarketQuoteOHLCV3,
+
+    /**
+     * The MarketQuoteOptionGreekV3 model constructor.
+     * @property {module:model/MarketQuoteOptionGreekV3}
+     */
+    MarketQuoteOptionGreekV3,
+
+    /**
      * The MarketQuoteSymbol model constructor.
      * @property {module:model/MarketQuoteSymbol}
      */
@@ -580,6 +641,12 @@ export {
      * @property {module:model/MarketQuoteSymbolLtp}
      */
     MarketQuoteSymbolLtp,
+
+    /**
+     * The MarketQuoteSymbolLtpV3 model constructor.
+     * @property {module:model/MarketQuoteSymbolLtpV3}
+     */
+    MarketQuoteSymbolLtpV3,
 
     /**
      * The MarketStatusData model constructor.
@@ -676,6 +743,12 @@ export {
      * @property {module:model/Ohlc}
      */
     Ohlc,
+
+    /**
+     * The OhlcV3 model constructor.
+     * @property {module:model/OhlcV3}
+     */
+    OhlcV3,
 
     /**
      * The OptionStrikeData model constructor.
@@ -888,10 +961,22 @@ export {
     ChargeApi,
 
     /**
+    * The ExpiredInstrumentApi service constructor.
+    * @property {module:api/ExpiredInstrumentApi}
+    */
+    ExpiredInstrumentApi,
+
+    /**
     * The HistoryApi service constructor.
     * @property {module:api/HistoryApi}
     */
     HistoryApi,
+
+    /**
+    * The HistoryV3Api service constructor.
+    * @property {module:api/HistoryV3Api}
+    */
+    HistoryV3Api,
 
     /**
     * The LoginApi service constructor.
@@ -910,6 +995,12 @@ export {
     * @property {module:api/MarketQuoteApi}
     */
     MarketQuoteApi,
+
+    /**
+    * The MarketQuoteV3Api service constructor.
+    * @property {module:api/MarketQuoteV3Api}
+    */
+    MarketQuoteV3Api,
 
     /**
     * The OptionsApi service constructor.

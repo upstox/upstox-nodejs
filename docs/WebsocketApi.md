@@ -1,6 +1,6 @@
 # UpstoxClient.WebsocketApi
 
-All URIs are relative to *https://api-v2.upstox.com*
+All URIs are relative to *https://api.upstox.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------

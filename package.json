@@ -1,6 +1,6 @@
 {
   "name": "upstox-js-sdk",
-  "version": "2.16.0",
+  "version": "2.17.0",
   "description": "The official Node Js client for communicating with the Upstox API",
   "license": "MIT",
   "main": "dist/index.js",

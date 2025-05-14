@@ -65,9 +65,16 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *UpstoxClient.ChargeApi* | [**getBrokerage**](docs/ChargeApi.md#getBrokerage) | **GET** /v2/charges/brokerage | Brokerage details
 *UpstoxClient.ChargeApi* | [**postMargin**](docs/ChargeApi.md#postMargin) | **POST** /v2/charges/margin | Calculate Margin
-*UpstoxClient.HistoryApi* | [**getHistoricalCandleData**](docs/HistoryApi.md#getHistoricalCandleData) | **GET** /v2/historical-candle/{instrumentKey}/{interval}/{to_date} | Historical candle data
-*UpstoxClient.HistoryApi* | [**getHistoricalCandleData1**](docs/HistoryApi.md#getHistoricalCandleData1) | **GET** /v2/historical-candle/{instrumentKey}/{interval}/{to_date}/{from_date} | Historical candle data
-*UpstoxClient.HistoryApi* | [**getIntraDayCandleData**](docs/HistoryApi.md#getIntraDayCandleData) | **GET** /v2/historical-candle/intraday/{instrumentKey}/{interval} | Intra day candle data
+*UpstoxClient.ExpiredInstrumentApi* | [**getExpiredFutureContracts**](docs/ExpiredInstrumentApi.md#getExpiredFutureContracts) | **GET** /v2/expired-instruments/future/contract | Expired instruments - Get future contracts
+*UpstoxClient.ExpiredInstrumentApi* | [**getExpiredHistoricalCandleData**](docs/ExpiredInstrumentApi.md#getExpiredHistoricalCandleData) | **GET** /v2/expired-instruments/historical-candle/{expired_instrument_key}/{interval}/{to_date}/{from_date} | Expired Historical candle data
+*UpstoxClient.ExpiredInstrumentApi* | [**getExpiredOptionContracts**](docs/ExpiredInstrumentApi.md#getExpiredOptionContracts) | **GET** /v2/expired-instruments/option/contract | Get expired option contracts
+*UpstoxClient.ExpiredInstrumentApi* | [**getExpiries**](docs/ExpiredInstrumentApi.md#getExpiries) | **GET** /v2/expired-instruments/expiries | Expired instruments - Get expiries
+*UpstoxClient.HistoryApi* | [**getHistoricalCandleData2**](docs/HistoryApi.md#getHistoricalCandleData2) | **GET** /v2/historical-candle/{instrumentKey}/{interval}/{to_date} | Historical candle data
+*UpstoxClient.HistoryApi* | [**getHistoricalCandleData3**](docs/HistoryApi.md#getHistoricalCandleData3) | **GET** /v2/historical-candle/{instrumentKey}/{interval}/{to_date}/{from_date} | Historical candle data
+*UpstoxClient.HistoryApi* | [**getIntraDayCandleData1**](docs/HistoryApi.md#getIntraDayCandleData1) | **GET** /v2/historical-candle/intraday/{instrumentKey}/{interval} | Intra day candle data
+*UpstoxClient.HistoryV3Api* | [**getHistoricalCandleData**](docs/HistoryV3Api.md#getHistoricalCandleData) | **GET** /v3/historical-candle/{instrumentKey}/{unit}/{interval}/{to_date} | Historical candle data
+*UpstoxClient.HistoryV3Api* | [**getHistoricalCandleData1**](docs/HistoryV3Api.md#getHistoricalCandleData1) | **GET** /v3/historical-candle/{instrumentKey}/{unit}/{interval}/{to_date}/{from_date} | Historical candle data
+*UpstoxClient.HistoryV3Api* | [**getIntraDayCandleData**](docs/HistoryV3Api.md#getIntraDayCandleData) | **GET** /v3/historical-candle/intraday/{instrumentKey}/{unit}/{interval} | Intra day candle data
 *UpstoxClient.LoginApi* | [**authorize**](docs/LoginApi.md#authorize) | **GET** /v2/login/authorization/dialog | Authorize API
 *UpstoxClient.LoginApi* | [**initTokenRequestForIndieUser**](docs/LoginApi.md#initTokenRequestForIndieUser) | **POST** /v3/login/auth/token/request/{client_id} | Init token API
 *UpstoxClient.LoginApi* | [**logout**](docs/LoginApi.md#logout) | **DELETE** /v2/logout | Logout
@@ -79,6 +86,9 @@ Class | Method | HTTP request | Description
 *UpstoxClient.MarketQuoteApi* | [**getFullMarketQuote**](docs/MarketQuoteApi.md#getFullMarketQuote) | **GET** /v2/market-quote/quotes | Market quotes and instruments - Full market quotes
 *UpstoxClient.MarketQuoteApi* | [**getMarketQuoteOHLC**](docs/MarketQuoteApi.md#getMarketQuoteOHLC) | **GET** /v2/market-quote/ohlc | Market quotes and instruments - OHLC quotes
 *UpstoxClient.MarketQuoteApi* | [**ltp**](docs/MarketQuoteApi.md#ltp) | **GET** /v2/market-quote/ltp | Market quotes and instruments - LTP quotes.
+*UpstoxClient.MarketQuoteV3Api* | [**getLtp**](docs/MarketQuoteV3Api.md#getLtp) | **GET** /v3/market-quote/ltp | Market quotes and instruments - LTP quotes.
+*UpstoxClient.MarketQuoteV3Api* | [**getMarketQuoteOHLC**](docs/MarketQuoteV3Api.md#getMarketQuoteOHLC) | **GET** /v3/market-quote/ohlc | Market quotes and instruments - OHLC quotes
+*UpstoxClient.MarketQuoteV3Api* | [**getMarketQuoteOptionGreek**](docs/MarketQuoteV3Api.md#getMarketQuoteOptionGreek) | **GET** /v3/market-quote/option-greek | Market quotes and instruments - Option Greek
 *UpstoxClient.OptionsApi* | [**getOptionContracts**](docs/OptionsApi.md#getOptionContracts) | **GET** /v2/option/contract | Get option contracts
 *UpstoxClient.OptionsApi* | [**getPutCallOptionChain**](docs/OptionsApi.md#getPutCallOptionChain) | **GET** /v2/option/chain | Get option chain
 *UpstoxClient.OrderApi* | [**cancelMultiOrder**](docs/OrderApi.md#cancelMultiOrder) | **DELETE** /v2/order/multi/cancel | Cancel multi order
@@ -101,6 +111,7 @@ Class | Method | HTTP request | Description
 *UpstoxClient.OrderControllerV3Api* | [**placeOrder**](docs/OrderControllerV3Api.md#placeOrder) | **POST** /v3/order/place | 
 *UpstoxClient.PortfolioApi* | [**convertPositions**](docs/PortfolioApi.md#convertPositions) | **PUT** /v2/portfolio/convert-position | Convert Positions
 *UpstoxClient.PortfolioApi* | [**getHoldings**](docs/PortfolioApi.md#getHoldings) | **GET** /v2/portfolio/long-term-holdings | Get Holdings
+*UpstoxClient.PortfolioApi* | [**getMtfPositions**](docs/PortfolioApi.md#getMtfPositions) | **GET** /v3/portfolio/mtf-positions | Get MTF positions
 *UpstoxClient.PortfolioApi* | [**getPositions**](docs/PortfolioApi.md#getPositions) | **GET** /v2/portfolio/short-term-positions | Get Positions
 *UpstoxClient.PostTradeApi* | [**getTradesByDateRange**](docs/PostTradeApi.md#getTradesByDateRange) | **GET** /v2/charges/historical-trades | 
 *UpstoxClient.TradeProfitAndLossApi* | [**getProfitAndLossCharges**](docs/TradeProfitAndLossApi.md#getProfitAndLossCharges) | **GET** /v2/trade/profit-loss/charges | Get profit and loss on trades
@@ -156,11 +167,12 @@ Feel free to adjust the access token placeholder and any other specifics to bett
 
 #### Modes
 - **ltpc**: ltpc provides information solely about the most recent trade, encompassing details such as the last trade price, time of the last trade, quantity traded, and the closing price from the previous day.
-- **full**: The full option offers comprehensive information, including the latest trade prices, D5 depth, 1-minute, 30-minute, and daily candlestick data, along with some additional details.   
+- **full**: The full option offers comprehensive information, including the latest trade prices, D5 depth, 1-minute, 30-minute, and daily candlestick data, along with some additional details.
+- **full_d30**: full_d30 includes Full mode data plus 30 market level quotes.      
 - **option_greeks**: Contains only option greeks.
 
 #### Functions
-1. **constructor MarketDataStreamerV3(instrumentKeys, mode)**: Initializes the streamer with optional instrument keys and mode (`full`, `ltpc`, or `option_greeks`).
+1. **constructor MarketDataStreamerV3(instrumentKeys, mode)**: Initializes the streamer with optional instrument keys and mode (`full`, `ltpc`, `full_d30` or `option_greeks`).
 2. **connect()**: Establishes the WebSocket connection.
 3. **subscribe(instrumentKeys, mode)**: Subscribes to updates for given instrument keys in the specified mode. Both parameters are mandatory.
 4. **unsubscribe(instrumentKeys)**: Stops updates for the specified instrument keys.
@@ -648,8 +660,11 @@ streamer.on("message", (data) => {
  - [UpstoxClient.DepthMap](docs/DepthMap.md)
  - [UpstoxClient.DpPlan](docs/DpPlan.md)
  - [UpstoxClient.ExchangeTimingData](docs/ExchangeTimingData.md)
+ - [UpstoxClient.ExpiredFutureData](docs/ExpiredFutureData.md)
  - [UpstoxClient.GetBrokerageResponse](docs/GetBrokerageResponse.md)
  - [UpstoxClient.GetExchangeTimingResponse](docs/GetExchangeTimingResponse.md)
+ - [UpstoxClient.GetExpiredFuturesContractResponse](docs/GetExpiredFuturesContractResponse.md)
+ - [UpstoxClient.GetExpiriesResponse](docs/GetExpiriesResponse.md)
  - [UpstoxClient.GetFullMarketQuoteResponse](docs/GetFullMarketQuoteResponse.md)
  - [UpstoxClient.GetGttOrderResponse](docs/GetGttOrderResponse.md)
  - [UpstoxClient.GetHistoricalCandleResponse](docs/GetHistoricalCandleResponse.md)
@@ -657,7 +672,10 @@ streamer.on("message", (data) => {
  - [UpstoxClient.GetHolidayResponse](docs/GetHolidayResponse.md)
  - [UpstoxClient.GetIntraDayCandleResponse](docs/GetIntraDayCandleResponse.md)
  - [UpstoxClient.GetMarketQuoteLastTradedPriceResponse](docs/GetMarketQuoteLastTradedPriceResponse.md)
+ - [UpstoxClient.GetMarketQuoteLastTradedPriceResponseV3](docs/GetMarketQuoteLastTradedPriceResponseV3.md)
  - [UpstoxClient.GetMarketQuoteOHLCResponse](docs/GetMarketQuoteOHLCResponse.md)
+ - [UpstoxClient.GetMarketQuoteOHLCResponseV3](docs/GetMarketQuoteOHLCResponseV3.md)
+ - [UpstoxClient.GetMarketQuoteOptionGreekResponseV3](docs/GetMarketQuoteOptionGreekResponseV3.md)
  - [UpstoxClient.GetMarketStatusResponse](docs/GetMarketStatusResponse.md)
  - [UpstoxClient.GetOptionChainResponse](docs/GetOptionChainResponse.md)
  - [UpstoxClient.GetOptionContractResponse](docs/GetOptionContractResponse.md)
@@ -693,8 +711,11 @@ streamer.on("message", (data) => {
  - [UpstoxClient.MarginRequest](docs/MarginRequest.md)
  - [UpstoxClient.MarketData](docs/MarketData.md)
  - [UpstoxClient.MarketQuoteOHLC](docs/MarketQuoteOHLC.md)
+ - [UpstoxClient.MarketQuoteOHLCV3](docs/MarketQuoteOHLCV3.md)
+ - [UpstoxClient.MarketQuoteOptionGreekV3](docs/MarketQuoteOptionGreekV3.md)
  - [UpstoxClient.MarketQuoteSymbol](docs/MarketQuoteSymbol.md)
  - [UpstoxClient.MarketQuoteSymbolLtp](docs/MarketQuoteSymbolLtp.md)
+ - [UpstoxClient.MarketQuoteSymbolLtpV3](docs/MarketQuoteSymbolLtpV3.md)
  - [UpstoxClient.MarketStatusData](docs/MarketStatusData.md)
  - [UpstoxClient.ModifyOrderData](docs/ModifyOrderData.md)
  - [UpstoxClient.ModifyOrderRequest](docs/ModifyOrderRequest.md)
@@ -711,6 +732,7 @@ streamer.on("message", (data) => {
  - [UpstoxClient.OAuthClientExceptionCauseStackTrace](docs/OAuthClientExceptionCauseStackTrace.md)
  - [UpstoxClient.OAuthClientExceptionCauseSuppressed](docs/OAuthClientExceptionCauseSuppressed.md)
  - [UpstoxClient.Ohlc](docs/Ohlc.md)
+ - [UpstoxClient.OhlcV3](docs/OhlcV3.md)
  - [UpstoxClient.OptionStrikeData](docs/OptionStrikeData.md)
  - [UpstoxClient.OrderBookData](docs/OrderBookData.md)
  - [UpstoxClient.OrderData](docs/OrderData.md)

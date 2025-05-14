@@ -12,7 +12,7 @@ const initProtobuf = async () => {
 
 // Function to get WebSocket URL
 const getUrl = async (token) => {
-  const apiUrl = "https://api-v2.upstox.com/feed/market-data-feed/authorize";
+  const apiUrl = "https://api.upstox.com/v2/feed/market-data-feed/authorize";
   let headers = {
     "Content-type": "application/json",
     Authorization: "Bearer " + token,

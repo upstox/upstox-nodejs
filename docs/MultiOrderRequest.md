@@ -22,6 +22,7 @@ Name | Type | Description | Notes
 
 * `I` (value: `"I"`)
 * `D` (value: `"D"`)
+* `MTF` (value: `"MTF"`)
 
 
 <a name="ValidityEnum"></a>
