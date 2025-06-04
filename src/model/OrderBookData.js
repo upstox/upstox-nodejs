@@ -105,100 +105,16 @@ export class OrderBookData {
 }
 
 /**
- * Allowed values for the <code>exchange</code> property.
- * @enum {String}
- * @readonly
- */
-OrderBookData.ExchangeEnum = {
-  /**
-   * value: "NSE"
-   * @const
-   */
-  NSE: "NSE",
-
-  /**
-   * value: "NFO"
-   * @const
-   */
-  NFO: "NFO",
-
-  /**
-   * value: "CDS"
-   * @const
-   */
-  CDS: "CDS",
-
-  /**
-   * value: "BSE"
-   * @const
-   */
-  BSE: "BSE",
-
-  /**
-   * value: "BCD"
-   * @const
-   */
-  BCD: "BCD",
-
-  /**
-   * value: "BFO"
-   * @const
-   */
-  BFO: "BFO",
-
-  /**
-   * value: "MCX"
-   * @const
-   */
-  MCX: "MCX"
-};
-/**
- * Exchange to which the order is associated
- * @member {module:model/OrderBookData.ExchangeEnum} exchange
- */
-OrderBookData.prototype.exchange = undefined;
-
-/**
- * Allowed values for the <code>product</code> property.
- * @enum {String}
- * @readonly
- */
-OrderBookData.ProductEnum = {
-  /**
-   * value: "I"
-   * @const
-   */
-  I: "I",
-
-  /**
-   * value: "D"
-   * @const
-   */
-  D: "D",
-
-  /**
-   * value: "CO"
-   * @const
-   */
-  CO: "CO",
-
-  /**
-   * value: "OCO"
-   * @const
-   */
-  OCO: "OCO",
-
-  /**
-   * value: "MTF"
-   * @const
-   */
-  MTF: "MTF"
-};
-/**
  * Shows if the order was either Intraday, Delivery, CoverOrder or OneCancelsOther
- * @member {module:model/OrderBookData.ProductEnum} product
+ * @member {String} product
  */
 OrderBookData.prototype.product = undefined;
+
+/**
+ * Exchange to which the order is associated
+ * @member {String} exchange
+ */
+OrderBookData.prototype.exchange = undefined;
 
 /**
  * Price at which the order was placed

@@ -97,56 +97,8 @@ export class OrderData {
 }
 
 /**
- * Allowed values for the <code>exchange</code> property.
- * @enum {String}
- * @readonly
- */
-OrderData.ExchangeEnum = {
-  /**
-   * value: "NSE"
-   * @const
-   */
-  NSE: "NSE",
-
-  /**
-   * value: "NFO"
-   * @const
-   */
-  NFO: "NFO",
-
-  /**
-   * value: "CDS"
-   * @const
-   */
-  CDS: "CDS",
-
-  /**
-   * value: "BSE"
-   * @const
-   */
-  BSE: "BSE",
-
-  /**
-   * value: "BCD"
-   * @const
-   */
-  BCD: "BCD",
-
-  /**
-   * value: "BFO"
-   * @const
-   */
-  BFO: "BFO",
-
-  /**
-   * value: "MCX"
-   * @const
-   */
-  MCX: "MCX"
-};
-/**
  * Exchange to which the order is associated
- * @member {module:model/OrderData.ExchangeEnum} exchange
+ * @member {String} exchange
  */
 OrderData.prototype.exchange = undefined;
 
@@ -157,44 +109,8 @@ OrderData.prototype.exchange = undefined;
 OrderData.prototype.price = undefined;
 
 /**
- * Allowed values for the <code>product</code> property.
- * @enum {String}
- * @readonly
- */
-OrderData.ProductEnum = {
-  /**
-   * value: "I"
-   * @const
-   */
-  I: "I",
-
-  /**
-   * value: "D"
-   * @const
-   */
-  D: "D",
-
-  /**
-   * value: "CO"
-   * @const
-   */
-  CO: "CO",
-
-  /**
-   * value: "OCO"
-   * @const
-   */
-  OCO: "OCO",
-
-  /**
-   * value: "MTF"
-   * @const
-   */
-  MTF: "MTF"
-};
-/**
  * Shows if the order was either Intraday, Delivery, CoverOrder or OneCancelsOther
- * @member {module:model/OrderData.ProductEnum} product
+ * @member {String} product
  */
 OrderData.prototype.product = undefined;
 
