@@ -71,104 +71,14 @@ export class ProfileData {
 ProfileData.prototype.email = undefined;
 
 /**
- * Allowed values for the <code>exchanges</code> property.
- * @enum {String}
- * @readonly
- */
-ProfileData.ExchangesEnum = {
-  /**
-   * value: "NSE"
-   * @const
-   */
-  NSE: "NSE",
-
-  /**
-   * value: "NFO"
-   * @const
-   */
-  NFO: "NFO",
-
-  /**
-   * value: "CDS"
-   * @const
-   */
-  CDS: "CDS",
-
-  /**
-   * value: "BSE"
-   * @const
-   */
-  BSE: "BSE",
-
-  /**
-   * value: "BCD"
-   * @const
-   */
-  BCD: "BCD",
-
-  /**
-   * value: "BFO"
-   * @const
-   */
-  BFO: "BFO",
-
-  /**
-   * value: "MCX"
-   * @const
-   */
-  MCX: "MCX",
-
-  /**
-   * value: "NSCOM"
-   * @const
-   */
-  NSCOM: "NSCOM"
-};
-/**
  * Lists the exchanges to which the user has access
- * @member {Array.<module:model/ProfileData.ExchangesEnum>} exchanges
+ * @member {Array.<String>} exchanges
  */
 ProfileData.prototype.exchanges = undefined;
 
 /**
- * Allowed values for the <code>products</code> property.
- * @enum {String}
- * @readonly
- */
-ProfileData.ProductsEnum = {
-  /**
-   * value: "I"
-   * @const
-   */
-  I: "I",
-
-  /**
-   * value: "D"
-   * @const
-   */
-  D: "D",
-
-  /**
-   * value: "CO"
-   * @const
-   */
-  CO: "CO",
-
-  /**
-   * value: "OCO"
-   * @const
-   */
-  OCO: "OCO",
-
-  /**
-   * value: "MTF"
-   * @const
-   */
-  MTF: "MTF"
-};
-/**
  * Lists the products types to which the user has access
- * @member {Array.<module:model/ProfileData.ProductsEnum>} products
+ * @member {Array.<String>} products
  */
 ProfileData.prototype.products = undefined;
 

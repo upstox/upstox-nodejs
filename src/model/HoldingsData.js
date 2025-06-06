@@ -198,56 +198,8 @@ HoldingsData.prototype.collateralUpdateQuantity = undefined;
 HoldingsData.prototype.t1Quantity = undefined;
 
 /**
- * Allowed values for the <code>exchange</code> property.
- * @enum {String}
- * @readonly
- */
-HoldingsData.ExchangeEnum = {
-  /**
-   * value: "NSE"
-   * @const
-   */
-  NSE: "NSE",
-
-  /**
-   * value: "NFO"
-   * @const
-   */
-  NFO: "NFO",
-
-  /**
-   * value: "CDS"
-   * @const
-   */
-  CDS: "CDS",
-
-  /**
-   * value: "BSE"
-   * @const
-   */
-  BSE: "BSE",
-
-  /**
-   * value: "BCD"
-   * @const
-   */
-  BCD: "BCD",
-
-  /**
-   * value: "BFO"
-   * @const
-   */
-  BFO: "BFO",
-
-  /**
-   * value: "MCX"
-   * @const
-   */
-  MCX: "MCX"
-};
-/**
  * Exchange of the trading symbol
- * @member {module:model/HoldingsData.ExchangeEnum} exchange
+ * @member {String} exchange
  */
 HoldingsData.prototype.exchange = undefined;
 

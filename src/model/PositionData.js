@@ -103,56 +103,8 @@ export class PositionData {
 }
 
 /**
- * Allowed values for the <code>exchange</code> property.
- * @enum {String}
- * @readonly
- */
-PositionData.ExchangeEnum = {
-  /**
-   * value: "NSE"
-   * @const
-   */
-  NSE: "NSE",
-
-  /**
-   * value: "NFO"
-   * @const
-   */
-  NFO: "NFO",
-
-  /**
-   * value: "CDS"
-   * @const
-   */
-  CDS: "CDS",
-
-  /**
-   * value: "BSE"
-   * @const
-   */
-  BSE: "BSE",
-
-  /**
-   * value: "BCD"
-   * @const
-   */
-  BCD: "BCD",
-
-  /**
-   * value: "BFO"
-   * @const
-   */
-  BFO: "BFO",
-
-  /**
-   * value: "MCX"
-   * @const
-   */
-  MCX: "MCX"
-};
-/**
  * Exchange to which the order is associated
- * @member {module:model/PositionData.ExchangeEnum} exchange
+ * @member {String} exchange
  */
 PositionData.prototype.exchange = undefined;
 
