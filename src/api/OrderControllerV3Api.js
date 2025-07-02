@@ -63,6 +63,8 @@ export class OrderApiV3 {
               rule.trigger_type = ApiClient.convertToType(userRule['triggerType'], 'String');
             if(userRule.hasOwnProperty('triggerPrice'))
               rule.trigger_price = ApiClient.convertToType(userRule['triggerPrice'], 'Number');
+            if(userRule.hasOwnProperty('trailingGap'))
+              rule.trailing_gap = ApiClient.convertToType(userRule['trailingGap'], 'Number');
             obj.rules.push(rule);
           });
         }
