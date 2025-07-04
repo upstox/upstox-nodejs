@@ -27,7 +27,7 @@ export class GttPlaceOrderRequest {
    * @class
    * @param type {module:model/GttPlaceOrderRequest.TypeEnum} Type of GTT order. It can be one of the following: SINGLE refers to a single-leg GTT order MULTIPLE refers to a multi-leg GTT order
    * @param quantity {Number} Quantity with which the order is to be placed
-   * @param product {module:model/GttPlaceOrderRequest.ProductEnum} Signifies if the order was either Intraday, Delivery, CO or OCO
+   * @param product {module:model/GttPlaceOrderRequest.ProductEnum} Signifies if the order was either Intraday, Delivery or MTF
    * @param rules {Array.<module:model/GttRule>} List of rules defining the conditions for each leg in the GTT order
    * @param instrumentToken {String} Key of the instrument
    * @param transactionType {module:model/GttPlaceOrderRequest.TransactionTypeEnum} Indicates whether its a buy or sell order
@@ -114,10 +114,16 @@ GttPlaceOrderRequest.ProductEnum = {
    * value: "D"
    * @const
    */
-  D: "D"
+  D: "D",
+
+  /**
+   * value: "MTF"
+   * @const
+   */
+  MTF: "MTF"
 };
 /**
- * Signifies if the order was either Intraday, Delivery, CO or OCO
+ * Signifies if the order was either Intraday, Delivery or MTF
  * @member {module:model/GttPlaceOrderRequest.ProductEnum} product
  */
 GttPlaceOrderRequest.prototype.product = undefined;

@@ -51,6 +51,8 @@ export class GttRule {
         obj.triggerType = ApiClient.convertToType(data['trigger_type'], 'String');
       if (data.hasOwnProperty('trigger_price'))
         obj.triggerPrice = ApiClient.convertToType(data['trigger_price'], 'Number');
+      if (data.hasOwnProperty('trailing_gap'))
+        obj.trailingGap = ApiClient.convertToType(data['trailing_gap'], 'Number');
     }
     return obj;
   }
@@ -121,4 +123,10 @@ GttRule.prototype.triggerType = undefined;
  * @member {Number} triggerPrice
  */
 GttRule.prototype.triggerPrice = undefined;
+
+/**
+ * Optional parameter defining the trailing gap for the GTT order
+ * @member {Number} trailingGap
+ */
+GttRule.prototype.trailingGap = undefined;
 

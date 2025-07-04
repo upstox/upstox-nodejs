@@ -52,6 +52,8 @@ export class Rule {
         obj.transactionType = ApiClient.convertToType(data['transaction_type'], 'String');
       if (data.hasOwnProperty('order_id'))
         obj.orderId = ApiClient.convertToType(data['order_id'], 'String');
+      if (data.hasOwnProperty('trailing_gap'))
+        obj.trailingGap = ApiClient.convertToType(data['trailing_gap'], 'Number');
     }
     return obj;
   }
@@ -91,4 +93,9 @@ Rule.prototype.transactionType = undefined;
  * @member {String} orderId
  */
 Rule.prototype.orderId = undefined;
+
+/**
+ * @member {Number} trailingGap
+ */
+Rule.prototype.trailingGap = undefined;
 
