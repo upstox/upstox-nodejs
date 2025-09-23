@@ -62,9 +62,10 @@ export class OrderApi {
     * @param {String} opts.tag The tag associated with the orders for which the orders must be cancelled
     * @param {String} opts.segment The segment for which the orders must be cancelled
     * @param {module:api/OrderApi~cancelMultiOrderCallback} callback The callback function, accepting three arguments: error, data, response
+    * @param {String} [algoId] Optional algorithm ID to be sent as X-Algo-Id header
     * data is of type: {@link <&vendorExtensions.x-jsdoc-type>}
     */
-   cancelMultiOrder(opts, callback) {
+   cancelMultiOrder(opts, callback, algoId) {
      opts = opts || {};
      let postBody = null;
 
@@ -77,6 +78,12 @@ export class OrderApi {
      let headerParams = {
        
      };
+     
+     // Add X-Algo-Id header if algoId is provided
+     if (algoId !== undefined && algoId !== null) {
+       headerParams['X-Algo-Id'] = algoId;
+     }
+     
      let formParams = {
        
      };
@@ -107,9 +114,10 @@ export class OrderApi {
      * @param {String} orderId The order ID for which the order must be cancelled
      * @param {String} apiVersion API Version Header
      * @param {module:api/OrderApi~cancelOrderCallback} callback The callback function, accepting three arguments: error, data, response
+     * @param {String} [algoId] Optional algorithm ID to be sent as X-Algo-Id header
      * data is of type: {@link <&vendorExtensions.x-jsdoc-type>}
      */
-    cancelOrder(orderId, apiVersion, callback) {
+    cancelOrder(orderId, apiVersion, callback, algoId) {
       
       let postBody = null;
       // verify the required parameter 'orderId' is set
@@ -130,6 +138,12 @@ export class OrderApi {
       let headerParams = {
         'Api-Version': apiVersion
       };
+      
+      // Add X-Algo-Id header if algoId is provided
+      if (algoId !== undefined && algoId !== null) {
+        headerParams['X-Algo-Id'] = algoId;
+      }
+      
       let formParams = {
         
       };
@@ -152,9 +166,10 @@ export class OrderApi {
      * @param {String} opts.tag The tag associated with the positions for which the positions must be exit
      * @param {String} opts.segment The segment for which the positions must be exit
      * @param {module:api/OrderApi~exitPositionsCallback} callback The callback function, accepting three arguments: error, data, response
+     * @param {String} [algoId] Optional algorithm ID to be sent as X-Algo-Id header
      * data is of type: {@link <&vendorExtensions.x-jsdoc-type>}
      */
-        exitPositions(opts, callback) {
+        exitPositions(opts, callback, algoId) {
           opts = opts || {};
           let postBody = null;
     
@@ -167,6 +182,12 @@ export class OrderApi {
           let headerParams = {
             
           };
+          
+          // Add X-Algo-Id header if algoId is provided
+          if (algoId !== undefined && algoId !== null) {
+            headerParams['X-Algo-Id'] = algoId;
+          }
+          
           let formParams = {
             
           };
@@ -435,9 +456,10 @@ export class OrderApi {
         * This API allows you to place multiple orders to the exchange via Upstox.
         * @param {Array.<module:model/MultiOrderRequest>} body 
         * @param {module:api/OrderApi~placeMultiOrderCallback} callback The callback function, accepting three arguments: error, data, response
+        * @param {String} [algoId] Optional algorithm ID to be sent as X-Algo-Id header
         * data is of type: {@link <&vendorExtensions.x-jsdoc-type>}
         */
-       placeMultiOrder(body, callback) {
+       placeMultiOrder(body, callback, algoId) {
          
          let postBody = body;
          // verify the required parameter 'body' is set
@@ -454,6 +476,11 @@ export class OrderApi {
          let headerParams = {
            
          };
+         
+         // Add X-Algo-Id header if algoId is provided
+         if (algoId !== undefined && algoId !== null) {
+           headerParams['X-Algo-Id'] = algoId;
+         }
          let formParams = {
            
          };
@@ -505,9 +532,10 @@ export class OrderApi {
      * @param {module:model/ModifyOrderRequest} body 
      * @param {String} apiVersion API Version Header
      * @param {module:api/OrderApi~modifyOrderCallback} callback The callback function, accepting three arguments: error, data, response
+     * @param {String} [algoId] Optional algorithm ID to be sent as X-Algo-Id header
      * data is of type: {@link <&vendorExtensions.x-jsdoc-type>}
      */
-    modifyOrder(body, apiVersion, callback) {
+    modifyOrder(body, apiVersion, callback, algoId) {
       
       let postBody = this.mapToModifyOrderRequest(body);
       // verify the required parameter 'body' is set
@@ -528,6 +556,12 @@ export class OrderApi {
       let headerParams = {
         'Api-Version': apiVersion
       };
+      
+      // Add X-Algo-Id header if algoId is provided
+      if (algoId !== undefined && algoId !== null) {
+        headerParams['X-Algo-Id'] = algoId;
+      }
+      
       let formParams = {
         
       };
@@ -586,9 +620,10 @@ export class OrderApi {
      * @param {module:model/PlaceOrderRequest} body 
      * @param {String} apiVersion API Version Header
      * @param {module:api/OrderApi~placeOrderCallback} callback The callback function, accepting three arguments: error, data, response
+     * @param {String} [algoId] Optional algorithm ID to be sent as X-Algo-Id header
      * data is of type: {@link <&vendorExtensions.x-jsdoc-type>}
      */
-    placeOrder(body, apiVersion, callback) {
+    placeOrder(body, apiVersion, callback, algoId) {
       
       let postBody = this.mapToPlaceOrderRequest(body);
       // verify the required parameter 'body' is set
@@ -609,6 +644,12 @@ export class OrderApi {
       let headerParams = {
         'Api-Version': apiVersion
       };
+      
+      // Add X-Algo-Id header if algoId is provided
+      if (algoId !== undefined && algoId !== null) {
+        headerParams['X-Algo-Id'] = algoId;
+      }
+      
       let formParams = {
         
       };
