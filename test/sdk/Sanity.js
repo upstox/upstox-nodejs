@@ -594,6 +594,172 @@ expiredInstrumentsApiInstance.getExpiredOptionContracts("NSE_INDEX|Nifty 50", "2
 });
 
 
+// ============================================
+// algo id -> TESTS - Testing algoId parameter for all order APIs
+// ============================================
+
+
+// ============================================
+// V2 OrderApi Tests with algoId
+// ============================================
+
+// Test 1: V2 placeOrder with algoId
+var apiInstanceAlgo = new UpstoxClient.OrderApi();
+var bodyAlgo = new UpstoxClient.PlaceOrderRequest(1, UpstoxClient.PlaceOrderRequest.ProductEnum.D, UpstoxClient.PlaceOrderRequest.ValidityEnum.DAY, 0.0, "NSE_EQ|INE528G01035",UpstoxClient.PlaceOrderRequest.OrderTypeEnum.MARKET,UpstoxClient.PlaceOrderRequest.TransactionTypeEnum.BUY, 0, 0.0, true); 
+var apiVersionAlgo = "2.0";
+
+apiInstanceAlgo.placeOrder(bodyAlgo, apiVersionAlgo, (error, data, response) => {
+  if (error) {
+    if(JSON.parse(error.response.text).errors[0].errorCode != "UDAPI1052") console.log("error in place order with algoId");
+  } else {
+    console.log("place order with algoId SUCCESS = " + JSON.stringify(data));
+  }
+}, "algo id -> placeOrder v2");
+
+// Test 2: V2 placeMultiOrder with algoId
+var bodyMultiAlgo = [];
+var one_reqAlgo = new UpstoxClient.MultiOrderRequest(1,"D","DAY",8.9,true,"NSE_EQ|INE669E01016","LIMIT","BUY",0,9,true,"tag_should_be_tg1");
+one_reqAlgo.tag = "tg1"
+bodyMultiAlgo = bodyMultiAlgo.concat(one_reqAlgo);
+bodyMultiAlgo = bodyMultiAlgo.concat(new UpstoxClient.MultiOrderRequest(1,"D","DAY",8.9,true,"NSE_EQ|INE669E01016","LIMIT","BUY",0,9.0,true,"cid2"));
+
+apiInstanceAlgo.placeMultiOrder(bodyMultiAlgo, (error, data, response) => {
+  if (error) {
+    console.log("placeMultiOrder with algoId error (NOT expected): " + error.response.text);
+  } else {
+    console.log('placeMultiOrder with algoId SUCCESS = ' + JSON.stringify(data));
+  }
+}, "algo id -> placeMultiOrder");
+
+// Test 3: V2 modifyOrder with algoId
+var bodyModifyAlgo = new UpstoxClient.ModifyOrderRequest(UpstoxClient.ModifyOrderRequest.ValidityEnum.DAY,0,"240111010331447",UpstoxClient.ModifyOrderRequest.OrderTypeEnum.MARKET,0); 
+
+apiInstanceAlgo.modifyOrder(bodyModifyAlgo, apiVersionAlgo, (error, data, response) => {
+  if (error) {
+    if(JSON.parse(error.response.text).errors[0].errorCode != "UDAPI100010") console.log("error in modify order with algoId");
+  } else {
+    console.log('modifyOrder with algoId SUCCESS = ' + JSON.stringify(data));
+  }
+}, "algo id -> modifyOrder v2");
+
+// Test 4: V2 cancelOrder with algoId
+var orderIdAlgo = "240111010403654";
+
+apiInstanceAlgo.cancelOrder(orderIdAlgo, apiVersionAlgo, (error, data, response) => {
+  if (error) {
+    if(JSON.parse(error.response.text).errors[0].errorCode != "UDAPI100010") console.log("error in cancel order with algoId");
+  } else {
+    console.log('cancelOrder with algoId SUCCESS = ' + JSON.stringify(data));
+  }
+}, "algo id -> cancelOrder v2");
+
+// Test 5: V2 cancelMultiOrder with algoId
+var optsAlgo = {
+  'tag': 'unknown_tag'
+};
+
+apiInstanceAlgo.cancelMultiOrder(optsAlgo, (error, data, response) => {
+  if (error) {
+    if(JSON.parse(error.response.text).errors[0].errorCode != "UDAPI1109") console.log("error in cancel multi order with algoId");
+  } else {
+    console.log('cancelMultiOrder with algoId SUCCESS = ' + JSON.stringify(data));
+  }
+}, "algo id -> cancelMultiOrder v2");
+
+// Test 6: V2 exitPositions with algoId
+apiInstanceAlgo.exitPositions(optsAlgo, (error, data, response) => {
+  if (error) {
+    if((JSON.parse(error.response.text).errors[0].errorCode != "UDAPI1111") && (JSON.parse(error.response.text).errors[0].errorCode != "UDAPI1113")) console.log("error in exit positions with algoId");
+  } else {
+    console.log('exitPositions with algoId SUCCESS = ' + JSON.stringify(data));
+  }
+}, "algo id -> exitPositions");
+
+// ============================================
+// V3 OrderApiV3 Tests with algoId
+// ============================================
+
+// Test 7: V3 placeOrder with algoId
+var apiInstanceV3Algo = new UpstoxClient.OrderApiV3();
+var bodyV3Algo = new UpstoxClient.PlaceOrderV3Request(1,UpstoxClient.PlaceOrderV3Request.ProductEnum.D,
+    UpstoxClient.PlaceOrderV3Request.ValidityEnum.DAY, 7.2,"NSE_EQ|INE669E01016",UpstoxClient.PlaceOrderV3Request.OrderTypeEnum.LIMIT,
+    UpstoxClient.PlaceOrderV3Request.TransactionTypeEnum.BUY,0,0,true);
+var optV3Algo = {"slice": true};
+
+apiInstanceV3Algo.placeOrder(bodyV3Algo, optV3Algo, (error, data, response) => {
+  if (error) {
+    console.log("placeOrder V3 with algoId error (NOT expected): " + error.response.text);
+  } else {
+    console.log('placeOrder V3 with algoId SUCCESS = ' + JSON.stringify(data));
+  }
+}, "algo id -> placeOrder v3");
+
+// Test 8: V3 modifyOrder with algoId
+var bodyModifyV3Algo = new UpstoxClient.ModifyOrderRequest(UpstoxClient.ModifyOrderRequest.ValidityEnum.DAY,0,"2505010177418",UpstoxClient.ModifyOrderRequest.OrderTypeEnum.MARKET,1); 
+bodyModifyV3Algo.quantity = 1;
+
+apiInstanceV3Algo.modifyOrder(bodyModifyV3Algo, (error, data, response) => {
+  if (error) {
+    if((JSON.parse(error.response.text).errors[0].errorCode != "UDAPI100010")) console.log("error in modify order V3 with algoId");
+  } else {
+    console.log('modifyOrder V3 with algoId SUCCESS = ' + JSON.stringify(data));
+  }
+}, "algo id -> modifyOrder v3");
+
+// Test 9: V3 cancelOrder with algoId
+var orderIdV3Algo = "2503050177418";
+
+apiInstanceV3Algo.cancelOrder(orderIdV3Algo, (error, data, response) => {
+  if (error) {
+    if((JSON.parse(error.response.text).errors[0].errorCode != "UDAPI100010")) console.log("error in cancel order V3 with algoId");
+  } else {
+    console.log('cancelOrder V3 with algoId SUCCESS = ' + JSON.stringify(data));
+  }
+}, "algo id -> cancelOrder v3");
+
+// Test 10: V3 placeGTTOrder with algoId
+var entryRuleAlgo = new UpstoxClient.GttRule(UpstoxClient.GttRule.StrategyEnum.ENTRY, UpstoxClient.GttRule.TriggerTypeEnum.ABOVE, 100);
+var bodyGTTAlgo = new UpstoxClient.GttPlaceOrderRequest(UpstoxClient.GttPlaceOrderRequest.TypeEnum.SINGLE, 1, UpstoxClient.GttPlaceOrderRequest.ProductEnum.D, [entryRuleAlgo],"NSE_EQ|INE669E01016", UpstoxClient.GttPlaceOrderRequest.TransactionTypeEnum.BUY);
+
+apiInstanceV3Algo.placeGTTOrder(bodyGTTAlgo, (error, data, response) => {
+  if (error) {
+    console.log("placeGTTOrder with algoId error (NOT expected): " + error.response.text);
+  } else {
+    console.log('placeGTTOrder with algoId SUCCESS = ' + JSON.stringify(data));
+  }
+}, "algo id -> placeGTTOrder v3");
+
+// Test 11: V3 modifyGTTOrder with algoId
+var bodyModifyGTTAlgo = new UpstoxClient.GttModifyOrderRequest(UpstoxClient.GttModifyOrderRequest.TypeEnum.SINGLE, 1, [entryRuleAlgo], "GTT-C25040700150119");
+bodyModifyGTTAlgo.quantity = 1;
+
+apiInstanceV3Algo.modifyGTTOrder(bodyModifyGTTAlgo, (error, data, response) => {
+  if (error) {
+    if((JSON.parse(error.response.text).errors[0].errorCode != "UDAPI100010")) {
+      console.log("error in modify gtt order V3 with algoId");
+      console.error(error.response.text);
+    }
+  } else {
+    console.log('modifyGTTOrder with algoId SUCCESS = ' + JSON.stringify(data));
+  }
+}, "algo id -> modifyGTTOrder v3");
+
+// Test 12: V3 cancelGTTOrder with algoId
+var bodyCancelGTTAlgo = new UpstoxClient.GttCancelOrderRequest("2501270424977");
+
+apiInstanceV3Algo.cancelGTTOrder(bodyCancelGTTAlgo, (error, data, response) => {
+  if (error) {
+    if((JSON.parse(error.response.text).errors[0].errorCode != "UDAPI1135")) {
+      console.log("error in gtt cancel");
+      console.error(error.response.text);
+    }
+  } else {
+    console.log('cancelGTTOrder with algoId SUCCESS = ' + JSON.stringify(data));
+  }
+}, "algo id -> cancelGTTOrder v3");
+
+
+
 setTimeout(() => {
   apiInstance = new UpstoxClient.LoginApi();
 opts = { 
@@ -628,4 +794,4 @@ apiInstance.logout(apiVersion, (error, data, response) => {
     console.log('Logout api called successfully. Returned data: ' + JSON.stringify(data));
   }
 });
-}, 5000);
+}, 7000);
