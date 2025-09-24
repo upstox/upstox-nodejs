@@ -41,7 +41,7 @@ jobs:
 
           if [ "$EXPIRED" -gt 0 ]; then
             echo "::error ::🔒 $EXPIRED whitelist exemption(s) for this repository (${GITHUB_REPOSITORY}) are past their ETA."
-            echo "❌ Please remove or update the expired entries from the whitelist file before merging this PR."
+            echo "❌  Please remove or update the expired entries from the whitelist file before merging this PR."
             exit 1
           fi
 
