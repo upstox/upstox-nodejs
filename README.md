@@ -56,6 +56,32 @@ apiInstance.placeOrder(body, opt, (error, data, response) => {
 ```
 To learn more about the sandbox environment and the available sandbox APIs, please visit the [Upstox API documentation - Sandbox](https://upstox.com/developer/api-documentation/sandbox).
 
+## Algo ID Support
+
+The SDK supports passing an algorithm ID for order tracking and management. When provided, the SDK will pass the algo ID as `X-Algo-Id` header.
+
+```javascript
+let UpstoxClient = require("upstox-js-sdk");
+let defaultClient = UpstoxClient.ApiClient.instance;
+var OAUTH2 = defaultClient.authentications["OAUTH2"];
+OAUTH2.accessToken = "ACCESS_TOKEN";
+
+let apiInstance = new UpstoxClient.OrderApiV3();
+let body = new UpstoxClient.PlaceOrderV3Request(1,UpstoxClient.PlaceOrderV3Request.ProductEnum.D,
+    UpstoxClient.PlaceOrderV3Request.ValidityEnum.DAY, 0,"NSE_EQ|INE528G01035",UpstoxClient.PlaceOrderV3Request.OrderTypeEnum.MARKET,
+    UpstoxClient.PlaceOrderV3Request.TransactionTypeEnum.BUY,0,0,true);
+let opt = {"slice": true}
+
+apiInstance.placeOrder(body, opt, (error, data, response) => {
+  if (error) {
+    console.log("error->" + JSON.stringify(error));
+  } else {
+    console.log('API called successfully. Returned data: ' + JSON.stringify(data));
+  }
+}, "your-algo-id");
+```
+
+Other order methods (modify, cancel, etc.) follow the same pattern by accepting an optional algo ID as the last parameter.
 
 ## Documentation for API Endpoints
 
