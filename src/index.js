@@ -155,7 +155,6 @@ import {PostTradeApi} from './api/PostTradeApi';
 import {TradeProfitAndLossApi} from './api/TradeProfitAndLossApi';
 import {UserApi} from './api/UserApi';
 import {WebsocketApi} from './api/WebsocketApi';
-import {MarketDataStreamer} from './feeder/MarketDataStreamer';
 import {PortfolioDataStreamer} from './feeder/PortfolioDataStreamer';
 import { MarketDataStreamerV3 } from './feeder/MarketDataStreamerV3';
 
@@ -196,7 +195,6 @@ export {
      * @property {module:ApiClient}
      */
     ApiClient,
-    MarketDataStreamer,
     MarketDataStreamerV3,
     PortfolioDataStreamer,
     /**

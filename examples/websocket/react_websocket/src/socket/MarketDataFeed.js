@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import proto from "./marketDataFeed.proto";
+import proto from "./MarketDataFeedV3.proto";
 import { Buffer } from "buffer";
 const protobuf = require("protobufjs");
 
@@ -12,7 +12,7 @@ const initProtobuf = async () => {
 
 // Function to get WebSocket URL
 const getUrl = async (token) => {
-  const apiUrl = "https://api.upstox.com/v2/feed/market-data-feed/authorize";
+  const apiUrl = "https://api.upstox.com/v3/feed/market-data-feed/authorize";
   let headers = {
     "Content-type": "application/json",
     Authorization: "Bearer " + token,
@@ -46,7 +46,7 @@ const decodeProfobuf = (buffer) => {
     return null;
   }
   const FeedResponse = protobufRoot.lookupType(
-    "com.upstox.marketdatafeeder.rpc.proto.FeedResponse"
+    "com.upstox.marketdatafeederv3udapi.rpc.proto.FeedResponse"
   );
   return FeedResponse.decode(buffer);
 };

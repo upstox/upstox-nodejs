@@ -91,9 +91,10 @@ export class OrderApiV3 {
     * This API allows you to cancel GTT orders.
     * @param {module:model/GttCancelOrderRequest} body 
     * @param {module:api/OrderControllerV3Api~cancelGTTOrderCallback} callback The callback function, accepting three arguments: error, data, response
+    * @param {String} [algoId] Optional algorithm ID to be sent as X-Algo-Id header
     * data is of type: {@link <&vendorExtensions.x-jsdoc-type>}
     */
-   cancelGTTOrder(body, callback) {
+   cancelGTTOrder(body, callback, algoId) {
      
     let postBody = this.mapToGttOrderRequest(body);
      // verify the required parameter 'body' is set
@@ -110,6 +111,12 @@ export class OrderApiV3 {
      let headerParams = {
        
      };
+     
+     // Add X-Algo-Id header if algoId is provided
+     if (algoId !== undefined && algoId !== null) {
+       headerParams['X-Algo-Id'] = algoId;
+     }
+     
      let formParams = {
        
      };
@@ -137,9 +144,10 @@ export class OrderApiV3 {
     /**
      * @param {String} orderId 
      * @param {module:api/OrderControllerV3Api~cancelOrderCallback} callback The callback function, accepting three arguments: error, data, response
+     * @param {String} [algoId] Optional algorithm ID to be sent as X-Algo-Id header
      * data is of type: {@link <&vendorExtensions.x-jsdoc-type>}
      */
-    cancelOrder(orderId, callback) {
+    cancelOrder(orderId, callback, algoId) {
       let postBody = null;
       // verify the required parameter 'orderId' is set
       if (orderId === undefined || orderId === null) {
@@ -155,6 +163,12 @@ export class OrderApiV3 {
       let headerParams = {
 
       };
+      
+      // Add X-Algo-Id header if algoId is provided
+      if (algoId !== undefined && algoId !== null) {
+        headerParams['X-Algo-Id'] = algoId;
+      }
+      
       let formParams = {
         
       };
@@ -228,9 +242,10 @@ export class OrderApiV3 {
     * This API allows you to modify GTT orders.
     * @param {module:model/GttModifyOrderRequest} body 
     * @param {module:api/OrderControllerV3Api~modifyGTTOrderCallback} callback The callback function, accepting three arguments: error, data, response
+    * @param {String} [algoId] Optional algorithm ID to be sent as X-Algo-Id header
     * data is of type: {@link <&vendorExtensions.x-jsdoc-type>}
     */
-   modifyGTTOrder(body, callback) {
+   modifyGTTOrder(body, callback, algoId) {
      
     let postBody = this.mapToGttOrderRequest(body);
      // verify the required parameter 'body' is set
@@ -247,6 +262,12 @@ export class OrderApiV3 {
      let headerParams = {
        
      };
+     
+     // Add X-Algo-Id header if algoId is provided
+     if (algoId !== undefined && algoId !== null) {
+       headerParams['X-Algo-Id'] = algoId;
+     }
+     
      let formParams = {
        
      };
@@ -294,9 +315,10 @@ export class OrderApiV3 {
     /**
      * @param {module:model/ModifyOrderRequest} body 
      * @param {module:api/OrderControllerV3Api~modifyOrderCallback} callback The callback function, accepting three arguments: error, data, response
+     * @param {String} [algoId] Optional algorithm ID to be sent as X-Algo-Id header
      * data is of type: {@link <&vendorExtensions.x-jsdoc-type>}
      */
-    modifyOrder(body, callback) {
+    modifyOrder(body, callback, algoId) {
       let postBody = this.mapToModifyOrderRequest(body);
       // verify the required parameter 'body' is set
       if (body === undefined || body === null) {
@@ -312,6 +334,12 @@ export class OrderApiV3 {
       let headerParams = {
 
       };
+      
+      // Add X-Algo-Id header if algoId is provided
+      if (algoId !== undefined && algoId !== null) {
+        headerParams['X-Algo-Id'] = algoId;
+      }
+      
       let formParams = {
         
       };
@@ -372,9 +400,10 @@ export class OrderApiV3 {
     * This API allows you to place GTT orders.
     * @param {module:model/GttPlaceOrderRequest} body 
     * @param {module:api/OrderControllerV3Api~placeGTTOrderCallback} callback The callback function, accepting three arguments: error, data, response
+    * @param {String} [algoId] Optional algorithm ID to be sent as X-Algo-Id header
     * data is of type: {@link <&vendorExtensions.x-jsdoc-type>}
     */
-   placeGTTOrder(body, callback) {
+   placeGTTOrder(body, callback, algoId) {
      
      let postBody = this.mapToGttOrderRequest(body);
      // verify the required parameter 'body' is set
@@ -391,6 +420,12 @@ export class OrderApiV3 {
      let headerParams = {
        
      };
+     
+     // Add X-Algo-Id header if algoId is provided
+     if (algoId !== undefined && algoId !== null) {
+       headerParams['X-Algo-Id'] = algoId;
+     }
+     
      let formParams = {
        
      };
@@ -420,9 +455,10 @@ export class OrderApiV3 {
      * @param {Object} opts Optional parameters
      * @param {String} opts.origin 
      * @param {module:api/OrderControllerV3Api~placeOrderCallback} callback The callback function, accepting three arguments: error, data, response
+     * @param {String} [algoId] Optional algorithm ID to be sent as X-Algo-Id header
      * data is of type: {@link <&vendorExtensions.x-jsdoc-type>}
      */
-    placeOrder(body, opts, callback) {
+    placeOrder(body, opts, callback, algoId) {
       opts = opts || {};
       let postBody = this.mapToPlaceOrderV3Request(body);
 
@@ -444,6 +480,12 @@ export class OrderApiV3 {
       let headerParams = {
         'Origin': opts['origin']
       };
+      
+      // Add X-Algo-Id header if algoId is provided
+      if (algoId !== undefined && algoId !== null) {
+        headerParams['X-Algo-Id'] = algoId;
+      }
+      
       let formParams = {
         
       };
