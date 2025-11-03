@@ -58,7 +58,7 @@ To learn more about the sandbox environment and the available sandbox APIs, plea
 
 ## Algo ID Support
 
-The SDK supports passing an algorithm ID for order tracking and management. When provided, the SDK will pass the algo ID as `X-Algo-Id` header.
+The SDK supports passing an algorithm ID for order tracking and management. When provided, the SDK will pass the algo ID as `X-Algo-Name` header.
 
 ```javascript
 let UpstoxClient = require("upstox-js-sdk");
