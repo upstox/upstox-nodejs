@@ -56,7 +56,7 @@ apiInstance.placeOrder(body, opt, (error, data, response) => {
 ```
 To learn more about the sandbox environment and the available sandbox APIs, please visit the [Upstox API documentation - Sandbox](https://upstox.com/developer/api-documentation/sandbox).
 
-## Algo ID Support
+## Algo Name Support
 
 The SDK supports passing an algorithm ID for order tracking and management. When provided, the SDK will pass the algo ID as `X-Algo-Name` header.
 
@@ -78,10 +78,10 @@ apiInstance.placeOrder(body, opt, (error, data, response) => {
   } else {
     console.log('API called successfully. Returned data: ' + JSON.stringify(data));
   }
-}, "your-algo-id");
+}, "your-algo-name");
 ```
 
-Other order methods (modify, cancel, etc.) follow the same pattern by accepting an optional algo ID as the last parameter.
+Other order methods (modify, cancel, etc.) follow the same pattern by accepting an optional algo name as the last parameter.
 
 ## Documentation for API Endpoints
 
