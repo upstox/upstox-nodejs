@@ -5,6 +5,7 @@ var defaultClient = UpstoxClient.ApiClient.instance;
 
 var OAUTH2 = defaultClient.authentications['OAUTH2'];
 
+let X_Algo_Name = "Name";
 
 
 OAUTH2.accessToken = accessToken;
@@ -15,171 +16,171 @@ apiInstance.getProfile(apiVersion, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
-    if(data.status != "success"){
-        console.log("error in get profile");
+    if (data.status != "success") {
+      console.log("error in get profile");
     }
   }
 });
 
 apiInstance.getUserFundMargin(apiVersion, null, (error, data, response) => {
-    if (error) {
-      console.error(error);
-    } else {
-        if(data.status != "success"){
-            console.log("error in get funds and margin");
-        }
-      }
-    });
+  if (error) {
+    console.error(error);
+  } else {
+    if (data.status != "success") {
+      console.log("error in get funds and margin");
+    }
+  }
+});
 
 
-    apiInstance = new UpstoxClient.ChargeApi();
-    var instrumentToken = "NSE_EQ|INE669E01016"; 
-    var quantity = 56; 
-    var product = "D"; 
-    var transactionType = "BUY"; 
-    var price = 23.4; 
-    var apiVersion = "2.0"; 
+apiInstance = new UpstoxClient.ChargeApi();
+var instrumentToken = "NSE_EQ|INE669E01016";
+var quantity = 56;
+var product = "D";
+var transactionType = "BUY";
+var price = 23.4;
+var apiVersion = "2.0";
 
-    apiInstance.getBrokerage(instrumentToken, quantity, product, transactionType, price, apiVersion, (error, data, response) => {
-      if (error) {
-        console.error(error);
-    } else {
-        if(data.status != "success"){
-            console.log("error get brokerage");
-        }
-      }
-    });
+apiInstance.getBrokerage(instrumentToken, quantity, product, transactionType, price, apiVersion, (error, data, response) => {
+  if (error) {
+    console.error(error);
+  } else {
+    if (data.status != "success") {
+      console.log("error get brokerage");
+    }
+  }
+});
 
-    let instruments =[ new UpstoxClient.Instrument("NSE_EQ|INE669E01016",1,"D","BUY"), new UpstoxClient.Instrument("NSE_EQ|INE917I01010",2,"D","BUY")];
+let instruments = [new UpstoxClient.Instrument("NSE_EQ|INE669E01016", 1, "D", "BUY"), new UpstoxClient.Instrument("NSE_EQ|INE917I01010", 2, "D", "BUY")];
 
-    let postMarginRequest = new UpstoxClient.MarginRequest(instruments)
-    
-    apiInstance.postMargin(postMarginRequest, (error, data, response) => {
-        if (error) {
-          console.log("error in post margin api call");
-          console.error(error.response.text);
-        } else {
-          if(data.status != "success") console.log("error in post margin api call");
-        }
-      });
+let postMarginRequest = new UpstoxClient.MarginRequest(instruments)
 
-
-    var apiInstance = new UpstoxClient.OrderApi();
-    var body = new UpstoxClient.PlaceOrderRequest(1, UpstoxClient.PlaceOrderRequest.ProductEnum.D, UpstoxClient.PlaceOrderRequest.ValidityEnum.DAY, 0.0, "NSE_EQ|INE528G01035",UpstoxClient.PlaceOrderRequest.OrderTypeEnum.MARKET,UpstoxClient.PlaceOrderRequest.TransactionTypeEnum.BUY, 0, 0.0, true); 
-    var apiVersion = "2.0"; 
-
-    apiInstance.placeOrder(body, apiVersion, (error, data, response) => {
-      if (error) {
-        if(JSON.parse(error.response.text).errors[0].errorCode != "UDAPI1052") console.log("error in place order");
-    } else {
-        console.log("place order= " + JSON.stringify(data));
-   //     console.log("error in place order else block");
-      }
-    });
+apiInstance.postMargin(postMarginRequest, (error, data, response) => {
+  if (error) {
+    console.log("error in post margin api call");
+    console.error(error.response.text);
+  } else {
+    if (data.status != "success") console.log("error in post margin api call");
+  }
+});
 
 
+var apiInstance = new UpstoxClient.OrderApi();
+var body = new UpstoxClient.PlaceOrderRequest(1, UpstoxClient.PlaceOrderRequest.ProductEnum.D, UpstoxClient.PlaceOrderRequest.ValidityEnum.DAY, 0.0, "NSE_EQ|INE528G01035", UpstoxClient.PlaceOrderRequest.OrderTypeEnum.MARKET, UpstoxClient.PlaceOrderRequest.TransactionTypeEnum.BUY, 0, 0.0, true);
+var apiVersion = "2.0";
 
-var body = new UpstoxClient.ModifyOrderRequest(UpstoxClient.ModifyOrderRequest.ValidityEnum.DAY,0,"240111010331447",UpstoxClient.ModifyOrderRequest.OrderTypeEnum.MARKET,0); 
+apiInstance.placeOrder(body, apiVersion, (error, data, response) => {
+  if (error) {
+    if (JSON.parse(error.response.text).errors[0].errorCode != "UDAPI1052") console.log("error in place order");
+  } else {
+    console.log("place order= " + JSON.stringify(data));
+    //     console.log("error in place order else block");
+  }
+}, X_Algo_Name);
+
+
+
+var body = new UpstoxClient.ModifyOrderRequest(UpstoxClient.ModifyOrderRequest.ValidityEnum.DAY, 0, "240111010331447", UpstoxClient.ModifyOrderRequest.OrderTypeEnum.MARKET, 0);
 var apiVersion = "2.0"; // String | API Version Header
 
 apiInstance.modifyOrder(body, apiVersion, (error, data, response) => {
   if (error) {
-    if(JSON.parse(error.response.text).errors[0].errorCode != "UDAPI100010") console.log("error in MODIFY order");
+    if (JSON.parse(error.response.text).errors[0].errorCode != "UDAPI100010") console.log("error in MODIFY order");
   } else {
     console.log('API called successfully. Returned data: ' + JSON.stringify(data));
   }
-});
+}, X_Algo_Name);
 
-var orderId = "240111010403654"; 
+var orderId = "240111010403654";
 apiInstance.cancelOrder(orderId, apiVersion, (error, data, response) => {
-    if (error) {
-        if(JSON.parse(error.response.text).errors[0].errorCode != "UDAPI100010") console.log("error in CANCEL order");
-      } else {
-        console.log('API called successfully. Returned data: ' + JSON.stringify(data));
-      }
-    });
-    apiInstance.getOrderBook(apiVersion, (error, data, response) => {
-        if (error) {
-          console.error(error);
-        } else {
-          if(data.status != "success"){
-            console.log("error in get order book");
-          }
-        }
-      });
-      var opts = { 
-        'orderId': "240112010371054"
-      };
-      apiInstance.getOrderDetails(apiVersion, opts, (error, data, response) => {
-        if (error) {
-            if(JSON.parse(error.response.text).errors[0].errorCode != "UDAPI100010") console.log("error in get order details");
-        } else {
-            if(data.status != "success"){
-              console.log("error in get order details");
-            }
-          }
-      });
-      apiInstance.getTradeHistory(apiVersion, (error, data, response) => {
-        if (error) {
-          console.error(error);
-        } else {
-            if(data.status != "success"){
-              console.log("error in get order details");
-            }
-          }
-      });
-      var orderId = "240111010861817"; 
-var apiVersion = "2.0"; 
-
-apiInstance.getTradesByOrder(orderId, apiVersion, (error, data, response) => {
   if (error) {
-    if(JSON.parse(error.response.text).errors[0].errorCode != "UDAPI100010") console.log("get trades by order");
+    if (JSON.parse(error.response.text).errors[0].errorCode != "UDAPI100010") console.log("error in CANCEL order");
   } else {
-    if(data.status != "success"){
+    console.log('API called successfully. Returned data: ' + JSON.stringify(data));
+  }
+}, X_Algo_Name);
+apiInstance.getOrderBook(apiVersion, (error, data, response) => {
+  if (error) {
+    console.error(error);
+  } else {
+    if (data.status != "success") {
+      console.log("error in get order book");
+    }
+  }
+});
+var opts = {
+  'orderId': "240112010371054"
+};
+apiInstance.getOrderDetails(apiVersion, opts, (error, data, response) => {
+  if (error) {
+    if (JSON.parse(error.response.text).errors[0].errorCode != "UDAPI100010") console.log("error in get order details");
+  } else {
+    if (data.status != "success") {
       console.log("error in get order details");
     }
   }
 });
+apiInstance.getTradeHistory(apiVersion, (error, data, response) => {
+  if (error) {
+    console.error(error);
+  } else {
+    if (data.status != "success") {
+      console.log("error in get order details");
+    }
+  }
+});
+var orderId = "240111010861817";
+var apiVersion = "2.0";
+
+apiInstance.getTradesByOrder(orderId, apiVersion, (error, data, response) => {
+  if (error) {
+    if (JSON.parse(error.response.text).errors[0].errorCode != "UDAPI100010") console.log("get trades by order");
+  } else {
+    if (data.status != "success") {
+      console.log("error in get order details");
+    }
+  }
+}, X_Algo_Name);
 var apiInstance = new UpstoxClient.PortfolioApi();
-var body = new UpstoxClient.ConvertPositionRequest("NSE_EQ|INE528G01035",UpstoxClient.ConvertPositionRequest.NewProductEnum.D,UpstoxClient.ConvertPositionRequest.OldProductEnum.I,UpstoxClient.ConvertPositionRequest.TransactionTypeEnum.BUY,1); // ConvertPositionRequest | 
+var body = new UpstoxClient.ConvertPositionRequest("NSE_EQ|INE528G01035", UpstoxClient.ConvertPositionRequest.NewProductEnum.D, UpstoxClient.ConvertPositionRequest.OldProductEnum.I, UpstoxClient.ConvertPositionRequest.TransactionTypeEnum.BUY, 1); // ConvertPositionRequest | 
 var apiVersion = "2.0"; // String | API Version Header
 
 apiInstance.convertPositions(body, apiVersion, (error, data, response) => {
   if (error) {
-    if(JSON.parse(error.response.text).errors[0].errorCode != "UDAPI1035") console.log("error in convert position");
+    if (JSON.parse(error.response.text).errors[0].errorCode != "UDAPI1035") console.log("error in convert position");
   } else {
     console.log('API called successfully. Returned data: ');
   }
 });
 
 
-apiInstance.getHoldings(apiVersion,(error,data,response)=>{
-    if(error) {
-      console.log(error);
+apiInstance.getHoldings(apiVersion, (error, data, response) => {
+  if (error) {
+    console.log(error);
+  }
+  else {
+    if (data.status != "success") {
+      console.log("error in get holdings");
     }
-    else {
-        if(data.status != "success"){
-          console.log("error in get holdings");
-        }
-      }
-  });
+  }
+});
 
-  apiInstance.getPositions(apiVersion,(error,data,response)=>{
-    if(error) {
-      console.log(error);
+apiInstance.getPositions(apiVersion, (error, data, response) => {
+  if (error) {
+    console.log(error);
+  }
+  else {
+    if (data.status != "success") {
+      console.log("error in get position");
     }
-    else{
-        if(data.status != "success"){
-          console.log("error in get position");
-        }
-      }
-  })
+  }
+})
 
-  var apiInstance = new UpstoxClient.TradeProfitAndLossApi();
+var apiInstance = new UpstoxClient.TradeProfitAndLossApi();
 var segment = "EQ"; // String | Segment for which data is requested can be from the following options EQ - Equity,   FO - Futures and Options,   COM  - Commodity,   CD - Currency Derivatives
 var financialYear = "2324"; // String | Financial year for which data has been requested. Concatenation of last 2 digits of from year and to year Sample:for 2021-2022, financial_year will be 2122
 var apiVersion = "2.0"; // String | API Version Header
-var opts = { 
+var opts = {
   'fromDate': "02-04-2023", // String | Date from which data needs to be fetched. from_date and to_date should fall under the same financial year as mentioned in financial_year attribute. Date in dd-mm-yyyy format
   'toDate': "20-03-2024" // String | Date till which data needs to be fetched. from_date and to_date should fall under the same financial year as mentioned in financial_year attribute. Date in dd-mm-yyyy format
 };
@@ -187,172 +188,172 @@ apiInstance.getTradeWiseProfitAndLossMetaData(segment, financialYear, apiVersion
   if (error) {
     console.error(error);
   } else {
-    if(data.status != "success"){
+    if (data.status != "success") {
       console.log("error trade wise profit and loss");
     }
   }
 });
 apiInstance.getTradeWiseProfitAndLossData(segment, financialYear, 1, 5, apiVersion, opts, (error, data, response) => {
-    if (error) {
-      console.error(error);
-    } else {
-        if(data.status != "success"){
-          console.log("error trade wise profit and loss");
-        }
-      }
-  });
-  apiInstance.getProfitAndLossCharges(segment, financialYear, apiVersion, opts, (error, data, response) => {
-    if (error) {
-      console.error(error);
-    } else {
-        if(data.status != "success"){
-          console.log("error trade wise profit and loss");
-        }
-      }
-  });
-
-  apiInstance = new UpstoxClient.HistoryApi();
-  var instrumentKey = "NSE_EQ|INE669E01016"; 
-  var interval = "1minute";
-  var toDate = "2023-11-13";
-  var fromDate = "2023-11-12";
-
-  apiInstance.getHistoricalCandleData1(instrumentKey, interval, toDate, fromDate,apiVersion, (error, data, response) => {
-      if (error) {
-        console.error(error);
-      } else {
-        if(data.status != "success"){
-          console.log("error trade wise profit and loss");
-        }
-      }
-  });
-  apiInstance.getHistoricalCandleData(instrumentKey, interval, toDate, apiVersion, (error, data, response) => {
-    if (error) {
-      console.error(error);
-    } else {
-        if(data.status != "success"){
-          console.log("error trade wise profit and loss");
-        }
-      }
+  if (error) {
+    console.error(error);
+  } else {
+    if (data.status != "success") {
+      console.log("error trade wise profit and loss");
+    }
+  }
 });
-var interval = "1minute"; 
+apiInstance.getProfitAndLossCharges(segment, financialYear, apiVersion, opts, (error, data, response) => {
+  if (error) {
+    console.error(error);
+  } else {
+    if (data.status != "success") {
+      console.log("error trade wise profit and loss");
+    }
+  }
+});
+
+apiInstance = new UpstoxClient.HistoryApi();
+var instrumentKey = "NSE_EQ|INE669E01016";
+var interval = "1minute";
+var toDate = "2023-11-13";
+var fromDate = "2023-11-12";
+
+apiInstance.getHistoricalCandleData1(instrumentKey, interval, toDate, fromDate, apiVersion, (error, data, response) => {
+  if (error) {
+    console.error(error);
+  } else {
+    if (data.status != "success") {
+      console.log("error trade wise profit and loss");
+    }
+  }
+});
+apiInstance.getHistoricalCandleData(instrumentKey, interval, toDate, apiVersion, (error, data, response) => {
+  if (error) {
+    console.error(error);
+  } else {
+    if (data.status != "success") {
+      console.log("error trade wise profit and loss");
+    }
+  }
+});
+var interval = "1minute";
 
 apiInstance.getIntraDayCandleData(instrumentKey, interval, apiVersion, (error, data, response) => {
-    if (error) {
-      console.error(error);
-    } else {
-        if(data.status != "success"){
-          console.log("error trade wise profit and loss");
-        }
-      }
+  if (error) {
+    console.error(error);
+  } else {
+    if (data.status != "success") {
+      console.log("error trade wise profit and loss");
+    }
+  }
 });
 apiInstance = new UpstoxClient.MarketQuoteApi();
 
 
-var apiVersion = "2.0"; 
-var symbol = "NSE_EQ|INE669E01016"; 
+var apiVersion = "2.0";
+var symbol = "NSE_EQ|INE669E01016";
 
 apiInstance.getFullMarketQuote(symbol, apiVersion, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
-    if(data.status != "success"){
+    if (data.status != "success") {
       console.log("error trade wise profit and loss");
     }
   }
 });
-apiInstance.ltp(symbol,apiVersion, (error, data, response) => {
-    if (error) {
-      console.error(error);
-    } else {
-        if(data.status != "success"){
-          console.log("error trade wise profit and loss");
-        }
-      }
-  });
-  interval = "1d";
-  apiInstance.getMarketQuoteOHLC(symbol, interval,apiVersion, (error, data, response) => {
-    if (error) {
-      console.error(error.response.text);
-    } else {
-        if(data.status != "success"){
-          console.log("error trade wise profit and loss");
-        }
-      }
-  });
+apiInstance.ltp(symbol, apiVersion, (error, data, response) => {
+  if (error) {
+    console.error(error);
+  } else {
+    if (data.status != "success") {
+      console.log("error trade wise profit and loss");
+    }
+  }
+});
+interval = "1d";
+apiInstance.getMarketQuoteOHLC(symbol, interval, apiVersion, (error, data, response) => {
+  if (error) {
+    console.error(error.response.text);
+  } else {
+    if (data.status != "success") {
+      console.log("error trade wise profit and loss");
+    }
+  }
+});
 
 apiInstance = new UpstoxClient.OptionsApi();
-apiInstance.getPutCallOptionChain("NSE_INDEX|Nifty 50",(error, data, response) => {
-    if (error) {
-      console.error(error);
-    } else {
-        if(data.status != "success"){
-          console.log("error trade wise profit and loss");
-        }
-      }
-  });
-  apiInstance.getOptionContracts("NSE_INDEX|Nifty 50",null,(error, data, response) => {
-    if (error) {
-      console.error(error);
-    } else {
-        if(data.status != "success"){
-          console.log("error trade wise profit and loss");
-        }
-      }
-  });
+apiInstance.getPutCallOptionChain("NSE_INDEX|Nifty 50", (error, data, response) => {
+  if (error) {
+    console.error(error);
+  } else {
+    if (data.status != "success") {
+      console.log("error trade wise profit and loss");
+    }
+  }
+});
+apiInstance.getOptionContracts("NSE_INDEX|Nifty 50", null, (error, data, response) => {
+  if (error) {
+    console.error(error);
+  } else {
+    if (data.status != "success") {
+      console.log("error trade wise profit and loss");
+    }
+  }
+});
 var apiInstance1 = new UpstoxClient.MarketHolidaysAndTimingsApi();
-apiInstance1.getExchangeTimings("2024-01-22",(error, data, response) => {
-    if (error){
-        console.log(error);
-    } else {
-        if(data.status != "success"){
-          console.log("market timings get exchange timings");
-        }
-      }
+apiInstance1.getExchangeTimings("2024-01-22", (error, data, response) => {
+  if (error) {
+    console.log(error);
+  } else {
+    if (data.status != "success") {
+      console.log("market timings get exchange timings");
+    }
+  }
 })
-apiInstance1.getHoliday("2024-01-22",(error, data, response) => {
-    if (error){
-        console.log(error);
-    } else {
-        if(data.status != "success"){
-          console.log("market timings get holiday error");
-        }
-      }
+apiInstance1.getHoliday("2024-01-22", (error, data, response) => {
+  if (error) {
+    console.log(error);
+  } else {
+    if (data.status != "success") {
+      console.log("market timings get holiday error");
+    }
+  }
 });
 
 
 apiInstance1.getHolidays((error, data, response) => {
-    if (error){
-        console.log(error);
-    } else {
-        if(data.status != "success"){
-          console.log("market timings get holiday error");
-        }
-      }
+  if (error) {
+    console.log(error);
+  } else {
+    if (data.status != "success") {
+      console.log("market timings get holiday error");
+    }
+  }
 });
 
 apiInstance1.getMarketStatus("NSE", (error, data, response) => {
-    if (error){
-        console.log(error);
-    } else {
-        if(data.status != "success"){
-          console.log("market timings get holiday error");
-        }
-      }
+  if (error) {
+    console.log(error);
+  } else {
+    if (data.status != "success") {
+      console.log("market timings get holiday error");
+    }
+  }
 });
 
 apiInstance = new UpstoxClient.PostTradeApi();
 
 
 opts = {
-    segment: "EQ"
+  segment: "EQ"
 }
 
-apiInstance.getTradesByDateRange("2023-04-01","2024-08-30",1,1000,opts,(error, data, response) => {
+apiInstance.getTradesByDateRange("2023-04-01", "2024-08-30", 1, 1000, opts, (error, data, response) => {
   if (error) {
     console.error(error.response.text);
   } else {
-    if(data.status != "success") console.log("error in post trade")
+    if (data.status != "success") console.log("error in post trade")
   }
 });
 
@@ -361,9 +362,9 @@ let orderStatusId = "240926010304511";
 let optsOrderStatus = {
   orderId: orderStatusId
 };
-orderApiInstance.getOrderStatus(optsOrderStatus,(error,data,response) => {
+orderApiInstance.getOrderStatus(optsOrderStatus, (error, data, response) => {
   if (error) {
-    if(JSON.parse(error.response.text).errors[0].errorCode != "UDAPI100010") console.log("error in order status");
+    if (JSON.parse(error.response.text).errors[0].errorCode != "UDAPI100010") console.log("error in order status");
   } else {
     console.log('API called successfully. Returned data: ' + JSON.stringify(data));
   }
@@ -371,10 +372,10 @@ orderApiInstance.getOrderStatus(optsOrderStatus,(error,data,response) => {
 
 apiInstance = new UpstoxClient.OrderApi();
 body = []
-one_req = new UpstoxClient.MultiOrderRequest(1,"D","DAY",8.9,true,"NSE_EQ|INE669E01016","LIMIT","BUY",0,9,true,"tag_should_be_tg1");
+one_req = new UpstoxClient.MultiOrderRequest(1, "D", "DAY", 8.9, true, "NSE_EQ|INE669E01016", "LIMIT", "BUY", 0, 9, true, "tag_should_be_tg1");
 one_req.tag = "tg1"
 body = body.concat(one_req);
-body = body.concat(new UpstoxClient.MultiOrderRequest(1,"D","DAY",8.9,true,"NSE_EQ|INE669E01016","LIMIT","BUY",0,9.0,true,"cid2"));
+body = body.concat(new UpstoxClient.MultiOrderRequest(1, "D", "DAY", 8.9, true, "NSE_EQ|INE669E01016", "LIMIT", "BUY", 0, 9.0, true, "cid2"));
 
 
 apiInstance.placeMultiOrder(body, (error, data, response) => {
@@ -383,107 +384,107 @@ apiInstance.placeMultiOrder(body, (error, data, response) => {
   } else {
     console.log('API called successfully. Returned data: ' + JSON.stringify(data));
   }
-});
+}, X_Algo_Name);
 
 opts = {
   'tag': 'unknown_tag'
 }
 apiInstance.cancelMultiOrder(opts, (error, data, response) => {
   if (error) {
-    if(JSON.parse(error.response.text).errors[0].errorCode != "UDAPI1109") console.log("error in CANCEL Multi order");
+    if (JSON.parse(error.response.text).errors[0].errorCode != "UDAPI1109") console.log("error in CANCEL Multi order");
   } else {
     console.log('API called successfully. Returned data: ' + JSON.stringify(data));
   }
-});
+}, X_Algo_Name);
 
 apiInstance.exitPositions(opts, (error, data, response) => {
   if (error) {
-    if((JSON.parse(error.response.text).errors[0].errorCode != "UDAPI1111") && (JSON.parse(error.response.text).errors[0].errorCode != "UDAPI1113")) console.log("error in Exit all order");
-  }  else {
+    if ((JSON.parse(error.response.text).errors[0].errorCode != "UDAPI1111") && (JSON.parse(error.response.text).errors[0].errorCode != "UDAPI1113")) console.log("error in Exit all order");
+  } else {
     console.log('API called successfully. Returned data: ' + JSON.stringify(data));
   }
-});
+}, X_Algo_Name);
 
 apiInstance = new UpstoxClient.OrderApiV3();
 let entryRule = new UpstoxClient.GttRule(UpstoxClient.GttRule.StrategyEnum.ENTRY, UpstoxClient.GttRule.TriggerTypeEnum.ABOVE, 100);
-body = new UpstoxClient.GttPlaceOrderRequest(UpstoxClient.GttPlaceOrderRequest.TypeEnum.SINGLE, 1, UpstoxClient.GttPlaceOrderRequest.ProductEnum.D, [entryRule],"NSE_EQ|INE669E01016", UpstoxClient.GttPlaceOrderRequest.TransactionTypeEnum.BUY);
+body = new UpstoxClient.GttPlaceOrderRequest(UpstoxClient.GttPlaceOrderRequest.TypeEnum.SINGLE, 1, UpstoxClient.GttPlaceOrderRequest.ProductEnum.D, [entryRule], "NSE_EQ|INE669E01016", UpstoxClient.GttPlaceOrderRequest.TransactionTypeEnum.BUY);
 apiInstance.placeGTTOrder(body, (error, data, response) => {
   if (error) {
     console.error(error.response.text);
   } else {
     console.log('GTT place order ' + JSON.stringify(data));
   }
-});
+}, X_Algo_Name);
 
-body = new UpstoxClient.ModifyOrderRequest(UpstoxClient.ModifyOrderRequest.ValidityEnum.DAY,0,"2501270424977",UpstoxClient.ModifyOrderRequest.OrderTypeEnum.MARKET,12); 
+body = new UpstoxClient.ModifyOrderRequest(UpstoxClient.ModifyOrderRequest.ValidityEnum.DAY, 0, "2501270424977", UpstoxClient.ModifyOrderRequest.OrderTypeEnum.MARKET, 12);
 body.quantity = 1;
 apiInstance.modifyOrder(body, (error, data, response) => {
-    if (error) {
-      if((JSON.parse(error.response.text).errors[0].errorCode != "UDAPI100010")) console.log("error in gtt modify");
-    } else {
-      console.log('API called successfully. Returned data: ' + JSON.stringify(data));
-    }
-  });
+  if (error) {
+    if ((JSON.parse(error.response.text).errors[0].errorCode != "UDAPI100010")) console.log("error in gtt modify");
+  } else {
+    console.log('API called successfully. Returned data: ' + JSON.stringify(data));
+  }
+}, X_Algo_Name);
 
-  body = new UpstoxClient.GttCancelOrderRequest("GTT-C25040064103");
-  apiInstance.cancelGTTOrder(body, (error, data, response) => {
-    if (error) {
-      if((JSON.parse(error.response.text).errors[0].errorCode != "UDAPI100010")) console.log("error in gtt cancel");
-    } else {
-      console.log('API called successfully. Returned data: ' + JSON.stringify(data));
-    }
-  });
+body = new UpstoxClient.GttCancelOrderRequest("GTT-C25040064103");
+apiInstance.cancelGTTOrder(body, (error, data, response) => {
+  if (error) {
+    if ((JSON.parse(error.response.text).errors[0].errorCode != "UDAPI100010")) console.log("error in gtt cancel");
+  } else {
+    console.log('API called successfully. Returned data: ' + JSON.stringify(data));
+  }
+}, X_Algo_Name);
 
-  apiInstance.getGttOrderDetails({gttOrderId: 'GTT-C2504000164103'}, (error, data, response) => {
-    if (error) {
-      console.error(error.response.text);
-    } else {
-      if(data.status != "success"){
-        console.log("error in gtt get order details");
-      }
+apiInstance.getGttOrderDetails({ gttOrderId: 'GTT-C2504000164103' }, (error, data, response) => {
+  if (error) {
+    console.error(error.response.text);
+  } else {
+    if (data.status != "success") {
+      console.log("error in gtt get order details");
     }
-  });
-  
-body = new UpstoxClient.PlaceOrderV3Request(1,UpstoxClient.PlaceOrderV3Request.ProductEnum.D,
-    UpstoxClient.PlaceOrderV3Request.ValidityEnum.DAY, 7.2,"NSE_EQ|INE669E01016",UpstoxClient.PlaceOrderV3Request.OrderTypeEnum.LIMIT,
-    UpstoxClient.PlaceOrderV3Request.TransactionTypeEnum.BUY,0,0,true);
-let opt = {"slice": true}
+  }
+});
+
+body = new UpstoxClient.PlaceOrderV3Request(1, UpstoxClient.PlaceOrderV3Request.ProductEnum.D,
+  UpstoxClient.PlaceOrderV3Request.ValidityEnum.DAY, 7.2, "NSE_EQ|INE669E01016", UpstoxClient.PlaceOrderV3Request.OrderTypeEnum.LIMIT,
+  UpstoxClient.PlaceOrderV3Request.TransactionTypeEnum.BUY, 0, 0, true);
+let opt = { "slice": true }
 apiInstance.placeOrder(body, opt, (error, data, response) => {
   if (error) {
     console.error(error.response.text);
   } else {
     console.log('place order V3 => ' + JSON.stringify(data));
   }
-});
+}, X_Algo_Name);
 
-body = new UpstoxClient.ModifyOrderRequest(UpstoxClient.ModifyOrderRequest.ValidityEnum.DAY,0,"2505010177418",UpstoxClient.ModifyOrderRequest.OrderTypeEnum.MARKET,1); 
+body = new UpstoxClient.ModifyOrderRequest(UpstoxClient.ModifyOrderRequest.ValidityEnum.DAY, 0, "2505010177418", UpstoxClient.ModifyOrderRequest.OrderTypeEnum.MARKET, 1);
 body.quantity = 1;
 apiInstance.modifyOrder(body, (error, data, response) => {
-    if (error) {
-      if((JSON.parse(error.response.text).errors[0].errorCode != "UDAPI100010")) console.log("error in modify order v3");
-    } else {
-      console.log('API called successfully. Returned data: ' + JSON.stringify(data));
-    }
-  });
+  if (error) {
+    if ((JSON.parse(error.response.text).errors[0].errorCode != "UDAPI100010")) console.log("error in modify order v3");
+  } else {
+    console.log('API called successfully. Returned data: ' + JSON.stringify(data));
+  }
+}, X_Algo_Name);
 
 apiInstance.cancelOrder("2503050177418", (error, data, response) => {
-    if (error) {
-      if((JSON.parse(error.response.text).errors[0].errorCode != "UDAPI100010")) console.log("error in cancel order v3");
-    } else {
-      console.log('API called successfully. Returned data: ' + JSON.stringify(data));
-    }
-  });
+  if (error) {
+    if ((JSON.parse(error.response.text).errors[0].errorCode != "UDAPI100010")) console.log("error in cancel order v3");
+  } else {
+    console.log('API called successfully. Returned data: ' + JSON.stringify(data));
+  }
+}, X_Algo_Name);
 
 apiInstance = new UpstoxClient.PortfolioApi();
 apiInstance.getMtfPositions((error, data, response) => {
   if (error) {
-    console.error(error.response.text);
+    console.error(error.response);
   } else {
-    if(data.status != "success"){
+    if (data.status != "success") {
       console.log("error get mtf positions");
     }
   }
-  });
+});
 
 
 const historicalApiInstance = new UpstoxClient.HistoryV3Api();
@@ -491,17 +492,17 @@ historicalApiInstance.getHistoricalCandleData("NSE_EQ|INE669E01016", "minutes", 
   if (error) {
     console.error(error.response.text);
   } else {
-    if(data.status != "success"){
+    if (data.status != "success") {
       console.log("error historical candle data v3");
     }
   }
 });
 
-historicalApiInstance.getHistoricalCandleData1("NSE_EQ|INE669E01016", "minutes", "1", "2025-05-04","2025-04-04",(error, data, response) => {
+historicalApiInstance.getHistoricalCandleData1("NSE_EQ|INE669E01016", "minutes", "1", "2025-05-04", "2025-04-04", (error, data, response) => {
   if (error) {
     console.error(error.response.text);
   } else {
-    if(data.status != "success"){
+    if (data.status != "success") {
       console.log("error historical candle data v3");
     }
   }
@@ -511,7 +512,7 @@ historicalApiInstance.getIntraDayCandleData("NSE_EQ|INE669E01016", "minutes", "1
   if (error) {
     console.error(error.response.text);
   } else {
-    if(data.status != "success"){
+    if (data.status != "success") {
       console.log("error historical candle data v3");
     }
   }
@@ -519,32 +520,32 @@ historicalApiInstance.getIntraDayCandleData("NSE_EQ|INE669E01016", "minutes", "1
 
 
 let marketQuoteApiInstance = new UpstoxClient.MarketQuoteV3Api();
-marketQuoteApiInstance.getMarketQuoteOHLC("I1", {instrumentKey: "NSE_EQ|INE669E01016"}, (error, data, response) => {
+marketQuoteApiInstance.getMarketQuoteOHLC("I1", { instrumentKey: "NSE_EQ|INE669E01016" }, (error, data, response) => {
   if (error) {
     console.error(error.response.text);
   } else {
-    if(data.status != "success"){
+    if (data.status != "success") {
       console.log("error market quote v3");
     }
   }
 });
 
 
-marketQuoteApiInstance.getLtp({instrumentKey: "NSE_EQ|INE669E01016"}, (error, data, response) => {
+marketQuoteApiInstance.getLtp({ instrumentKey: "NSE_EQ|INE669E01016" }, (error, data, response) => {
   if (error) {
     console.error(error.response.text);
   } else {
-    if(data.status != "success"){
+    if (data.status != "success") {
       console.log("error market quote ltp");
     }
   }
 });
 
-marketQuoteApiInstance.getMarketQuoteOptionGreek({instrumentKey: "NSE_FO|38606"}, (error, data, response) => {
+marketQuoteApiInstance.getMarketQuoteOptionGreek({ instrumentKey: "NSE_FO|38606" }, (error, data, response) => {
   if (error) {
     console.error(error.response.text);
   } else {
-    if(data.status != "success"){
+    if (data.status != "success") {
       console.log("error market option greek");
     }
   }
@@ -605,23 +606,23 @@ expiredInstrumentsApiInstance.getExpiredOptionContracts("NSE_INDEX|Nifty 50", "2
 
 // Test 1: V2 placeOrder with algoId
 var apiInstanceAlgo = new UpstoxClient.OrderApi();
-var bodyAlgo = new UpstoxClient.PlaceOrderRequest(1, UpstoxClient.PlaceOrderRequest.ProductEnum.D, UpstoxClient.PlaceOrderRequest.ValidityEnum.DAY, 0.0, "NSE_EQ|INE528G01035",UpstoxClient.PlaceOrderRequest.OrderTypeEnum.MARKET,UpstoxClient.PlaceOrderRequest.TransactionTypeEnum.BUY, 0, 0.0, true); 
+var bodyAlgo = new UpstoxClient.PlaceOrderRequest(1, UpstoxClient.PlaceOrderRequest.ProductEnum.D, UpstoxClient.PlaceOrderRequest.ValidityEnum.DAY, 0.0, "NSE_EQ|INE528G01035", UpstoxClient.PlaceOrderRequest.OrderTypeEnum.MARKET, UpstoxClient.PlaceOrderRequest.TransactionTypeEnum.BUY, 0, 0.0, true);
 var apiVersionAlgo = "2.0";
 
 apiInstanceAlgo.placeOrder(bodyAlgo, apiVersionAlgo, (error, data, response) => {
   if (error) {
-    if(JSON.parse(error.response.text).errors[0].errorCode != "UDAPI1052") console.log("error in place order with algoId");
+    if (JSON.parse(error.response.text).errors[0].errorCode != "UDAPI1052") console.log("error in place order with algoId");
   } else {
     console.log("place order with algoId SUCCESS = " + JSON.stringify(data));
   }
-}, "algo id -> placeOrder v2");
+}, X_Algo_Name);
 
 // Test 2: V2 placeMultiOrder with algoId
 var bodyMultiAlgo = [];
-var one_reqAlgo = new UpstoxClient.MultiOrderRequest(1,"D","DAY",8.9,true,"NSE_EQ|INE669E01016","LIMIT","BUY",0,9,true,"tag_should_be_tg1");
+var one_reqAlgo = new UpstoxClient.MultiOrderRequest(1, "D", "DAY", 8.9, true, "NSE_EQ|INE669E01016", "LIMIT", "BUY", 0, 9, true, "tag_should_be_tg1");
 one_reqAlgo.tag = "tg1"
 bodyMultiAlgo = bodyMultiAlgo.concat(one_reqAlgo);
-bodyMultiAlgo = bodyMultiAlgo.concat(new UpstoxClient.MultiOrderRequest(1,"D","DAY",8.9,true,"NSE_EQ|INE669E01016","LIMIT","BUY",0,9.0,true,"cid2"));
+bodyMultiAlgo = bodyMultiAlgo.concat(new UpstoxClient.MultiOrderRequest(1, "D", "DAY", 8.9, true, "NSE_EQ|INE669E01016", "LIMIT", "BUY", 0, 9.0, true, "cid2"));
 
 apiInstanceAlgo.placeMultiOrder(bodyMultiAlgo, (error, data, response) => {
   if (error) {
@@ -629,29 +630,29 @@ apiInstanceAlgo.placeMultiOrder(bodyMultiAlgo, (error, data, response) => {
   } else {
     console.log('placeMultiOrder with algoId SUCCESS = ' + JSON.stringify(data));
   }
-}, "algo id -> placeMultiOrder");
+}, X_Algo_Name);
 
 // Test 3: V2 modifyOrder with algoId
-var bodyModifyAlgo = new UpstoxClient.ModifyOrderRequest(UpstoxClient.ModifyOrderRequest.ValidityEnum.DAY,0,"240111010331447",UpstoxClient.ModifyOrderRequest.OrderTypeEnum.MARKET,0); 
+var bodyModifyAlgo = new UpstoxClient.ModifyOrderRequest(UpstoxClient.ModifyOrderRequest.ValidityEnum.DAY, 0, "240111010331447", UpstoxClient.ModifyOrderRequest.OrderTypeEnum.MARKET, 0);
 
 apiInstanceAlgo.modifyOrder(bodyModifyAlgo, apiVersionAlgo, (error, data, response) => {
   if (error) {
-    if(JSON.parse(error.response.text).errors[0].errorCode != "UDAPI100010") console.log("error in modify order with algoId");
+    if (JSON.parse(error.response.text).errors[0].errorCode != "UDAPI100010") console.log("error in modify order with algoId");
   } else {
     console.log('modifyOrder with algoId SUCCESS = ' + JSON.stringify(data));
   }
-}, "algo id -> modifyOrder v2");
+}, X_Algo_Name);
 
 // Test 4: V2 cancelOrder with algoId
 var orderIdAlgo = "240111010403654";
 
 apiInstanceAlgo.cancelOrder(orderIdAlgo, apiVersionAlgo, (error, data, response) => {
   if (error) {
-    if(JSON.parse(error.response.text).errors[0].errorCode != "UDAPI100010") console.log("error in cancel order with algoId");
+    if (JSON.parse(error.response.text).errors[0].errorCode != "UDAPI100010") console.log("error in cancel order with algoId");
   } else {
     console.log('cancelOrder with algoId SUCCESS = ' + JSON.stringify(data));
   }
-}, "algo id -> cancelOrder v2");
+}, X_Algo_Name);
 
 // Test 5: V2 cancelMultiOrder with algoId
 var optsAlgo = {
@@ -660,20 +661,20 @@ var optsAlgo = {
 
 apiInstanceAlgo.cancelMultiOrder(optsAlgo, (error, data, response) => {
   if (error) {
-    if(JSON.parse(error.response.text).errors[0].errorCode != "UDAPI1109") console.log("error in cancel multi order with algoId");
+    if (JSON.parse(error.response.text).errors[0].errorCode != "UDAPI1109") console.log("error in cancel multi order with algoId");
   } else {
     console.log('cancelMultiOrder with algoId SUCCESS = ' + JSON.stringify(data));
   }
-}, "algo id -> cancelMultiOrder v2");
+}, X_Algo_Name);
 
 // Test 6: V2 exitPositions with algoId
 apiInstanceAlgo.exitPositions(optsAlgo, (error, data, response) => {
   if (error) {
-    if((JSON.parse(error.response.text).errors[0].errorCode != "UDAPI1111") && (JSON.parse(error.response.text).errors[0].errorCode != "UDAPI1113")) console.log("error in exit positions with algoId");
+    if ((JSON.parse(error.response.text).errors[0].errorCode != "UDAPI1111") && (JSON.parse(error.response.text).errors[0].errorCode != "UDAPI1113")) console.log("error in exit positions with algoId");
   } else {
     console.log('exitPositions with algoId SUCCESS = ' + JSON.stringify(data));
   }
-}, "algo id -> exitPositions");
+}, X_Algo_Name);
 
 // ============================================
 // V3 OrderApiV3 Tests with algoId
@@ -681,10 +682,10 @@ apiInstanceAlgo.exitPositions(optsAlgo, (error, data, response) => {
 
 // Test 7: V3 placeOrder with algoId
 var apiInstanceV3Algo = new UpstoxClient.OrderApiV3();
-var bodyV3Algo = new UpstoxClient.PlaceOrderV3Request(1,UpstoxClient.PlaceOrderV3Request.ProductEnum.D,
-    UpstoxClient.PlaceOrderV3Request.ValidityEnum.DAY, 7.2,"NSE_EQ|INE669E01016",UpstoxClient.PlaceOrderV3Request.OrderTypeEnum.LIMIT,
-    UpstoxClient.PlaceOrderV3Request.TransactionTypeEnum.BUY,0,0,true);
-var optV3Algo = {"slice": true};
+var bodyV3Algo = new UpstoxClient.PlaceOrderV3Request(1, UpstoxClient.PlaceOrderV3Request.ProductEnum.D,
+  UpstoxClient.PlaceOrderV3Request.ValidityEnum.DAY, 7.2, "NSE_EQ|INE669E01016", UpstoxClient.PlaceOrderV3Request.OrderTypeEnum.LIMIT,
+  UpstoxClient.PlaceOrderV3Request.TransactionTypeEnum.BUY, 0, 0, true);
+var optV3Algo = { "slice": true };
 
 apiInstanceV3Algo.placeOrder(bodyV3Algo, optV3Algo, (error, data, response) => {
   if (error) {
@@ -692,34 +693,34 @@ apiInstanceV3Algo.placeOrder(bodyV3Algo, optV3Algo, (error, data, response) => {
   } else {
     console.log('placeOrder V3 with algoId SUCCESS = ' + JSON.stringify(data));
   }
-}, "algo id -> placeOrder v3");
+}, X_Algo_Name);
 
 // Test 8: V3 modifyOrder with algoId
-var bodyModifyV3Algo = new UpstoxClient.ModifyOrderRequest(UpstoxClient.ModifyOrderRequest.ValidityEnum.DAY,0,"2505010177418",UpstoxClient.ModifyOrderRequest.OrderTypeEnum.MARKET,1); 
+var bodyModifyV3Algo = new UpstoxClient.ModifyOrderRequest(UpstoxClient.ModifyOrderRequest.ValidityEnum.DAY, 0, "2505010177418", UpstoxClient.ModifyOrderRequest.OrderTypeEnum.MARKET, 1);
 bodyModifyV3Algo.quantity = 1;
 
 apiInstanceV3Algo.modifyOrder(bodyModifyV3Algo, (error, data, response) => {
   if (error) {
-    if((JSON.parse(error.response.text).errors[0].errorCode != "UDAPI100010")) console.log("error in modify order V3 with algoId");
+    if ((JSON.parse(error.response.text).errors[0].errorCode != "UDAPI100010")) console.log("error in modify order V3 with algoId");
   } else {
     console.log('modifyOrder V3 with algoId SUCCESS = ' + JSON.stringify(data));
   }
-}, "algo id -> modifyOrder v3");
+}, X_Algo_Name);
 
 // Test 9: V3 cancelOrder with algoId
 var orderIdV3Algo = "2503050177418";
 
 apiInstanceV3Algo.cancelOrder(orderIdV3Algo, (error, data, response) => {
   if (error) {
-    if((JSON.parse(error.response.text).errors[0].errorCode != "UDAPI100010")) console.log("error in cancel order V3 with algoId");
+    if ((JSON.parse(error.response.text).errors[0].errorCode != "UDAPI100010")) console.log("error in cancel order V3 with algoId");
   } else {
     console.log('cancelOrder V3 with algoId SUCCESS = ' + JSON.stringify(data));
   }
-}, "algo id -> cancelOrder v3");
+}, X_Algo_Name);
 
 // Test 10: V3 placeGTTOrder with algoId
 var entryRuleAlgo = new UpstoxClient.GttRule(UpstoxClient.GttRule.StrategyEnum.ENTRY, UpstoxClient.GttRule.TriggerTypeEnum.ABOVE, 100);
-var bodyGTTAlgo = new UpstoxClient.GttPlaceOrderRequest(UpstoxClient.GttPlaceOrderRequest.TypeEnum.SINGLE, 1, UpstoxClient.GttPlaceOrderRequest.ProductEnum.D, [entryRuleAlgo],"NSE_EQ|INE669E01016", UpstoxClient.GttPlaceOrderRequest.TransactionTypeEnum.BUY);
+var bodyGTTAlgo = new UpstoxClient.GttPlaceOrderRequest(UpstoxClient.GttPlaceOrderRequest.TypeEnum.SINGLE, 1, UpstoxClient.GttPlaceOrderRequest.ProductEnum.D, [entryRuleAlgo], "NSE_EQ|INE669E01016", UpstoxClient.GttPlaceOrderRequest.TransactionTypeEnum.BUY);
 
 apiInstanceV3Algo.placeGTTOrder(bodyGTTAlgo, (error, data, response) => {
   if (error) {
@@ -727,7 +728,7 @@ apiInstanceV3Algo.placeGTTOrder(bodyGTTAlgo, (error, data, response) => {
   } else {
     console.log('placeGTTOrder with algoId SUCCESS = ' + JSON.stringify(data));
   }
-}, "algo id -> placeGTTOrder v3");
+}, X_Algo_Name);
 
 // Test 11: V3 modifyGTTOrder with algoId
 var bodyModifyGTTAlgo = new UpstoxClient.GttModifyOrderRequest(UpstoxClient.GttModifyOrderRequest.TypeEnum.SINGLE, 1, [entryRuleAlgo], "GTT-C25040700150119");
@@ -735,63 +736,63 @@ bodyModifyGTTAlgo.quantity = 1;
 
 apiInstanceV3Algo.modifyGTTOrder(bodyModifyGTTAlgo, (error, data, response) => {
   if (error) {
-    if((JSON.parse(error.response.text).errors[0].errorCode != "UDAPI100010")) {
+    if ((JSON.parse(error.response.text).errors[0].errorCode != "UDAPI100010")) {
       console.log("error in modify gtt order V3 with algoId");
       console.error(error.response.text);
     }
   } else {
     console.log('modifyGTTOrder with algoId SUCCESS = ' + JSON.stringify(data));
   }
-}, "algo id -> modifyGTTOrder v3");
+}, X_Algo_Name);
 
 // Test 12: V3 cancelGTTOrder with algoId
 var bodyCancelGTTAlgo = new UpstoxClient.GttCancelOrderRequest("2501270424977");
 
 apiInstanceV3Algo.cancelGTTOrder(bodyCancelGTTAlgo, (error, data, response) => {
   if (error) {
-    if((JSON.parse(error.response.text).errors[0].errorCode != "UDAPI1135")) {
+    if ((JSON.parse(error.response.text).errors[0].errorCode != "UDAPI1135")) {
       console.log("error in gtt cancel");
       console.error(error.response.text);
     }
   } else {
     console.log('cancelGTTOrder with algoId SUCCESS = ' + JSON.stringify(data));
   }
-}, "algo id -> cancelGTTOrder v3");
+}, X_Algo_Name);
 
 
 
 setTimeout(() => {
   apiInstance = new UpstoxClient.LoginApi();
-opts = { 
-  'code': "{your_auth_code}", 
-  'clientId': "{your_client_secret}", 
-  'clientSecret': "{your_client_secret}", 
-  'redirectUri': "{your_redirect_url}", 
-  'grantType': "authorization_code" 
-};
-body = new UpstoxClient.IndieUserTokenRequest();
-body.clientSecret = "e"
-apiInstance.initTokenRequestForIndieUser(body,"e",  (error, data, response) => {
+  opts = {
+    'code': "{your_auth_code}",
+    'clientId': "{your_client_secret}",
+    'clientSecret': "{your_client_secret}",
+    'redirectUri': "{your_redirect_url}",
+    'grantType': "authorization_code"
+  };
+  body = new UpstoxClient.IndieUserTokenRequest();
+  body.clientSecret = "e"
+  apiInstance.initTokenRequestForIndieUser(body, "e", (error, data, response) => {
     if (error) {
-      if(JSON.parse(error.response.text).errors[0].errorCode != "UDAPI100069") console.log("error in indie token api " + JSON.stringify(error));
+      if (JSON.parse(error.response.text).errors[0].errorCode != "UDAPI100069") console.log("error in indie token api " + JSON.stringify(error));
     } else {
       console.log('API called successfully. Returned data: ' + JSON.stringify(data));
     }
   });
 
-apiInstance.token(apiVersion, opts, (error, data, response) => {
-  if (error) {
-    if(JSON.parse(error.response.text).errors[0].errorCode != "UDAPI100069") console.log("error in get token= " + JSON.stringify(error));
-  } else {
-    console.log('API called successfully. Returned data: ' + JSON.stringify(data));
-  }
-});
+  apiInstance.token(apiVersion, opts, (error, data, response) => {
+    if (error) {
+      if (JSON.parse(error.response.text).errors[0].errorCode != "UDAPI100069") console.log("error in get token= " + JSON.stringify(error));
+    } else {
+      console.log('API called successfully. Returned data: ' + JSON.stringify(data));
+    }
+  });
 
-apiInstance.logout(apiVersion, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('Logout api called successfully. Returned data: ' + JSON.stringify(data));
-  }
-});
+  apiInstance.logout(apiVersion, (error, data, response) => {
+    if (error) {
+      console.error(error);
+    } else {
+      console.log('Logout api called successfully. Returned data: ' + JSON.stringify(data));
+    }
+  });
 }, 7000);
