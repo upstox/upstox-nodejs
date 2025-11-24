@@ -83,72 +83,70 @@ apiInstance.placeOrder(body, opt, (error, data, response) => {
 
 Other order methods (modify, cancel, etc.) follow the same pattern by accepting an optional algo name as the last parameter.
 
+
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://api.upstox.com*
+- Place, Modify, and Cancel Order APIs are relative to `https://api-hft.upstox.com`
+- All other APIs are relative to `https://api.upstox.com`
 
-Class | Method | HTTP request | Description
------------- | ------------- | ------------- | -------------
-*UpstoxClient.ChargeApi* | [**getBrokerage**](docs/ChargeApi.md#getBrokerage) | **GET** /v2/charges/brokerage | Brokerage details
-*UpstoxClient.ChargeApi* | [**postMargin**](docs/ChargeApi.md#postMargin) | **POST** /v2/charges/margin | Calculate Margin
-*UpstoxClient.ExpiredInstrumentApi* | [**getExpiredFutureContracts**](docs/ExpiredInstrumentApi.md#getExpiredFutureContracts) | **GET** /v2/expired-instruments/future/contract | Expired instruments - Get future contracts
-*UpstoxClient.ExpiredInstrumentApi* | [**getExpiredHistoricalCandleData**](docs/ExpiredInstrumentApi.md#getExpiredHistoricalCandleData) | **GET** /v2/expired-instruments/historical-candle/{expired_instrument_key}/{interval}/{to_date}/{from_date} | Expired Historical candle data
-*UpstoxClient.ExpiredInstrumentApi* | [**getExpiredOptionContracts**](docs/ExpiredInstrumentApi.md#getExpiredOptionContracts) | **GET** /v2/expired-instruments/option/contract | Get expired option contracts
-*UpstoxClient.ExpiredInstrumentApi* | [**getExpiries**](docs/ExpiredInstrumentApi.md#getExpiries) | **GET** /v2/expired-instruments/expiries | Expired instruments - Get expiries
-*UpstoxClient.HistoryApi* | [**getHistoricalCandleData2**](docs/HistoryApi.md#getHistoricalCandleData2) | **GET** /v2/historical-candle/{instrumentKey}/{interval}/{to_date} | Historical candle data
-*UpstoxClient.HistoryApi* | [**getHistoricalCandleData3**](docs/HistoryApi.md#getHistoricalCandleData3) | **GET** /v2/historical-candle/{instrumentKey}/{interval}/{to_date}/{from_date} | Historical candle data
-*UpstoxClient.HistoryApi* | [**getIntraDayCandleData1**](docs/HistoryApi.md#getIntraDayCandleData1) | **GET** /v2/historical-candle/intraday/{instrumentKey}/{interval} | Intra day candle data
-*UpstoxClient.HistoryV3Api* | [**getHistoricalCandleData**](docs/HistoryV3Api.md#getHistoricalCandleData) | **GET** /v3/historical-candle/{instrumentKey}/{unit}/{interval}/{to_date} | Historical candle data
-*UpstoxClient.HistoryV3Api* | [**getHistoricalCandleData1**](docs/HistoryV3Api.md#getHistoricalCandleData1) | **GET** /v3/historical-candle/{instrumentKey}/{unit}/{interval}/{to_date}/{from_date} | Historical candle data
-*UpstoxClient.HistoryV3Api* | [**getIntraDayCandleData**](docs/HistoryV3Api.md#getIntraDayCandleData) | **GET** /v3/historical-candle/intraday/{instrumentKey}/{unit}/{interval} | Intra day candle data
-*UpstoxClient.LoginApi* | [**authorize**](docs/LoginApi.md#authorize) | **GET** /v2/login/authorization/dialog | Authorize API
-*UpstoxClient.LoginApi* | [**initTokenRequestForIndieUser**](docs/LoginApi.md#initTokenRequestForIndieUser) | **POST** /v3/login/auth/token/request/{client_id} | Init token API
-*UpstoxClient.LoginApi* | [**logout**](docs/LoginApi.md#logout) | **DELETE** /v2/logout | Logout
-*UpstoxClient.LoginApi* | [**token**](docs/LoginApi.md#token) | **POST** /v2/login/authorization/token | Get token API
-*UpstoxClient.MarketHolidaysAndTimingsApi* | [**getExchangeTimings**](docs/MarketHolidaysAndTimingsApi.md#getExchangeTimings) | **GET** /v2/market/timings/{date} | Get Exchange Timings on particular date
-*UpstoxClient.MarketHolidaysAndTimingsApi* | [**getHoliday**](docs/MarketHolidaysAndTimingsApi.md#getHoliday) | **GET** /v2/market/holidays/{date} | Get Holiday on particular date
-*UpstoxClient.MarketHolidaysAndTimingsApi* | [**getHolidays**](docs/MarketHolidaysAndTimingsApi.md#getHolidays) | **GET** /v2/market/holidays | Get Holiday list of current year
-*UpstoxClient.MarketHolidaysAndTimingsApi* | [**getMarketStatus**](docs/MarketHolidaysAndTimingsApi.md#getMarketStatus) | **GET** /v2/market/status/{exchange} | Get Market status for particular exchange
-*UpstoxClient.MarketQuoteApi* | [**getFullMarketQuote**](docs/MarketQuoteApi.md#getFullMarketQuote) | **GET** /v2/market-quote/quotes | Market quotes and instruments - Full market quotes
-*UpstoxClient.MarketQuoteApi* | [**getMarketQuoteOHLC**](docs/MarketQuoteApi.md#getMarketQuoteOHLC) | **GET** /v2/market-quote/ohlc | Market quotes and instruments - OHLC quotes
-*UpstoxClient.MarketQuoteApi* | [**ltp**](docs/MarketQuoteApi.md#ltp) | **GET** /v2/market-quote/ltp | Market quotes and instruments - LTP quotes.
-*UpstoxClient.MarketQuoteV3Api* | [**getLtp**](docs/MarketQuoteV3Api.md#getLtp) | **GET** /v3/market-quote/ltp | Market quotes and instruments - LTP quotes.
-*UpstoxClient.MarketQuoteV3Api* | [**getMarketQuoteOHLC**](docs/MarketQuoteV3Api.md#getMarketQuoteOHLC) | **GET** /v3/market-quote/ohlc | Market quotes and instruments - OHLC quotes
-*UpstoxClient.MarketQuoteV3Api* | [**getMarketQuoteOptionGreek**](docs/MarketQuoteV3Api.md#getMarketQuoteOptionGreek) | **GET** /v3/market-quote/option-greek | Market quotes and instruments - Option Greek
-*UpstoxClient.OptionsApi* | [**getOptionContracts**](docs/OptionsApi.md#getOptionContracts) | **GET** /v2/option/contract | Get option contracts
-*UpstoxClient.OptionsApi* | [**getPutCallOptionChain**](docs/OptionsApi.md#getPutCallOptionChain) | **GET** /v2/option/chain | Get option chain
-*UpstoxClient.OrderApi* | [**cancelMultiOrder**](docs/OrderApi.md#cancelMultiOrder) | **DELETE** /v2/order/multi/cancel | Cancel multi order
-*UpstoxClient.OrderApi* | [**cancelOrder**](docs/OrderApi.md#cancelOrder) | **DELETE** /v2/order/cancel | Cancel order
-*UpstoxClient.OrderApi* | [**exitPositions**](docs/OrderApi.md#exitPositions) | **POST** /v2/order/positions/exit | Exit all positions
-*UpstoxClient.OrderApi* | [**getOrderBook**](docs/OrderApi.md#getOrderBook) | **GET** /v2/order/retrieve-all | Get order book
-*UpstoxClient.OrderApi* | [**getOrderDetails**](docs/OrderApi.md#getOrderDetails) | **GET** /v2/order/history | Get order history
-*UpstoxClient.OrderApi* | [**getOrderStatus**](docs/OrderApi.md#getOrderStatus) | **GET** /v2/order/details | Get order details
-*UpstoxClient.OrderApi* | [**getTradeHistory**](docs/OrderApi.md#getTradeHistory) | **GET** /v2/order/trades/get-trades-for-day | Get trades
-*UpstoxClient.OrderApi* | [**getTradesByOrder**](docs/OrderApi.md#getTradesByOrder) | **GET** /v2/order/trades | Get trades for order
-*UpstoxClient.OrderApi* | [**modifyOrder**](docs/OrderApi.md#modifyOrder) | **PUT** /v2/order/modify | Modify order
-*UpstoxClient.OrderApi* | [**placeMultiOrder**](docs/OrderApi.md#placeMultiOrder) | **POST** /v2/order/multi/place | Place multi order
-*UpstoxClient.OrderApi* | [**placeOrder1**](docs/OrderApi.md#placeOrder1) | **POST** /v2/order/place | Place order
-*UpstoxClient.OrderControllerV3Api* | [**cancelGTTOrder**](docs/OrderControllerV3Api.md#cancelGTTOrder) | **DELETE** /v3/order/gtt/cancel | Cancel GTT order
-*UpstoxClient.OrderControllerV3Api* | [**cancelOrder**](docs/OrderControllerV3Api.md#cancelOrder) | **DELETE** /v3/order/cancel | 
-*UpstoxClient.OrderControllerV3Api* | [**getGttOrderDetails**](docs/OrderControllerV3Api.md#getGttOrderDetails) | **GET** /v3/order/gtt | Get GTT order details
-*UpstoxClient.OrderControllerV3Api* | [**modifyGTTOrder**](docs/OrderControllerV3Api.md#modifyGTTOrder) | **PUT** /v3/order/gtt/modify | Modify GTT order
-*UpstoxClient.OrderControllerV3Api* | [**modifyOrder**](docs/OrderControllerV3Api.md#modifyOrder) | **PUT** /v3/order/modify | 
-*UpstoxClient.OrderControllerV3Api* | [**placeGTTOrder**](docs/OrderControllerV3Api.md#placeGTTOrder) | **POST** /v3/order/gtt/place | Place GTT order
-*UpstoxClient.OrderControllerV3Api* | [**placeOrder**](docs/OrderControllerV3Api.md#placeOrder) | **POST** /v3/order/place | 
-*UpstoxClient.PortfolioApi* | [**convertPositions**](docs/PortfolioApi.md#convertPositions) | **PUT** /v2/portfolio/convert-position | Convert Positions
-*UpstoxClient.PortfolioApi* | [**getHoldings**](docs/PortfolioApi.md#getHoldings) | **GET** /v2/portfolio/long-term-holdings | Get Holdings
-*UpstoxClient.PortfolioApi* | [**getMtfPositions**](docs/PortfolioApi.md#getMtfPositions) | **GET** /v3/portfolio/mtf-positions | Get MTF positions
-*UpstoxClient.PortfolioApi* | [**getPositions**](docs/PortfolioApi.md#getPositions) | **GET** /v2/portfolio/short-term-positions | Get Positions
-*UpstoxClient.PostTradeApi* | [**getTradesByDateRange**](docs/PostTradeApi.md#getTradesByDateRange) | **GET** /v2/charges/historical-trades | 
-*UpstoxClient.TradeProfitAndLossApi* | [**getProfitAndLossCharges**](docs/TradeProfitAndLossApi.md#getProfitAndLossCharges) | **GET** /v2/trade/profit-loss/charges | Get profit and loss on trades
-*UpstoxClient.TradeProfitAndLossApi* | [**getTradeWiseProfitAndLossData**](docs/TradeProfitAndLossApi.md#getTradeWiseProfitAndLossData) | **GET** /v2/trade/profit-loss/data | Get Trade-wise Profit and Loss Report Data
-*UpstoxClient.TradeProfitAndLossApi* | [**getTradeWiseProfitAndLossMetaData**](docs/TradeProfitAndLossApi.md#getTradeWiseProfitAndLossMetaData) | **GET** /v2/trade/profit-loss/metadata | Get profit and loss meta data on trades
-*UpstoxClient.UserApi* | [**getProfile**](docs/UserApi.md#getProfile) | **GET** /v2/user/profile | Get profile
-*UpstoxClient.UserApi* | [**getUserFundMargin**](docs/UserApi.md#getUserFundMargin) | **GET** /v2/user/get-funds-and-margin | Get User Fund And Margin
-*UpstoxClient.WebsocketApi* | [**getMarketDataFeed**](docs/WebsocketApi.md#getMarketDataFeed) | **GET** /v2/feed/market-data-feed | Market Data Feed
-*UpstoxClient.WebsocketApi* | [**getMarketDataFeedAuthorize**](docs/WebsocketApi.md#getMarketDataFeedAuthorize) | **GET** /v2/feed/market-data-feed/authorize | Market Data Feed Authorize
-*UpstoxClient.WebsocketApi* | [**getPortfolioStreamFeed**](docs/WebsocketApi.md#getPortfolioStreamFeed) | **GET** /v2/feed/portfolio-stream-feed | Portfolio Stream Feed
-*UpstoxClient.WebsocketApi* | [**getPortfolioStreamFeedAuthorize**](docs/WebsocketApi.md#getPortfolioStreamFeedAuthorize) | **GET** /v2/feed/portfolio-stream-feed/authorize | Portfolio Stream Feed Authorize
+API Name | HTTP Request | Class | Documentation | Sample Codes
+------------ | ------------- | ------------- | ------------- | -------------
+**Expired Instruments** | | | |
+Get Expiries | **GET** /v2/expired-instruments/expiries| *ExpiredInstrumentApi* | [API Reference](https://upstox.com/developer/api-documentation/get-expiries) | [Sample Code](https://upstox.com/developer/api-documentation/get-expiries#sample-code-nodejs_sdk)
+Get Expired Option Contracts | **GET**  /v2/expired-instruments/option/contract| *ExpiredInstrumentApi* | [API Reference](https://upstox.com/developer/api-documentation/get-expired-option-contracts) | [Sample Code](https://upstox.com/developer/api-documentation/get-expired-option-contracts#sample-code-nodejs_sdk)
+Get Expired Future Contracts | **GET** /v2/expired-instruments/future/contract| *ExpiredInstrumentApi* | [API Reference](https://upstox.com/developer/api-documentation/get-expired-future-contracts) | [Sample Code](https://upstox.com/developer/api-documentation/get-expired-future-contracts#sample-code-nodejs_sdk)
+Get Expired Historical Candle Data | **GET** /v2/expired-instruments/historical-candle/{expired_instrument_key}/{interval}/{to_date}/{from_date}| *ExpiredInstrumentApi* | [API Reference](https://upstox.com/developer/api-documentation/get-expired-historical-candle-data) | [Sample Code](https://upstox.com/developer/api-documentation/get-expired-historical-candle-data#sample-code-nodejs_sdk)
+**Login** | | | |
+Get Token | **POST** /v2/login/authorization/token | *LoginApi* | [API Reference](https://upstox.com/developer/api-documentation/get-token) | [Sample Code](https://upstox.com/developer/api-documentation/get-token#sample-code-nodejs_sdk)
+Access Token Request | **POST** /v3/login/auth/token/request/{client_id} | *LoginApi* | [API Reference](https://upstox.com/developer/api-documentation/access-token-request) | [Sample Code](https://upstox.com/developer/api-documentation/access-token-request#sample-code-nodejs_sdk)
+Logout | **DELETE** /v2/logout | *LoginApi* | [API Reference](https://upstox.com/developer/api-documentation/logout) | [Sample Code](https://upstox.com/developer/api-documentation/logout#sample-code-nodejs_sdk)
+**User** | | | |
+Get Profile | **GET** /v2/user/profile | *UserApi* | [API Reference](https://upstox.com/developer/api-documentation/get-profile) | [Sample Code](https://upstox.com/developer/api-documentation/get-profile#sample-code-nodejs_sdk)
+Get User Fund Margin | **GET** /v2/user/get-funds-and-margin | *UserApi* | [API Reference](https://upstox.com/developer/api-documentation/get-user-fund-margin) | [Sample Code](https://upstox.com/developer/api-documentation/get-user-fund-margin#sample-code-nodejs_sdk)
+**Charges** | | | |
+Get Brokerage | **GET** /v2/charges/brokerage | *ChargeApi* | [API Reference](https://upstox.com/developer/api-documentation/get-brokerage) | [Sample Code](https://upstox.com/developer/api-documentation/get-brokerage#sample-code-nodejs_sdk)
+**Margins** | | | |
+Margin | **POST** /v2/charges/margin | *ChargeApi* | [API Reference](https://upstox.com/developer/api-documentation/margin) | [Sample Code](https://upstox.com/developer/api-documentation/margin#sample-code-nodejs_sdk)
+**Orders** | | | |
+Place Order V3 | **POST** /v3/order/place | *OrderApiV3* | [API Reference](https://upstox.com/developer/api-documentation/v3/place-order) | [Sample Code](https://upstox.com/developer/api-documentation/v3/place-order#sample-code-nodejs_sdk)
+Place Multi Order | **POST** /v2/order/multi/place | *OrderApi* | [API Reference](https://upstox.com/developer/api-documentation/place-multi-order) | [Sample Code](https://upstox.com/developer/api-documentation/place-multi-order#sample-code-nodejs_sdk)
+Modify Order V3 | **PUT** /v3/order/modify | *OrderApiV3* | [API Reference](https://upstox.com/developer/api-documentation/v3/modify-order) | [Sample Code](https://upstox.com/developer/api-documentation/v3/modify-order#sample-code-nodejs_sdk)
+Cancel Order V3 | **DELETE** /v3/order/cancel | *OrderApiV3* | [API Reference](https://upstox.com/developer/api-documentation/v3/cancel-order) | [Sample Code](https://upstox.com/developer/api-documentation/v3/cancel-order#sample-code-nodejs_sdk)
+Cancel Multi Order | **DELETE** /v2/order/multi/cancel | *OrderApi* | [API Reference](https://upstox.com/developer/api-documentation/cancel-multi-order) | [Sample Code](https://upstox.com/developer/api-documentation/cancel-multi-order#sample-code-nodejs_sdk)
+Exit All Position | **POST** /v2/order/positions/exit | *OrderApi* | [API Reference](https://upstox.com/developer/api-documentation/exit-all-positions) | [Sample Code](https://upstox.com/developer/api-documentation/exit-all-positions#sample-code-nodejs_sdk)
+Get Order Details | **GET** /v2/order/details | *OrderApi* | [API Reference](https://upstox.com/developer/api-documentation/get-order-details) | [Sample Code](https://upstox.com/developer/api-documentation/get-order-details#sample-code-nodejs_sdk)
+Get Order History | **GET** /v2/order/history | *OrderApi* | [API Reference](https://upstox.com/developer/api-documentation/get-order-history) | [Sample Code](https://upstox.com/developer/api-documentation/get-order-history#sample-code-nodejs_sdk)
+Get Trades By Order | **GET** /v2/order/trades | *OrderApi* | [API Reference](https://upstox.com/developer/api-documentation/get-trades-by-order) | [Sample Code](https://upstox.com/developer/api-documentation/get-trades-by-order#sample-code-nodejs_sdk)
+Get Trade History | **GET** /v2/order/trades/get-trades-for-day | *OrderApi* | [API Reference](https://upstox.com/developer/api-documentation/get-trade-history) | [Sample Code](https://upstox.com/developer/api-documentation/get-trade-history#sample-code-nodejs_sdk)
+**GTT Order** | | | |
+Place GTT Order | **POST** /v3/order/gtt/place | *OrderApiV3* | [API Reference](https://upstox.com/developer/api-documentation/place-gtt-order) | [Sample Code](https://upstox.com/developer/api-documentation/place-gtt-order#sample-code-nodejs_sdk)
+Modify GTT Order | **PUT** /v3/order/gtt/modify | *OrderApiV3* | [API Reference](https://upstox.com/developer/api-documentation/modify-gtt-order) | [Sample Code](https://upstox.com/developer/api-documentation/modify-gtt-order#sample-code-nodejs_sdk)
+Cancel GTT Order | **DELETE** /v3/order/gtt/cancel | *OrderApiV3* | [API Reference](https://upstox.com/developer/api-documentation/cancel-gtt-order) | [Sample Code](https://upstox.com/developer/api-documentation/cancel-gtt-order#sample-code-nodejs_sdk)
+Get GTT Order Details | **GET** /v3/order/gtt | *OrderApiV3* | [API Reference](https://upstox.com/developer/api-documentation/get-gtt-order-details) | [Sample Code](https://upstox.com/developer/api-documentation/get-gtt-order-details#sample-code-nodejs_sdk)
+**Portfolio** | | | |
+Get Positions | **GET** /v2/portfolio/short-term-positions | *PortfolioApi* | [API Reference](https://upstox.com/developer/api-documentation/get-positions) | [Sample Code](https://upstox.com/developer/api-documentation/get-positions#sample-code-nodejs_sdk)
+Get MTF Positions | **GET** /v3/portfolio/mtf | *PortfolioApi* | [API Reference](https://upstox.com/developer/api-documentation/get-mtf-positions) | [Sample Code](https://upstox.com/developer/api-documentation/get-mtf-positions#sample-code-nodejs_sdk)
+Convert Positions | **PUT** /v2/portfolio/convert-position | *PortfolioApi* | [API Reference](https://upstox.com/developer/api-documentation/convert-positions) | [Sample Code](https://upstox.com/developer/api-documentation/convert-positions#sample-code-nodejs_sdk)
+Get Holdings | **GET** /v2/portfolio/long-term-holdings | *PortfolioApi* | [API Reference](https://upstox.com/developer/api-documentation/get-holdings) | [Sample Code](https://upstox.com/developer/api-documentation/get-holdings#sample-code-nodejs_sdk)
+**Trade Profit And Loss** | | | |
+Get Report Meta Data | **GET** /v2/trade/profit-loss/metadata | *TradeProfitAndLossApi* | [API Reference](https://upstox.com/developer/api-documentation/get-report-meta-data) | [Sample Code](https://upstox.com/developer/api-documentation/get-report-meta-data#sample-code-nodejs_sdk)
+Get Profit And Loss Report | **GET** /v2/trade/profit-loss/data | *TradeProfitAndLossApi* | [API Reference](https://upstox.com/developer/api-documentation/get-profit-and-loss-report) | [Sample Code](https://upstox.com/developer/api-documentation/get-profit-and-loss-report#sample-code-nodejs_sdk)
+Get Trade Charges | **GET** /v2/trade/profit-loss/charges | *TradeProfitAndLossApi* | [API Reference](https://upstox.com/developer/api-documentation/get-trade-charges) | [Sample Code](https://upstox.com/developer/api-documentation/get-trade-charges#sample-code-nodejs_sdk)
+**Historical Data** | | | |
+Get Historical Candle Data V3 | **GET** /v3/historical-candle | *HistoryV3Api* | [API Reference](https://upstox.com/developer/api-documentation/v3/get-historical-candle-data) | [Sample Code](https://upstox.com/developer/api-documentation/v3/get-historical-candle-data#sample-code-nodejs_sdk)
+Get Intra Day Candle Data V3 | **GET** /v3/intra-day-candle | *HistoryV3Api* | [API Reference](https://upstox.com/developer/api-documentation/v3/get-intra-day-candle-data) | [Sample Code](https://upstox.com/developer/api-documentation/v3/get-intra-day-candle-data#sample-code-nodejs_sdk)
+**Market Quote** | | | |
+Get Full Market Quote | **GET** /v2/market-quote/quotes | *MarketQuoteApi* | [API Reference](https://upstox.com/developer/api-documentation/get-full-market-quote) | [Sample Code](https://upstox.com/developer/api-documentation/get-full-market-quote#sample-code-nodejs_sdk)
+Get Market Quote OHLC | **GET** /v2/market-quote/ohlc | *MarketQuoteApi* | [API Reference](https://upstox.com/developer/api-documentation/get-market-quote-ohlc) | [Sample Code](https://upstox.com/developer/api-documentation/get-market-quote-ohlc#sample-code-nodejs_sdk)
+LTP V3 | **GET** /v3/market-quote/ltp | *MarketQuoteV3Api* | [API Reference](https://upstox.com/developer/api-documentation/ltp-v3) | [Sample Code](https://upstox.com/developer/api-documentation/ltp-v3#sample-code-nodejs_sdk)
+Option Greek | **GET** /v3/market-quote/greeks | *MarketQuoteV3Api* | [API Reference](https://upstox.com/developer/api-documentation/option-greek) | [Sample Code](https://upstox.com/developer/api-documentation/option-greek#sample-code-nodejs_sdk)
+**Market Information** | | | |
+Get Market Holidays | **GET** /v2/market/holidays | *MarketHolidaysAndTimingsApi* | [API Reference](https://upstox.com/developer/api-documentation/get-market-holidays) | [Sample Code](https://upstox.com/developer/api-documentation/get-market-holidays#sample-code-nodejs_sdk)
+Get Market Timings | **GET** /v2/market/timings | *MarketHolidaysAndTimingsApi* | [API Reference](https://upstox.com/developer/api-documentation/get-market-timings) | [Sample Code](https://upstox.com/developer/api-documentation/get-market-timings#sample-code-nodejs_sdk)
+Get Market Status | **GET** /v2/market/status | *MarketHolidaysAndTimingsApi* | [API Reference](https://upstox.com/developer/api-documentation/get-market-status) | [Sample Code](https://upstox.com/developer/api-documentation/get-market-status#sample-code-nodejs_sdk)
+**Option Chain** | | | |
+Get Option Contracts | **GET** /v2/option/contract | *OptionsApi* | [API Reference](https://upstox.com/developer/api-documentation/get-option-contracts) | [Sample Code](https://upstox.com/developer/api-documentation/get-option-contracts#sample-code-nodejs_sdk)
+Get PC Option Chain | **GET** /v2/option/chain | *OptionsApi* | [API Reference](https://upstox.com/developer/api-documentation/get-pc-option-chain) | [Sample Code](https://upstox.com/developer/api-documentation/get-pc-option-chain#sample-code-nodejs_sdk)
 
 ## Documentation for Feeder Functions
 
