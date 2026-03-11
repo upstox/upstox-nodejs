@@ -522,6 +522,8 @@ export class OrderApi {
         obj.disclosed_quantity = ApiClient.convertToType(data['disclosedQuantity'], 'Number');
       if (data.hasOwnProperty('triggerPrice'))
         obj.trigger_price = ApiClient.convertToType(data['triggerPrice'], 'Number');
+      if (data.hasOwnProperty('marketProtection'))
+        obj.market_protection = ApiClient.convertToType(data['marketProtection'], 'Number');
     }
     return obj;
   }

@@ -58,6 +58,8 @@ export class TokenRequest {
         obj.redirectUri = ApiClient.convertToType(data['redirect_uri'], 'String');
       if (data.hasOwnProperty('grant_type'))
         obj.grantType = ApiClient.convertToType(data['grant_type'], 'String');
+      if (data.hasOwnProperty('refresh_extended_token'))
+        obj.refreshExtendedToken = ApiClient.convertToType(data['refresh_extended_token'], 'Boolean');
     }
     return obj;
   }
@@ -91,4 +93,9 @@ TokenRequest.prototype.redirectUri = undefined;
  * @member {String} grantType
  */
 TokenRequest.prototype.grantType = undefined;
+
+/**
+ * @member {Boolean} refreshExtendedToken
+ */
+TokenRequest.prototype.refreshExtendedToken = undefined;
 

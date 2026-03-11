@@ -88,6 +88,8 @@ export class MultiOrderRequest {
         obj.is_amo = ApiClient.convertToType(data['is_amo'], 'Boolean');
       if (data.hasOwnProperty('correlation_id'))
         obj.correlation_id = ApiClient.convertToType(data['correlation_id'], 'String');
+      if (data.hasOwnProperty('market_protection'))
+        obj.market_protection = ApiClient.convertToType(data['market_protection'], 'Number');
     }
     return obj;
   }
@@ -253,4 +255,10 @@ MultiOrderRequest.prototype.is_amo = undefined;
  * @member {String} correlationId
  */
 MultiOrderRequest.prototype.correlation_id = undefined;
+
+/**
+ * Market price protection (optional). Numeric value.
+ * @member {Number} market_protection
+ */
+MultiOrderRequest.prototype.market_protection = undefined;
 
