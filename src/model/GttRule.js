@@ -53,6 +53,10 @@ export class GttRule {
         obj.triggerPrice = ApiClient.convertToType(data['trigger_price'], 'Number');
       if (data.hasOwnProperty('trailing_gap'))
         obj.trailingGap = ApiClient.convertToType(data['trailing_gap'], 'Number');
+      if (data.hasOwnProperty('market_protection'))
+        obj.marketProtection = ApiClient.convertToType(data['market_protection'], 'Number');
+      if (data.hasOwnProperty('marketProtection'))
+        obj.marketProtection = ApiClient.convertToType(data['marketProtection'], 'Number');
     }
     return obj;
   }
@@ -129,4 +133,10 @@ GttRule.prototype.triggerPrice = undefined;
  * @member {Number} trailingGap
  */
 GttRule.prototype.trailingGap = undefined;
+
+/**
+ * Optional market price protection for the GTT order rule
+ * @member {Number} marketProtection
+ */
+GttRule.prototype.marketProtection = undefined;
 
