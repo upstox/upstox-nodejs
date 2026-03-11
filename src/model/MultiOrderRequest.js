@@ -90,8 +90,6 @@ export class MultiOrderRequest {
         obj.correlation_id = ApiClient.convertToType(data['correlation_id'], 'String');
       if (data.hasOwnProperty('market_protection'))
         obj.market_protection = ApiClient.convertToType(data['market_protection'], 'Number');
-      if (data.hasOwnProperty('marketProtection'))
-        obj.market_protection = ApiClient.convertToType(data['marketProtection'], 'Number');
     }
     return obj;
   }

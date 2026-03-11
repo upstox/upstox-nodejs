@@ -55,8 +55,6 @@ export class GttRule {
         obj.trailingGap = ApiClient.convertToType(data['trailing_gap'], 'Number');
       if (data.hasOwnProperty('market_protection'))
         obj.marketProtection = ApiClient.convertToType(data['market_protection'], 'Number');
-      if (data.hasOwnProperty('marketProtection'))
-        obj.marketProtection = ApiClient.convertToType(data['marketProtection'], 'Number');
     }
     return obj;
   }
