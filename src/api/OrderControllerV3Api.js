@@ -65,6 +65,8 @@ export class OrderApiV3 {
               rule.trigger_price = ApiClient.convertToType(userRule['triggerPrice'], 'Number');
             if(userRule.hasOwnProperty('trailingGap'))
               rule.trailing_gap = ApiClient.convertToType(userRule['trailingGap'], 'Number');
+            if(userRule.hasOwnProperty('marketProtection'))
+              rule.market_protection = ApiClient.convertToType(userRule['marketProtection'], 'Number');
             obj.rules.push(rule);
           });
         }
@@ -301,6 +303,8 @@ export class OrderApiV3 {
           obj.disclosed_quantity = ApiClient.convertToType(data['disclosedQuantity'], 'Number');
         if (data.hasOwnProperty('triggerPrice'))
           obj.trigger_price = ApiClient.convertToType(data['triggerPrice'], 'Number');
+        if (data.hasOwnProperty('marketProtection'))
+          obj.market_protection = ApiClient.convertToType(data['marketProtection'], 'Number');
       }
       return obj;
     }
@@ -382,7 +386,9 @@ export class OrderApiV3 {
         if (data.hasOwnProperty('isAmo'))
           obj.is_amo = ApiClient.convertToType(data['isAmo'], 'Boolean');
         if (data.hasOwnProperty('slice'))
-          obj.is_amo = ApiClient.convertToType(data['slice'], 'Boolean');
+          obj.slice = ApiClient.convertToType(data['slice'], 'Boolean');
+        if (data.hasOwnProperty('marketProtection'))
+          obj.market_protection = ApiClient.convertToType(data['marketProtection'], 'Number');
       }
       return obj;
     }
