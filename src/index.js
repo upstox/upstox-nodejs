@@ -127,6 +127,9 @@ import {ProfitAndLossMetaDataWrapper} from './model/ProfitAndLossMetaDataWrapper
 import {ProfitAndLossOtherChargesTaxes} from './model/ProfitAndLossOtherChargesTaxes';
 import {PutCallOptionChainData} from './model/PutCallOptionChainData';
 import {Rule} from './model/Rule';
+import {SearchInstrumentResponse} from './model/SearchInstrumentResponse';
+import {SearchMetaData} from './model/SearchMetaData';
+import {SearchPage} from './model/SearchPage';
 import {TokenRequest} from './model/TokenRequest';
 import {TokenResponse} from './model/TokenResponse';
 import {TradeData} from './model/TradeData';
@@ -143,6 +146,7 @@ import {ChargeApi} from './api/ChargeApi';
 import {ExpiredInstrumentApi} from './api/ExpiredInstrumentApi';
 import {HistoryApi} from './api/HistoryApi';
 import {HistoryV3Api} from './api/HistoryV3Api';
+import {InstrumentsApi} from './api/InstrumentsApi';
 import {LoginApi} from './api/LoginApi';
 import {MarketHolidaysAndTimingsApi} from './api/MarketHolidaysAndTimingsApi';
 import {MarketQuoteApi} from './api/MarketQuoteApi';
@@ -881,6 +885,24 @@ export {
     Rule,
 
     /**
+     * The SearchInstrumentResponse model constructor.
+     * @property {module:model/SearchInstrumentResponse}
+     */
+    SearchInstrumentResponse,
+
+    /**
+     * The SearchMetaData model constructor.
+     * @property {module:model/SearchMetaData}
+     */
+    SearchMetaData,
+
+    /**
+     * The SearchPage model constructor.
+     * @property {module:model/SearchPage}
+     */
+    SearchPage,
+
+    /**
      * The TokenRequest model constructor.
      * @property {module:model/TokenRequest}
      */
@@ -975,6 +997,12 @@ export {
     * @property {module:api/HistoryV3Api}
     */
     HistoryV3Api,
+
+    /**
+    * The InstrumentsApi service constructor.
+    * @property {module:api/InstrumentsApi}
+    */
+    InstrumentsApi,
 
     /**
     * The LoginApi service constructor.
