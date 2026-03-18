@@ -224,7 +224,6 @@ export class LoginApi {
      * @param {String} opts.clientSecret 
      * @param {String} opts.redirectUri 
      * @param {String} opts.grantType
-     * @param {Boolean} opts.refreshExtendedToken
      * @param {module:api/LoginApi~tokenCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link <&vendorExtensions.x-jsdoc-type>}
      */
@@ -246,7 +245,7 @@ export class LoginApi {
         'Api-Version': apiVersion
       };
       let formParams = {
-        'code': opts['code'],'client_id': opts['clientId'],'client_secret': opts['clientSecret'],'redirect_uri': opts['redirectUri'],'grant_type': opts['grantType'],'refresh_extended_token': opts['refreshExtendedToken']
+        'code': opts['code'],'client_id': opts['clientId'],'client_secret': opts['clientSecret'],'redirect_uri': opts['redirectUri'],'grant_type': opts['grantType']
       };
 
       let authNames = [];
