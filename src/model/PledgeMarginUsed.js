@@ -12,15 +12,15 @@
  * Do not edit the class manually.
  *
  */
-import ApiClient from '../ApiClient';
-import DeliveryMargin from './DeliveryMargin';
+import {ApiClient} from '../ApiClient';
+import {DeliveryMargin} from './DeliveryMargin';
 
 /**
  * The PledgeMarginUsed model module.
  * @module model/PledgeMarginUsed
  * @version v0
  */
-export default class PledgeMarginUsed {
+export class PledgeMarginUsed {
   /**
    * Constructs a new <code>PledgeMarginUsed</code>.
    * @alias module:model/PledgeMarginUsed

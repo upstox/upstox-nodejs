@@ -12,14 +12,14 @@
  * Do not edit the class manually.
  *
  */
-import ApiClient from '../ApiClient';
+import {ApiClient} from '../ApiClient';
 
 /**
  * The KillSwitchSegmentUpdateRequest model module.
  * @module model/KillSwitchSegmentUpdateRequest
  * @version v0
  */
-export default class KillSwitchSegmentUpdateRequest {
+export class KillSwitchSegmentUpdateRequest {
   /**
    * Constructs a new <code>KillSwitchSegmentUpdateRequest</code>.
    * @alias module:model/KillSwitchSegmentUpdateRequest

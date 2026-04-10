@@ -12,16 +12,16 @@
  * Do not edit the class manually.
  *
  */
-import ApiClient from '../ApiClient';
-import CashUnavailableToTrade from './CashUnavailableToTrade';
-import PledgeUnavailableToTrade from './PledgeUnavailableToTrade';
+import {ApiClient} from '../ApiClient';
+import {CashUnavailableToTrade} from './CashUnavailableToTrade';
+import {PledgeUnavailableToTrade} from './PledgeUnavailableToTrade';
 
 /**
  * The UnavailableToTrade model module.
  * @module model/UnavailableToTrade
  * @version v0
  */
-export default class UnavailableToTrade {
+export class UnavailableToTrade {
   /**
    * Constructs a new <code>UnavailableToTrade</code>.
    * @alias module:model/UnavailableToTrade

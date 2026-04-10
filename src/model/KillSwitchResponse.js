@@ -12,14 +12,14 @@
  * Do not edit the class manually.
  *
  */
-import ApiClient from '../ApiClient';
+import {ApiClient} from '../ApiClient';
 
 /**
  * The KillSwitchResponse model module.
  * @module model/KillSwitchResponse
  * @version v0
  */
-export default class KillSwitchResponse {
+export class KillSwitchResponse {
   /**
    * Constructs a new <code>KillSwitchResponse</code>.
    * @alias module:model/KillSwitchResponse

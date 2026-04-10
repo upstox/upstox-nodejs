@@ -12,16 +12,16 @@
  * Do not edit the class manually.
  *
  */
-import ApiClient from '../ApiClient';
-import MarginFromPledge from './MarginFromPledge';
-import PledgeMarginUsed from './PledgeMarginUsed';
+import {ApiClient} from '../ApiClient';
+import {MarginFromPledge} from './MarginFromPledge';
+import {PledgeMarginUsed} from './PledgeMarginUsed';
 
 /**
  * The PledgeAvailableToTrade model module.
  * @module model/PledgeAvailableToTrade
  * @version v0
  */
-export default class PledgeAvailableToTrade {
+export class PledgeAvailableToTrade {
   /**
    * Constructs a new <code>PledgeAvailableToTrade</code>.
    * @alias module:model/PledgeAvailableToTrade

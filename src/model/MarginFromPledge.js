@@ -12,14 +12,14 @@
  * Do not edit the class manually.
  *
  */
-import ApiClient from '../ApiClient';
+import {ApiClient} from '../ApiClient';
 
 /**
  * The MarginFromPledge model module.
  * @module model/MarginFromPledge
  * @version v0
  */
-export default class MarginFromPledge {
+export class MarginFromPledge {
   /**
    * Constructs a new <code>MarginFromPledge</code>.
    * @alias module:model/MarginFromPledge

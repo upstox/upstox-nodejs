@@ -12,14 +12,14 @@
  * Do not edit the class manually.
  *
  */
-import ApiClient from '../ApiClient';
+import {ApiClient} from '../ApiClient';
 
 /**
  * The Loss model module.
  * @module model/Loss
  * @version v0
  */
-export default class Loss {
+export class Loss {
   /**
    * Constructs a new <code>Loss</code>.
    * @alias module:model/Loss

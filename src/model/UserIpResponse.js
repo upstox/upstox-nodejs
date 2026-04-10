@@ -12,15 +12,15 @@
  * Do not edit the class manually.
  *
  */
-import ApiClient from '../ApiClient';
-import UserIpResponseData from './UserIpResponseData';
+import {ApiClient} from '../ApiClient';
+import {UserIpResponseData} from './UserIpResponseData';
 
 /**
  * The UserIpResponse model module.
  * @module model/UserIpResponse
  * @version v0
  */
-export default class UserIpResponse {
+export class UserIpResponse {
   /**
    * Constructs a new <code>UserIpResponse</code>.
    * @alias module:model/UserIpResponse

@@ -12,14 +12,14 @@
  * Do not edit the class manually.
  *
  */
-import ApiClient from '../ApiClient';
+import {ApiClient} from '../ApiClient';
 
 /**
  * The UnsettledProfit model module.
  * @module model/UnsettledProfit
  * @version v0
  */
-export default class UnsettledProfit {
+export class UnsettledProfit {
   /**
    * Constructs a new <code>UnsettledProfit</code>.
    * @alias module:model/UnsettledProfit

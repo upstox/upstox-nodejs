@@ -12,14 +12,14 @@
  * Do not edit the class manually.
  *
  */
-import ApiClient from '../ApiClient';
+import {ApiClient} from '../ApiClient';
 
 /**
  * The DeliveryMargin model module.
  * @module model/DeliveryMargin
  * @version v0
  */
-export default class DeliveryMargin {
+export class DeliveryMargin {
   /**
    * Constructs a new <code>DeliveryMargin</code>.
    * @alias module:model/DeliveryMargin

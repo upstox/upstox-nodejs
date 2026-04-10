@@ -12,14 +12,14 @@
  * Do not edit the class manually.
  *
  */
-import ApiClient from '../ApiClient';
+import {ApiClient} from '../ApiClient';
 
 /**
  * The PledgeUnavailableToTrade model module.
  * @module model/PledgeUnavailableToTrade
  * @version v0
  */
-export default class PledgeUnavailableToTrade {
+export class PledgeUnavailableToTrade {
   /**
    * Constructs a new <code>PledgeUnavailableToTrade</code>.
    * @alias module:model/PledgeUnavailableToTrade

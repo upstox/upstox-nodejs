@@ -12,15 +12,15 @@
  * Do not edit the class manually.
  *
  */
-import ApiClient from '../ApiClient';
-import UserFundMarginV3Data from './UserFundMarginV3Data';
+import {ApiClient} from '../ApiClient';
+import {UserFundMarginV3Data} from './UserFundMarginV3Data';
 
 /**
  * The GetUserFundMarginV3Response model module.
  * @module model/GetUserFundMarginV3Response
  * @version v0
  */
-export default class GetUserFundMarginV3Response {
+export class GetUserFundMarginV3Response {
   /**
    * Constructs a new <code>GetUserFundMarginV3Response</code>.
    * @alias module:model/GetUserFundMarginV3Response

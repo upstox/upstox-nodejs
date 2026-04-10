@@ -12,16 +12,16 @@
  * Do not edit the class manually.
  *
  */
-import ApiClient from '../ApiClient';
-import AvailableToTrade from './AvailableToTrade';
-import UnavailableToTrade from './UnavailableToTrade';
+import {ApiClient} from '../ApiClient';
+import {AvailableToTrade} from './AvailableToTrade';
+import {UnavailableToTrade} from './UnavailableToTrade';
 
 /**
  * The UserFundMarginV3Data model module.
  * @module model/UserFundMarginV3Data
  * @version v0
  */
-export default class UserFundMarginV3Data {
+export class UserFundMarginV3Data {
   /**
    * Constructs a new <code>UserFundMarginV3Data</code>.
    * @alias module:model/UserFundMarginV3Data

@@ -12,16 +12,16 @@
  * Do not edit the class manually.
  *
  */
-import ApiClient from '../ApiClient';
-import DeliveryMargin from './DeliveryMargin';
-import Loss from './Loss';
+import {ApiClient} from '../ApiClient';
+import {DeliveryMargin} from './DeliveryMargin';
+import {Loss} from './Loss';
 
 /**
  * The CashMarginUsed model module.
  * @module model/CashMarginUsed
  * @version v0
  */
-export default class CashMarginUsed {
+export class CashMarginUsed {
   /**
    * Constructs a new <code>CashMarginUsed</code>.
    * @alias module:model/CashMarginUsed

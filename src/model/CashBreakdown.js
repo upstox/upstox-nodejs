@@ -12,14 +12,14 @@
  * Do not edit the class manually.
  *
  */
-import ApiClient from '../ApiClient';
+import {ApiClient} from '../ApiClient';
 
 /**
  * The CashBreakdown model module.
  * @module model/CashBreakdown
  * @version v0
  */
-export default class CashBreakdown {
+export class CashBreakdown {
   /**
    * Constructs a new <code>CashBreakdown</code>.
    * @alias module:model/CashBreakdown

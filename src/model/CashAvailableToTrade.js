@@ -12,16 +12,16 @@
  * Do not edit the class manually.
  *
  */
-import ApiClient from '../ApiClient';
-import CashBreakdown from './CashBreakdown';
-import CashMarginUsed from './CashMarginUsed';
+import {ApiClient} from '../ApiClient';
+import {CashBreakdown} from './CashBreakdown';
+import {CashMarginUsed} from './CashMarginUsed';
 
 /**
  * The CashAvailableToTrade model module.
  * @module model/CashAvailableToTrade
  * @version v0
  */
-export default class CashAvailableToTrade {
+export class CashAvailableToTrade {
   /**
    * Constructs a new <code>CashAvailableToTrade</code>.
    * @alias module:model/CashAvailableToTrade

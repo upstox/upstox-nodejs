@@ -12,14 +12,14 @@
  * Do not edit the class manually.
  *
  */
-import ApiClient from '../ApiClient';
+import {ApiClient} from '../ApiClient';
 
 /**
  * The KillSwitchSegmentData model module.
  * @module model/KillSwitchSegmentData
  * @version v0
  */
-export default class KillSwitchSegmentData {
+export class KillSwitchSegmentData {
   /**
    * Constructs a new <code>KillSwitchSegmentData</code>.
    * @alias module:model/KillSwitchSegmentData

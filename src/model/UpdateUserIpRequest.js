@@ -12,14 +12,14 @@
  * Do not edit the class manually.
  *
  */
-import ApiClient from '../ApiClient';
+import {ApiClient} from '../ApiClient';
 
 /**
  * The UpdateUserIpRequest model module.
  * @module model/UpdateUserIpRequest
  * @version v0
  */
-export default class UpdateUserIpRequest {
+export class UpdateUserIpRequest {
   /**
    * Constructs a new <code>UpdateUserIpRequest</code>.
    * @alias module:model/UpdateUserIpRequest

@@ -12,16 +12,16 @@
  * Do not edit the class manually.
  *
  */
-import ApiClient from '../ApiClient';
-import CashAvailableToTrade from './CashAvailableToTrade';
-import PledgeAvailableToTrade from './PledgeAvailableToTrade';
+import {ApiClient} from '../ApiClient';
+import {CashAvailableToTrade} from './CashAvailableToTrade';
+import {PledgeAvailableToTrade} from './PledgeAvailableToTrade';
 
 /**
  * The AvailableToTrade model module.
  * @module model/AvailableToTrade
  * @version v0
  */
-export default class AvailableToTrade {
+export class AvailableToTrade {
   /**
    * Constructs a new <code>AvailableToTrade</code>.
    * @alias module:model/AvailableToTrade

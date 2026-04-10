@@ -12,15 +12,15 @@
  * Do not edit the class manually.
  *
  */
-import ApiClient from '../ApiClient';
-import UnsettledProfit from './UnsettledProfit';
+import {ApiClient} from '../ApiClient';
+import {UnsettledProfit} from './UnsettledProfit';
 
 /**
  * The CashUnavailableToTrade model module.
  * @module model/CashUnavailableToTrade
  * @version v0
  */
-export default class CashUnavailableToTrade {
+export class CashUnavailableToTrade {
   /**
    * Constructs a new <code>CashUnavailableToTrade</code>.
    * @alias module:model/CashUnavailableToTrade
