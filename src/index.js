@@ -14,12 +14,17 @@
  */
 import {ApiClient} from './ApiClient';
 import {AnalyticsData} from './model/AnalyticsData';
+import {AvailableToTrade} from './model/AvailableToTrade';
 import {ApiGatewayErrorResponse} from './model/ApiGatewayErrorResponse';
 import {BatchExecutionSummary} from './model/BatchExecutionSummary';
 import {BrokerageData} from './model/BrokerageData';
 import {BrokerageTaxes} from './model/BrokerageTaxes';
 import {BrokerageWrapperData} from './model/BrokerageWrapperData';
 import {CancelOrExitMultiOrderData} from './model/CancelOrExitMultiOrderData';
+import {CashAvailableToTrade} from './model/CashAvailableToTrade';
+import {CashBreakdown} from './model/CashBreakdown';
+import {CashMarginUsed} from './model/CashMarginUsed';
+import {CashUnavailableToTrade} from './model/CashUnavailableToTrade';
 import {CancelOrExitMultiOrderResponse} from './model/CancelOrExitMultiOrderResponse';
 import {CancelOrExitOrderErrorData} from './model/CancelOrExitOrderErrorData';
 import {CancelOrderData} from './model/CancelOrderData';
@@ -28,6 +33,7 @@ import {CancelOrderV3Response} from './model/CancelOrderV3Response';
 import {ConvertPositionData} from './model/ConvertPositionData';
 import {ConvertPositionRequest} from './model/ConvertPositionRequest';
 import {ConvertPositionResponse} from './model/ConvertPositionResponse';
+import {DeliveryMargin} from './model/DeliveryMargin';
 import {Depth} from './model/Depth';
 import {DepthMap} from './model/DepthMap';
 import {DpPlan} from './model/DpPlan';
@@ -61,6 +67,7 @@ import {GetTradeResponse} from './model/GetTradeResponse';
 import {GetTradeWiseProfitAndLossDataResponse} from './model/GetTradeWiseProfitAndLossDataResponse';
 import {GetTradeWiseProfitAndLossMetaDataResponse} from './model/GetTradeWiseProfitAndLossMetaDataResponse';
 import {GetUserFundMarginResponse} from './model/GetUserFundMarginResponse';
+import {GetUserFundMarginV3Response} from './model/GetUserFundMarginV3Response';
 import {GttCancelOrderRequest} from './model/GttCancelOrderRequest';
 import {GttModifyOrderRequest} from './model/GttModifyOrderRequest';
 import {GttOrderData} from './model/GttOrderData';
@@ -77,9 +84,14 @@ import {IndieUserTokenRequest} from './model/IndieUserTokenRequest';
 import {Instrument} from './model/Instrument';
 import {InstrumentData} from './model/InstrumentData';
 import {IntraDayCandleData} from './model/IntraDayCandleData';
+import {KillSwitchResponse} from './model/KillSwitchResponse';
+import {KillSwitchSegmentData} from './model/KillSwitchSegmentData';
+import {KillSwitchSegmentUpdateRequest} from './model/KillSwitchSegmentUpdateRequest';
 import {LogoutResponse} from './model/LogoutResponse';
+import {Loss} from './model/Loss';
 import {Margin} from './model/Margin';
 import {MarginData} from './model/MarginData';
+import {MarginFromPledge} from './model/MarginFromPledge';
 import {MarginRequest} from './model/MarginRequest';
 import {MarketData} from './model/MarketData';
 import {MarketQuoteOHLC} from './model/MarketQuoteOHLC';
@@ -116,6 +128,9 @@ import {PlaceOrderResponse} from './model/PlaceOrderResponse';
 import {PlaceOrderV3Request} from './model/PlaceOrderV3Request';
 import {PlaceOrderV3Response} from './model/PlaceOrderV3Response';
 import {PositionData} from './model/PositionData';
+import {PledgeAvailableToTrade} from './model/PledgeAvailableToTrade';
+import {PledgeMarginUsed} from './model/PledgeMarginUsed';
+import {PledgeUnavailableToTrade} from './model/PledgeUnavailableToTrade';
 import {PostMarginResponse} from './model/PostMarginResponse';
 import {Problem} from './model/Problem';
 import {ProfileData} from './model/ProfileData';
@@ -139,7 +154,13 @@ import {TradeHistoryResponsePageData} from './model/TradeHistoryResponsePageData
 import {TradeHistoryResponseTradeData} from './model/TradeHistoryResponseTradeData';
 import {TradeWiseMetaData} from './model/TradeWiseMetaData';
 import {TradeWiseProfitAndLossData} from './model/TradeWiseProfitAndLossData';
+import {UnavailableToTrade} from './model/UnavailableToTrade';
+import {UnsettledProfit} from './model/UnsettledProfit';
+import {UpdateUserIpRequest} from './model/UpdateUserIpRequest';
 import {UserFundMarginData} from './model/UserFundMarginData';
+import {UserFundMarginV3Data} from './model/UserFundMarginV3Data';
+import {UserIpResponse} from './model/UserIpResponse';
+import {UserIpResponseData} from './model/UserIpResponseData';
 import {WebsocketAuthRedirectResponse} from './model/WebsocketAuthRedirectResponse';
 import {WebsocketAuthRedirectResponseData} from './model/WebsocketAuthRedirectResponseData';
 import {ChargeApi} from './api/ChargeApi';
@@ -211,6 +232,11 @@ export {
      * @property {module:model/ApiGatewayErrorResponse}
      */
     ApiGatewayErrorResponse,
+    /**
+     * The AvailableToTrade model constructor.
+     * @property {module:model/AvailableToTrade}
+     */
+    AvailableToTrade,
 
     /**
      * The BatchExecutionSummary model constructor.
@@ -253,6 +279,26 @@ export {
      * @property {module:model/CancelOrExitOrderErrorData}
      */
     CancelOrExitOrderErrorData,
+    /**
+     * The CashAvailableToTrade model constructor.
+     * @property {module:model/CashAvailableToTrade}
+     */
+    CashAvailableToTrade,
+    /**
+     * The CashBreakdown model constructor.
+     * @property {module:model/CashBreakdown}
+     */
+    CashBreakdown,
+    /**
+     * The CashMarginUsed model constructor.
+     * @property {module:model/CashMarginUsed}
+     */
+    CashMarginUsed,
+    /**
+     * The CashUnavailableToTrade model constructor.
+     * @property {module:model/CashUnavailableToTrade}
+     */
+    CashUnavailableToTrade,
 
     /**
      * The CancelOrderData model constructor.
@@ -290,6 +336,11 @@ export {
      */
     ConvertPositionResponse,
 
+    /**
+     * The DeliveryMargin model constructor.
+     * @property {module:model/DeliveryMargin}
+     */
+    DeliveryMargin,
     /**
      * The Depth model constructor.
      * @property {module:model/Depth}
@@ -487,6 +538,11 @@ export {
      * @property {module:model/GetUserFundMarginResponse}
      */
     GetUserFundMarginResponse,
+    /**
+     * The GetUserFundMarginV3Response model constructor.
+     * @property {module:model/GetUserFundMarginV3Response}
+     */
+    GetUserFundMarginV3Response,
 
     /**
      * The GttCancelOrderRequest model constructor.
@@ -583,12 +639,32 @@ export {
      * @property {module:model/IntraDayCandleData}
      */
     IntraDayCandleData,
+    /**
+     * The KillSwitchResponse model constructor.
+     * @property {module:model/KillSwitchResponse}
+     */
+    KillSwitchResponse,
+    /**
+     * The KillSwitchSegmentData model constructor.
+     * @property {module:model/KillSwitchSegmentData}
+     */
+    KillSwitchSegmentData,
+    /**
+     * The KillSwitchSegmentUpdateRequest model constructor.
+     * @property {module:model/KillSwitchSegmentUpdateRequest}
+     */
+    KillSwitchSegmentUpdateRequest,
 
     /**
      * The LogoutResponse model constructor.
      * @property {module:model/LogoutResponse}
      */
     LogoutResponse,
+    /**
+     * The Loss model constructor.
+     * @property {module:model/Loss}
+     */
+    Loss,
 
     /**
      * The Margin model constructor.
@@ -601,6 +677,11 @@ export {
      * @property {module:model/MarginData}
      */
     MarginData,
+    /**
+     * The MarginFromPledge model constructor.
+     * @property {module:model/MarginFromPledge}
+     */
+    MarginFromPledge,
 
     /**
      * The MarginRequest model constructor.
@@ -817,6 +898,21 @@ export {
      * @property {module:model/PositionData}
      */
     PositionData,
+    /**
+     * The PledgeAvailableToTrade model constructor.
+     * @property {module:model/PledgeAvailableToTrade}
+     */
+    PledgeAvailableToTrade,
+    /**
+     * The PledgeMarginUsed model constructor.
+     * @property {module:model/PledgeMarginUsed}
+     */
+    PledgeMarginUsed,
+    /**
+     * The PledgeUnavailableToTrade model constructor.
+     * @property {module:model/PledgeUnavailableToTrade}
+     */
+    PledgeUnavailableToTrade,
 
     /**
      * The PostMarginResponse model constructor.
@@ -955,12 +1051,42 @@ export {
      * @property {module:model/TradeWiseProfitAndLossData}
      */
     TradeWiseProfitAndLossData,
+    /**
+     * The UnavailableToTrade model constructor.
+     * @property {module:model/UnavailableToTrade}
+     */
+    UnavailableToTrade,
+    /**
+     * The UnsettledProfit model constructor.
+     * @property {module:model/UnsettledProfit}
+     */
+    UnsettledProfit,
+    /**
+     * The UpdateUserIpRequest model constructor.
+     * @property {module:model/UpdateUserIpRequest}
+     */
+    UpdateUserIpRequest,
 
     /**
      * The UserFundMarginData model constructor.
      * @property {module:model/UserFundMarginData}
      */
     UserFundMarginData,
+    /**
+     * The UserFundMarginV3Data model constructor.
+     * @property {module:model/UserFundMarginV3Data}
+     */
+    UserFundMarginV3Data,
+    /**
+     * The UserIpResponse model constructor.
+     * @property {module:model/UserIpResponse}
+     */
+    UserIpResponse,
+    /**
+     * The UserIpResponseData model constructor.
+     * @property {module:model/UserIpResponseData}
+     */
+    UserIpResponseData,
 
     /**
      * The WebsocketAuthRedirectResponse model constructor.
