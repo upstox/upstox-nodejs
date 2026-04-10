@@ -16,6 +16,10 @@ import {ApiClient} from "../ApiClient";
 import {ApiGatewayErrorResponse} from '../model/ApiGatewayErrorResponse';
 import {GetProfileResponse} from '../model/GetProfileResponse';
 import {GetUserFundMarginResponse} from '../model/GetUserFundMarginResponse';
+import {GetUserFundMarginV3Response} from '../model/GetUserFundMarginV3Response';
+import {KillSwitchResponse} from '../model/KillSwitchResponse';
+import {UpdateUserIpRequest} from '../model/UpdateUserIpRequest';
+import {UserIpResponse} from '../model/UserIpResponse';
 
 /**
 * User service.
@@ -128,6 +132,179 @@ export class UserApi {
 
       return this.apiClient.callApi(
         '/v2/user/get-funds-and-margin', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+    /**
+     * Callback function to receive the result of the getKillSwitch operation.
+     * @callback moduleapi/UserApi~getKillSwitchCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/KillSwitchResponse} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Get kill switch status
+     * Returns the disable/enable status of all trading segments for the user.
+     * @param {module:api/UserApi~getKillSwitchCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/KillSwitchResponse}
+     */
+    getKillSwitch(callback) {
+      let postBody = null;
+
+      let pathParams = {};
+      let queryParams = {};
+      let headerParams = {};
+      let formParams = {};
+
+      let authNames = ['OAUTH2'];
+      let contentTypes = [];
+      let accepts = ['*/*', 'application/json'];
+      let returnType = KillSwitchResponse;
+
+      return this.apiClient.callApi(
+        '/v2/user/kill-switch', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+    /**
+     * Callback function to receive the result of the getUserFundMarginV3 operation.
+     * @callback moduleapi/UserApi~getUserFundMarginV3Callback
+     * @param {String} error Error message, if any.
+     * @param {module:model/GetUserFundMarginV3Response} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Get User Fund And Margin (v3)
+     * Shows the detailed balance breakdown of the user including cash, pledged margin, available-to-trade, and unavailable-to-trade components.
+     * @param {module:api/UserApi~getUserFundMarginV3Callback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/GetUserFundMarginV3Response}
+     */
+    getUserFundMarginV3(callback) {
+      let postBody = null;
+
+      let pathParams = {};
+      let queryParams = {};
+      let headerParams = {};
+      let formParams = {};
+
+      let authNames = ['OAUTH2'];
+      let contentTypes = [];
+      let accepts = ['*/*', 'application/json'];
+      let returnType = GetUserFundMarginV3Response;
+
+      return this.apiClient.callApi(
+        '/v3/user/get-funds-and-margin', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+    /**
+     * Callback function to receive the result of the getUserIps operation.
+     * @callback moduleapi/UserApi~getUserIpsCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/UserIpResponse} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Get whitelisted IPs for the user.
+     * @param {module:api/UserApi~getUserIpsCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/UserIpResponse}
+     */
+    getUserIps(callback) {
+      let postBody = null;
+
+      let pathParams = {};
+      let queryParams = {};
+      let headerParams = {};
+      let formParams = {};
+
+      let authNames = ['OAUTH2'];
+      let contentTypes = [];
+      let accepts = ['*/*'];
+      let returnType = UserIpResponse;
+
+      return this.apiClient.callApi(
+        '/v2/user/ip', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+    /**
+     * Callback function to receive the result of the updateKillSwitch operation.
+     * @callback moduleapi/UserApi~updateKillSwitchCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/KillSwitchResponse} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Update kill switch
+     * Enable or disable specific trading segments.
+     * @param {Object} body
+     * @param {module:api/UserApi~updateKillSwitchCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/KillSwitchResponse}
+     */
+    updateKillSwitch(body, callback) {
+      let postBody = body;
+      // verify the required parameter 'body' is set
+      if (body === undefined || body === null) {
+        throw new Error("Missing the required parameter 'body' when calling updateKillSwitch");
+      }
+
+      let pathParams = {};
+      let queryParams = {};
+      let headerParams = {};
+      let formParams = {};
+
+      let authNames = ['OAUTH2'];
+      let contentTypes = ['application/json'];
+      let accepts = ['*/*', 'application/json'];
+      let returnType = KillSwitchResponse;
+
+      return this.apiClient.callApi(
+        '/v2/user/kill-switch', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+    /**
+     * Callback function to receive the result of the updateUserIp operation.
+     * @callback moduleapi/UserApi~updateUserIpCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/UserIpResponse} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Update whitelisted IPs for the user.
+     * @param {module:model/UpdateUserIpRequest} body
+     * @param {module:api/UserApi~updateUserIpCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/UserIpResponse}
+     */
+    updateUserIp(body, callback) {
+      let postBody = body;
+      // verify the required parameter 'body' is set
+      if (body === undefined || body === null) {
+        throw new Error("Missing the required parameter 'body' when calling updateUserIp");
+      }
+
+      let pathParams = {};
+      let queryParams = {};
+      let headerParams = {};
+      let formParams = {};
+
+      let authNames = ['OAUTH2'];
+      let contentTypes = ['application/json'];
+      let accepts = ['*/*'];
+      let returnType = UserIpResponse;
+
+      return this.apiClient.callApi(
+        '/v2/user/ip', 'PUT',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
