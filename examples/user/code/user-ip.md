@@ -26,7 +26,7 @@ OAUTH2.accessToken = "{your_access_token}";
 let apiInstance = new UpstoxClient.UserApi();
 
 let body = new UpstoxClient.UpdateUserIpRequest();
-body.primaryIp = "127.0.0.1";
+body.primaryIp = "1.2.3.4";
 
 apiInstance.updateUserIp(body, (error, data, response) => {
   if (error) {
