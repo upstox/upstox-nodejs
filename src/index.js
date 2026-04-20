@@ -111,6 +111,10 @@ import {MultiOrderRequest} from './model/MultiOrderRequest';
 import {MultiOrderResponse} from './model/MultiOrderResponse';
 import {MultiOrderSummary} from './model/MultiOrderSummary';
 import {MultiOrderV3Data} from './model/MultiOrderV3Data';
+import {GetNewsResponse} from './model/GetNewsResponse';
+import {NewsItemData} from './model/NewsItemData';
+import {NewsResponseMetaData} from './model/NewsResponseMetaData';
+import {NewsResponsePageData} from './model/NewsResponsePageData';
 import {OAuthClientException} from './model/OAuthClientException';
 import {OAuthClientExceptionCause} from './model/OAuthClientExceptionCause';
 import {OAuthClientExceptionCauseStackTrace} from './model/OAuthClientExceptionCauseStackTrace';
@@ -172,6 +176,7 @@ import {LoginApi} from './api/LoginApi';
 import {MarketHolidaysAndTimingsApi} from './api/MarketHolidaysAndTimingsApi';
 import {MarketQuoteApi} from './api/MarketQuoteApi';
 import {MarketQuoteV3Api} from './api/MarketQuoteV3Api';
+import {NewsApi} from './api/NewsApi';
 import {OptionsApi} from './api/OptionsApi';
 import {OrderApi} from './api/OrderApi';
 import {OrderApiV3} from './api/OrderControllerV3Api';
@@ -466,6 +471,12 @@ export {
      * @property {module:model/GetMarketStatusResponse}
      */
     GetMarketStatusResponse,
+
+    /**
+     * The GetNewsResponse model constructor.
+     * @property {module:model/GetNewsResponse}
+     */
+    GetNewsResponse,
 
     /**
      * The GetOptionChainResponse model constructor.
@@ -796,6 +807,24 @@ export {
      * @property {module:model/MultiOrderV3Data}
      */
     MultiOrderV3Data,
+
+    /**
+     * The NewsItemData model constructor.
+     * @property {module:model/NewsItemData}
+     */
+    NewsItemData,
+
+    /**
+     * The NewsResponseMetaData model constructor.
+     * @property {module:model/NewsResponseMetaData}
+     */
+    NewsResponseMetaData,
+
+    /**
+     * The NewsResponsePageData model constructor.
+     * @property {module:model/NewsResponsePageData}
+     */
+    NewsResponsePageData,
 
     /**
      * The OAuthClientException model constructor.
@@ -1153,6 +1182,12 @@ export {
     * @property {module:api/MarketQuoteV3Api}
     */
     MarketQuoteV3Api,
+
+    /**
+    * The NewsApi service constructor.
+    * @property {module:api/NewsApi}
+    */
+    NewsApi,
 
     /**
     * The OptionsApi service constructor.
