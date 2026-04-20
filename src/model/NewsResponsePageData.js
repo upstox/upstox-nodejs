@@ -12,14 +12,14 @@
  * Do not edit the class manually.
  *
  */
-import ApiClient from '../ApiClient';
+import {ApiClient} from '../ApiClient';
 
 /**
  * The NewsResponsePageData model module.
  * @module model/NewsResponsePageData
  * @version v0
  */
-export default class NewsResponsePageData {
+export class NewsResponsePageData {
   /**
    * Constructs a new <code>NewsResponsePageData</code>.
    * @alias module:model/NewsResponsePageData

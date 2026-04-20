@@ -12,14 +12,14 @@
  * Do not edit the class manually.
  *
  */
-import ApiClient from '../ApiClient';
+import {ApiClient} from '../ApiClient';
 
 /**
  * The NewsItemData model module.
  * @module model/NewsItemData
  * @version v0
  */
-export default class NewsItemData {
+export class NewsItemData {
   /**
    * Constructs a new <code>NewsItemData</code>.
    * @alias module:model/NewsItemData

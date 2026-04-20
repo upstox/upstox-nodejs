@@ -12,16 +12,16 @@
  * Do not edit the class manually.
  *
  */
-import ApiClient from "../ApiClient";
-import ApiGatewayErrorResponse from '../model/ApiGatewayErrorResponse';
-import GetNewsResponse from '../model/GetNewsResponse';
+import {ApiClient} from "../ApiClient";
+import {ApiGatewayErrorResponse} from '../model/ApiGatewayErrorResponse';
+import {GetNewsResponse} from '../model/GetNewsResponse';
 
 /**
 * News service.
 * @module api/NewsApi
 * @version v0
 */
-export default class NewsApi {
+export class NewsApi {
 
     /**
     * Constructs a new NewsApi. 

@@ -12,15 +12,15 @@
  * Do not edit the class manually.
  *
  */
-import ApiClient from '../ApiClient';
-import NewsResponsePageData from './NewsResponsePageData';
+import {ApiClient} from '../ApiClient';
+import {NewsResponsePageData} from './NewsResponsePageData';
 
 /**
  * The NewsResponseMetaData model module.
  * @module model/NewsResponseMetaData
  * @version v0
  */
-export default class NewsResponseMetaData {
+export class NewsResponseMetaData {
   /**
    * Constructs a new <code>NewsResponseMetaData</code>.
    * @alias module:model/NewsResponseMetaData
