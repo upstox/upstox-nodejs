@@ -38,6 +38,7 @@ Samples are grouped by API area. Each `.md` file contains one or more Node.js sn
 | [**margins/**](margins/) | Margin details. |
 | [**charges/**](charges/) | Brokerage details. |
 | [**trade-profit-and-loss/**](trade-profit-and-loss/) | P&L report, report metadata, trade charges. |
+| [**mutual-funds-api/**](mutual-funds-api/) | Mutual fund holdings, orders, order details, and SIPs. |
 | [**news/**](news/) | News articles for instrument keys, current positions, and holdings. |
 | [**strategies/**](strategies/) | Ready-to-run options strategy examples for Nifty 50 (bullish, bearish, neutral, others). |
 
