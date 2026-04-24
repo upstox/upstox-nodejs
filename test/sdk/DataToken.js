@@ -1,2 +1,2 @@
-let accessToken = "access_token";
+let accessToken = "";
 module.exports = {accessToken};

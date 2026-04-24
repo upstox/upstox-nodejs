@@ -372,7 +372,7 @@ orderApiInstance.getOrderStatus(optsOrderStatus, (error, data, response) => {
 
 apiInstance = new UpstoxClient.OrderApi();
 body = []
-one_req = new UpstoxClient.MultiOrderRequest(1, "D", "DAY", 8.9, true, "NSE_EQ|INE669E01016", "LIMIT", "BUY", 0, 9, true, "tag_should_be_tg1");
+var one_req = new UpstoxClient.MultiOrderRequest(1, "D", "DAY", 8.9, true, "NSE_EQ|INE669E01016", "LIMIT", "BUY", 0, 9, true, "tag_should_be_tg1");
 one_req.tag = "tg1"
 body = body.concat(one_req);
 body = body.concat(new UpstoxClient.MultiOrderRequest(1, "D", "DAY", 8.9, true, "NSE_EQ|INE669E01016", "LIMIT", "BUY", 0, 9.0, true, "cid2"));
