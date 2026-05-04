@@ -75,6 +75,38 @@
           done();
         });
       });
+      describe('getPayinHistory', function() {
+        it('should call getPayinHistory successfully', function(done) {
+          // TODO: uncomment and update assertions after providing a valid token
+          /*
+          instance.getPayinHistory(function(error, data, response) {
+            if (error) {
+              done(error);
+              return;
+            }
+            expect(data).to.be.a(UpstoxClient.PaymentHistoryResponse);
+            done();
+          });
+          */
+          done();
+        });
+      });
+      describe('getPayoutHistory', function() {
+        it('should call getPayoutHistory successfully', function(done) {
+          // TODO: uncomment and update assertions after providing a valid token
+          /*
+          instance.getPayoutHistory(function(error, data, response) {
+            if (error) {
+              done(error);
+              return;
+            }
+            expect(data).to.be.a(UpstoxClient.PaymentHistoryResponse);
+            done();
+          });
+          */
+          done();
+        });
+      });
     });
   });
 
