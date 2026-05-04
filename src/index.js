@@ -132,6 +132,8 @@ import {OrderData} from './model/OrderData';
 import {OrderMetadata} from './model/OrderMetadata';
 import {OtherTaxes} from './model/OtherTaxes';
 import {Pagination} from './model/Pagination';
+import {PaymentHistoryData} from './model/PaymentHistoryData';
+import {PaymentHistoryResponse} from './model/PaymentHistoryResponse';
 import {PlaceOrderData} from './model/PlaceOrderData';
 import {PlaceOrderRequest} from './model/PlaceOrderRequest';
 import {PlaceOrderResponse} from './model/PlaceOrderResponse';
@@ -947,6 +949,18 @@ export {
      * @property {module:model/Pagination}
      */
     Pagination,
+
+    /**
+     * The PaymentHistoryData model constructor.
+     * @property {module:model/PaymentHistoryData}
+     */
+    PaymentHistoryData,
+
+    /**
+     * The PaymentHistoryResponse model constructor.
+     * @property {module:model/PaymentHistoryResponse}
+     */
+    PaymentHistoryResponse,
 
     /**
      * The PlaceOrderData model constructor.
