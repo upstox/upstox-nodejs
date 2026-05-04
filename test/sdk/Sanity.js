@@ -761,6 +761,44 @@ apiInstanceV3Algo.cancelGTTOrder(bodyCancelGTTAlgo, (error, data, response) => {
 
 
 
+// ============================================
+// PAYMENTS API TESTS
+// ============================================
+
+apiInstance = new UpstoxClient.UserApi();
+apiInstance.getPayinHistory((error, data, response) => {
+  if (error) {
+    console.error('error in getPayinHistory: ' + error.response.text);
+  } else {
+    if (data.status != 'success') {
+      console.log('error in getPayinHistory');
+    }
+  }
+});
+
+apiInstance.getPayoutHistory((error, data, response) => {
+  if (error) {
+    console.error('error in getPayoutHistory: ' + error.response.text);
+  } else {
+    if (data.status != 'success') {
+      console.log('error in getPayoutHistory');
+    }
+  }
+});
+
+// Model smoke checks
+let paymentHistoryData = new UpstoxClient.PaymentHistoryData();
+paymentHistoryData.amount = 5000.0;
+paymentHistoryData.mode = 'UPI';
+paymentHistoryData.status = 'SUCCESS';
+paymentHistoryData.bankName = 'HDFC';
+paymentHistoryData.transactionId = 'TXN12345';
+paymentHistoryData.totalCharges = 0.0;
+
+let paymentHistoryResponse = new UpstoxClient.PaymentHistoryResponse();
+paymentHistoryResponse.status = 'success';
+paymentHistoryResponse.data = [paymentHistoryData];
+
 setTimeout(() => {
   apiInstance = new UpstoxClient.LoginApi();
   opts = {
