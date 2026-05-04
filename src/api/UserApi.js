@@ -18,6 +18,7 @@ import {GetProfileResponse} from '../model/GetProfileResponse';
 import {GetUserFundMarginResponse} from '../model/GetUserFundMarginResponse';
 import {GetUserFundMarginV3Response} from '../model/GetUserFundMarginV3Response';
 import {KillSwitchResponse} from '../model/KillSwitchResponse';
+import {PaymentHistoryResponse} from '../model/PaymentHistoryResponse';
 import {UpdateUserIpRequest} from '../model/UpdateUserIpRequest';
 import {UserIpResponse} from '../model/UserIpResponse';
 
@@ -165,6 +166,68 @@ export class UserApi {
 
       return this.apiClient.callApi(
         '/v2/user/kill-switch', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+    /**
+     * Callback function to receive the result of the getPayinHistory operation.
+     * @callback moduleapi/UserApi~getPayinHistoryCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/PaymentHistoryResponse{ data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * @param {module:api/UserApi~getPayinHistoryCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link <&vendorExtensions.x-jsdoc-type>}
+     */
+    getPayinHistory(callback) {
+      let postBody = null;
+
+      let pathParams = {};
+      let queryParams = {};
+      let headerParams = {};
+      let formParams = {};
+
+      let authNames = ['OAUTH2'];
+      let contentTypes = [];
+      let accepts = ['*/*'];
+      let returnType = PaymentHistoryResponse;
+
+      return this.apiClient.callApi(
+        '/v2/user/payments/payin', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+    /**
+     * Callback function to receive the result of the getPayoutHistory operation.
+     * @callback moduleapi/UserApi~getPayoutHistoryCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/PaymentHistoryResponse{ data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * @param {module:api/UserApi~getPayoutHistoryCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link <&vendorExtensions.x-jsdoc-type>}
+     */
+    getPayoutHistory(callback) {
+      let postBody = null;
+
+      let pathParams = {};
+      let queryParams = {};
+      let headerParams = {};
+      let formParams = {};
+
+      let authNames = ['OAUTH2'];
+      let contentTypes = [];
+      let accepts = ['*/*'];
+      let returnType = PaymentHistoryResponse;
+
+      return this.apiClient.callApi(
+        '/v2/user/payments/payout', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
