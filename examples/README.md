@@ -41,6 +41,8 @@ Samples are grouped by API area. Each `.md` file contains one or more Node.js sn
 | [**mutual-funds-api/**](mutual-funds-api/) | Mutual fund holdings, orders, order details, and SIPs. |
 | [**payments-api/**](payments-api/) | Payin and payout payment history for the user. |
 | [**news/**](news/) | News articles for instrument keys, current positions, and holdings. |
+| [**fundamentals/**](fundamentals/) | Company profile, balance sheet, cash flow, income statement, key ratios, share holdings, corporate actions, and competitors. |
+| [**market-analytics/**](market-analytics/) | Open interest, change in OI, PCR, max pain, FII activity, and DII activity. |
 | [**strategies/**](strategies/) | Ready-to-run options strategy examples for Nifty 50 (bullish, bearish, neutral, others). |
 
 ### Options Strategies
