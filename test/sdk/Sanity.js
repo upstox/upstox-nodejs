@@ -799,6 +799,86 @@ let paymentHistoryResponse = new UpstoxClient.PaymentHistoryResponse();
 paymentHistoryResponse.status = 'success';
 paymentHistoryResponse.data = [paymentHistoryData];
 
+// FundamentalsApi
+var fundamentalsApi = new UpstoxClient.FundamentalsApi();
+var isin = 'INE002A01018';
+
+fundamentalsApi.getCompanyProfile(isin, (error, data, response) => {
+  if (error) console.error('error in getCompanyProfile: ' + error.response.text);
+  else if (data.status !== 'success') console.log('error in getCompanyProfile');
+});
+
+fundamentalsApi.getBalanceSheet(isin, { type: 'consolidated' }, (error, data, response) => {
+  if (error) console.error('error in getBalanceSheet: ' + error.response.text);
+  else if (data.status !== 'success') console.log('error in getBalanceSheet');
+});
+
+fundamentalsApi.getCashFlow(isin, { type: 'consolidated' }, (error, data, response) => {
+  if (error) console.error('error in getCashFlow: ' + error.response.text);
+  else if (data.status !== 'success') console.log('error in getCashFlow');
+});
+
+fundamentalsApi.getIncomeStatement(isin, { type: 'consolidated', timePeriod: 'annual' }, (error, data, response) => {
+  if (error) console.error('error in getIncomeStatement: ' + error.response.text);
+  else if (data.status !== 'success') console.log('error in getIncomeStatement');
+});
+
+fundamentalsApi.getKeyRatios(isin, (error, data, response) => {
+  if (error) console.error('error in getKeyRatios: ' + error.response.text);
+  else if (data.status !== 'success') console.log('error in getKeyRatios');
+});
+
+fundamentalsApi.getShareHoldings(isin, (error, data, response) => {
+  if (error) console.error('error in getShareHoldings: ' + error.response.text);
+  else if (data.status !== 'success') console.log('error in getShareHoldings');
+});
+
+fundamentalsApi.getCorporateActions(isin, (error, data, response) => {
+  if (error) console.error('error in getCorporateActions: ' + error.response.text);
+  else if (data.status !== 'success') console.log('error in getCorporateActions');
+});
+
+fundamentalsApi.getCompetitors('NSE_EQ|INE002A01018', (error, data, response) => {
+  if (error) console.error('error in getCompetitors: ' + error.response.text);
+  else if (data.status !== 'success') console.log('error in getCompetitors');
+});
+
+// MarketApi
+var marketApi = new UpstoxClient.MarketApi();
+var mktInstrumentKey = 'NSE_INDEX|Nifty 50';
+var mktExpiry = '2025-06-26';
+var mktDate = '2025-06-12';
+
+marketApi.getOiData(mktInstrumentKey, mktExpiry, mktDate, (error, data, response) => {
+  if (error) console.error('error in getOiData: ' + error.response.text);
+  else if (data.status !== 'success') console.log('error in getOiData');
+});
+
+marketApi.getChangeOiData(mktInstrumentKey, mktExpiry, mktDate, 5, (error, data, response) => {
+  if (error) console.error('error in getChangeOiData: ' + error.response.text);
+  else if (data.status !== 'success') console.log('error in getChangeOiData');
+});
+
+marketApi.getPcrData(mktInstrumentKey, mktExpiry, mktDate, 30, (error, data, response) => {
+  if (error) console.error('error in getPcrData: ' + error.response.text);
+  else if (data.status !== 'success') console.log('error in getPcrData');
+});
+
+marketApi.getMaxPainData(mktInstrumentKey, mktExpiry, mktDate, 30, (error, data, response) => {
+  if (error) console.error('error in getMaxPainData: ' + error.response.text);
+  else if (data.status !== 'success') console.log('error in getMaxPainData');
+});
+
+marketApi.getFiiData('NSE_EQ|CASH', '1D', { from: '2025-01-01' }, (error, data, response) => {
+  if (error) console.error('error in getFiiData: ' + error.response.text);
+  else if (data.status !== 'success') console.log('error in getFiiData');
+});
+
+marketApi.getDiiData('NSE_EQ|CASH', '1D', { from: '2025-01-01' }, (error, data, response) => {
+  if (error) console.error('error in getDiiData: ' + error.response.text);
+  else if (data.status !== 'success') console.log('error in getDiiData');
+});
+
 setTimeout(() => {
   apiInstance = new UpstoxClient.LoginApi();
   opts = {

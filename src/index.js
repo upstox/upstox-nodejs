@@ -14,6 +14,30 @@
  */
 import {ApiClient} from './ApiClient';
 import {AnalyticsData} from './model/AnalyticsData';
+import {AnalyticsResponse} from './model/AnalyticsResponse';
+import {BalanceSheetData} from './model/BalanceSheetData';
+import {BalanceSheetHistoryItem} from './model/BalanceSheetHistoryItem';
+import {BalanceSheetResponse} from './model/BalanceSheetResponse';
+import {CashFlowData} from './model/CashFlowData';
+import {CashFlowEntry} from './model/CashFlowEntry';
+import {CashFlowResponse} from './model/CashFlowResponse';
+import {CompanyProfileData} from './model/CompanyProfileData';
+import {CompanyProfileResponse} from './model/CompanyProfileResponse';
+import {CompetitorData} from './model/CompetitorData';
+import {CompetitorsResponse} from './model/CompetitorsResponse';
+import {CorporateActionData} from './model/CorporateActionData';
+import {CorporateActionEventDetail} from './model/CorporateActionEventDetail';
+import {CorporateActionsResponse} from './model/CorporateActionsResponse';
+import {FinancialStatementEntry} from './model/FinancialStatementEntry';
+import {HistoryItem} from './model/HistoryItem';
+import {IncomeStatementData} from './model/IncomeStatementData';
+import {IncomeStatementEntry} from './model/IncomeStatementEntry';
+import {IncomeStatementResponse} from './model/IncomeStatementResponse';
+import {KeyRatioData} from './model/KeyRatioData';
+import {KeyRatiosResponse} from './model/KeyRatiosResponse';
+import {SectorMarketCapAmount} from './model/SectorMarketCapAmount';
+import {ShareHoldingData} from './model/ShareHoldingData';
+import {ShareHoldingsResponse} from './model/ShareHoldingsResponse';
 import {ApiGatewayErrorResponse} from './model/ApiGatewayErrorResponse';
 import {AvailableToTrade} from './model/AvailableToTrade';
 import {BatchExecutionSummary} from './model/BatchExecutionSummary';
@@ -176,6 +200,8 @@ import {WebsocketAuthRedirectResponse} from './model/WebsocketAuthRedirectRespon
 import {WebsocketAuthRedirectResponseData} from './model/WebsocketAuthRedirectResponseData';
 import {PortfolioDataStreamer} from './feeder/PortfolioDataStreamer';
 import { MarketDataStreamerV3 } from './feeder/MarketDataStreamerV3';
+import {FundamentalsApi} from './api/FundamentalsApi';
+import {MarketApi} from './api/MarketApi';
 import {ChargeApi} from './api/ChargeApi';
 import {ExpiredInstrumentApi} from './api/ExpiredInstrumentApi';
 import {HistoryApi} from './api/HistoryApi';
@@ -241,6 +267,150 @@ export {
      * @property {module:model/AnalyticsData}
      */
     AnalyticsData,
+
+    /**
+     * The AnalyticsResponse model constructor.
+     * @property {module:model/AnalyticsResponse}
+     */
+    AnalyticsResponse,
+
+    /**
+     * The BalanceSheetData model constructor.
+     * @property {module:model/BalanceSheetData}
+     */
+    BalanceSheetData,
+
+    /**
+     * The BalanceSheetHistoryItem model constructor.
+     * @property {module:model/BalanceSheetHistoryItem}
+     */
+    BalanceSheetHistoryItem,
+
+    /**
+     * The BalanceSheetResponse model constructor.
+     * @property {module:model/BalanceSheetResponse}
+     */
+    BalanceSheetResponse,
+
+    /**
+     * The CashFlowData model constructor.
+     * @property {module:model/CashFlowData}
+     */
+    CashFlowData,
+
+    /**
+     * The CashFlowEntry model constructor.
+     * @property {module:model/CashFlowEntry}
+     */
+    CashFlowEntry,
+
+    /**
+     * The CashFlowResponse model constructor.
+     * @property {module:model/CashFlowResponse}
+     */
+    CashFlowResponse,
+
+    /**
+     * The CompanyProfileData model constructor.
+     * @property {module:model/CompanyProfileData}
+     */
+    CompanyProfileData,
+
+    /**
+     * The CompanyProfileResponse model constructor.
+     * @property {module:model/CompanyProfileResponse}
+     */
+    CompanyProfileResponse,
+
+    /**
+     * The CompetitorData model constructor.
+     * @property {module:model/CompetitorData}
+     */
+    CompetitorData,
+
+    /**
+     * The CompetitorsResponse model constructor.
+     * @property {module:model/CompetitorsResponse}
+     */
+    CompetitorsResponse,
+
+    /**
+     * The CorporateActionData model constructor.
+     * @property {module:model/CorporateActionData}
+     */
+    CorporateActionData,
+
+    /**
+     * The CorporateActionEventDetail model constructor.
+     * @property {module:model/CorporateActionEventDetail}
+     */
+    CorporateActionEventDetail,
+
+    /**
+     * The CorporateActionsResponse model constructor.
+     * @property {module:model/CorporateActionsResponse}
+     */
+    CorporateActionsResponse,
+
+    /**
+     * The FinancialStatementEntry model constructor.
+     * @property {module:model/FinancialStatementEntry}
+     */
+    FinancialStatementEntry,
+
+    /**
+     * The HistoryItem model constructor.
+     * @property {module:model/HistoryItem}
+     */
+    HistoryItem,
+
+    /**
+     * The IncomeStatementData model constructor.
+     * @property {module:model/IncomeStatementData}
+     */
+    IncomeStatementData,
+
+    /**
+     * The IncomeStatementEntry model constructor.
+     * @property {module:model/IncomeStatementEntry}
+     */
+    IncomeStatementEntry,
+
+    /**
+     * The IncomeStatementResponse model constructor.
+     * @property {module:model/IncomeStatementResponse}
+     */
+    IncomeStatementResponse,
+
+    /**
+     * The KeyRatioData model constructor.
+     * @property {module:model/KeyRatioData}
+     */
+    KeyRatioData,
+
+    /**
+     * The KeyRatiosResponse model constructor.
+     * @property {module:model/KeyRatiosResponse}
+     */
+    KeyRatiosResponse,
+
+    /**
+     * The SectorMarketCapAmount model constructor.
+     * @property {module:model/SectorMarketCapAmount}
+     */
+    SectorMarketCapAmount,
+
+    /**
+     * The ShareHoldingData model constructor.
+     * @property {module:model/ShareHoldingData}
+     */
+    ShareHoldingData,
+
+    /**
+     * The ShareHoldingsResponse model constructor.
+     * @property {module:model/ShareHoldingsResponse}
+     */
+    ShareHoldingsResponse,
 
     /**
      * The ApiGatewayErrorResponse model constructor.
@@ -1201,6 +1371,18 @@ export {
      * @property {module:model/WebsocketAuthRedirectResponseData}
      */
     WebsocketAuthRedirectResponseData,
+
+    /**
+    * The FundamentalsApi service constructor.
+    * @property {module:api/FundamentalsApi}
+    */
+    FundamentalsApi,
+
+    /**
+    * The MarketApi service constructor.
+    * @property {module:api/MarketApi}
+    */
+    MarketApi,
 
     /**
     * The ChargeApi service constructor.
