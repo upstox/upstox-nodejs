@@ -33,7 +33,7 @@ Samples are grouped by API area. Each `.md` file contains one or more Node.js sn
 | [**historical-data/**](historical-data/) | Historical and intraday candle data (v2 & v3). |
 | [**option-chain/**](option-chain/) | Option contracts, put-call option chain. |
 | [**expired-instruments/**](expired-instruments/) | Expiries, expired future/option contracts, expired historical candle data. |
-| [**market-information/**](market-information/) | Exchange status, market timings, market holidays. |
+| [**market-information/**](market-information/) | Exchange status, market timings, market holidays, OI, change in OI, PCR, max pain, FII, and DII. |
 | [**gtt-orders/**](gtt-orders/) | Place, modify, cancel, and get details for GTT (Good Till Triggered) orders. |
 | [**margins/**](margins/) | Margin details. |
 | [**charges/**](charges/) | Brokerage details. |
@@ -42,7 +42,6 @@ Samples are grouped by API area. Each `.md` file contains one or more Node.js sn
 | [**payments-api/**](payments-api/) | Payin and payout payment history for the user. |
 | [**news/**](news/) | News articles for instrument keys, current positions, and holdings. |
 | [**fundamentals/**](fundamentals/) | Company profile, balance sheet, cash flow, income statement, key ratios, share holdings, corporate actions, and competitors. |
-| [**market-analytics/**](market-analytics/) | Open interest, change in OI, PCR, max pain, FII activity, and DII activity. |
 | [**strategies/**](strategies/) | Ready-to-run options strategy examples for Nifty 50 (bullish, bearish, neutral, others). |
 
 ### Options Strategies
