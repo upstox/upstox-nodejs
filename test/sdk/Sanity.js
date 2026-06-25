@@ -65,6 +65,37 @@ apiInstance.postMargin(postMarginRequest, (error, data, response) => {
 });
 
 
+// --- IPO sanity ---
+var ipoApiInstance = new UpstoxClient.IPOApi();
+ipoApiInstance.getIpoListing({ status: "open" }, (error, data, response) => {
+  if (error) {
+    console.error(error.response.text);
+  } else {
+    if (data.status != "success") console.log("error in getIpoListing");
+  }
+});
+
+// --- Smartlist sanity ---
+var marketApiInstance = new UpstoxClient.MarketApi();
+marketApiInstance.getSmartlistMtf({ pageNumber: 1, pageSize: 50 }, (error, data, response) => {
+  if (error) {
+    console.error(error.response.text);
+  } else {
+    if (data.status != "success") console.log("error in getSmartlistMtf");
+  }
+});
+
+// --- Payout sanity ---
+var userApiInstance = new UpstoxClient.UserApi();
+userApiInstance.getPayoutModes((error, data, response) => {
+  if (error) {
+    console.error(error.response.text);
+  } else {
+    if (data.status != "success") console.log("error in getPayoutModes");
+  }
+});
+
+
 var apiInstance = new UpstoxClient.OrderApi();
 var body = new UpstoxClient.PlaceOrderRequest(1, UpstoxClient.PlaceOrderRequest.ProductEnum.D, UpstoxClient.PlaceOrderRequest.ValidityEnum.DAY, 0.0, "NSE_EQ|INE528G01035", UpstoxClient.PlaceOrderRequest.OrderTypeEnum.MARKET, UpstoxClient.PlaceOrderRequest.TransactionTypeEnum.BUY, 0, 0.0, true);
 var apiVersion = "2.0";
