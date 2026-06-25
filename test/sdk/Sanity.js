@@ -72,6 +72,15 @@ ipoApiInstance.getIpoListing({ status: "open" }, (error, data, response) => {
     console.error(error.response.text);
   } else {
     if (data.status != "success") console.log("error in getIpoListing");
+    console.log(JSON.stringify(data))
+  }
+});
+ipoApiInstance.getIpoDetails("ipo123", (error, data, response) => {
+  if (error) {
+    console.error(error.response.text);
+  } else {
+    if (data.status != "success") console.log("error in getIpoDetails");
+    console.log(JSON.stringify(data))
   }
 });
 
@@ -82,6 +91,23 @@ marketApiInstance.getSmartlistMtf({ pageNumber: 1, pageSize: 50 }, (error, data,
     console.error(error.response.text);
   } else {
     if (data.status != "success") console.log("error in getSmartlistMtf");
+    console.log(JSON.stringify(data))
+  }
+});
+marketApiInstance.getSmartlistFutures({ pageNumber: 1, pageSize: 50 }, (error, data, response) => {
+  if (error) {
+    console.error(error.response.text);
+  } else {
+    if (data.status != "success") console.log("error in getSmartlistFutures");
+    console.log(JSON.stringify(data))
+  }
+});
+marketApiInstance.getSmartlistOptions({ pageNumber: 1, pageSize: 50 }, (error, data, response) => {
+  if (error) {
+    console.error(error.response.text);
+  } else {
+    if (data.status != "success") console.log("error in getSmartlistOptions");
+    console.log(JSON.stringify(data))
   }
 });
 
@@ -92,6 +118,29 @@ userApiInstance.getPayoutModes((error, data, response) => {
     console.error(error.response.text);
   } else {
     if (data.status != "success") console.log("error in getPayoutModes");
+    console.log(JSON.stringify(data))
+  }
+});
+userApiInstance.initiatePayout(new UpstoxClient.InitiatePayoutRequest("NEFT", 1000.0), (error, data, response) => {
+  if (error) {
+    console.error(error.response.text);
+  } else {
+    if (data.status != "success") console.log("error in initiatePayout");
+    console.log(JSON.stringify(data))
+  }
+});
+userApiInstance.modifyPayout(new UpstoxClient.ModifyPayoutRequest(1000.0), "TXN123456", (error, data, response) => {
+  if (error) {
+    console.error(error.response.text);
+  } else {
+    if (data.status != "success") console.log("error in modifyPayout");
+  }
+});
+userApiInstance.cancelPayout("TXN123456", (error, data, response) => {
+  if (error) {
+    console.error(error.response.text);
+  } else {
+    if (data.status != "success") console.log("error in cancelPayout");
   }
 });
 
