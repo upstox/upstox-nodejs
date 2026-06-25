@@ -158,6 +158,19 @@ import {OtherTaxes} from './model/OtherTaxes';
 import {Pagination} from './model/Pagination';
 import {PaymentHistoryData} from './model/PaymentHistoryData';
 import {PaymentHistoryResponse} from './model/PaymentHistoryResponse';
+import {IpoListingData} from './model/IpoListingData';
+import {IpoListingResponse} from './model/IpoListingResponse';
+import {IpoMetaData} from './model/IpoMetaData';
+import {IpoDetailsData} from './model/IpoDetailsData';
+import {IpoDetailsResponse} from './model/IpoDetailsResponse';
+import {IpoRegistrarInfo} from './model/IpoRegistrarInfo';
+import {IpoTimeline} from './model/IpoTimeline';
+import {InitiatePayoutRequest} from './model/InitiatePayoutRequest';
+import {ModifyPayoutRequest} from './model/ModifyPayoutRequest';
+import {PayoutDetails} from './model/PayoutDetails';
+import {PayoutDetailsResponse} from './model/PayoutDetailsResponse';
+import {PayoutModesData} from './model/PayoutModesData';
+import {PayoutModesResponse} from './model/PayoutModesResponse';
 import {PlaceOrderData} from './model/PlaceOrderData';
 import {PlaceOrderRequest} from './model/PlaceOrderRequest';
 import {PlaceOrderResponse} from './model/PlaceOrderResponse';
@@ -221,6 +234,7 @@ import {PostTradeApi} from './api/PostTradeApi';
 import {TradeProfitAndLossApi} from './api/TradeProfitAndLossApi';
 import {UserApi} from './api/UserApi';
 import {WebsocketApi} from './api/WebsocketApi';
+import {IPOApi} from './api/IPOApi';
 
 /**
 * Object.<br>
@@ -1133,6 +1147,84 @@ export {
     PaymentHistoryResponse,
 
     /**
+     * The IpoListingData model constructor.
+     * @property {module:model/IpoListingData}
+     */
+    IpoListingData,
+
+    /**
+     * The IpoListingResponse model constructor.
+     * @property {module:model/IpoListingResponse}
+     */
+    IpoListingResponse,
+
+    /**
+     * The IpoMetaData model constructor.
+     * @property {module:model/IpoMetaData}
+     */
+    IpoMetaData,
+
+    /**
+     * The IpoDetailsData model constructor.
+     * @property {module:model/IpoDetailsData}
+     */
+    IpoDetailsData,
+
+    /**
+     * The IpoDetailsResponse model constructor.
+     * @property {module:model/IpoDetailsResponse}
+     */
+    IpoDetailsResponse,
+
+    /**
+     * The IpoRegistrarInfo model constructor.
+     * @property {module:model/IpoRegistrarInfo}
+     */
+    IpoRegistrarInfo,
+
+    /**
+     * The IpoTimeline model constructor.
+     * @property {module:model/IpoTimeline}
+     */
+    IpoTimeline,
+
+    /**
+     * The InitiatePayoutRequest model constructor.
+     * @property {module:model/InitiatePayoutRequest}
+     */
+    InitiatePayoutRequest,
+
+    /**
+     * The ModifyPayoutRequest model constructor.
+     * @property {module:model/ModifyPayoutRequest}
+     */
+    ModifyPayoutRequest,
+
+    /**
+     * The PayoutDetails model constructor.
+     * @property {module:model/PayoutDetails}
+     */
+    PayoutDetails,
+
+    /**
+     * The PayoutDetailsResponse model constructor.
+     * @property {module:model/PayoutDetailsResponse}
+     */
+    PayoutDetailsResponse,
+
+    /**
+     * The PayoutModesData model constructor.
+     * @property {module:model/PayoutModesData}
+     */
+    PayoutModesData,
+
+    /**
+     * The PayoutModesResponse model constructor.
+     * @property {module:model/PayoutModesResponse}
+     */
+    PayoutModesResponse,
+
+    /**
      * The PlaceOrderData model constructor.
      * @property {module:model/PlaceOrderData}
      */
@@ -1496,5 +1588,11 @@ export {
     * The WebsocketApi service constructor.
     * @property {module:api/WebsocketApi}
     */
-    WebsocketApi
+    WebsocketApi,
+
+    /**
+    * The IPOApi service constructor.
+    * @property {module:api/IPOApi}
+    */
+    IPOApi
 };

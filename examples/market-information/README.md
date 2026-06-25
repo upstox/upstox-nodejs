@@ -21,3 +21,8 @@
 ## 6. FII & DII
 - 6.1 [Get FII data](code/market-analytics.md#get-fii-data)
 - 6.2 [Get DII data](code/market-analytics.md#get-dii-data)
+
+## 7. Smartlist
+- 7.1 [Get smartlist futures](code/smartlist.md#get-smartlist-futures)
+- 7.2 [Get smartlist MTF](code/smartlist.md#get-smartlist-mtf)
+- 7.3 [Get smartlist options](code/smartlist.md#get-smartlist-options)

@@ -65,6 +65,86 @@ apiInstance.postMargin(postMarginRequest, (error, data, response) => {
 });
 
 
+// --- IPO sanity ---
+var ipoApiInstance = new UpstoxClient.IPOApi();
+ipoApiInstance.getIpoListing({ status: "open" }, (error, data, response) => {
+  if (error) {
+    console.error(error.response.text);
+  } else {
+    if (data.status != "success") console.log("error in getIpoListing");
+    console.log(JSON.stringify(data))
+  }
+});
+ipoApiInstance.getIpoDetails("ipo123", (error, data, response) => {
+  if (error) {
+    console.error(error.response.text);
+  } else {
+    if (data.status != "success") console.log("error in getIpoDetails");
+    console.log(JSON.stringify(data))
+  }
+});
+
+// --- Smartlist sanity ---
+var marketApiInstance = new UpstoxClient.MarketApi();
+marketApiInstance.getSmartlistMtf({ pageNumber: 1, pageSize: 50 }, (error, data, response) => {
+  if (error) {
+    console.error(error.response.text);
+  } else {
+    if (data.status != "success") console.log("error in getSmartlistMtf");
+    console.log(JSON.stringify(data))
+  }
+});
+marketApiInstance.getSmartlistFutures({ pageNumber: 1, pageSize: 50 }, (error, data, response) => {
+  if (error) {
+    console.error(error.response.text);
+  } else {
+    if (data.status != "success") console.log("error in getSmartlistFutures");
+    console.log(JSON.stringify(data))
+  }
+});
+marketApiInstance.getSmartlistOptions({ pageNumber: 1, pageSize: 50 }, (error, data, response) => {
+  if (error) {
+    console.error(error.response.text);
+  } else {
+    if (data.status != "success") console.log("error in getSmartlistOptions");
+    console.log(JSON.stringify(data))
+  }
+});
+
+// --- Payout sanity ---
+var userApiInstance = new UpstoxClient.UserApi();
+userApiInstance.getPayoutModes((error, data, response) => {
+  if (error) {
+    console.error(error.response.text);
+  } else {
+    if (data.status != "success") console.log("error in getPayoutModes");
+    console.log(JSON.stringify(data))
+  }
+});
+userApiInstance.initiatePayout(new UpstoxClient.InitiatePayoutRequest("NEFT", 1000.0), (error, data, response) => {
+  if (error) {
+    console.error(error.response.text);
+  } else {
+    if (data.status != "success") console.log("error in initiatePayout");
+    console.log(JSON.stringify(data))
+  }
+});
+userApiInstance.modifyPayout(new UpstoxClient.ModifyPayoutRequest(1000.0), "TXN123456", (error, data, response) => {
+  if (error) {
+    console.error(error.response.text);
+  } else {
+    if (data.status != "success") console.log("error in modifyPayout");
+  }
+});
+userApiInstance.cancelPayout("TXN123456", (error, data, response) => {
+  if (error) {
+    console.error(error.response.text);
+  } else {
+    if (data.status != "success") console.log("error in cancelPayout");
+  }
+});
+
+
 var apiInstance = new UpstoxClient.OrderApi();
 var body = new UpstoxClient.PlaceOrderRequest(1, UpstoxClient.PlaceOrderRequest.ProductEnum.D, UpstoxClient.PlaceOrderRequest.ValidityEnum.DAY, 0.0, "NSE_EQ|INE528G01035", UpstoxClient.PlaceOrderRequest.OrderTypeEnum.MARKET, UpstoxClient.PlaceOrderRequest.TransactionTypeEnum.BUY, 0, 0.0, true);
 var apiVersion = "2.0";

@@ -384,5 +384,144 @@ export class MarketApi {
         authNames, contentTypes, accepts, returnType, callback
       );
     }
+    /**
+     * Callback function to receive the result of the getSmartlistFutures operation.
+     * @callback moduleapi/MarketApi~getSmartlistFuturesCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/AnalyticsResponse{ data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Get Smartlist Futures
+     * Fetches the smartlist of futures for the given asset type and category.
+     * @param {Object} opts Optional parameters
+     * @param {Object} opts.assetType Asset type. Allowed values: INDEX, STOCK, COMMODITY
+     * @param {Object} opts.category Category. Allowed values: TOP_TRADED, MOST_ACTIVE, OI_GAINERS, OI_LOSERS, PRICE_GAINERS, PRICE_LOSERS, PREMIUM, DISCOUNT (COMMODITY supports only: TOP_TRADED, MOST_ACTIVE, OI_GAINERS, OI_LOSERS)
+     * @param {Object} opts.pageNumber Page number (optional, 1-indexed)
+     * @param {Object} opts.pageSize Page size (optional, max 50)
+     * @param {module:api/MarketApi~getSmartlistFuturesCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link <&vendorExtensions.x-jsdoc-type>}
+     */
+    getSmartlistFutures(opts, callback) {
+      opts = opts || {};
+      let postBody = null;
+
+      let pathParams = {
+
+      };
+      let queryParams = {
+        'asset_type': opts['assetType'],'category': opts['category'],'page_number': opts['pageNumber'],'page_size': opts['pageSize']
+      };
+      let headerParams = {
+
+      };
+      let formParams = {
+
+      };
+
+      let authNames = ['OAUTH2'];
+      let contentTypes = [];
+      let accepts = ['*/*', 'application/json'];
+      let returnType = AnalyticsResponse;
+
+      return this.apiClient.callApi(
+        '/v2/market/smartlist/futures', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+    /**
+     * Callback function to receive the result of the getSmartlistMtf operation.
+     * @callback moduleapi/MarketApi~getSmartlistMtfCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/AnalyticsResponse{ data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Get Smartlist MTF
+     * Fetches the smartlist of MTF (Margin Trade Funding) stocks. Prices are enriched with live LTP data.
+     * @param {Object} opts Optional parameters
+     * @param {Object} opts.pageNumber Page number (optional, 1-indexed)
+     * @param {Object} opts.pageSize Page size (optional, max 50)
+     * @param {module:api/MarketApi~getSmartlistMtfCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link <&vendorExtensions.x-jsdoc-type>}
+     */
+    getSmartlistMtf(opts, callback) {
+      opts = opts || {};
+      let postBody = null;
+
+      let pathParams = {
+
+      };
+      let queryParams = {
+        'page_number': opts['pageNumber'],'page_size': opts['pageSize']
+      };
+      let headerParams = {
+
+      };
+      let formParams = {
+
+      };
+
+      let authNames = ['OAUTH2'];
+      let contentTypes = [];
+      let accepts = ['*/*', 'application/json'];
+      let returnType = AnalyticsResponse;
+
+      return this.apiClient.callApi(
+        '/v2/market/smartlist/mtf', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+    /**
+     * Callback function to receive the result of the getSmartlistOptions operation.
+     * @callback moduleapi/MarketApi~getSmartlistOptionsCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/AnalyticsResponse{ data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Get Smartlist Options
+     * Fetches the smartlist of options for the given asset type and category.
+     * @param {Object} opts Optional parameters
+     * @param {Object} opts.assetType Asset type. Allowed values: INDEX, STOCK, COMMODITY
+     * @param {Object} opts.category Category. Allowed values: TOP_TRADED, MOST_ACTIVE, OI_GAINERS, OI_LOSERS, PRICE_GAINERS, PRICE_LOSERS, IV_GAINERS, IV_LOSERS, UNDER_5000, UNDER_10000 (COMMODITY supports only: TOP_TRADED, MOST_ACTIVE, OI_GAINERS, OI_LOSERS)
+     * @param {Object} opts.pageNumber Page number (optional, 1-indexed)
+     * @param {Object} opts.pageSize Page size (optional, max 50)
+     * @param {module:api/MarketApi~getSmartlistOptionsCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link <&vendorExtensions.x-jsdoc-type>}
+     */
+    getSmartlistOptions(opts, callback) {
+      opts = opts || {};
+      let postBody = null;
+
+      let pathParams = {
+
+      };
+      let queryParams = {
+        'asset_type': opts['assetType'],'category': opts['category'],'page_number': opts['pageNumber'],'page_size': opts['pageSize']
+      };
+      let headerParams = {
+
+      };
+      let formParams = {
+
+      };
+
+      let authNames = ['OAUTH2'];
+      let contentTypes = [];
+      let accepts = ['*/*', 'application/json'];
+      let returnType = AnalyticsResponse;
+
+      return this.apiClient.callApi(
+        '/v2/market/smartlist/options', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
 
 }

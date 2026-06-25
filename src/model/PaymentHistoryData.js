@@ -46,6 +46,10 @@ export class PaymentHistoryData {
         obj.status = ApiClient.convertToType(data['status'], Object);
       if (data.hasOwnProperty('reason'))
         obj.reason = ApiClient.convertToType(data['reason'], Object);
+      if (data.hasOwnProperty('currency'))
+        obj.currency = ApiClient.convertToType(data['currency'], Object);
+      if (data.hasOwnProperty('eta'))
+        obj.eta = ApiClient.convertToType(data['eta'], Object);
       if (data.hasOwnProperty('last_updated_at'))
         obj.lastUpdatedAt = ApiClient.convertToType(data['last_updated_at'], Object);
       if (data.hasOwnProperty('bank_name'))
@@ -56,6 +60,8 @@ export class PaymentHistoryData {
         obj.totalCharges = ApiClient.convertToType(data['total_charges'], Object);
       if (data.hasOwnProperty('charges_category'))
         obj.chargesCategory = ApiClient.convertToType(data['charges_category'], Object);
+      if (data.hasOwnProperty('created_at'))
+        obj.createdAt = ApiClient.convertToType(data['created_at'], Object);
     }
     return obj;
   }
@@ -82,6 +88,16 @@ PaymentHistoryData.prototype.status = undefined;
 PaymentHistoryData.prototype.reason = undefined;
 
 /**
+ * @member {Object} currency
+ */
+PaymentHistoryData.prototype.currency = undefined;
+
+/**
+ * @member {Object} eta
+ */
+PaymentHistoryData.prototype.eta = undefined;
+
+/**
  * @member {Object} lastUpdatedAt
  */
 PaymentHistoryData.prototype.lastUpdatedAt = undefined;
@@ -105,3 +121,9 @@ PaymentHistoryData.prototype.totalCharges = undefined;
  * @member {Object} chargesCategory
  */
 PaymentHistoryData.prototype.chargesCategory = undefined;
+
+/**
+ * @member {Object} createdAt
+ */
+PaymentHistoryData.prototype.createdAt = undefined;
+

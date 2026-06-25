@@ -33,13 +33,14 @@ Samples are grouped by API area. Each `.md` file contains one or more Node.js sn
 | [**historical-data/**](historical-data/) | Historical and intraday candle data (v2 & v3). |
 | [**option-chain/**](option-chain/) | Option contracts, put-call option chain. |
 | [**expired-instruments/**](expired-instruments/) | Expiries, expired future/option contracts, expired historical candle data. |
-| [**market-information/**](market-information/) | Exchange status, market timings, market holidays, OI, change in OI, PCR, max pain, FII, and DII. |
+| [**market-information/**](market-information/) | Exchange status, market timings, market holidays, OI, change in OI, PCR, max pain, FII, DII, and smartlist (futures, MTF, options). |
+| [**ipos/**](ipos/) | IPO listing (by status) and IPO details (by slug id). |
 | [**gtt-orders/**](gtt-orders/) | Place, modify, cancel, and get details for GTT (Good Till Triggered) orders. |
 | [**margins/**](margins/) | Margin details. |
 | [**charges/**](charges/) | Brokerage details. |
 | [**trade-profit-and-loss/**](trade-profit-and-loss/) | P&L report, report metadata, trade charges. |
 | [**mutual-funds-api/**](mutual-funds-api/) | Mutual fund holdings, orders, order details, and SIPs. |
-| [**payments-api/**](payments-api/) | Payin and payout payment history for the user. |
+| [**payments-api/**](payments-api/) | Payin and payout payment history, and payout management (modes, initiate, modify, cancel). |
 | [**news/**](news/) | News articles for instrument keys, current positions, and holdings. |
 | [**fundamentals/**](fundamentals/) | Company profile, balance sheet, cash flow, income statement, key ratios, share holdings, corporate actions, and competitors. |
 | [**strategies/**](strategies/) | Ready-to-run options strategy examples for Nifty 50 (bullish, bearish, neutral, others). |
