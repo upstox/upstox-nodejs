@@ -14,6 +14,10 @@
  */
 import {ApiClient} from "../ApiClient";
 import {ApiGatewayErrorResponse} from '../model/ApiGatewayErrorResponse';
+import {InitiatePayoutRequest} from '../model/InitiatePayoutRequest';
+import {ModifyPayoutRequest} from '../model/ModifyPayoutRequest';
+import {PayoutDetailsResponse} from '../model/PayoutDetailsResponse';
+import {PayoutModesResponse} from '../model/PayoutModesResponse';
 import {GetProfileResponse} from '../model/GetProfileResponse';
 import {GetUserFundMarginResponse} from '../model/GetUserFundMarginResponse';
 import {GetUserFundMarginV3Response} from '../model/GetUserFundMarginV3Response';
@@ -228,6 +232,158 @@ export class UserApi {
 
       return this.apiClient.callApi(
         '/v2/user/payments/payout', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+    /**
+     * Callback function to receive the result of the initiatePayout operation.
+     * @callback moduleapi/UserApi~initiatePayoutCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/PayoutDetailsResponse{ data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Initiate a payout request.
+     * @param {module:model/InitiatePayoutRequest} body
+     * @param {module:api/UserApi~initiatePayoutCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link <&vendorExtensions.x-jsdoc-type>}
+     */
+    initiatePayout(body, callback) {
+      let postBody = body;
+      // verify the required parameter 'body' is set
+      if (body === undefined || body === null) {
+        throw new Error("Missing the required parameter 'body' when calling initiatePayout");
+      }
+
+      let pathParams = {};
+      let queryParams = {};
+      let headerParams = {};
+      let formParams = {};
+
+      let authNames = ['OAUTH2'];
+      let contentTypes = ['application/json'];
+      let accepts = ['*/*'];
+      let returnType = PayoutDetailsResponse;
+
+      return this.apiClient.callApi(
+        '/v2/user/payments/payout', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+    /**
+     * Callback function to receive the result of the getPayoutModes operation.
+     * @callback moduleapi/UserApi~getPayoutModesCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/PayoutModesResponse{ data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Get the available payout modes for the user.
+     * @param {module:api/UserApi~getPayoutModesCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link <&vendorExtensions.x-jsdoc-type>}
+     */
+    getPayoutModes(callback) {
+      let postBody = null;
+
+      let pathParams = {};
+      let queryParams = {};
+      let headerParams = {};
+      let formParams = {};
+
+      let authNames = ['OAUTH2'];
+      let contentTypes = [];
+      let accepts = ['*/*'];
+      let returnType = PayoutModesResponse;
+
+      return this.apiClient.callApi(
+        '/v2/user/payments/payout/modes', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+    /**
+     * Callback function to receive the result of the modifyPayout operation.
+     * @callback moduleapi/UserApi~modifyPayoutCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/PayoutDetailsResponse{ data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Modify an existing payout request.
+     * @param {module:model/ModifyPayoutRequest} body
+     * @param {Object} transactionId Payout transaction id
+     * @param {module:api/UserApi~modifyPayoutCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link <&vendorExtensions.x-jsdoc-type>}
+     */
+    modifyPayout(body, transactionId, callback) {
+      let postBody = body;
+      // verify the required parameter 'body' is set
+      if (body === undefined || body === null) {
+        throw new Error("Missing the required parameter 'body' when calling modifyPayout");
+      }
+      // verify the required parameter 'transactionId' is set
+      if (transactionId === undefined || transactionId === null) {
+        throw new Error("Missing the required parameter 'transactionId' when calling modifyPayout");
+      }
+
+      let pathParams = {
+        'transaction_id': transactionId
+      };
+      let queryParams = {};
+      let headerParams = {};
+      let formParams = {};
+
+      let authNames = ['OAUTH2'];
+      let contentTypes = ['application/json'];
+      let accepts = ['*/*'];
+      let returnType = PayoutDetailsResponse;
+
+      return this.apiClient.callApi(
+        '/v2/user/payments/payout/{transaction_id}', 'PUT',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+    /**
+     * Callback function to receive the result of the cancelPayout operation.
+     * @callback moduleapi/UserApi~cancelPayoutCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/PayoutDetailsResponse{ data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Cancel an existing payout request.
+     * @param {Object} transactionId Payout transaction id
+     * @param {module:api/UserApi~cancelPayoutCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link <&vendorExtensions.x-jsdoc-type>}
+     */
+    cancelPayout(transactionId, callback) {
+      let postBody = null;
+      // verify the required parameter 'transactionId' is set
+      if (transactionId === undefined || transactionId === null) {
+        throw new Error("Missing the required parameter 'transactionId' when calling cancelPayout");
+      }
+
+      let pathParams = {
+        'transaction_id': transactionId
+      };
+      let queryParams = {};
+      let headerParams = {};
+      let formParams = {};
+
+      let authNames = ['OAUTH2'];
+      let contentTypes = [];
+      let accepts = ['*/*'];
+      let returnType = PayoutDetailsResponse;
+
+      return this.apiClient.callApi(
+        '/v2/user/payments/payout/{transaction_id}', 'DELETE',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
