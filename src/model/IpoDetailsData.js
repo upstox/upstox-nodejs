@@ -92,6 +92,8 @@ export class IpoDetailsData {
         obj.registrarInfo = IpoRegistrarInfo.constructFromObject(data['registrar_info']);
       if (data.hasOwnProperty('total_subscription'))
         obj.totalSubscription = ApiClient.convertToType(data['total_subscription'], Object);
+      if (data.hasOwnProperty('investors'))
+        obj.investors = ApiClient.convertToType(data['investors'], Object);
     }
     return obj;
   }
@@ -226,4 +228,10 @@ IpoDetailsData.prototype.registrarInfo = undefined;
  * @member {Object} totalSubscription
  */
 IpoDetailsData.prototype.totalSubscription = undefined;
+
+/**
+ * Investor categories the issue accepts
+ * @member {Object} investors
+ */
+IpoDetailsData.prototype.investors = undefined;
 
