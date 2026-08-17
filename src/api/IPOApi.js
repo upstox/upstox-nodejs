@@ -14,8 +14,13 @@
  */
 import {ApiClient} from "../ApiClient";
 import {ApiGatewayErrorResponse} from '../model/ApiGatewayErrorResponse';
+import {IpoApplyRequest} from '../model/IpoApplyRequest';
+import {IpoApplyResponse} from '../model/IpoApplyResponse';
+import {IpoCancelResponse} from '../model/IpoCancelResponse';
 import {IpoDetailsResponse} from '../model/IpoDetailsResponse';
 import {IpoListingResponse} from '../model/IpoListingResponse';
+import {IpoOrderDetailResponse} from '../model/IpoOrderDetailResponse';
+import {IpoOrderResponse} from '../model/IpoOrderResponse';
 
 /**
 * IPO service.
@@ -36,6 +41,100 @@ export class IPOApi {
         this.apiClient = apiClient || ApiClient.instance;
     }
 
+    /**
+     * Callback function to receive the result of the applyForIpo operation.
+     * @callback moduleapi/IPOApi~applyForIpoCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/IpoApplyResponse{ data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Apply for IPO
+     * Places an IPO application for the authenticated user.
+     * @param {module:model/IpoApplyRequest} body
+     * @param {module:api/IPOApi~applyForIpoCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link <&vendorExtensions.x-jsdoc-type>}
+     */
+    applyForIpo(body, callback) {
+
+      let postBody = body;
+      // verify the required parameter 'body' is set
+      if (body === undefined || body === null) {
+        throw new Error("Missing the required parameter 'body' when calling applyForIpo");
+      }
+
+      let pathParams = {
+
+      };
+      let queryParams = {
+
+      };
+      let headerParams = {
+
+      };
+      let formParams = {
+
+      };
+
+      let authNames = ['OAUTH2'];
+      let contentTypes = ['application/json'];
+      let accepts = ['*/*', 'application/json'];
+      let returnType = IpoApplyResponse;
+
+      return this.apiClient.callApi(
+        '/v2/ipos/orders', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+    /**
+     * Callback function to receive the result of the cancelIpoOrder operation.
+     * @callback moduleapi/IPOApi~cancelIpoOrderCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/IpoCancelResponse{ data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Cancel IPO Order
+     * Cancels/deletes an IPO order of the authenticated user by order id.
+     * @param {Object} orderId IPO application id, as returned in &#x60;order_id&#x60; by the apply and orders APIs
+     * @param {module:api/IPOApi~cancelIpoOrderCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link <&vendorExtensions.x-jsdoc-type>}
+     */
+    cancelIpoOrder(orderId, callback) {
+
+      let postBody = null;
+      // verify the required parameter 'orderId' is set
+      if (orderId === undefined || orderId === null) {
+        throw new Error("Missing the required parameter 'orderId' when calling cancelIpoOrder");
+      }
+
+      let pathParams = {
+        'order_id': orderId
+      };
+      let queryParams = {
+
+      };
+      let headerParams = {
+
+      };
+      let formParams = {
+
+      };
+
+      let authNames = ['OAUTH2'];
+      let contentTypes = [];
+      let accepts = ['*/*', 'application/json'];
+      let returnType = IpoCancelResponse;
+
+      return this.apiClient.callApi(
+        '/v2/ipos/orders/{order_id}', 'DELETE',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
     /**
      * Callback function to receive the result of the getIpoDetails operation.
      * @callback moduleapi/IPOApi~getIpoDetailsCallback
@@ -126,6 +225,98 @@ export class IPOApi {
 
       return this.apiClient.callApi(
         '/v2/ipos', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+    /**
+     * Callback function to receive the result of the getIpoOrderById operation.
+     * @callback moduleapi/IPOApi~getIpoOrderByIdCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/IpoOrderDetailResponse{ data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Get IPO Order
+     * Fetches a single IPO order of the authenticated user by order id.
+     * @param {Object} orderId IPO application id, as returned in &#x60;order_id&#x60; by the apply and orders APIs
+     * @param {module:api/IPOApi~getIpoOrderByIdCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link <&vendorExtensions.x-jsdoc-type>}
+     */
+    getIpoOrderById(orderId, callback) {
+
+      let postBody = null;
+      // verify the required parameter 'orderId' is set
+      if (orderId === undefined || orderId === null) {
+        throw new Error("Missing the required parameter 'orderId' when calling getIpoOrderById");
+      }
+
+      let pathParams = {
+        'order_id': orderId
+      };
+      let queryParams = {
+
+      };
+      let headerParams = {
+
+      };
+      let formParams = {
+
+      };
+
+      let authNames = ['OAUTH2'];
+      let contentTypes = [];
+      let accepts = ['*/*', 'application/json'];
+      let returnType = IpoOrderDetailResponse;
+
+      return this.apiClient.callApi(
+        '/v2/ipos/orders/{order_id}', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+    /**
+     * Callback function to receive the result of the getIpoOrders operation.
+     * @callback moduleapi/IPOApi~getIpoOrdersCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/IpoOrderResponse{ data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Get IPO Orders
+     * Fetches the authenticated user&#x27;s IPO orders/applications.
+     * @param {Object} opts Optional parameters
+     * @param {Object} opts.pageNumber Page number, starting at 1
+     * @param {Object} opts.records Number of records per page
+     * @param {module:api/IPOApi~getIpoOrdersCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link <&vendorExtensions.x-jsdoc-type>}
+     */
+    getIpoOrders(opts, callback) {
+      opts = opts || {};
+      let postBody = null;
+
+      let pathParams = {
+
+      };
+      let queryParams = {
+        'page_number': opts['pageNumber'],'records': opts['records']
+      };
+      let headerParams = {
+
+      };
+      let formParams = {
+
+      };
+
+      let authNames = ['OAUTH2'];
+      let contentTypes = [];
+      let accepts = ['*/*', 'application/json'];
+      let returnType = IpoOrderResponse;
+
+      return this.apiClient.callApi(
+        '/v2/ipos/orders', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
