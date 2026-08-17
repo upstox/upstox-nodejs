@@ -165,6 +165,17 @@ import {IpoDetailsData} from './model/IpoDetailsData';
 import {IpoDetailsResponse} from './model/IpoDetailsResponse';
 import {IpoRegistrarInfo} from './model/IpoRegistrarInfo';
 import {IpoTimeline} from './model/IpoTimeline';
+import {IpoInvestorType} from './model/IpoInvestorType';
+import {IpoApplyRequest} from './model/IpoApplyRequest';
+import {IpoBidRequest} from './model/IpoBidRequest';
+import {IpoApplyData} from './model/IpoApplyData';
+import {IpoApplyResponse} from './model/IpoApplyResponse';
+import {IpoOrderBid} from './model/IpoOrderBid';
+import {IpoOrderData} from './model/IpoOrderData';
+import {IpoOrderResponse} from './model/IpoOrderResponse';
+import {IpoOrderDetailResponse} from './model/IpoOrderDetailResponse';
+import {IpoCancelData} from './model/IpoCancelData';
+import {IpoCancelResponse} from './model/IpoCancelResponse';
 import {InitiatePayoutRequest} from './model/InitiatePayoutRequest';
 import {ModifyPayoutRequest} from './model/ModifyPayoutRequest';
 import {PayoutDetails} from './model/PayoutDetails';
@@ -1187,6 +1198,72 @@ export {
      * @property {module:model/IpoTimeline}
      */
     IpoTimeline,
+
+    /**
+     * The IpoInvestorType model constructor.
+     * @property {module:model/IpoInvestorType}
+     */
+    IpoInvestorType,
+
+    /**
+     * The IpoApplyRequest model constructor.
+     * @property {module:model/IpoApplyRequest}
+     */
+    IpoApplyRequest,
+
+    /**
+     * The IpoBidRequest model constructor.
+     * @property {module:model/IpoBidRequest}
+     */
+    IpoBidRequest,
+
+    /**
+     * The IpoApplyData model constructor.
+     * @property {module:model/IpoApplyData}
+     */
+    IpoApplyData,
+
+    /**
+     * The IpoApplyResponse model constructor.
+     * @property {module:model/IpoApplyResponse}
+     */
+    IpoApplyResponse,
+
+    /**
+     * The IpoOrderBid model constructor.
+     * @property {module:model/IpoOrderBid}
+     */
+    IpoOrderBid,
+
+    /**
+     * The IpoOrderData model constructor.
+     * @property {module:model/IpoOrderData}
+     */
+    IpoOrderData,
+
+    /**
+     * The IpoOrderResponse model constructor.
+     * @property {module:model/IpoOrderResponse}
+     */
+    IpoOrderResponse,
+
+    /**
+     * The IpoOrderDetailResponse model constructor.
+     * @property {module:model/IpoOrderDetailResponse}
+     */
+    IpoOrderDetailResponse,
+
+    /**
+     * The IpoCancelData model constructor.
+     * @property {module:model/IpoCancelData}
+     */
+    IpoCancelData,
+
+    /**
+     * The IpoCancelResponse model constructor.
+     * @property {module:model/IpoCancelResponse}
+     */
+    IpoCancelResponse,
 
     /**
      * The InitiatePayoutRequest model constructor.
