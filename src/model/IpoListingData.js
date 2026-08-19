@@ -64,6 +64,8 @@ export class IpoListingData {
         obj.biddingEndDate = ApiClient.convertToType(data['bidding_end_date'], Object);
       if (data.hasOwnProperty('total_subscription'))
         obj.totalSubscription = ApiClient.convertToType(data['total_subscription'], Object);
+      if (data.hasOwnProperty('investors'))
+        obj.investors = ApiClient.convertToType(data['investors'], Object);
     }
     return obj;
   }
@@ -133,4 +135,10 @@ IpoListingData.prototype.biddingEndDate = undefined;
  * @member {Object} totalSubscription
  */
 IpoListingData.prototype.totalSubscription = undefined;
+
+/**
+ * Investor categories the issue accepts. Empty when the listing data carries none — the IPO details API is the authoritative source
+ * @member {Object} investors
+ */
+IpoListingData.prototype.investors = undefined;
 
