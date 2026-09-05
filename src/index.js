@@ -69,6 +69,7 @@ import {GetExchangeTimingResponse} from './model/GetExchangeTimingResponse';
 import {GetExpiredFuturesContractResponse} from './model/GetExpiredFuturesContractResponse';
 import {GetExpiriesResponse} from './model/GetExpiriesResponse';
 import {GetFullMarketQuoteResponse} from './model/GetFullMarketQuoteResponse';
+import {GetFullMarketQuoteResponseV3} from './model/GetFullMarketQuoteResponseV3';
 import {GetGttOrderResponse} from './model/GetGttOrderResponse';
 import {GetHistoricalCandleResponse} from './model/GetHistoricalCandleResponse';
 import {GetHoldingsResponse} from './model/GetHoldingsResponse';
@@ -128,6 +129,7 @@ import {MarketQuoteOptionGreekV3} from './model/MarketQuoteOptionGreekV3';
 import {MarketQuoteSymbol} from './model/MarketQuoteSymbol';
 import {MarketQuoteSymbolLtp} from './model/MarketQuoteSymbolLtp';
 import {MarketQuoteSymbolLtpV3} from './model/MarketQuoteSymbolLtpV3';
+import {MarketQuoteSymbolV3} from './model/MarketQuoteSymbolV3';
 import {MarketStatusData} from './model/MarketStatusData';
 import {ModifyOrderData} from './model/ModifyOrderData';
 import {ModifyOrderRequest} from './model/ModifyOrderRequest';
@@ -624,6 +626,12 @@ export {
     GetFullMarketQuoteResponse,
 
     /**
+     * The GetFullMarketQuoteResponseV3 model constructor.
+     * @property {module:model/GetFullMarketQuoteResponseV3}
+     */
+    GetFullMarketQuoteResponseV3,
+
+    /**
      * The GetGttOrderResponse model constructor.
      * @property {module:model/GetGttOrderResponse}
      */
@@ -976,6 +984,12 @@ export {
      * @property {module:model/MarketQuoteSymbolLtpV3}
      */
     MarketQuoteSymbolLtpV3,
+
+    /**
+     * The MarketQuoteSymbolV3 model constructor.
+     * @property {module:model/MarketQuoteSymbolV3}
+     */
+    MarketQuoteSymbolV3,
 
     /**
      * The MarketStatusData model constructor.
