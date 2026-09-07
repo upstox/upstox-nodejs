@@ -14,6 +14,7 @@
  */
 import {ApiClient} from "../ApiClient";
 import {ApiGatewayErrorResponse} from '../model/ApiGatewayErrorResponse';
+import {GetFullMarketQuoteResponseV3} from '../model/GetFullMarketQuoteResponseV3';
 import {GetMarketQuoteLastTradedPriceResponseV3} from '../model/GetMarketQuoteLastTradedPriceResponseV3';
 import {GetMarketQuoteOHLCResponseV3} from '../model/GetMarketQuoteOHLCResponseV3';
 import {GetMarketQuoteOptionGreekResponseV3} from '../model/GetMarketQuoteOptionGreekResponseV3';
@@ -35,6 +36,51 @@ export class MarketQuoteV3Api {
     */
     constructor(apiClient) {
         this.apiClient = apiClient || ApiClient.instance;
+    }
+
+    /**
+     * Callback function to receive the result of the getFullMarketQuoteV3 operation.
+     * @callback moduleapi/MarketQuoteV3Api~getFullMarketQuoteV3Callback
+     * @param {String} error Error message, if any.
+     * @param {module:model/GetFullMarketQuoteResponseV3{ data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Market quotes and instruments - Full market quotes
+     * This API provides the functionality to retrieve the full market quotes for one or more instruments.This API returns the complete market data snapshot of up to 500 instruments in one go, widened to carry every field published on the upstream extended feed.
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.instrumentKey Comma separated list of instrument keys
+     * @param {module:api/MarketQuoteV3Api~getFullMarketQuoteV3Callback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link <&vendorExtensions.x-jsdoc-type>}
+     */
+    getFullMarketQuoteV3(opts, callback) {
+      opts = opts || {};
+      let postBody = null;
+
+      let pathParams = {
+
+      };
+      let queryParams = {
+        'instrument_key': opts['instrumentKey']
+      };
+      let headerParams = {
+
+      };
+      let formParams = {
+
+      };
+
+      let authNames = ['OAUTH2'];
+      let contentTypes = [];
+      let accepts = ['application/json', '*/*'];
+      let returnType = GetFullMarketQuoteResponseV3;
+
+      return this.apiClient.callApi(
+        '/v3/market-quote/quotes', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
     }
 
     /**

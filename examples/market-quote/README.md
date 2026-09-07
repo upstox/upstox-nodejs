@@ -20,6 +20,11 @@
 - 5.1 [Get full market quote](code/full-market-quotes.md#get-full-market-quote)
 - 5.2 [Get full market quote for multiple instrument keys](code/full-market-quotes.md#get-full-market-quote-for-multiple-instrument-keys)
 
-## 6. Option Greek
-- 6.1 [Get Option Greek fields](code/option-greek.md#get-option-greek-fields)
-- 6.2 [Get Option Greek fields for multiple instruments keys](code/option-greek.md#get-option-greek-fields-for-multiple-instruments-keys)
+## 6. Full Market Quotes V3
+- 6.1 [Get full market quote](code/full-market-quotes-v3.md#get-full-market-quote)
+- 6.2 [Get full market quote for multiple instrument keys](code/full-market-quotes-v3.md#get-full-market-quote-for-multiple-instrument-keys)
+- 6.3 [Read the quote fields for an instrument](code/full-market-quotes-v3.md#read-the-quote-fields-for-an-instrument)
+
+## 7. Option Greek
+- 7.1 [Get Option Greek fields](code/option-greek.md#get-option-greek-fields)
+- 7.2 [Get Option Greek fields for multiple instruments keys](code/option-greek.md#get-option-greek-fields-for-multiple-instruments-keys)
