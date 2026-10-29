@@ -145,10 +145,7 @@ userApiInstance.cancelPayout("TXN123456", (error, data, response) => {
 });
 
 // --- US stocks sanity ---
-// US stocks endpoints are only live on UAT.
 var usClient = new UpstoxClient.ApiClient();
-usClient.basePath = 'https://uat-api.upstox.com';
-usClient.orderBasePath = 'https://uat-api.upstox.com';
 usClient.authentications['OAUTH2'].accessToken = accessToken;
 new UpstoxClient.USStocksFundsApi(usClient).getUsFunds((error, data, response) => {
   if (error) {

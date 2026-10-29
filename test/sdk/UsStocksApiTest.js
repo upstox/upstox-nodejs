@@ -1,10 +1,7 @@
 let UpstoxClient = require('upstox-js-sdk');
 const { accessToken } = require('./DataToken');
 
-// US stocks endpoints are only live on UAT; also keeps order calls off the HFT host.
 var usClient = new UpstoxClient.ApiClient();
-usClient.basePath = 'https://uat-api.upstox.com';
-usClient.orderBasePath = 'https://uat-api.upstox.com';
 usClient.authentications['OAUTH2'].accessToken = accessToken;
 
 var instrumentKey = "US_EQ|AAPL";
