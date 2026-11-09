@@ -35,6 +35,7 @@ Samples are grouped by API area. Each `.md` file contains one or more Node.js sn
 | [**expired-instruments/**](expired-instruments/) | Expiries, expired future/option contracts, expired historical candle data. |
 | [**market-information/**](market-information/) | Exchange status, market timings, market holidays, OI, change in OI, PCR, max pain, FII, DII, and smartlist (futures, MTF, options). |
 | [**ipos/**](ipos/) | IPO listing (by status), IPO details (by slug id), and IPO orders: apply, order book, order details, cancel. |
+| [**us-stocks/**](us-stocks/) | US stocks: place, modify, cancel, estimate orders, order book, order details, margin, holdings, funds, and US market status, holidays, timings. |
 | [**gtt-orders/**](gtt-orders/) | Place, modify, cancel, and get details for GTT (Good Till Triggered) orders. |
 | [**margins/**](margins/) | Margin details. |
 | [**charges/**](charges/) | Brokerage details. |

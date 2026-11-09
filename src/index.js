@@ -178,6 +178,28 @@ import {IpoOrderResponse} from './model/IpoOrderResponse';
 import {IpoOrderDetailResponse} from './model/IpoOrderDetailResponse';
 import {IpoCancelData} from './model/IpoCancelData';
 import {IpoCancelResponse} from './model/IpoCancelResponse';
+import {GetUsExchangeTimingResponse} from './model/GetUsExchangeTimingResponse';
+import {GetUsHolidayResponse} from './model/GetUsHolidayResponse';
+import {UsExchangeTimingData} from './model/UsExchangeTimingData';
+import {UsFundsData} from './model/UsFundsData';
+import {UsFundsResponse} from './model/UsFundsResponse';
+import {UsHoldingData} from './model/UsHoldingData';
+import {UsHoldingsResponse} from './model/UsHoldingsResponse';
+import {UsHolidayData} from './model/UsHolidayData';
+import {UsMarginData} from './model/UsMarginData';
+import {UsMarginRequest} from './model/UsMarginRequest';
+import {UsMarginResponse} from './model/UsMarginResponse';
+import {UsModifyOrderRequest} from './model/UsModifyOrderRequest';
+import {UsOrderBookData} from './model/UsOrderBookData';
+import {UsOrderBookResponse} from './model/UsOrderBookResponse';
+import {UsOrderData} from './model/UsOrderData';
+import {UsOrderDetailsResponse} from './model/UsOrderDetailsResponse';
+import {UsOrderEstimateData} from './model/UsOrderEstimateData';
+import {UsOrderEstimateRequest} from './model/UsOrderEstimateRequest';
+import {UsOrderEstimateResponse} from './model/UsOrderEstimateResponse';
+import {UsOrderMargin} from './model/UsOrderMargin';
+import {UsOrderResponse} from './model/UsOrderResponse';
+import {UsPlaceOrderRequest} from './model/UsPlaceOrderRequest';
 import {InitiatePayoutRequest} from './model/InitiatePayoutRequest';
 import {ModifyPayoutRequest} from './model/ModifyPayoutRequest';
 import {PayoutDetails} from './model/PayoutDetails';
@@ -248,6 +270,11 @@ import {TradeProfitAndLossApi} from './api/TradeProfitAndLossApi';
 import {UserApi} from './api/UserApi';
 import {WebsocketApi} from './api/WebsocketApi';
 import {IPOApi} from './api/IPOApi';
+import {USStocksOrderApi} from './api/USStocksOrderApi';
+import {USStocksChargesApi} from './api/USStocksChargesApi';
+import {USStocksPortfolioApi} from './api/USStocksPortfolioApi';
+import {USStocksFundsApi} from './api/USStocksFundsApi';
+import {USMarketHolidaysAndTimingsApi} from './api/USMarketHolidaysAndTimingsApi';
 
 /**
 * Object.<br>
@@ -1280,6 +1307,138 @@ export {
     IpoCancelResponse,
 
     /**
+     * The GetUsExchangeTimingResponse model constructor.
+     * @property {module:model/GetUsExchangeTimingResponse}
+     */
+    GetUsExchangeTimingResponse,
+
+    /**
+     * The GetUsHolidayResponse model constructor.
+     * @property {module:model/GetUsHolidayResponse}
+     */
+    GetUsHolidayResponse,
+
+    /**
+     * The UsExchangeTimingData model constructor.
+     * @property {module:model/UsExchangeTimingData}
+     */
+    UsExchangeTimingData,
+
+    /**
+     * The UsFundsData model constructor.
+     * @property {module:model/UsFundsData}
+     */
+    UsFundsData,
+
+    /**
+     * The UsFundsResponse model constructor.
+     * @property {module:model/UsFundsResponse}
+     */
+    UsFundsResponse,
+
+    /**
+     * The UsHoldingData model constructor.
+     * @property {module:model/UsHoldingData}
+     */
+    UsHoldingData,
+
+    /**
+     * The UsHoldingsResponse model constructor.
+     * @property {module:model/UsHoldingsResponse}
+     */
+    UsHoldingsResponse,
+
+    /**
+     * The UsHolidayData model constructor.
+     * @property {module:model/UsHolidayData}
+     */
+    UsHolidayData,
+
+    /**
+     * The UsMarginData model constructor.
+     * @property {module:model/UsMarginData}
+     */
+    UsMarginData,
+
+    /**
+     * The UsMarginRequest model constructor.
+     * @property {module:model/UsMarginRequest}
+     */
+    UsMarginRequest,
+
+    /**
+     * The UsMarginResponse model constructor.
+     * @property {module:model/UsMarginResponse}
+     */
+    UsMarginResponse,
+
+    /**
+     * The UsModifyOrderRequest model constructor.
+     * @property {module:model/UsModifyOrderRequest}
+     */
+    UsModifyOrderRequest,
+
+    /**
+     * The UsOrderBookData model constructor.
+     * @property {module:model/UsOrderBookData}
+     */
+    UsOrderBookData,
+
+    /**
+     * The UsOrderBookResponse model constructor.
+     * @property {module:model/UsOrderBookResponse}
+     */
+    UsOrderBookResponse,
+
+    /**
+     * The UsOrderData model constructor.
+     * @property {module:model/UsOrderData}
+     */
+    UsOrderData,
+
+    /**
+     * The UsOrderDetailsResponse model constructor.
+     * @property {module:model/UsOrderDetailsResponse}
+     */
+    UsOrderDetailsResponse,
+
+    /**
+     * The UsOrderEstimateData model constructor.
+     * @property {module:model/UsOrderEstimateData}
+     */
+    UsOrderEstimateData,
+
+    /**
+     * The UsOrderEstimateRequest model constructor.
+     * @property {module:model/UsOrderEstimateRequest}
+     */
+    UsOrderEstimateRequest,
+
+    /**
+     * The UsOrderEstimateResponse model constructor.
+     * @property {module:model/UsOrderEstimateResponse}
+     */
+    UsOrderEstimateResponse,
+
+    /**
+     * The UsOrderMargin model constructor.
+     * @property {module:model/UsOrderMargin}
+     */
+    UsOrderMargin,
+
+    /**
+     * The UsOrderResponse model constructor.
+     * @property {module:model/UsOrderResponse}
+     */
+    UsOrderResponse,
+
+    /**
+     * The UsPlaceOrderRequest model constructor.
+     * @property {module:model/UsPlaceOrderRequest}
+     */
+    UsPlaceOrderRequest,
+
+    /**
      * The InitiatePayoutRequest model constructor.
      * @property {module:model/InitiatePayoutRequest}
      */
@@ -1685,5 +1844,35 @@ export {
     * The IPOApi service constructor.
     * @property {module:api/IPOApi}
     */
-    IPOApi
+    IPOApi,
+
+    /**
+    * The USStocksOrderApi service constructor.
+    * @property {module:api/USStocksOrderApi}
+    */
+    USStocksOrderApi,
+
+    /**
+    * The USStocksChargesApi service constructor.
+    * @property {module:api/USStocksChargesApi}
+    */
+    USStocksChargesApi,
+
+    /**
+    * The USStocksPortfolioApi service constructor.
+    * @property {module:api/USStocksPortfolioApi}
+    */
+    USStocksPortfolioApi,
+
+    /**
+    * The USStocksFundsApi service constructor.
+    * @property {module:api/USStocksFundsApi}
+    */
+    USStocksFundsApi,
+
+    /**
+    * The USMarketHolidaysAndTimingsApi service constructor.
+    * @property {module:api/USMarketHolidaysAndTimingsApi}
+    */
+    USMarketHolidaysAndTimingsApi
 };

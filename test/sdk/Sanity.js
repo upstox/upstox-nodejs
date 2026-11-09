@@ -144,6 +144,69 @@ userApiInstance.cancelPayout("TXN123456", (error, data, response) => {
   }
 });
 
+// --- US stocks sanity ---
+var usClient = new UpstoxClient.ApiClient();
+usClient.authentications['OAUTH2'].accessToken = accessToken;
+new UpstoxClient.USStocksFundsApi(usClient).getUsFunds((error, data, response) => {
+  if (error) {
+    console.error(error.response.text);
+  } else {
+    if (data.status != "success") console.log("error in getUsFunds");
+  }
+});
+new UpstoxClient.USStocksPortfolioApi(usClient).getUsHoldings((error, data, response) => {
+  if (error) {
+    console.error(error.response.text);
+  } else {
+    if (data.status != "success") console.log("error in getUsHoldings");
+  }
+});
+var usOrderApiInstance = new UpstoxClient.USStocksOrderApi(usClient);
+usOrderApiInstance.getUsOrderBook((error, data, response) => {
+  if (error) {
+    console.error(error.response.text);
+  } else {
+    if (data.status != "success") console.log("error in getUsOrderBook");
+  }
+});
+var usEstimateRequest = new UpstoxClient.UsOrderEstimateRequest(1, "US_EQ|AAPL", "BUY", "MARKET");
+usOrderApiInstance.estimateUsOrder(usEstimateRequest, (error, data, response) => {
+  if (error) {
+    console.error(error.response.text);
+  } else {
+    if (data.status != "success") console.log("error in estimateUsOrder");
+  }
+});
+new UpstoxClient.USStocksChargesApi(usClient).calculateUsMargin(new UpstoxClient.UsMarginRequest([usEstimateRequest]), (error, data, response) => {
+  if (error) {
+    console.error(error.response.text);
+  } else {
+    if (data.status != "success") console.log("error in calculateUsMargin");
+  }
+});
+var usMarketApiInstance = new UpstoxClient.USMarketHolidaysAndTimingsApi(usClient);
+usMarketApiInstance.getUsHolidays((error, data, response) => {
+  if (error) {
+    console.error(error.response.text);
+  } else {
+    if (data.status != "success") console.log("error in getUsHolidays");
+  }
+});
+usMarketApiInstance.getUsExchangeTimings("2026-10-29", (error, data, response) => {
+  if (error) {
+    console.error(error.response.text);
+  } else {
+    if (data.status != "success") console.log("error in getUsExchangeTimings");
+  }
+});
+usMarketApiInstance.getUsMarketStatus((error, data, response) => {
+  if (error) {
+    console.error(error.response.text);
+  } else {
+    if (data.status != "success") console.log("error in getUsMarketStatus");
+  }
+});
+
 
 var apiInstance = new UpstoxClient.OrderApi();
 var body = new UpstoxClient.PlaceOrderRequest(1, UpstoxClient.PlaceOrderRequest.ProductEnum.D, UpstoxClient.PlaceOrderRequest.ValidityEnum.DAY, 0.0, "NSE_EQ|INE528G01035", UpstoxClient.PlaceOrderRequest.OrderTypeEnum.MARKET, UpstoxClient.PlaceOrderRequest.TransactionTypeEnum.BUY, 0, 0.0, true);
