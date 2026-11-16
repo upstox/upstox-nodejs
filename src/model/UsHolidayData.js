@@ -40,8 +40,6 @@ export class UsHolidayData {
       obj = obj || new UsHolidayData();
       if (data.hasOwnProperty('date'))
         obj._date = ApiClient.convertToType(data['date'], 'String');
-      if (data.hasOwnProperty('description'))
-        obj.description = ApiClient.convertToType(data['description'], 'String');
       if (data.hasOwnProperty('holiday_type'))
         obj.holidayType = ApiClient.convertToType(data['holiday_type'], 'String');
     }
@@ -53,11 +51,6 @@ export class UsHolidayData {
  * @member {String} _date
  */
 UsHolidayData.prototype._date = undefined;
-
-/**
- * @member {String} description
- */
-UsHolidayData.prototype.description = undefined;
 
 /**
  * Allowed values for the <code>holidayType</code> property.

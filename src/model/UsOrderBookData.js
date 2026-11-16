@@ -42,8 +42,6 @@ export class UsOrderBookData {
         obj.name = ApiClient.convertToType(data['name'], 'String');
       if (data.hasOwnProperty('exchange'))
         obj.exchange = ApiClient.convertToType(data['exchange'], 'String');
-      if (data.hasOwnProperty('product'))
-        obj.product = ApiClient.convertToType(data['product'], 'String');
       if (data.hasOwnProperty('validity'))
         obj.validity = ApiClient.convertToType(data['validity'], 'String');
       if (data.hasOwnProperty('price'))
@@ -100,11 +98,6 @@ UsOrderBookData.prototype.name = undefined;
  * @member {String} exchange
  */
 UsOrderBookData.prototype.exchange = undefined;
-
-/**
- * @member {String} product
- */
-UsOrderBookData.prototype.product = undefined;
 
 /**
  * @member {String} validity
