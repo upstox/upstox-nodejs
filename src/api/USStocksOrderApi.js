@@ -144,19 +144,21 @@ export class USStocksOrderApi {
 
     /**
      * Get US stocks order book
-     * Returns the user&#x27;s US stocks orders for the day, in every state.
+     * Returns the user&#x27;s US stocks orders for the day, in every state; optionally only those with a tag.
+     * @param {Object} opts Optional parameters
+     * @param {String} opts.tag Return only orders placed with this tag; exact, case-sensitive match
      * @param {module:api/USStocksOrderApi~getUsOrderBookCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link <&vendorExtensions.x-jsdoc-type>}
      */
-    getUsOrderBook(callback) {
-
+    getUsOrderBook(opts, callback) {
+      opts = opts || {};
       let postBody = null;
 
       let pathParams = {
 
       };
       let queryParams = {
-
+        'tag': opts['tag']
       };
       let headerParams = {
 
