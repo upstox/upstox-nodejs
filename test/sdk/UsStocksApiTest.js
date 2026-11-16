@@ -9,35 +9,37 @@ var instrumentKey = "US_EQ|COUR";
 // --- Orders ---
 var orderApi = new UpstoxClient.USStocksOrderApi(usClient);
 
-let placeRequest = new UpstoxClient.UsPlaceOrderRequest(
-  UpstoxClient.UsPlaceOrderRequest.ValidityEnum.DAY,
-  instrumentKey,
-  UpstoxClient.UsPlaceOrderRequest.TransactionTypeEnum.BUY,
-  UpstoxClient.UsPlaceOrderRequest.OrderTypeEnum.LIMIT
-);
-placeRequest.quantity = 1;
-placeRequest.price = 1.0;
-placeRequest.tag = "sdk-test";
+// Place/cancel hit a real account; disabled by default.
+const RUN_DESTRUCTIVE_US_ORDER_TESTS = false;
+if (RUN_DESTRUCTIVE_US_ORDER_TESTS) {
+  let placeRequest = new UpstoxClient.UsPlaceOrderRequest(
+    UpstoxClient.UsPlaceOrderRequest.ValidityEnum.DAY,
+    instrumentKey,
+    UpstoxClient.UsPlaceOrderRequest.TransactionTypeEnum.BUY,
+    UpstoxClient.UsPlaceOrderRequest.OrderTypeEnum.LIMIT
+  );
+  placeRequest.quantity = 1;
+  placeRequest.price = 1.0;
+  placeRequest.tag = "sdk-test";
 
-orderApi.placeUsOrder(placeRequest, (error, data, response) => {
-  if (error) {
-    console.error("error in placeUsOrder: " + error.response.text);
-  } else {
+  orderApi.placeUsOrder(placeRequest, (error, data, response) => {
+    if (error) {
+      console.error("error in placeUsOrder: " + error.response.text);
+      return;
+    }
     if (data.status != "success") {
       console.log("error in placeUsOrder");
+      return;
     }
-  }
-});
-
-orderApi.cancelUsOrder("example-order-id", (error, data, response) => {
-  if (error) {
-    console.error("error in cancelUsOrder: " + error.response.text);
-  } else {
-    if (data.status != "success") {
-      console.log("error in cancelUsOrder");
-    }
-  }
-});
+    orderApi.cancelUsOrder(data.data.orderId, (error, data, response) => {
+      if (error) {
+        console.error("error in cancelUsOrder: " + error.response.text);
+      } else if (data.status != "success") {
+        console.log("error in cancelUsOrder");
+      }
+    });
+  });
+}
 
 let estimateRequest = new UpstoxClient.UsOrderEstimateRequest(
   1,
