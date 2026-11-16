@@ -3,9 +3,9 @@
 ## 1. Orders
 
 - 1.1 [Place US stocks order](code/place_us_order.md#place-a-us-stocks-market-order-by-quantity)
-- 1.2 [Modify US stocks order](code/modify_us_order.md#modify-a-us-stocks-order)
-- 1.3 [Cancel US stocks order](code/cancel_us_order.md#cancel-a-us-stocks-order)
-- 1.4 [Get US stocks order book](code/get_us_order_book.md#get-us-stocks-order-book)
+- 1.2 [Cancel US stocks order](code/cancel_us_order.md#cancel-a-us-stocks-order)
+- 1.3 [Get US stocks order book](code/get_us_order_book.md#get-us-stocks-order-book)
+- 1.4 [Get US stocks order book by tag](code/get_us_order_book.md#get-us-stocks-order-book-by-tag)
 - 1.5 [Get US stocks order details](code/get_us_order_details.md#get-us-stocks-order-details)
 - 1.6 [Estimate US stocks order charges](code/estimate_us_order.md#estimate-us-stocks-order-charges)
 
