@@ -59,6 +59,19 @@ export class UsOrderEstimateRequest {
     }
     return obj;
   }
+
+  /**
+   * Serializes with the API's snake_case keys.
+   */
+  toJSON() {
+    return {
+      quantity: this.quantity,
+      price: this.price,
+      instrument_key: this.instrumentKey,
+      transaction_type: this.transactionType,
+      order_type: this.orderType
+    };
+  }
 }
 
 /**

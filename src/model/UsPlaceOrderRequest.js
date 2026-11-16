@@ -65,6 +65,22 @@ export class UsPlaceOrderRequest {
     }
     return obj;
   }
+
+  /**
+   * Serializes with the API's snake_case keys.
+   */
+  toJSON() {
+    return {
+      quantity: this.quantity,
+      amount: this.amount,
+      price: this.price,
+      validity: this.validity,
+      tag: this.tag,
+      instrument_key: this.instrumentKey,
+      transaction_type: this.transactionType,
+      order_type: this.orderType
+    };
+  }
 }
 
 /**

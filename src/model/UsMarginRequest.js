@@ -46,6 +46,15 @@ export class UsMarginRequest {
     }
     return obj;
   }
+
+  /**
+   * Serializes with the API's snake_case keys.
+   */
+  toJSON() {
+    return {
+      instruments: this.instruments
+    };
+  }
 }
 
 /**
