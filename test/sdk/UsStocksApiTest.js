@@ -4,7 +4,7 @@ const { accessToken } = require('./DataToken');
 var usClient = new UpstoxClient.ApiClient();
 usClient.authentications['OAUTH2'].accessToken = accessToken;
 
-var instrumentKey = "US_EQ|AAPL";
+var instrumentKey = "US_EQ|COUR";
 
 // --- Orders ---
 var orderApi = new UpstoxClient.USStocksOrderApi(usClient);
@@ -16,7 +16,7 @@ let placeRequest = new UpstoxClient.UsPlaceOrderRequest(
   UpstoxClient.UsPlaceOrderRequest.OrderTypeEnum.LIMIT
 );
 placeRequest.quantity = 1;
-placeRequest.price = 100.5;
+placeRequest.price = 1.0;
 placeRequest.tag = "sdk-test";
 
 orderApi.placeUsOrder(placeRequest, (error, data, response) => {

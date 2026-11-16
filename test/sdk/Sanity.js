@@ -169,7 +169,7 @@ usOrderApiInstance.getUsOrderBook({}, (error, data, response) => {
     if (data.status != "success") console.log("error in getUsOrderBook");
   }
 });
-var usEstimateRequest = new UpstoxClient.UsOrderEstimateRequest(1, "US_EQ|AAPL", "BUY", "MARKET");
+var usEstimateRequest = new UpstoxClient.UsOrderEstimateRequest(1, "US_EQ|COUR", "BUY", "MARKET");
 usOrderApiInstance.estimateUsOrder(usEstimateRequest, (error, data, response) => {
   if (error) {
     console.error(error.response.text);
