@@ -14,7 +14,6 @@
  */
 import {ApiClient} from "../ApiClient";
 import {ApiGatewayErrorResponse} from '../model/ApiGatewayErrorResponse';
-import {UsModifyOrderRequest} from '../model/UsModifyOrderRequest';
 import {UsOrderBookResponse} from '../model/UsOrderBookResponse';
 import {UsOrderDetailsResponse} from '../model/UsOrderDetailsResponse';
 import {UsOrderEstimateRequest} from '../model/UsOrderEstimateRequest';
@@ -220,53 +219,6 @@ export class USStocksOrderApi {
 
       return this.apiClient.callApi(
         '/v2/us/order/details', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
-    }
-    /**
-     * Callback function to receive the result of the modifyUsOrder operation.
-     * @callback moduleapi/USStocksOrderApi~modifyUsOrderCallback
-     * @param {String} error Error message, if any.
-     * @param {module:model/UsOrderResponse{ data The data returned by the service call.
-     * @param {String} response The complete HTTP response.
-     */
-
-    /**
-     * Modify US stocks order
-     * Modifies an open whole-share order. The order is replaced, so the response carries a new order id.
-     * @param {module:model/UsModifyOrderRequest} body
-     * @param {module:api/USStocksOrderApi~modifyUsOrderCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link <&vendorExtensions.x-jsdoc-type>}
-     */
-    modifyUsOrder(body, callback) {
-
-      let postBody = body;
-      // verify the required parameter 'body' is set
-      if (body === undefined || body === null) {
-        throw new Error("Missing the required parameter 'body' when calling modifyUsOrder");
-      }
-
-      let pathParams = {
-
-      };
-      let queryParams = {
-
-      };
-      let headerParams = {
-
-      };
-      let formParams = {
-
-      };
-
-      let authNames = ['OAUTH2'];
-      let contentTypes = ['application/json'];
-      let accepts = ['*/*'];
-      let returnType = UsOrderResponse;
-
-      return this.apiClient.callApi(
-        '/v2/us/order/modify', 'PUT',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );

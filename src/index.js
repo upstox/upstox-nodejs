@@ -189,7 +189,6 @@ import {UsHolidayData} from './model/UsHolidayData';
 import {UsMarginData} from './model/UsMarginData';
 import {UsMarginRequest} from './model/UsMarginRequest';
 import {UsMarginResponse} from './model/UsMarginResponse';
-import {UsModifyOrderRequest} from './model/UsModifyOrderRequest';
 import {UsOrderBookData} from './model/UsOrderBookData';
 import {UsOrderBookResponse} from './model/UsOrderBookResponse';
 import {UsOrderData} from './model/UsOrderData';
@@ -1372,11 +1371,6 @@ export {
      */
     UsMarginResponse,
 
-    /**
-     * The UsModifyOrderRequest model constructor.
-     * @property {module:model/UsModifyOrderRequest}
-     */
-    UsModifyOrderRequest,
 
     /**
      * The UsOrderBookData model constructor.
