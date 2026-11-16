@@ -157,6 +157,8 @@ export class ApiClient {
     }
 
     isOrderPath(path) {
+        // US stock orders are served by the main host, not HFT
+        if (path.startsWith('/v2/us/')) return false;
         const orderRegex = /\/order\/(place|modify|cancel)/;
         return orderRegex.test(path);
     }
@@ -468,7 +470,8 @@ export class ApiClient {
                 }
             }
         } else if (bodyParam) {
-            request.send(bodyParam);
+            // superagent copies own fields and skips a top-level toJSON(), so apply it here
+            request.send(typeof bodyParam.toJSON === 'function' ? bodyParam.toJSON() : bodyParam);
         }
 
         var accept = this.jsonPreferredMime(accepts);
