@@ -68,14 +68,23 @@ orderApi.getUsOrderBook({ tag: "sdk-test" }, (error, data, response) => {
   }
 });
 
-orderApi.getUsOrderDetails("example-order-id", (error, data, response) => {
+// Use a real order id from the order book
+orderApi.getUsOrderBook({}, (error, book, response) => {
   if (error) {
-    console.error("error in getUsOrderDetails: " + error.response.text);
-  } else {
-    if (data.status != "success") {
+    console.error("error in getUsOrderBook: " + error.response.text);
+    return;
+  }
+  if (!book.data || book.data.length === 0) {
+    console.log("getUsOrderDetails skipped: no US order found");
+    return;
+  }
+  orderApi.getUsOrderDetails(book.data[0].orderId, (error, data, response) => {
+    if (error) {
+      console.error("error in getUsOrderDetails: " + error.response.text);
+    } else if (data.status != "success") {
       console.log("error in getUsOrderDetails");
     }
-  }
+  });
 });
 
 // --- Charges ---
