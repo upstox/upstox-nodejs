@@ -151,6 +151,11 @@ export class USStocksOrderApi {
      * data is of type: {@link <&vendorExtensions.x-jsdoc-type>}
      */
     getUsOrderBook(opts, callback) {
+      // Keep the pre-tag getUsOrderBook(callback) signature working
+      if (typeof opts === 'function') {
+        callback = opts;
+        opts = {};
+      }
       opts = opts || {};
       let postBody = null;
 
