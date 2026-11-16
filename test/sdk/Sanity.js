@@ -162,7 +162,7 @@ new UpstoxClient.USStocksPortfolioApi(usClient).getUsHoldings((error, data, resp
   }
 });
 var usOrderApiInstance = new UpstoxClient.USStocksOrderApi(usClient);
-usOrderApiInstance.getUsOrderBook((error, data, response) => {
+usOrderApiInstance.getUsOrderBook({}, (error, data, response) => {
   if (error) {
     console.error(error.response.text);
   } else {

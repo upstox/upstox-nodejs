@@ -29,26 +29,6 @@ orderApi.placeUsOrder(placeRequest, (error, data, response) => {
   }
 });
 
-let modifyRequest = new UpstoxClient.UsModifyOrderRequest(
-  1,
-  UpstoxClient.UsModifyOrderRequest.ValidityEnum.DAY,
-  "example-order-id",
-  instrumentKey,
-  UpstoxClient.UsModifyOrderRequest.TransactionTypeEnum.BUY,
-  UpstoxClient.UsModifyOrderRequest.OrderTypeEnum.LIMIT
-);
-modifyRequest.price = 101;
-
-orderApi.modifyUsOrder(modifyRequest, (error, data, response) => {
-  if (error) {
-    console.error("error in modifyUsOrder: " + error.response.text);
-  } else {
-    if (data.status != "success") {
-      console.log("error in modifyUsOrder");
-    }
-  }
-});
-
 orderApi.cancelUsOrder("example-order-id", (error, data, response) => {
   if (error) {
     console.error("error in cancelUsOrder: " + error.response.text);
@@ -76,7 +56,7 @@ orderApi.estimateUsOrder(estimateRequest, (error, data, response) => {
   }
 });
 
-orderApi.getUsOrderBook((error, data, response) => {
+orderApi.getUsOrderBook({ tag: "sdk-test" }, (error, data, response) => {
   if (error) {
     console.error("error in getUsOrderBook: " + error.response.text);
   } else {
@@ -230,7 +210,7 @@ if (fundsResponse.data.availableToTrade != 250.75 || fundsResponse.data.exchange
 
 let holidayResponse = UpstoxClient.GetUsHolidayResponse.constructFromObject({
   status: "success",
-  data: [{ description: "Thanksgiving Day", holiday_type: "TRADING_HOLIDAY" }]
+  data: [{ date: "2026-11-26", holiday_type: "TRADING_HOLIDAY" }]
 });
 if (holidayResponse.data[0].holidayType != "TRADING_HOLIDAY") {
   console.log("error parsing data on GetUsHolidayResponse");
