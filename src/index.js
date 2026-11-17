@@ -130,6 +130,7 @@ import {MarketQuoteSymbol} from './model/MarketQuoteSymbol';
 import {MarketQuoteSymbolLtp} from './model/MarketQuoteSymbolLtp';
 import {MarketQuoteSymbolLtpV3} from './model/MarketQuoteSymbolLtpV3';
 import {MarketQuoteSymbolV3} from './model/MarketQuoteSymbolV3';
+import {CasEligibleStatusData} from './model/CasEligibleStatusData';
 import {MarketStatusData} from './model/MarketStatusData';
 import {ModifyOrderData} from './model/ModifyOrderData';
 import {ModifyOrderRequest} from './model/ModifyOrderRequest';
@@ -1016,6 +1017,12 @@ export {
      * @property {module:model/MarketQuoteSymbolV3}
      */
     MarketQuoteSymbolV3,
+
+    /**
+     * The CasEligibleStatusData model constructor.
+     * @property {module:model/CasEligibleStatusData}
+     */
+    CasEligibleStatusData,
 
     /**
      * The MarketStatusData model constructor.
