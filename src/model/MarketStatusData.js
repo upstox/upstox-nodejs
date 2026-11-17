@@ -13,6 +13,7 @@
  *
  */
 import {ApiClient} from '../ApiClient';
+import {CasEligibleStatusData} from './CasEligibleStatusData';
 
 /**
  * The MarketStatusData model module.
@@ -45,6 +46,8 @@ export class MarketStatusData {
         obj.status = ApiClient.convertToType(data['status'], 'String');
       if (data.hasOwnProperty('last_updated'))
         obj.lastUpdated = ApiClient.convertToType(data['last_updated'], 'Number');
+      if (data.hasOwnProperty('cas_eligible_status'))
+        obj.casEligibleStatus = CasEligibleStatusData.constructFromObject(data['cas_eligible_status']);
     }
     return obj;
   }
@@ -65,3 +68,7 @@ MarketStatusData.prototype.status = undefined;
  */
 MarketStatusData.prototype.lastUpdated = undefined;
 
+/**
+ * @member {module:model/CasEligibleStatusData} casEligibleStatus
+ */
+MarketStatusData.prototype.casEligibleStatus = undefined;
